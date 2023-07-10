@@ -27,7 +27,7 @@ namespace Yxp.Input
         void SceneShortcuts()
         {
             // [R]eload Current Scene
-            if (UnityEngine.Input.GetKeyDown(KeyCode.R) || UnityEngine.Input.GetButtonDown("Fire3"))
+            if (UnityEngine.Input.GetKeyDown(KeyCode.R))
             {
                 SceneHelper.ReloadCurrentScene();
             }
