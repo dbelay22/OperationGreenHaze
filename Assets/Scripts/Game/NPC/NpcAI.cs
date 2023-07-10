@@ -5,27 +5,29 @@ using UnityEngine.AI;
 
 public enum NpcState
 { 
+    Idle,
     SearchingPlayer,
     Dead
 }
 
 public class NpcAI : MonoBehaviour
 {
-    [Header("Player Target")]
+    [Header("Target")]
     [SerializeField] Transform _targetPlayer;
-    
+    [SerializeField] float _chaseRange = 17;
+
+    float _distanceToTarget;
+
     NavMeshAgent _navMeshAgent;
 
     NpcState _currentState;
-
-    Vector3 _currentTarget;
 
 
     void Start()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
 
-        _currentState = NpcState.SearchingPlayer;
+        _currentState = NpcState.Idle;
     }
 
     void Update()
@@ -37,12 +39,31 @@ public class NpcAI : MonoBehaviour
     {
         switch (_currentState)
         {
+            case NpcState.Idle:
+                IdleUpdate();
+                break;
             case NpcState.SearchingPlayer:
                 SearchingPlayerUpdate();
                 break;
-
             case NpcState.Dead:
                 break;
+        }
+    }
+
+    void CalcDistanceToPlayer()
+    {
+        _distanceToTarget = Vector3.Distance(transform.position, _targetPlayer.position);
+    }
+
+    void IdleUpdate()
+    {
+        CalcDistanceToPlayer();
+        
+        Debug.Log($"[NPC] distance to player is {_distanceToTarget}");
+
+        if (_distanceToTarget < _chaseRange)
+        {
+            _currentState = NpcState.SearchingPlayer;
         }
     }
 
@@ -51,12 +72,9 @@ public class NpcAI : MonoBehaviour
         _navMeshAgent.SetDestination(_targetPlayer.position);
     }
 
-
-    /*
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, _chaseRange);
     }
-    */
 }
