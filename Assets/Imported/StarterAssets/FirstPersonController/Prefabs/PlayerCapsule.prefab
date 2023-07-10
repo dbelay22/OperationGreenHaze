@@ -245,8 +245,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 576
   CinemachineCameraTarget: {fileID: 4135013735270702863}
-  TopClamp: 0
-  BottomClamp: 0
+  TopClamp: 10
+  BottomClamp: -10
 --- !u!114 &1978471637655604388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -499,6 +499,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 8616685848737228372}
+  _raycastRange: 250
+  _coolDownSeconds: 0.5
+  _fpCamera: {fileID: 0}
 --- !u!4 &3497515062730427934 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8916549146485933457, guid: a59b0609ea2fa5f44823a30f5c7ce800,

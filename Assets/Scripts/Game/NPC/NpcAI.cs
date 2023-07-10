@@ -22,10 +22,13 @@ public class NpcAI : MonoBehaviour
 
     NpcState _currentState;
 
+    EnemyHealth _health;
+
 
     void Start()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
+        _health = GetComponent<EnemyHealth>();
 
         _currentState = NpcState.Idle;
     }
@@ -48,6 +51,11 @@ public class NpcAI : MonoBehaviour
             case NpcState.Dead:
                 DeadUpdate();
                 break;
+        }
+
+        if (_health.Health <= 0)
+        {
+            _currentState = NpcState.Dead;
         }
     }
 
