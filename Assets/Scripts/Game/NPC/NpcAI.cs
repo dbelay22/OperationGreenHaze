@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public enum NpcState
 { 
     Idle,
-    SearchingPlayer,
+    Provoked,
     Dead
 }
 
@@ -42,32 +42,39 @@ public class NpcAI : MonoBehaviour
             case NpcState.Idle:
                 IdleUpdate();
                 break;
-            case NpcState.SearchingPlayer:
-                SearchingPlayerUpdate();
+            case NpcState.Provoked:
+                ProvokedUpdate();
                 break;
             case NpcState.Dead:
+                DeadUpdate();
                 break;
         }
     }
 
-    void CalcDistanceToPlayer()
+    void DeadUpdate()
     {
-        _distanceToTarget = Vector3.Distance(transform.position, _targetPlayer.position);
+        Debug.Log($"[NPC] I'm a dead zombie dead, deja vú");
     }
 
     void IdleUpdate()
     {
-        CalcDistanceToPlayer();
+        _distanceToTarget = Vector3.Distance(transform.position, _targetPlayer.position);
         
         Debug.Log($"[NPC] distance to player is {_distanceToTarget}");
 
         if (_distanceToTarget < _chaseRange)
         {
-            _currentState = NpcState.SearchingPlayer;
+            Debug.Log($"[NPC] Oh too close, I feel PROVOKED yummy!");
+            _currentState = NpcState.Provoked;
         }
     }
 
-    void SearchingPlayerUpdate()
+    void ProvokedUpdate()
+    {
+        EngageTartet();
+    }
+
+    void EngageTartet()
     {
         _navMeshAgent.SetDestination(_targetPlayer.position);
     }
