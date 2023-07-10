@@ -70,7 +70,7 @@ public class NpcAI : MonoBehaviour
     void CalcDistanceToTarget()
     {
         _distanceToTarget = Vector3.Distance(transform.position, _targetPlayer.position);
-        Debug.Log($"[NPC] distance to player is {_distanceToTarget}");
+        //Debug.Log($"[NPC] distance to player is {_distanceToTarget}");
     }
 
     void ProvokedUpdate()
