@@ -5,17 +5,14 @@ using UnityEngine.AI;
 
 public enum NpcState
 { 
-    Hungry,
-    GoingToFood,
-    Eating,
-    Satisfied
+    SearchingPlayer,
+    Dead
 }
 
 public class NpcAI : MonoBehaviour
 {
     [Header("Player Target")]
     [SerializeField] Transform _targetPlayer;
-
     
     NavMeshAgent _navMeshAgent;
 
@@ -28,32 +25,33 @@ public class NpcAI : MonoBehaviour
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
 
-        _currentState = NpcState.Hungry;
+        _currentState = NpcState.SearchingPlayer;
     }
 
     void Update()
     {
-        ProcessState();
+        StateUpdate();
     }
 
-    void ProcessState()
+    void StateUpdate()
     {
         switch (_currentState)
         {
-            case NpcState.Hungry:
+            case NpcState.SearchingPlayer:
+                SearchingPlayerUpdate();
                 break;
 
-            case NpcState.GoingToFood:
-                break;
-
-            case NpcState.Eating:
-                break;
-
-            case NpcState.Satisfied:
+            case NpcState.Dead:
                 break;
         }
     }
-    
+
+    void SearchingPlayerUpdate()
+    {
+        _navMeshAgent.SetDestination(_targetPlayer.position);
+    }
+
+
     /*
     void OnDrawGizmosSelected()
     {
