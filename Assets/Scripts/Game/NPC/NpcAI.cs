@@ -58,9 +58,7 @@ public class NpcAI : MonoBehaviour
 
     void IdleUpdate()
     {
-        _distanceToTarget = Vector3.Distance(transform.position, _targetPlayer.position);
-        
-        Debug.Log($"[NPC] distance to player is {_distanceToTarget}");
+        CalcDistanceToTarget();
 
         if (_distanceToTarget < _chaseRange)
         {
@@ -69,14 +67,41 @@ public class NpcAI : MonoBehaviour
         }
     }
 
-    void ProvokedUpdate()
+    void CalcDistanceToTarget()
     {
-        EngageTartet();
+        _distanceToTarget = Vector3.Distance(transform.position, _targetPlayer.position);
+        Debug.Log($"[NPC] distance to player is {_distanceToTarget}");
     }
 
-    void EngageTartet()
+    void ProvokedUpdate()
     {
+        EngageTarget();
+    }
+
+    void EngageTarget()
+    {
+        CalcDistanceToTarget();
+
+        if (_distanceToTarget > _navMeshAgent.stoppingDistance)
+        {
+            ChaseTarget();
+        }
+        else if (_distanceToTarget <= _navMeshAgent.stoppingDistance)
+        {
+            AttackTarget();
+        }
+    }
+
+    void ChaseTarget()
+    {
+        _navMeshAgent.isStopped = false;
         _navMeshAgent.SetDestination(_targetPlayer.position);
+    }
+
+    void AttackTarget()
+    {
+        Debug.Log($"[NPC] Attacking player!");
+        _navMeshAgent.isStopped = true;
     }
 
     void OnDrawGizmosSelected()

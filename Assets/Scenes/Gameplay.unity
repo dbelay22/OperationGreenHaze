@@ -9476,11 +9476,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6382573011072468931, guid: 8c73a24b253b58c42a035adab2c733d0,
         type: 3}
-      propertyPath: _chaseRange
-      value: 17
-      objectReference: {fileID: 0}
-    - target: {fileID: 6382573011072468931, guid: 8c73a24b253b58c42a035adab2c733d0,
-        type: 3}
       propertyPath: _targetPlayer
       value: 
       objectReference: {fileID: 1208478509}
