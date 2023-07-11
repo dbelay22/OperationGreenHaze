@@ -12,6 +12,8 @@ public class Weapon : MonoBehaviour
     [SerializeField] float _coolDownSeconds = 1f;
     [SerializeField] float _damage = 25;
     [SerializeField] ParticleSystem _muzzleFlashPS;
+    [SerializeField] GameObject _hitImpactVFX;
+    [SerializeField] GameObject _hitEnemyVFX;
 
     [Space(10)]
     [SerializeField] Camera _fpCamera;
@@ -70,14 +72,50 @@ public class Weapon : MonoBehaviour
 
         bool hitSomething = Physics.Raycast(ray, out hit, _raycastRange);
 
-        if (hitSomething == true && hit.transform.tag.Equals("Enemy"))
+        if (hitSomething)
         {
-            //Debug.Log($"[Weapon](ShootUpdate) Just hit {hit.transform.name}, distance: {hit.distance}, hit point: {hit.point}");
-            EnemyHealth health = hit.transform.GetComponent<EnemyHealth>();
-            health.Shoot(_damage);
+            bool hitEnemy = hit.transform.tag.Equals("Enemy");
+
+            if (hitEnemy)
+            {
+                PlayHitEnemyVFX(hit);
+
+                //Debug.Log($"[Weapon](ShootUpdate) Just hit {hit.transform.name}, distance: {hit.distance}, hit point: {hit.point}");
+                EnemyHealth health = hit.transform.GetComponent<EnemyHealth>();
+                health.Shoot(_damage);
+            }
+            else
+            {
+                PlayHitImpactVFX(hit);
+            }
+
         }
 
         StartCoroutine(CoolDown());
+    }
+
+    void PlayHitImpactVFX(RaycastHit hit)
+    {
+        if (_hitImpactVFX == null)
+        {
+            return;
+        }
+        
+        GameObject hitImpact = Instantiate(_hitImpactVFX, hit.point, Quaternion.LookRotation(hit.normal));
+        
+        Destroy(hitImpact, 1.5f);
+    }
+
+    void PlayHitEnemyVFX(RaycastHit hit)
+    {
+        if (_hitEnemyVFX == null)
+        {
+            return;
+        }
+
+        GameObject hitEnemy = Instantiate(_hitEnemyVFX, hit.point, Quaternion.LookRotation(hit.normal));
+
+        Destroy(hitEnemy, 1.5f);
     }
 
     IEnumerator CoolDown()
