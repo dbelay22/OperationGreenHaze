@@ -3031,6 +3031,14 @@ PrefabInstance:
       propertyPath: _fpCamera
       value: 
       objectReference: {fileID: 330585545}
+    - target: {fileID: 1748713565, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
+      propertyPath: Pan2D
+      value: 0.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 1748713565, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8616685848737228372, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
         type: 3}
       propertyPath: m_Name
