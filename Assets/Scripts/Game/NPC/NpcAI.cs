@@ -24,11 +24,13 @@ public class NpcAI : MonoBehaviour
 
     EnemyHealth _health;
 
+    Animator _animator;
 
     void Start()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _health = GetComponent<EnemyHealth>();
+        _animator = GetComponent<Animator>();
 
         _currentState = NpcState.Idle;
     }
@@ -104,12 +106,17 @@ public class NpcAI : MonoBehaviour
     {
         _navMeshAgent.isStopped = false;
         _navMeshAgent.SetDestination(_targetPlayer.position);
+
+        _animator.SetBool("Attack", false);
+        _animator.SetTrigger("Move Trigger");        
     }
 
     void AttackTarget()
     {
         Debug.Log($"[NPC] Attacking player!");
         _navMeshAgent.isStopped = true;
+
+        _animator.SetBool("Attack", true);
     }
 
     void OnDrawGizmosSelected()
