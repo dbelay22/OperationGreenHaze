@@ -33,6 +33,11 @@ public class Weapon : MonoBehaviour
 
     void Update()
     {
+        if (Game.Instance.isGameOver())
+        {
+            return;
+        }
+
         if (_input.shoot == false || _canShoot == false)
         {
             return;

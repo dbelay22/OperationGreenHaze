@@ -17,7 +17,7 @@ namespace Yxp.Input
         void GeneralShortcuts()
         {
             // [Q]uit
-            if (UnityEngine.Input.GetKeyDown(KeyCode.Q) || UnityEngine.Input.GetKeyDown(KeyCode.Escape))
+            if (UnityEngine.Input.GetKeyDown(KeyCode.Q))
             {
                 Debug.Log($"Quitting from platform {Application.platform}");
                 Application.Quit();

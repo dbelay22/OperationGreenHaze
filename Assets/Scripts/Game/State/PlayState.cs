@@ -11,7 +11,9 @@ public class PlayState : GameState
     public override void EnterState()
     {
         Debug.Log("*** PLAY ***");
-        
+
+        //Time.timeScale = 1;
+
         HUD.Instance.Reset();
 
         AudioController.Instance.PlayBackgroundMusic();

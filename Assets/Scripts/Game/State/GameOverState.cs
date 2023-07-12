@@ -13,8 +13,18 @@ public class GameOverState : GameState
         Debug.Log("*** GAME OVER ***");
         
         AudioController.Instance.StopBackgroundMusic();
-        
-        SceneHelper.ReloadCurrentScene();
+
+        HUD.Instance.ShowGameOver();
+
+        UnlockCursor();
+
+        //Time.timeScale = 0;
+    }
+
+    void UnlockCursor()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     public override void ExitState()
