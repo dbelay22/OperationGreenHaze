@@ -113,10 +113,15 @@ public class NpcAI : MonoBehaviour
 
     void AttackTarget()
     {
-        Debug.Log($"[NPC] Attacking player!");
+        //Debug.Log($"[NPC] Attacking player!");
         _navMeshAgent.isStopped = true;
 
         _animator.SetBool("Attack", true);
+    }
+
+    public void AttackHitAnimEvent()
+    {
+        Debug.Log("[NPC] I'm eating your brain now jojo");
     }
 
     void OnDrawGizmosSelected()
