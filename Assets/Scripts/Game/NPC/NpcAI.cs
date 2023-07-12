@@ -15,6 +15,7 @@ public class NpcAI : MonoBehaviour
     [Header("Target")]
     [SerializeField] Transform _targetPlayer;
     [SerializeField] float _chaseRange = 17;
+    [SerializeField] float _faceTargetSpeed = 3f;
 
     float _distanceToTarget;
 
@@ -27,7 +28,7 @@ public class NpcAI : MonoBehaviour
     Animator _animator;
 
     PlayerHealth _playerHealth;
-    
+        
 
     void Start()
     {
@@ -94,6 +95,8 @@ public class NpcAI : MonoBehaviour
 
     void EngageTarget()
     {
+        FaceTarget();
+        
         CalcDistanceToTarget();
 
         if (_distanceToTarget > _navMeshAgent.stoppingDistance)
@@ -112,7 +115,18 @@ public class NpcAI : MonoBehaviour
         _navMeshAgent.SetDestination(_targetPlayer.position);
 
         _animator.SetBool("Attack", false);
-        _animator.SetTrigger("Move Trigger");        
+        _animator.SetTrigger("Move Trigger");
+    }
+
+    void FaceTarget()
+    {
+        Vector3 lookDirection = (_targetPlayer.transform.position - transform.position).normalized;
+        
+        Quaternion targetRotation = Quaternion.LookRotation(lookDirection);
+
+        Quaternion nextRotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * _faceTargetSpeed);
+        
+        transform.rotation = nextRotation;
     }
 
     void AttackTarget()
