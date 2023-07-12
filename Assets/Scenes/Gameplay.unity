@@ -3212,39 +3212,6 @@ PrefabInstance:
       propertyPath: _fpCamera
       value: 
       objectReference: {fileID: 330585545}
-    - target: {fileID: 1434361318, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
-      propertyPath: _hitEnemyVFX
-      value: 
-      objectReference: {fileID: 1096893136476370, guid: 24b82347924701148a13c746edfb6b22,
-        type: 3}
-    - target: {fileID: 1434361318, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
-      propertyPath: _hitImpactVFX
-      value: 
-      objectReference: {fileID: 1892351807075712, guid: 44be68b4fc4366142a9cd1ae1f761ea4,
-        type: 3}
-    - target: {fileID: 1748713565, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
-      propertyPath: Pan2D
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1748713565, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
-      propertyPath: m_Volume
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3614249443443285460, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
-        type: 3}
-      propertyPath: ShapeModule.type
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3614249443443285460, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
-        type: 3}
-      propertyPath: ShapeModule.radius.value
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3614249443443285460, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
-        type: 3}
-      propertyPath: ShapeModule.radiusThickness
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8616685848737228372, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
         type: 3}
       propertyPath: m_Name

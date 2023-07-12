@@ -26,11 +26,15 @@ public class NpcAI : MonoBehaviour
 
     Animator _animator;
 
+    PlayerHealth _playerHealth;
+    
+
     void Start()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _health = GetComponent<EnemyHealth>();
         _animator = GetComponent<Animator>();
+        _playerHealth = _targetPlayer.GetComponent<PlayerHealth>();
 
         _currentState = NpcState.Idle;
     }
@@ -122,6 +126,7 @@ public class NpcAI : MonoBehaviour
     public void AttackHitAnimEvent()
     {
         Debug.Log("[NPC] I'm eating your brain now jojo");
+        _playerHealth.Damage(10);
     }
 
     void OnDrawGizmosSelected()
