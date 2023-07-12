@@ -12,6 +12,8 @@ public enum NpcState
 
 public class NpcAI : MonoBehaviour
 {
+    [SerializeField] const int EatBrainDamage = 25;
+
     [Header("Target")]
     [SerializeField] Transform _targetPlayer;
     [SerializeField] float _chaseRange = 17;
@@ -42,6 +44,11 @@ public class NpcAI : MonoBehaviour
 
     void Update()
     {
+        if (Game.Instance.isGameOver())
+        {
+            return;
+        }
+
         StateUpdate();
     }
 
@@ -139,8 +146,8 @@ public class NpcAI : MonoBehaviour
 
     public void AttackHitAnimEvent()
     {
-        Debug.Log("[NPC] I'm eating your brain now jojo");
-        _playerHealth.Damage(10);
+        //Debug.Log("[NPC] I'm eating your brain now jojo");
+        _playerHealth.Damage(EatBrainDamage);
     }
 
     void OnDrawGizmosSelected()

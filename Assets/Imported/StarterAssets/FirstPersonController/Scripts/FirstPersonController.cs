@@ -112,6 +112,11 @@ namespace StarterAssets
 
 		private void Update()
 		{
+			if (Game.Instance.isGameOver())
+			{
+				return;
+			}
+
 			JumpAndGravity();
 			GroundedCheck();
 			Move();
@@ -119,6 +124,11 @@ namespace StarterAssets
 
 		private void LateUpdate()
 		{
+			if (Game.Instance.isGameOver())
+			{
+				return;
+			}
+
 			CameraRotation();
 		}
 

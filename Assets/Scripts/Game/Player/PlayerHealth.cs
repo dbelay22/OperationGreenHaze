@@ -17,13 +17,19 @@ public class PlayerHealth : MonoBehaviour
 
     public void Damage(float amount)
     {
+        if (Game.Instance.isGameOver()) 
+        {
+            return;
+        }
+
         _currentHealth -= amount;
 
         Debug.Log($"[PlayerHealth] _currentHealth:{_currentHealth}");
 
-        if (_currentHealth < 0)
+        if (_currentHealth <= 0)
         {
             Debug.Log("[PlayerHealth] Oh I'm so dead now x-x");
+            Game.Instance.ForceGameOver();
         }
     }
 }

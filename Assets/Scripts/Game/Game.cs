@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using Yxp.Helpers;
+using Yxp.StateMachine;
 
 public class Game : MonoBehaviour
 {
@@ -50,6 +52,23 @@ public class Game : MonoBehaviour
     public void ForceGameOver()
     {
         _stateMachine.TransitionToState(new GameOverState());
+    }
+
+    public void TryAgain()
+    {
+        Debug.Log("Try again");
+        SceneHelper.ReloadCurrentScene();
+    }
+
+    public GameState GetCurrentState()
+    {
+        return _stateMachine.GetCurrentState();
+    }
+
+    public bool isGameOver()
+    {
+        bool isGameOver = Game.Instance.GetCurrentState() is GameOverState;
+        return isGameOver;
     }
 
     //=======================================================

@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class HUD : MonoBehaviour
 {
+    [SerializeField] GameObject _gameOverCanvas;
+
     #region Instance
     private static HUD _instance;
     public static HUD Instance
@@ -18,11 +20,16 @@ public class HUD : MonoBehaviour
 
     public void Reset()
     {
-        UpdateHUD();
+        HideGameOver();
     }
 
-    void UpdateHUD() 
+    public void ShowGameOver()
     {
-         
+        _gameOverCanvas.SetActive(true);
+    }
+
+    public void HideGameOver()
+    {
+        _gameOverCanvas.SetActive(false);
     }
 }
