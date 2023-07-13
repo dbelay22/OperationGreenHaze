@@ -237,6 +237,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _targetPlayer: {fileID: 0}
   _chaseRange: 17
+  _faceTargetSpeed: 3
 --- !u!114 &8739213244090044888
 MonoBehaviour:
   m_ObjectHideFlags: 0
