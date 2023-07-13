@@ -54,8 +54,6 @@ public class NpcAI : MonoBehaviour
 
     void StateUpdate()
     {
-        Debug.Log($"[NPC] current state={_currentState.ToString()}");
-
         switch (_currentState)
         {
             case NpcState.Idle:
@@ -68,12 +66,16 @@ public class NpcAI : MonoBehaviour
                 DeadUpdate();
                 break;
         }
+
+        if (_health.Health <= 0)
+        {
+            _currentState = NpcState.Dead;
+        }
     }
 
     void DeadUpdate()
     {
         Debug.Log($"[NPC] I'm a dead zombie dead, deja vú");
-        _animator.SetTrigger("Dead Trigger");
     }
 
     void IdleUpdate()
@@ -95,14 +97,11 @@ public class NpcAI : MonoBehaviour
 
     void ProvokedUpdate()
     {
-        Debug.Log("[NPC] (ProvokedUpdate)");
         EngageTarget();
     }
 
     void EngageTarget()
     {
-        Debug.Log("[NPC] (EngageTarget)");
-
         FaceTarget();
         
         CalcDistanceToTarget();
@@ -119,8 +118,6 @@ public class NpcAI : MonoBehaviour
 
     void ChaseTarget()
     {
-        Debug.Log("[NPC] (ChaseTarget)");
-
         _navMeshAgent.isStopped = false;
         _navMeshAgent.SetDestination(_targetPlayer.position);
 
@@ -130,8 +127,6 @@ public class NpcAI : MonoBehaviour
 
     void FaceTarget()
     {
-        Debug.Log("[NPC] (FaceTarget)");
-
         Vector3 lookDirection = (_targetPlayer.transform.position - transform.position).normalized;
         
         Quaternion targetRotation = Quaternion.LookRotation(lookDirection);
@@ -143,8 +138,6 @@ public class NpcAI : MonoBehaviour
 
     void AttackTarget()
     {
-        Debug.Log("[NPC] (AttackTarget)");
-
         //Debug.Log($"[NPC] Attacking player!");
         _navMeshAgent.isStopped = true;
 
@@ -159,20 +152,8 @@ public class NpcAI : MonoBehaviour
 
     public void HitByBullet(float damage)
     {
-        if (_currentState == NpcState.Idle)
-        {
-            // Provoked if idle
-            _currentState = NpcState.Provoked;
-        }
-
-        // decrease health
         _health.Shoot(damage);
-
-        if (_health.Health <= 0)
-        {
-            // dead now
-            _currentState = NpcState.Dead;
-        }
+        _currentState = NpcState.Provoked;
     }
 
     void OnDrawGizmosSelected()
