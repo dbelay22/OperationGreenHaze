@@ -67,10 +67,7 @@ public class NpcAI : MonoBehaviour
                 break;
         }
 
-        if (_health.Health <= 0)
-        {
-            _currentState = NpcState.Dead;
-        }
+        
     }
 
     void DeadUpdate()
@@ -154,6 +151,11 @@ public class NpcAI : MonoBehaviour
     {
         _health.Shoot(damage);
         _currentState = NpcState.Provoked;
+
+        if (_health.Health <= 0)
+        {
+            _currentState = NpcState.Dead;
+        }
     }
 
     void OnDrawGizmosSelected()
