@@ -8,6 +8,11 @@ public class EnemyHealth : MonoBehaviour
 
     public float Health { get { return _health; } }
 
+    void Start()
+    {
+        _health = 100f;    
+    }
+
     public void Shoot(float damage)
     {
         _health -= damage;
