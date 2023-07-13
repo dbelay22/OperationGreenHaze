@@ -5,7 +5,7 @@ using Yxp.StateMachine;
 public class Game : MonoBehaviour
 {
     GameStateMachine _stateMachine = null;
-    
+
     #region Instance
     private static Game _instance;
     public static Game Instance
@@ -14,9 +14,9 @@ public class Game : MonoBehaviour
     }
     #endregion
 
-    void Awake() 
+    void Awake()
     {
-        _instance = this; 
+        _instance = this;
     }
 
     void Start()
@@ -69,6 +69,11 @@ public class Game : MonoBehaviour
     {
         bool isGameOver = Game.Instance.GetCurrentState() is GameOverState;
         return isGameOver;
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 
     //=======================================================
