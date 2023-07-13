@@ -86,8 +86,8 @@ public class Weapon : MonoBehaviour
                 PlayHitEnemyVFX(hit);
 
                 //Debug.Log($"[Weapon](ShootUpdate) Just hit {hit.transform.name}, distance: {hit.distance}, hit point: {hit.point}");
-                EnemyHealth health = hit.transform.GetComponent<EnemyHealth>();
-                health.Shoot(_damage);
+                NpcAI npc = hit.transform.GetComponent<NpcAI>();
+                npc.HitByBullet(_damage);
             }
             else
             {

@@ -150,6 +150,12 @@ public class NpcAI : MonoBehaviour
         _playerHealth.Damage(EatBrainDamage);
     }
 
+    public void HitByBullet(float damage)
+    {
+        _health.Shoot(damage);
+        _currentState = NpcState.Provoked;
+    }
+
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;

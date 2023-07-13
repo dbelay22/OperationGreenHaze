@@ -8,7 +8,6 @@ public class EnemyHealth : MonoBehaviour
 
     public float Health { get { return _health; } }
 
-
     public void Shoot(float damage)
     {
         _health -= damage;
