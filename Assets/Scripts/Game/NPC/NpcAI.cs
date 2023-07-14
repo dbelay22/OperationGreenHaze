@@ -54,6 +54,7 @@ public class NpcAI : MonoBehaviour
 
     void StateUpdate()
     {
+        Debug.Log($"[Npc] _currentState={_currentState.ToString()}");
         switch (_currentState)
         {
             case NpcState.Idle:
@@ -66,13 +67,15 @@ public class NpcAI : MonoBehaviour
                 DeadUpdate();
                 break;
         }
-
-        
     }
 
     void DeadUpdate()
     {
         Debug.Log($"[NPC] I'm a dead zombie dead, deja vú");
+        _navMeshAgent.isStopped = true;
+        _animator.SetBool("Attack", false);
+        _animator.SetTrigger("Idle Trigger");
+        Destroy(gameObject, 1.5f);
     }
 
     void IdleUpdate()

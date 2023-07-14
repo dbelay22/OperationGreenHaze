@@ -417,21 +417,6 @@ PrefabInstance:
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 533793903}
-    - target: {fileID: 8762286023885395323, guid: 9c489a8547f4d9e4387da15a4ff82c81,
-        type: 3}
-      propertyPath: m_Lens.FieldOfView
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 8762286023885395323, guid: 9c489a8547f4d9e4387da15a4ff82c81,
-        type: 3}
-      propertyPath: m_Lens.FarClipPlane
-      value: 250
-      objectReference: {fileID: 0}
-    - target: {fileID: 8762286023885395323, guid: 9c489a8547f4d9e4387da15a4ff82c81,
-        type: 3}
-      propertyPath: m_Lens.NearClipPlane
-      value: 0.2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c489a8547f4d9e4387da15a4ff82c81, type: 3}
 --- !u!1 &60211599 stripped
@@ -10014,7 +9999,7 @@ PrefabInstance:
     - target: {fileID: 6382573011072468929, guid: 8c73a24b253b58c42a035adab2c733d0,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.75636744
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6382573011072468929, guid: 8c73a24b253b58c42a035adab2c733d0,
         type: 3}
@@ -10024,7 +10009,7 @@ PrefabInstance:
     - target: {fileID: 6382573011072468929, guid: 8c73a24b253b58c42a035adab2c733d0,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.65414697
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6382573011072468929, guid: 8c73a24b253b58c42a035adab2c733d0,
         type: 3}
@@ -10039,12 +10024,17 @@ PrefabInstance:
     - target: {fileID: 6382573011072468929, guid: 8c73a24b253b58c42a035adab2c733d0,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -81.71
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6382573011072468929, guid: 8c73a24b253b58c42a035adab2c733d0,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6382573011072468931, guid: 8c73a24b253b58c42a035adab2c733d0,
+        type: 3}
+      propertyPath: _chaseRange
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 6382573011072468931, guid: 8c73a24b253b58c42a035adab2c733d0,
         type: 3}
