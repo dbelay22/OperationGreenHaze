@@ -25,7 +25,7 @@ public class NpcAI : MonoBehaviour
 
     NpcState _currentState;
 
-    EnemyHealth _health;
+    NpcHealth _health;
 
     Animator _animator;
 
@@ -35,7 +35,7 @@ public class NpcAI : MonoBehaviour
     void Start()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
-        _health = GetComponent<EnemyHealth>();
+        _health = GetComponent<NpcHealth>();
         _animator = GetComponent<Animator>();
         _playerHealth = _targetPlayer.GetComponent<PlayerHealth>();
 
@@ -54,7 +54,8 @@ public class NpcAI : MonoBehaviour
 
     void StateUpdate()
     {
-        Debug.Log($"[Npc] _currentState={_currentState.ToString()}");
+        //Debug.Log($"[Npc] _currentState={_currentState.ToString()}");
+        
         switch (_currentState)
         {
             case NpcState.Idle:
@@ -152,11 +153,22 @@ public class NpcAI : MonoBehaviour
 
     public void HitByBullet(float damage)
     {
-        _health.Shoot(damage);
-        _currentState = NpcState.Provoked;
-
-        if (_health.Health <= 0)
+        if (_currentState == NpcState.Idle)
         {
+            Debug.Log($"[NpcAI] (HitByBullet) was IDLE, now PROVOKED");
+            _currentState = NpcState.Provoked;
+        }
+
+        BroadcastMessage("OnHitByBullet", damage, SendMessageOptions.RequireReceiver);
+    }
+
+    void OnHealthChange(float health)
+    {
+        Debug.Log($"[NpcAI] OnHealthChange [{health}]");
+
+        if (health <= 0f)
+        {
+            Debug.Log($"[NpcAI] OnHealthChange DEAD!");
             _currentState = NpcState.Dead;
         }
     }
