@@ -25,8 +25,6 @@ public class NpcAI : MonoBehaviour
 
     NpcState _currentState;
 
-    NpcHealth _health;
-
     Animator _animator;
 
     PlayerHealth _playerHealth;
@@ -35,7 +33,6 @@ public class NpcAI : MonoBehaviour
     void Start()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
-        _health = GetComponent<NpcHealth>();
         _animator = GetComponent<Animator>();
         _playerHealth = _targetPlayer.GetComponent<PlayerHealth>();
 
