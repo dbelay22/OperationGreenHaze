@@ -12,7 +12,7 @@ public enum NpcState
 
 public class NpcAI : MonoBehaviour
 {
-    [SerializeField] const int EatBrainDamage = 25;
+    [SerializeField] int EatBrainDamage = 25;
 
     [Header("Target")]
     [SerializeField] Transform _targetPlayer;
@@ -82,7 +82,7 @@ public class NpcAI : MonoBehaviour
 
         if (_distanceToTarget < _chaseRange)
         {
-            Debug.Log($"[NPC] Oh too close, I feel PROVOKED yummy!");
+            //Debug.Log($"[NPC] Oh too close, I feel PROVOKED yummy!");
             _currentState = NpcState.Provoked;
         }
     }
@@ -152,7 +152,7 @@ public class NpcAI : MonoBehaviour
     {
         if (_currentState == NpcState.Idle)
         {
-            Debug.Log($"[NpcAI] (HitByBullet) was IDLE, now PROVOKED");
+            //Debug.Log($"[NpcAI] (HitByBullet) was IDLE, now PROVOKED");
             _currentState = NpcState.Provoked;
         }
 

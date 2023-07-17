@@ -70,6 +70,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 927b14f04648e3f4d8613f8b1dfa5402, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EatBrainDamage: 5
   _targetPlayer: {fileID: 0}
   _chaseRange: 5
   _faceTargetSpeed: 3
@@ -198,7 +199,8 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7389507112651452681, guid: 6dc4cf4496348884d8ee27743ae38562, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6dc4cf4496348884d8ee27743ae38562, type: 3}
 --- !u!4 &1114761672185950682 stripped
 Transform:
