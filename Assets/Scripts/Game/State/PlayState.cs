@@ -13,12 +13,19 @@ public class PlayState : GameState
         Debug.Log("*** PLAY ***");
 
         //Time.timeScale = 1;
+        LockCursor();
 
         HUD.Instance.Reset();
 
         AudioController.Instance.PlayBackgroundMusic();
     }
-   
+
+    void LockCursor()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
     public override void ExitState()
     {        
     }

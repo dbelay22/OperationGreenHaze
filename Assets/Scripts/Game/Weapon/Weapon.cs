@@ -13,7 +13,6 @@ public class Weapon : MonoBehaviour
     [SerializeField] float _damage = 25;
     [SerializeField] ParticleSystem _muzzleFlashPS;
     [SerializeField] GameObject _hitImpactVFX;
-    [SerializeField] GameObject _hitEnemyVFX;
 
     [Space(10)]
     [SerializeField] Camera _fpCamera;
@@ -79,15 +78,14 @@ public class Weapon : MonoBehaviour
 
         if (hitSomething)
         {
+            Debug.Log($"[Weapon](ShootUpdate) Just hit {hit.transform.name}, tag: {hit.transform.tag}, distance: {hit.distance}");
+
             bool hitEnemy = hit.transform.tag.Equals("Enemy");
 
             if (hitEnemy)
             {
-                PlayHitEnemyVFX(hit);
-
-                //Debug.Log($"[Weapon](ShootUpdate) Just hit {hit.transform.name}, distance: {hit.distance}, hit point: {hit.point}");
                 NpcAI npc = hit.transform.GetComponent<NpcAI>();
-                npc.HitByBullet(_damage);
+                npc.HitByBullet(_damage, hit);
             }
             else
             {
@@ -109,18 +107,6 @@ public class Weapon : MonoBehaviour
         GameObject hitImpact = Instantiate(_hitImpactVFX, hit.point, Quaternion.LookRotation(hit.normal));
         
         Destroy(hitImpact, 1.5f);
-    }
-
-    void PlayHitEnemyVFX(RaycastHit hit)
-    {
-        if (_hitEnemyVFX == null)
-        {
-            return;
-        }
-
-        GameObject hitEnemy = Instantiate(_hitEnemyVFX, hit.point, Quaternion.LookRotation(hit.normal));
-
-        Destroy(hitEnemy, 1.5f);
     }
 
     IEnumerator CoolDown()

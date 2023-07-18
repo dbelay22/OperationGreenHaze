@@ -19,6 +19,9 @@ public class NpcAI : MonoBehaviour
     [SerializeField] float _chaseRange = 17;
     [SerializeField] float _faceTargetSpeed = 3f;
 
+    [Header("VFX")]
+    [SerializeField] GameObject _hitEnemyVFX;
+
     float _distanceToTarget;
 
     NavMeshAgent _navMeshAgent;
@@ -28,7 +31,10 @@ public class NpcAI : MonoBehaviour
     Animator _animator;
 
     PlayerHealth _playerHealth;
-        
+
+    GameObject _lastBulletHitInstance;
+
+
 
     void Start()
     {
@@ -69,11 +75,13 @@ public class NpcAI : MonoBehaviour
 
     void DeadUpdate()
     {
-        Debug.Log($"[NPC] I'm a dead zombie dead, deja vú");
+        //Debug.Log($"[NPC] I'm a dead zombie dead, deja vú");
         _navMeshAgent.isStopped = true;
+
         _animator.SetBool("Attack", false);
-        _animator.SetTrigger("Idle Trigger");
-        Destroy(gameObject, 1.5f);
+        _animator.SetTrigger("Dead Trigger");
+
+        Destroy(gameObject, 3f);
     }
 
     void IdleUpdate()
@@ -148,7 +156,7 @@ public class NpcAI : MonoBehaviour
         _playerHealth.Damage(EatBrainDamage);
     }
 
-    public void HitByBullet(float damage)
+    public void HitByBullet(float damage, RaycastHit hit)
     {
         if (_currentState == NpcState.Idle)
         {
@@ -157,6 +165,18 @@ public class NpcAI : MonoBehaviour
         }
 
         BroadcastMessage("OnHitByBullet", damage, SendMessageOptions.RequireReceiver);
+
+        PlayHitEnemyVFX(hit);
+    }
+
+    void PlayHitEnemyVFX(RaycastHit hit)
+    {
+        if (_hitEnemyVFX == null)
+        {
+            return;
+        }
+
+        _lastBulletHitInstance = Instantiate(_hitEnemyVFX, hit.point, Quaternion.LookRotation(hit.normal));
     }
 
     void OnHealthChange(float health)
@@ -165,9 +185,32 @@ public class NpcAI : MonoBehaviour
 
         if (health <= 0f)
         {
-            Debug.Log($"[NpcAI] OnHealthChange DEAD!");
-            _currentState = NpcState.Dead;
+            Dead();
         }
+        else 
+        {
+            Destroy(_lastBulletHitInstance, 1f);
+        }
+    }
+
+    void Dead()
+    {
+        Debug.Log($"[NpcAI] OnHealthChange DEAD!");
+        _lastBulletHitInstance.SetActive(false);
+
+        Destroy(_lastBulletHitInstance, 0.01f);
+
+        // Disable collider so we can't shoot after dead
+        GetComponent<CapsuleCollider>().enabled = false;
+
+        StartCoroutine(DeadAfterVFX());
+    }
+
+    IEnumerator DeadAfterVFX()
+    {
+        yield return new WaitForSeconds(.25f);
+
+        _currentState = NpcState.Dead;
     }
 
     void OnDrawGizmosSelected()
