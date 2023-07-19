@@ -246,8 +246,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 576
   CinemachineCameraTarget: {fileID: 4135013735270702863}
-  TopClamp: 0
-  BottomClamp: 0
+  TopClamp: 22
+  BottomClamp: -22
 --- !u!114 &1978471637655604388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -732,8 +732,6 @@ MonoBehaviour:
   _damage: 20
   _muzzleFlashPS: {fileID: 2610502695888125097}
   _hitImpactVFX: {fileID: 1892351807075712, guid: 44be68b4fc4366142a9cd1ae1f761ea4,
-    type: 3}
-  _hitEnemyVFX: {fileID: 1000012909287652, guid: b99857eca648c07499e2234fede8385c,
     type: 3}
   _fpCamera: {fileID: 0}
 --- !u!4 &3497515062730427934 stripped
