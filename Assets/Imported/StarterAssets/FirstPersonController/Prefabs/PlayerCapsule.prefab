@@ -235,7 +235,7 @@ MonoBehaviour:
   SprintSpeed: 8
   RotationSpeed: 1
   SpeedChangeRate: 10
-  JumpHeight: 1.5
+  JumpHeight: 0.5
   Gravity: -15
   JumpTimeout: 0.1
   FallTimeout: 0.15
@@ -605,19 +605,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 5419054519616752527}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &1434361317
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 491722163459914765}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1.43, y: 5.81, z: 9.42}
-  m_Center: {x: 0, y: -0.9, z: -2.39}
 --- !u!82 &1748713565
 AudioSource:
   m_ObjectHideFlags: 0
@@ -728,7 +715,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _player: {fileID: 8616685848737228372}
   _raycastRange: 250
-  _coolDownSeconds: 0.5
+  _coolDownSeconds: 0.33
   _damage: 20
   _muzzleFlashPS: {fileID: 2610502695888125097}
   _hitImpactVFX: {fileID: 1892351807075712, guid: 44be68b4fc4366142a9cd1ae1f761ea4,
