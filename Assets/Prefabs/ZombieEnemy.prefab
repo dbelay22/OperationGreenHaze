@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 540048798153553761}
   - component: {fileID: 6624075472386140858}
   - component: {fileID: 8294744825748994963}
+  - component: {fileID: 8059479896434547297}
   m_Layer: 0
   m_Name: ZombieEnemy
   m_TagString: Enemy
@@ -117,13 +118,26 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 540048798153553764}
-  m_Material: {fileID: 13400000, guid: 661cf948f0ef2e54d87230b796388bc1, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.29
-  m_Height: 1.75
+  m_Radius: 0.1
+  m_Height: 0.51
   m_Direction: 1
-  m_Center: {x: 0, y: 0.91, z: 0}
+  m_Center: {x: 0, y: 1.74, z: 0.02}
+--- !u!65 &8059479896434547297
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 540048798153553764}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.45, y: 1.67, z: 0.33}
+  m_Center: {x: 0, y: 0.83, z: -0.06}
 --- !u!1001 &540048798484164009
 PrefabInstance:
   m_ObjectHideFlags: 0
