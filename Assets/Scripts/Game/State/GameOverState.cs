@@ -23,7 +23,7 @@ public class GameOverState : GameState
 
     void UnlockCursor()
     {
-        Cursor.lockState = CursorLockMode.None;
+        Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
     }
 
