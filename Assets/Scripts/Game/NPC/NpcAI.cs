@@ -22,6 +22,12 @@ public class NpcAI : MonoBehaviour
     [Header("VFX")]
     [SerializeField] GameObject _hitEnemyVFX;
 
+    [Header("SFX")]
+    [SerializeField] AudioClip _growlSFX;
+    [SerializeField] AudioClip _punchSFX;
+    [SerializeField] AudioClip _bulletHitSFX;
+    [SerializeField] AudioClip _deathSFX;
+
     float _distanceToTarget;
 
     NavMeshAgent _navMeshAgent;
@@ -34,13 +40,14 @@ public class NpcAI : MonoBehaviour
 
     GameObject _lastBulletHitInstance;
 
-
+    AudioSource _audioSource;
 
     void Start()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
         _playerHealth = _targetPlayer.GetComponent<PlayerHealth>();
+        _audioSource = GetComponent<AudioSource>();
 
         _currentState = NpcState.Idle;
     }
@@ -154,6 +161,16 @@ public class NpcAI : MonoBehaviour
     {
         //Debug.Log("[NPC] I'm eating your brain now jojo");
         _playerHealth.Damage(EatBrainDamage);
+
+        if (Random.value < 0.6f)
+        {
+            _audioSource.PlayOneShot(_punchSFX);
+        }
+
+        if (Random.value < 0.3f)
+        {
+            _audioSource.PlayOneShot(_growlSFX);
+        }
     }
 
     public void HitByBullet(float damage, RaycastHit hit)
@@ -166,7 +183,14 @@ public class NpcAI : MonoBehaviour
 
         BroadcastMessage("OnHitByBullet", damage, SendMessageOptions.RequireReceiver);
 
+        PlayHitEnemySFX();
+
         PlayHitEnemyVFX(hit);
+    }
+
+    void PlayHitEnemySFX()
+    {
+        _audioSource.PlayOneShot(_bulletHitSFX);
     }
 
     void PlayHitEnemyVFX(RaycastHit hit)
@@ -198,17 +222,12 @@ public class NpcAI : MonoBehaviour
         Debug.Log($"[NpcAI] OnHealthChange DEAD!");
         _lastBulletHitInstance.SetActive(false);
 
-        Destroy(_lastBulletHitInstance, 0.01f);
+        Destroy(_lastBulletHitInstance);
 
         // Disable collider so we can't shoot after dead
         GetComponent<CapsuleCollider>().enabled = false;
 
-        StartCoroutine(DeadAfterVFX());
-    }
-
-    IEnumerator DeadAfterVFX()
-    {
-        yield return new WaitForSeconds(.25f);
+        _audioSource.PlayOneShot(_deathSFX);
 
         _currentState = NpcState.Dead;
     }
