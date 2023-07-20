@@ -13,6 +13,7 @@ namespace StarterAssets
 		public bool jump;
 		public bool sprint;
 		public bool shoot;
+		public bool sniperZoom;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -49,6 +50,12 @@ namespace StarterAssets
 		{
 			ShootInput(value.isPressed);
 		}
+
+		public void OnSniperZoom(InputValue value)
+		{
+			Debug.Log($"[Sniper] OnSniperZoom value:{value}, isPressed:{value.isPressed}");
+			SniperZoomInput(value.isPressed);
+		}
 #endif
 
 
@@ -75,6 +82,12 @@ namespace StarterAssets
 		public void ShootInput(bool newShootState)
 		{
 			shoot = newShootState;
+		}
+
+		public void SniperZoomInput(bool pressed)
+		{
+			Debug.Log($"[Sniper] SniperZoomInput pressed:{pressed}");
+			sniperZoom = pressed;
 		}
 
 		private void OnApplicationFocus(bool hasFocus)

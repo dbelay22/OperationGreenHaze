@@ -1,3 +1,4 @@
+using Cinemachine;
 using StarterAssets;
 using System;
 using System.Collections;
@@ -16,12 +17,16 @@ public class Weapon : MonoBehaviour
 
     [Space(10)]
     [SerializeField] Camera _fpCamera;
+    [SerializeField] CinemachineVirtualCamera _virtualCamera;
 
     StarterAssetsInputs _input;
 
     AudioSource _shootFXSource;
 
     bool _canShoot = true;
+    
+    bool _sniperZoomActive = false;
+    bool _zooming = false;
 
     void Start()
     {
@@ -38,16 +43,50 @@ public class Weapon : MonoBehaviour
             return;
         }
 
-        if (_input.shoot == false || _canShoot == false)
+        if (_input.shoot && _canShoot)
         {
-            return;
+            PlayMuzzleFlashVFX();
+
+            PlayShootFX();
+
+            Shoot();
         }
 
-        PlayMuzzleFlashVFX();
-                
-        PlayShootFX();
+        if (_input.sniperZoom && !_zooming)
+        {
+            SniperZoomToggle();
+        }
         
-        Shoot();
+    }
+
+    void SniperZoomToggle()
+    {
+        if (_sniperZoomActive)
+        {
+            // Go FOV default
+            StartCoroutine(ChangeFOV(_virtualCamera, 60f, .4f));
+        }
+        else
+        {
+            // Go FOV zoom
+            StartCoroutine(ChangeFOV(_virtualCamera, 10f, .5f));
+        }
+
+        _sniperZoomActive = !_sniperZoomActive;
+    }
+
+    IEnumerator ChangeFOV(CinemachineVirtualCamera cam, float endFOV, float duration)
+    {
+        _zooming = true;
+        float startFOV = cam.m_Lens.FieldOfView;
+        float time = 0;
+        while (time < duration)
+        {
+            cam.m_Lens.FieldOfView = Mathf.Lerp(startFOV, endFOV, time / duration);
+            yield return null;
+            time += Time.deltaTime;
+        }
+        _zooming = false;
     }
 
     void PlayShootFX()
@@ -98,6 +137,11 @@ public class Weapon : MonoBehaviour
         }
 
         StartCoroutine(CoolDown());
+    }
+
+    void SniperZoom()
+    { 
+    
     }
 
     void PlayHitImpactVFX(RaycastHit hit)
