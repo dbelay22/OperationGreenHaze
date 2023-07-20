@@ -53,7 +53,7 @@ namespace StarterAssets
 
 		public void OnSniperZoom(InputValue value)
 		{
-			Debug.Log($"[Sniper] OnSniperZoom value:{value}, isPressed:{value.isPressed}");
+			//Debug.Log($"[Sniper] OnSniperZoom value:{value}, isPressed:{value.isPressed}");
 			SniperZoomInput(value.isPressed);
 		}
 #endif
@@ -86,7 +86,7 @@ namespace StarterAssets
 
 		public void SniperZoomInput(bool pressed)
 		{
-			Debug.Log($"[Sniper] SniperZoomInput pressed:{pressed}");
+			//Debug.Log($"[Sniper] SniperZoomInput pressed:{pressed}");
 			sniperZoom = pressed;
 		}
 

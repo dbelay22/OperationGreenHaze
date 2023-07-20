@@ -18,6 +18,8 @@ public class Weapon : MonoBehaviour
     [Space(10)]
     [SerializeField] Camera _fpCamera;
     [SerializeField] CinemachineVirtualCamera _virtualCamera;
+    [SerializeField] float _fovDefault = 60;
+    [SerializeField] float _fovZoom = 20;
 
     StarterAssetsInputs _input;
 
@@ -64,12 +66,12 @@ public class Weapon : MonoBehaviour
         if (_sniperZoomActive)
         {
             // Go FOV default
-            StartCoroutine(ChangeFOV(_virtualCamera, 60f, .4f));
+            StartCoroutine(ChangeFOV(_virtualCamera, _fovDefault, .4f));
         }
         else
         {
             // Go FOV zoom
-            StartCoroutine(ChangeFOV(_virtualCamera, 10f, .5f));
+            StartCoroutine(ChangeFOV(_virtualCamera, _fovZoom, .5f));
         }
 
         _sniperZoomActive = !_sniperZoomActive;
