@@ -27,6 +27,7 @@ public class Weapon : MonoBehaviour
     {
         _input = _player.GetComponent<StarterAssetsInputs>();
         _shootFXSource = GetComponent<AudioSource>();
+        
         _canShoot = true;
     }
 
@@ -43,7 +44,9 @@ public class Weapon : MonoBehaviour
         }
 
         PlayMuzzleFlashVFX();
+                
         PlayShootFX();
+        
         Shoot();
     }
 
