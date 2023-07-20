@@ -17,9 +17,14 @@ public class Weapon : MonoBehaviour
 
     [Space(10)]
     [SerializeField] Camera _fpCamera;
+
+    [Header("Zoom")]
     [SerializeField] CinemachineVirtualCamera _virtualCamera;
     [SerializeField] float _fovDefault = 60;
     [SerializeField] float _fovZoom = 20;
+
+    [Space(10)]
+    [SerializeField] FirstPersonController _fpController;
 
     StarterAssetsInputs _input;
 
@@ -89,6 +94,20 @@ public class Weapon : MonoBehaviour
             time += Time.deltaTime;
         }
         _zooming = false;
+
+        ChangeMouseSensitivity(endFOV == _fovZoom);
+    }
+
+    void ChangeMouseSensitivity(bool zoomed)
+    {
+        if (zoomed)
+        {
+            _fpController.RotationSpeed = 1.3f;
+        }
+        else
+        {
+            _fpController.RotationSpeed = 1f;
+        }
     }
 
     void PlayShootFX()
