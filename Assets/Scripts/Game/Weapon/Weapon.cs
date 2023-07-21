@@ -4,41 +4,48 @@ using System;
 using System.Collections;
 using UnityEngine;
 
+[RequireComponent(typeof(Ammo))]
 public class Weapon : MonoBehaviour
 {
     [SerializeField] GameObject _player;
 
     [Header("Shooting")]
+    [SerializeField] Camera _fpCamera;
     [SerializeField] float _raycastRange = 250;
     [SerializeField] float _coolDownSeconds = 1f;
     [SerializeField] float _damage = 25;
     [SerializeField] ParticleSystem _muzzleFlashPS;
     [SerializeField] GameObject _hitImpactVFX;
-
-    [Space(10)]
-    [SerializeField] Camera _fpCamera;
+    [SerializeField] int _ammoPerShot = 3;    
 
     [Header("Zoom")]
     [SerializeField] CinemachineVirtualCamera _virtualCamera;
     [SerializeField] float _fovDefault = 60;
     [SerializeField] float _fovZoom = 20;
 
+    [Header("SFX")]
+    [SerializeField] AudioClip _shootSFX;
+    [SerializeField] AudioClip _outOfAmmoSFX;
+
     [Space(10)]
     [SerializeField] FirstPersonController _fpController;
 
     StarterAssetsInputs _input;
 
-    AudioSource _shootFXSource;
+    AudioSource _audioSource;
 
     bool _canShoot = true;
     
     bool _sniperZoomActive = false;
     bool _zooming = false;
 
+    Ammo _ammo;
+
     void Start()
     {
         _input = _player.GetComponent<StarterAssetsInputs>();
-        _shootFXSource = GetComponent<AudioSource>();
+        _audioSource = GetComponent<AudioSource>();
+        _ammo = GetComponent<Ammo>();
         
         _canShoot = true;
     }
@@ -52,11 +59,24 @@ public class Weapon : MonoBehaviour
 
         if (_input.shoot && _canShoot)
         {
-            PlayMuzzleFlashVFX();
+            if (_ammo.AmmoLeft <= 0)
+            {
+                PlayOutOfAmmoSFX();
 
-            PlayShootFX();
+                _canShoot = false;
 
-            Shoot();
+                StartCoroutine(CoolDown());
+            }
+            else
+            {
+                PlayMuzzleFlashVFX();
+
+                PlayShootSFX();
+
+                Shoot();
+
+                BroadcastMessage("OnBulletShot", _ammoPerShot, SendMessageOptions.RequireReceiver);
+            }
         }
 
         if (_input.sniperZoom && !_zooming)
@@ -110,9 +130,14 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    void PlayShootFX()
+    void PlayShootSFX()
     {
-        _shootFXSource.Play();
+        _audioSource.PlayOneShot(_shootSFX);
+    }
+
+    void PlayOutOfAmmoSFX()
+    {
+        _audioSource.PlayOneShot(_outOfAmmoSFX);
     }
 
     void PlayMuzzleFlashVFX()
@@ -132,7 +157,7 @@ public class Weapon : MonoBehaviour
         // Ray from screen center
         Ray ray = _fpCamera.ScreenPointToRay(new Vector3(_fpCamera.pixelWidth / 2, _fpCamera.pixelHeight / 2, 0f));
 
-        Debug.DrawRay(ray.origin, ray.direction, Color.red, 10f);
+        //Debug.DrawRay(ray.origin, ray.direction, Color.red, 10f);
 
         // Raycast now
         RaycastHit hit;
@@ -158,11 +183,6 @@ public class Weapon : MonoBehaviour
         }
 
         StartCoroutine(CoolDown());
-    }
-
-    void SniperZoom()
-    { 
-    
     }
 
     void PlayHitImpactVFX(RaycastHit hit)
