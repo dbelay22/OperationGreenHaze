@@ -26,6 +26,7 @@ public class Weapon : MonoBehaviour
     [Header("SFX")]
     [SerializeField] AudioClip _shootSFX;
     [SerializeField] AudioClip _outOfAmmoSFX;
+    [SerializeField] AudioClip _reloadSFX;
 
     [Space(10)]
     [SerializeField] FirstPersonController _fpController;

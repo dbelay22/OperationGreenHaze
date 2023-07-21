@@ -4939,6 +4939,11 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 4c784b621660b704cb9d46acbb497f0e, type: 3}
     - target: {fileID: 5419054518761805417, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
         type: 3}
+      propertyPath: _reloadSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 052628b47c5c29049a79ed9762b5bdce, type: 3}
+    - target: {fileID: 5419054518761805417, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
+        type: 3}
       propertyPath: _fpController
       value: 
       objectReference: {fileID: 1208478514}
