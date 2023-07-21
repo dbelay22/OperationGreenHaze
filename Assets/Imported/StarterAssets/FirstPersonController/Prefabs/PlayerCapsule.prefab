@@ -282,6 +282,7 @@ MonoBehaviour:
   jump: 0
   sprint: 0
   shoot: 0
+  sniperZoom: 0
   analogMovement: 0
   cursorLocked: 1
   cursorInputForLook: 1
@@ -408,6 +409,26 @@ PrefabInstance:
       propertyPath: _player
       value: 
       objectReference: {fileID: 8616685848737228372}
+    - target: {fileID: 1434361318, guid: a59b0609ea2fa5f44823a30f5c7ce800, type: 3}
+      propertyPath: _shootSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 4c784b621660b704cb9d46acbb497f0e, type: 3}
+    - target: {fileID: 1434361318, guid: a59b0609ea2fa5f44823a30f5c7ce800, type: 3}
+      propertyPath: _reloadSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 052628b47c5c29049a79ed9762b5bdce, type: 3}
+    - target: {fileID: 1434361318, guid: a59b0609ea2fa5f44823a30f5c7ce800, type: 3}
+      propertyPath: _fpController
+      value: 
+      objectReference: {fileID: 8616685848737228371}
+    - target: {fileID: 1434361318, guid: a59b0609ea2fa5f44823a30f5c7ce800, type: 3}
+      propertyPath: _outOfAmmoSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 162c483b79b1aa149ac7cff83f8f28a1, type: 3}
+    - target: {fileID: 1748713565, guid: a59b0609ea2fa5f44823a30f5c7ce800, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5613363016151971714, guid: a59b0609ea2fa5f44823a30f5c7ce800,
         type: 3}
       propertyPath: m_Name
