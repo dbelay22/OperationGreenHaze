@@ -4930,7 +4930,7 @@ PrefabInstance:
     - target: {fileID: 491722163459914765, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2906843890126747736, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
         type: 3}
@@ -4947,6 +4947,11 @@ PrefabInstance:
       propertyPath: _virtualCamera
       value: 
       objectReference: {fileID: 45640651}
+    - target: {fileID: 3329171694353787879, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
+        type: 3}
+      propertyPath: _currentWeaponIdx
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5419054518761805417, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
         type: 3}
       propertyPath: _fpCamera
@@ -4960,7 +4965,7 @@ PrefabInstance:
     - target: {fileID: 7207879538946170677, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7903406999599556611, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
         type: 3}

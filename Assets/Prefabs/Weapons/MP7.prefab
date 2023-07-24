@@ -2508,7 +2508,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8916549146485933457
 Transform:
   m_ObjectHideFlags: 0
@@ -2598,9 +2598,9 @@ MonoBehaviour:
   _virtualCamera: {fileID: 0}
   _fovDefault: 60
   _fovZoom: 20
-  _shootSFX: {fileID: 0}
-  _outOfAmmoSFX: {fileID: 0}
-  _reloadSFX: {fileID: 0}
+  _shootSFX: {fileID: 8300000, guid: 4c784b621660b704cb9d46acbb497f0e, type: 3}
+  _outOfAmmoSFX: {fileID: 8300000, guid: 162c483b79b1aa149ac7cff83f8f28a1, type: 3}
+  _reloadSFX: {fileID: 8300000, guid: 052628b47c5c29049a79ed9762b5bdce, type: 3}
   _fpController: {fileID: 0}
 --- !u!114 &5655458851530672252
 MonoBehaviour:
@@ -2615,6 +2615,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ammoStart: 30
+  _ammoTypeSerialized: 1
 --- !u!82 &1748713565
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2625,7 +2626,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 4c784b621660b704cb9d46acbb497f0e, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 0.3
   m_Pitch: 1

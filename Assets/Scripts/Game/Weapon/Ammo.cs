@@ -5,26 +5,40 @@ using UnityEngine;
 public class Ammo : MonoBehaviour
 {
     [SerializeField] int _ammoStart = 30;
+    [SerializeField] AmmoType _ammoTypeSerialized;
 
-    
-    int _ammoLeft;
-    public int AmmoLeft { get { return _ammoLeft; } }
+    AmmoSlot _ammoSlot;
+        
+    public int AmmoLeft { get { return _ammoSlot.ammoAmount; } }
 
-    
-    private void Start()
+    private class AmmoSlot
     {
-        _ammoLeft = _ammoStart;
+        AmmoType _ammoType;
+        public AmmoType AmmoType { get { return _ammoType; } }
+
+        public int ammoAmount;
+
+        public AmmoSlot(AmmoType ammoType)
+        {
+            _ammoType = ammoType;
+        }        
+    }
+    
+    void Start()
+    {
+        _ammoSlot = new AmmoSlot(_ammoTypeSerialized);
+        _ammoSlot.ammoAmount = _ammoStart;
     }
 
     void OnBulletShot(int amount)
     {
-        _ammoLeft -= amount;
+        _ammoSlot.ammoAmount -= amount;
 
-        if (_ammoLeft < 0)
+        if (_ammoSlot.ammoAmount < 0)
         {
-            _ammoLeft = 0;
+            _ammoSlot.ammoAmount = 0;
         }
 
-        Debug.Log($"[Ammo] ammo left: {_ammoLeft}");
+        Debug.Log($"[Ammo] ammo left: {_ammoSlot.ammoAmount}, ammo type: {_ammoSlot.AmmoType}");
     }
 }

@@ -15,7 +15,7 @@ public class NpcHealth : MonoBehaviour
     {
         _health -= damage;
         
-        Debug.Log($"[NpcHealth] (OnHitByBullet) zombie health is now [{_health}]");
+        //Debug.Log($"[NpcHealth] (OnHitByBullet) zombie health is now [{_health}]");
         
         BroadcastMessage("OnHealthChange", _health, SendMessageOptions.RequireReceiver);
     }

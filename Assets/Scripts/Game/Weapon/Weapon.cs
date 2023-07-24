@@ -16,7 +16,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] float _damage = 25;
     [SerializeField] ParticleSystem _muzzleFlashPS;
     [SerializeField] GameObject _hitImpactVFX;
-    [SerializeField] int _ammoPerShot = 3;    
+    [SerializeField] int _ammoPerShot = 1;    
 
     [Header("Zoom")]
     [SerializeField] CinemachineVirtualCamera _virtualCamera;
@@ -49,6 +49,11 @@ public class Weapon : MonoBehaviour
         _ammo = GetComponent<Ammo>();
         
         _canShoot = true;
+    }
+
+    void OnEnable()
+    {
+        _canShoot = true;             
     }
 
     void Update()
@@ -167,7 +172,7 @@ public class Weapon : MonoBehaviour
 
         if (hitSomething)
         {
-            Debug.Log($"[Weapon](ShootUpdate) Just hit {hit.transform.name}, tag: {hit.transform.tag}, distance: {hit.distance}");
+            //Debug.Log($"[Weapon](ShootUpdate) Just hit {hit.transform.name}, tag: {hit.transform.tag}, distance: {hit.distance}");
 
             bool hitEnemy = hit.transform.tag.Equals("Enemy");
 
@@ -186,6 +191,13 @@ public class Weapon : MonoBehaviour
         StartCoroutine(CoolDown());
     }
 
+    IEnumerator CoolDown()
+    {
+        yield return new WaitForSeconds(_coolDownSeconds);
+
+        _canShoot = true;
+    }
+
     void PlayHitImpactVFX(RaycastHit hit)
     {
         if (_hitImpactVFX == null)
@@ -196,13 +208,6 @@ public class Weapon : MonoBehaviour
         GameObject hitImpact = Instantiate(_hitImpactVFX, hit.point, Quaternion.LookRotation(hit.normal));
         
         Destroy(hitImpact, 1.5f);
-    }
-
-    IEnumerator CoolDown()
-    {
-        yield return new WaitForSeconds(_coolDownSeconds);
-
-        _canShoot = true;
     }
 
 }

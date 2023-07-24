@@ -10,14 +10,35 @@ public class WeaponSwitcher : MonoBehaviour
     [SerializeField] int _currentWeaponIdx = 0;
     [SerializeField] AudioClip _switchSFX;
     
-    Weapon[] _weapons;
+    List<Weapon> _weapons;
 
     AudioSource _audioSource;
 
     void Start()
     {
-        _weapons = GetComponentsInChildren<Weapon>();
+        InitializeWeapons();
+
         _audioSource = GetComponent<AudioSource>();
+
+        StartCoroutine(SetCurrentWeaponActiveDelayed(0.3f));
+    }
+
+    void InitializeWeapons()
+    {
+        _weapons = new List<Weapon>();
+        
+        foreach (Transform child in transform)
+        {
+            Weapon weapon = child.gameObject.GetComponent<Weapon>();
+            if (weapon != null) {
+                _weapons.Add(weapon);
+            }            
+        }
+    }
+
+    IEnumerator SetCurrentWeaponActiveDelayed(float time)
+    {
+        yield return new WaitForSeconds(time);
 
         SetCurrentWeaponActive();
     }
@@ -72,8 +93,9 @@ public class WeaponSwitcher : MonoBehaviour
 
         int weaponIndex = 0;
 
-        foreach (Weapon weapon in _weapons)
+        foreach (Transform child in transform)
         {
+            Weapon weapon = child.gameObject.GetComponent<Weapon>();
             weapon.gameObject.SetActive(weaponIndex == _currentWeaponIdx);
             weaponIndex++;
         }
@@ -81,7 +103,7 @@ public class WeaponSwitcher : MonoBehaviour
 
     void CycleToNextWeapon()
     {
-        if (_currentWeaponIdx < _weapons.Length - 1)
+        if (_currentWeaponIdx < _weapons.Count - 1)
         {
             _currentWeaponIdx++;
         }
@@ -91,5 +113,9 @@ public class WeaponSwitcher : MonoBehaviour
         }        
         
         SetCurrentWeaponActive();
+    }
+
+    public Weapon GetCurrentWeapon() {
+        return _weapons[_currentWeaponIdx];
     }
 }

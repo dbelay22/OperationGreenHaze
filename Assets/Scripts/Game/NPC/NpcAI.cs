@@ -205,7 +205,7 @@ public class NpcAI : MonoBehaviour
 
     void OnHealthChange(float health)
     {
-        Debug.Log($"[NpcAI] OnHealthChange [{health}]");
+        //Debug.Log($"[NpcAI] OnHealthChange [{health}]");
 
         if (health <= 0f)
         {
@@ -219,7 +219,7 @@ public class NpcAI : MonoBehaviour
 
     void Dead()
     {
-        Debug.Log($"[NpcAI] OnHealthChange DEAD!");
+        //Debug.Log($"[NpcAI] OnHealthChange DEAD!");
         _lastBulletHitInstance.SetActive(false);
 
         Destroy(_lastBulletHitInstance);
