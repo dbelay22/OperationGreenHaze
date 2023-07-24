@@ -56,8 +56,7 @@ public class Weapon : MonoBehaviour
         _canShoot = true;
 
         ZoomOut();
-
-    }
+    }    
 
     void Update()
     {
