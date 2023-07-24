@@ -4,15 +4,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(AudioSource))]
 public class WeaponSwitcher : MonoBehaviour
 {
     [SerializeField] int _currentWeaponIdx = 0;
+    [SerializeField] AudioClip _switchSFX;
     
     Weapon[] _weapons;
+
+    AudioSource _audioSource;
 
     void Start()
     {
         _weapons = GetComponentsInChildren<Weapon>();
+        _audioSource = GetComponent<AudioSource>();
+
         SetCurrentWeaponActive();
     }
 
@@ -40,6 +46,11 @@ public class WeaponSwitcher : MonoBehaviour
     void CycleToNextWeapon()
     {
         //Debug.Log($"[WeaponSwitcher] CycleToNextWeapon _currentWeaponIdx:{_currentWeaponIdx}");
+
+        if (_switchSFX != null)
+        {
+            _audioSource.PlayOneShot(_switchSFX);
+        }
 
         if (_currentWeaponIdx < _weapons.Length - 1)
         {
