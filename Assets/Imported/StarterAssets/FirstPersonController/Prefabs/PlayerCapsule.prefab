@@ -498,9 +498,19 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 2354b443bd1b16a4cb30ab647fc756f5, type: 3}
     - target: {fileID: 3788421771384621697, guid: bdc71fe84784acd43b8e3816e10eb765,
         type: 3}
+      propertyPath: _reloadSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 73fa5267721e7c54bb46416b44d4c662, type: 3}
+    - target: {fileID: 3788421771384621697, guid: bdc71fe84784acd43b8e3816e10eb765,
+        type: 3}
       propertyPath: _fpController
       value: 
       objectReference: {fileID: 8616685848737228371}
+    - target: {fileID: 3788421771384621697, guid: bdc71fe84784acd43b8e3816e10eb765,
+        type: 3}
+      propertyPath: _outOfAmmoSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 0bfed1d16a640924ca709a3bc05126e7, type: 3}
     - target: {fileID: 3788421771384621697, guid: bdc71fe84784acd43b8e3816e10eb765,
         type: 3}
       propertyPath: _raycastRange
@@ -510,6 +520,11 @@ PrefabInstance:
         type: 3}
       propertyPath: _muzzleFlashPS
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3788421771384621697, guid: bdc71fe84784acd43b8e3816e10eb765,
+        type: 3}
+      propertyPath: _coolDownSeconds
+      value: 0.22
       objectReference: {fileID: 0}
     - target: {fileID: 6161243599801549926, guid: bdc71fe84784acd43b8e3816e10eb765,
         type: 3}
@@ -529,7 +544,7 @@ PrefabInstance:
     - target: {fileID: 8701951577818738156, guid: bdc71fe84784acd43b8e3816e10eb765,
         type: 3}
       propertyPath: m_Name
-      value: PT-9M Pistol_skin01
+      value: PT-9M
       objectReference: {fileID: 0}
     - target: {fileID: 8701951577818738156, guid: bdc71fe84784acd43b8e3816e10eb765,
         type: 3}
