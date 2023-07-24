@@ -488,6 +488,16 @@ PrefabInstance:
       objectReference: {fileID: 8616685848737228372}
     - target: {fileID: 3788421771384621697, guid: bdc71fe84784acd43b8e3816e10eb765,
         type: 3}
+      propertyPath: _fovZoom
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 3788421771384621697, guid: bdc71fe84784acd43b8e3816e10eb765,
+        type: 3}
+      propertyPath: _shootSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 2354b443bd1b16a4cb30ab647fc756f5, type: 3}
+    - target: {fileID: 3788421771384621697, guid: bdc71fe84784acd43b8e3816e10eb765,
+        type: 3}
       propertyPath: _fpController
       value: 
       objectReference: {fileID: 8616685848737228371}

@@ -4934,6 +4934,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2906843890126747736, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
         type: 3}
+      propertyPath: _fovZoom
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 2906843890126747736, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
+        type: 3}
       propertyPath: _fpCamera
       value: 
       objectReference: {fileID: 330585545}

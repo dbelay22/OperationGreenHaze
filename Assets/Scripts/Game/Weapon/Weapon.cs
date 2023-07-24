@@ -80,7 +80,7 @@ public class Weapon : MonoBehaviour
             }
         }
 
-        if (_input.sniperZoom && !_zooming)
+        if (_input.sniperZoom && !_zooming && _fovDefault != _fovZoom)
         {
             SniperZoomToggle();
         }
