@@ -24,6 +24,11 @@ public class WeaponSwitcher : MonoBehaviour
 
     void Update()
     {
+        if (Game.Instance.isGameOver())
+        {
+            return;
+        }
+
         float mouseScrollY = Mouse.current.scroll.ReadValue().y;
 
         if (mouseScrollY != 0)
