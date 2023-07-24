@@ -30,10 +30,41 @@ public class WeaponSwitcher : MonoBehaviour
         {
             CycleToNextWeapon();
         }
+
+        ProcessKeyboardInput();
+    }
+
+    void ProcessKeyboardInput()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            SetCurrentWeapon(0);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            SetCurrentWeapon(1);
+        }
+    }
+
+    void SetCurrentWeapon(int index)
+    {
+        if (index == _currentWeaponIdx)
+        {
+            return;
+        }
+
+        _currentWeaponIdx = index;
+        
+        SetCurrentWeaponActive();
     }
 
     void SetCurrentWeaponActive()
     {
+        if (_switchSFX != null)
+        {
+            _audioSource.PlayOneShot(_switchSFX);
+        }
+
         int weaponIndex = 0;
 
         foreach (Weapon weapon in _weapons)
@@ -45,13 +76,6 @@ public class WeaponSwitcher : MonoBehaviour
 
     void CycleToNextWeapon()
     {
-        //Debug.Log($"[WeaponSwitcher] CycleToNextWeapon _currentWeaponIdx:{_currentWeaponIdx}");
-
-        if (_switchSFX != null)
-        {
-            _audioSource.PlayOneShot(_switchSFX);
-        }
-
         if (_currentWeaponIdx < _weapons.Length - 1)
         {
             _currentWeaponIdx++;
