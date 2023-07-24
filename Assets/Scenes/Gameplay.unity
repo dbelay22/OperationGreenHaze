@@ -4947,11 +4947,6 @@ PrefabInstance:
       propertyPath: _virtualCamera
       value: 
       objectReference: {fileID: 45640651}
-    - target: {fileID: 3329171694353787879, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
-        type: 3}
-      propertyPath: _currentWeaponIdx
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5419054518761805417, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
         type: 3}
       propertyPath: _fpCamera

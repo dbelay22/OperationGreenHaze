@@ -14,8 +14,12 @@ public class WeaponSwitcher : MonoBehaviour
 
     AudioSource _audioSource;
 
+    bool _canScrollToNextWeapon = true;
+
     void Start()
     {
+        _canScrollToNextWeapon = true;
+
         InitializeWeapons();
 
         _audioSource = GetComponent<AudioSource>();
@@ -52,7 +56,7 @@ public class WeaponSwitcher : MonoBehaviour
 
         float mouseScrollY = Mouse.current.scroll.ReadValue().y;
 
-        if (mouseScrollY != 0)
+        if (mouseScrollY != 0 && _canScrollToNextWeapon)
         {
             CycleToNextWeapon();
         }
@@ -103,6 +107,8 @@ public class WeaponSwitcher : MonoBehaviour
 
     void CycleToNextWeapon()
     {
+        _canScrollToNextWeapon = false;
+
         if (_currentWeaponIdx < _weapons.Count - 1)
         {
             _currentWeaponIdx++;
@@ -113,6 +119,15 @@ public class WeaponSwitcher : MonoBehaviour
         }        
         
         SetCurrentWeaponActive();
+
+        StartCoroutine(CoolDownScroll());
+    }
+
+    IEnumerator CoolDownScroll()
+    {
+        yield return new WaitForSeconds(0.5f);
+        
+        _canScrollToNextWeapon = true;
     }
 
     public Weapon GetCurrentWeapon() {
