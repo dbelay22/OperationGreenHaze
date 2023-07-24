@@ -53,7 +53,10 @@ public class Weapon : MonoBehaviour
 
     void OnEnable()
     {
-        _canShoot = true;             
+        _canShoot = true;
+
+        ZoomOut();
+
     }
 
     void Update()
@@ -94,18 +97,30 @@ public class Weapon : MonoBehaviour
 
     void SniperZoomToggle()
     {
+        Debug.Log($"SniperZoomToggle _sniperZoomActive:{_sniperZoomActive}");
+
         if (_sniperZoomActive)
         {
             // Go FOV default
-            StartCoroutine(ChangeFOV(_virtualCamera, _fovDefault, .4f));
+            ZoomOut();
         }
         else
         {
             // Go FOV zoom
-            StartCoroutine(ChangeFOV(_virtualCamera, _fovZoom, .5f));
+            ZoomIn();
         }
+    }
 
-        _sniperZoomActive = !_sniperZoomActive;
+    void ZoomOut()
+    {
+        StartCoroutine(ChangeFOV(_virtualCamera, _fovDefault, .4f));
+        _sniperZoomActive = false;
+    }
+
+    void ZoomIn()
+    {
+        StartCoroutine(ChangeFOV(_virtualCamera, _fovZoom, .5f));
+        _sniperZoomActive = true;
     }
 
     IEnumerator ChangeFOV(CinemachineVirtualCamera cam, float endFOV, float duration)

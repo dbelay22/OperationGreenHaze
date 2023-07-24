@@ -100,7 +100,8 @@ public class WeaponSwitcher : MonoBehaviour
         foreach (Transform child in transform)
         {
             Weapon weapon = child.gameObject.GetComponent<Weapon>();
-            weapon.gameObject.SetActive(weaponIndex == _currentWeaponIdx);
+            bool active = weaponIndex == _currentWeaponIdx;
+            weapon.gameObject.SetActive(active);
             weaponIndex++;
         }
     }
