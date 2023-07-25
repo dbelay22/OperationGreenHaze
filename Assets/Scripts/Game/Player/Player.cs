@@ -23,13 +23,7 @@ public class Player : MonoBehaviour
             AmmoPickup ammoPickup = trigger.GetComponent<AmmoPickup>();
 
             // Tell the switcher to add this ammo type to the corresponding slot
-            weaponSwitcher.AddAmmoToSlot(ammoPickup.AmmoType, ammoPickup.AmmoAmount);
-
-            // play sfx
-            ammoPickup.PlayPickupSFX();
-
-            // bye pickup
-            Destroy(trigger);
+            weaponSwitcher.AddAmmoPickupToSlot(ammoPickup.AmmoType, ammoPickup.AmmoAmount, ammoPickup);
         }
     }
 }

@@ -234,4 +234,9 @@ public class Weapon : MonoBehaviour
         _ammo.IncreaseAmmo(amount);
     }
 
+    public void PlayPickupAmmoSFX()
+    {
+        _audioSource.PlayOneShot(_reloadSFX);
+    }
+
 }

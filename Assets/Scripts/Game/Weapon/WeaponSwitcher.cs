@@ -135,7 +135,7 @@ public class WeaponSwitcher : MonoBehaviour
         return _weapons[_currentWeaponIdx];
     }
 
-    public void AddAmmoToSlot(AmmoType type, int amount)
+    public void AddAmmoPickupToSlot(AmmoType type, int amount, AmmoPickup ammoPickup)
     {
         Debug.Log($"[WeaponSwitcher] add ammo to slot, type: {type}, amount: {amount}");
 
@@ -149,6 +149,16 @@ public class WeaponSwitcher : MonoBehaviour
 
         Debug.Log($"[WeaponSwitcher] Found weapon of ammo type {weapon.GetAmmoType()}");
 
+        // this works only with 2 weapons
+        if (weapon.isActiveAndEnabled == false)
+        {            
+            CycleToNextWeapon();
+        }
+
         weapon.IncreaseAmmoAmount(amount);
+
+        weapon.PlayPickupAmmoSFX();
+
+        Destroy(ammoPickup.gameObject);
     }
 }
