@@ -96,7 +96,7 @@ public class Weapon : MonoBehaviour
 
     void SniperZoomToggle()
     {
-        Debug.Log($"SniperZoomToggle _sniperZoomActive:{_sniperZoomActive}");
+        //Debug.Log($"SniperZoomToggle _sniperZoomActive:{_sniperZoomActive}");
 
         if (_sniperZoomActive)
         {
@@ -222,6 +222,16 @@ public class Weapon : MonoBehaviour
         GameObject hitImpact = Instantiate(_hitImpactVFX, hit.point, Quaternion.LookRotation(hit.normal));
         
         Destroy(hitImpact, 1.5f);
+    }
+
+    public AmmoType GetAmmoType()
+    {
+        return _ammo.GetAmmoType();
+    }
+
+    public void IncreaseAmmoAmount(int amount)
+    {
+        _ammo.IncreaseAmmo(amount);
     }
 
 }

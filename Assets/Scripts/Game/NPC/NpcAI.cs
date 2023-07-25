@@ -200,7 +200,9 @@ public class NpcAI : MonoBehaviour
             return;
         }
 
-        _lastBulletHitInstance = Instantiate(_hitEnemyVFX, hit.point, Quaternion.LookRotation(hit.normal));
+        GameObject vfx = Instantiate(_hitEnemyVFX, hit.point, Quaternion.LookRotation(hit.normal));
+                
+        Destroy(vfx, 0.7f);
     }
 
     void OnHealthChange(float health)
@@ -211,19 +213,10 @@ public class NpcAI : MonoBehaviour
         {
             Dead();
         }
-        else 
-        {
-            Destroy(_lastBulletHitInstance, 1f);
-        }
     }
 
     void Dead()
     {
-        //Debug.Log($"[NpcAI] OnHealthChange DEAD!");
-        _lastBulletHitInstance.SetActive(false);
-
-        Destroy(_lastBulletHitInstance);
-
         // Disable collider so we can't shoot after dead
         GetComponent<CapsuleCollider>().enabled = false;
 

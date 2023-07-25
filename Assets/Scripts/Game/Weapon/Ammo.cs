@@ -30,6 +30,11 @@ public class Ammo : MonoBehaviour
         _ammoSlot.ammoAmount = _ammoStart;
     }
 
+    public AmmoType GetAmmoType()
+    {
+        return _ammoSlot.AmmoType;
+    }
+
     void OnBulletShot(int amount)
     {
         _ammoSlot.ammoAmount -= amount;
@@ -40,5 +45,12 @@ public class Ammo : MonoBehaviour
         }
 
         Debug.Log($"[Ammo] ammo left: {_ammoSlot.ammoAmount}, ammo type: {_ammoSlot.AmmoType}");
+    }
+
+    public void IncreaseAmmo(int increase)
+    {
+        Debug.Log($"[Ammo] ammo increase: {increase}");
+
+        _ammoSlot.ammoAmount += increase;
     }
 }
