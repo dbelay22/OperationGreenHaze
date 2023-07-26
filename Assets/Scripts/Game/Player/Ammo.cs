@@ -46,18 +46,22 @@ public class Ammo : MonoBehaviour
             slot.ammoAmount = 0;
         }
 
-        Debug.Log($"[Ammo] (OnBulletShot) ammo left: {slot.ammoAmount}, ammo type: {slot._ammoType}");
+        //Debug.Log($"[Ammo] (OnBulletShot) ammo left: {slot.ammoAmount}, ammo type: {slot._ammoType}");
+
+        HUD.Instance.ShowAmmoAmount(slot.ammoAmount);
     }
 
     public void AddAmmoPickup(AmmoType ammoType, int increase)
     {
-        Debug.Log($"[Ammo] (AddAmmoPickup) type:{ammoType}, amount:{increase}");
+        //Debug.Log($"[Ammo] (AddAmmoPickup) type:{ammoType}, amount:{increase}");
 
         AmmoSlot slot = GetAmmoSlotOfType(ammoType);
 
         slot.ammoAmount += increase;
 
         _audioSource.PlayOneShot(slot.pickupSFX);
+
+        HUD.Instance.ShowAmmoAmount(slot.ammoAmount);
     }
 
     public int GetAmmoLeft(AmmoType ammoType)

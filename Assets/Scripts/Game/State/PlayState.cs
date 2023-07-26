@@ -15,7 +15,7 @@ public class PlayState : GameState
         //Time.timeScale = 1;
         LockCursor();
 
-        HUD.Instance.Reset();
+        HUD.Instance.ShowGameplay();
 
         AudioController.Instance.PlayBackgroundMusic();
     }

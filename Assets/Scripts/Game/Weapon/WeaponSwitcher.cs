@@ -15,6 +15,7 @@ public class WeaponSwitcher : MonoBehaviour
     AudioSource _audioSource;
 
     bool _canScrollToNextWeapon = true;
+    Weapon _activeWeapon;
 
     void Start()
     {
@@ -24,7 +25,7 @@ public class WeaponSwitcher : MonoBehaviour
 
         _audioSource = GetComponent<AudioSource>();
 
-        StartCoroutine(SetCurrentWeaponActiveDelayed(0.3f));
+        StartCoroutine(SetCurrentWeaponActiveDelayed(0.5f));
     }
 
     void InitializeWeapons()
@@ -100,9 +101,17 @@ public class WeaponSwitcher : MonoBehaviour
         foreach (Transform child in transform)
         {
             Weapon weapon = child.gameObject.GetComponent<Weapon>();
+            
             bool active = weaponIndex == _currentWeaponIdx;
+            
+            if (active)
+            {
+                _activeWeapon = weapon;
+            }
+            
             weapon.gameObject.SetActive(active);
-            weaponIndex++;
+            
+            weaponIndex++;            
         }
     }
 

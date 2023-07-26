@@ -52,6 +52,8 @@ public class Weapon : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
         
         _canShoot = true;
+
+        HUD.Instance.ShowAmmoAmount(GetAmmoLeft());
     }
 
     void OnEnable()
@@ -59,7 +61,9 @@ public class Weapon : MonoBehaviour
         _canShoot = true;
 
         ZoomOut();
-    }    
+
+        HUD.Instance.ShowAmmoAmount(GetAmmoLeft());
+    }
 
     void Update()
     {
@@ -70,7 +74,7 @@ public class Weapon : MonoBehaviour
 
         if (_input.shoot && _canShoot)
         {
-            int ammoLeft = _ammo.GetAmmoLeft(_ammoType);
+            int ammoLeft = GetAmmoLeft();
 
             if (ammoLeft <= 0)
             {
@@ -232,6 +236,16 @@ public class Weapon : MonoBehaviour
     public AmmoType GetAmmoType()
     {
         return _ammoType;
+    }
+
+    public int GetAmmoLeft()
+    {
+        if (_ammo == null)
+        {
+            return 0;
+        }
+
+        return _ammo.GetAmmoLeft(_ammoType);
     }
 
     public void PlayPickupAmmoSFX()

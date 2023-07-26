@@ -3,8 +3,18 @@ using UnityEngine;
 
 public class HUD : MonoBehaviour
 {
-    [SerializeField] GameObject _gameOverCanvas;
+    [Header("In-game")]
+    [SerializeField] GameObject _hudCanvas;
+
+    [Header("Ammo")]
+    [SerializeField] GameObject _ammoPanel;
+    [SerializeField] TMP_Text _ammoLeftLabel;
+
+
     [SerializeField] GameObject _gunReticleCanvas;
+
+    [Header("Other")]
+    [SerializeField] GameObject _gameOverCanvas;    
 
     #region Instance
     private static HUD _instance;
@@ -14,24 +24,42 @@ public class HUD : MonoBehaviour
     }
     #endregion
 
-    private void Awake()
+    void Awake()
     {
         _instance = this;
     }
 
-    public void Reset()
+    void Start()
     {
-        HideGameOver();
+        ShowGameplay();
+    }
+
+    public void ShowGameplay()
+    {
+        // hide game-over
+        _gameOverCanvas.SetActive(false);
+
+        // show in-game
+        _hudCanvas.SetActive(true);
+        _ammoPanel.SetActive(false);
+
+        _gunReticleCanvas.SetActive(true);
     }
 
     public void ShowGameOver()
     {
+        // hide in-game hud
         _gunReticleCanvas.SetActive(false);
+        _hudCanvas.SetActive(false);
+
+        // show game over
         _gameOverCanvas.SetActive(true);
     }
 
-    public void HideGameOver()
+    public void ShowAmmoAmount(int amount)
     {
-        _gameOverCanvas.SetActive(false);
+        _ammoPanel.SetActive(true);
+        _ammoLeftLabel.text = amount.ToString();
     }
+
 }
