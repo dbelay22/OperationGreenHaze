@@ -7,6 +7,7 @@ public enum NpcState
 { 
     Idle,
     Provoked,
+    Blinded,
     Dead
 }
 
@@ -19,6 +20,9 @@ public class NpcAI : MonoBehaviour
     [SerializeField] float _chaseRange = 17;
     [SerializeField] float _faceTargetSpeed = 3f;
 
+    [Header("Blinded")]
+    [SerializeField] float _blindedTimeout = 7f;
+
     [Header("VFX")]
     [SerializeField] GameObject _hitEnemyVFX;
 
@@ -28,6 +32,9 @@ public class NpcAI : MonoBehaviour
     [SerializeField] AudioClip _bulletHitSFX;
     [SerializeField] AudioClip _deathSFX;
 
+    [Header("Debug")]
+    [SerializeField] bool _showLogs = false;
+
     float _distanceToTarget;
 
     NavMeshAgent _navMeshAgent;
@@ -36,6 +43,7 @@ public class NpcAI : MonoBehaviour
 
     Animator _animator;
 
+    Player _player;
     PlayerHealth _playerHealth;
 
     GameObject _lastBulletHitInstance;
@@ -45,8 +53,12 @@ public class NpcAI : MonoBehaviour
     void Start()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
+        
         _animator = GetComponent<Animator>();
+
+        _player = _targetPlayer.GetComponent<Player>();
         _playerHealth = _targetPlayer.GetComponent<PlayerHealth>();
+
         _audioSource = GetComponent<AudioSource>();
 
         _currentState = NpcState.Idle;
@@ -64,7 +76,10 @@ public class NpcAI : MonoBehaviour
 
     void StateUpdate()
     {
-        //Debug.Log($"[Npc] _currentState={_currentState.ToString()}");
+        if (_showLogs)
+        {
+            Debug.Log($"[Npc] _currentState={_currentState.ToString()}");
+        } 
         
         switch (_currentState)
         {
@@ -74,9 +89,35 @@ public class NpcAI : MonoBehaviour
             case NpcState.Provoked:
                 ProvokedUpdate();
                 break;
+            case NpcState.Blinded:
+                BlindedUpdate();
+                break;
             case NpcState.Dead:
                 DeadUpdate();
                 break;
+        }
+    }
+    
+    void IdleUpdate()
+    {
+        CalcDistanceToTarget();
+
+        if (_distanceToTarget < _chaseRange)
+        {
+            //Debug.Log($"[NPC] Oh too close, I feel PROVOKED yummy!");
+            _currentState = NpcState.Provoked;
+        }
+    }
+
+    void ProvokedUpdate()
+    {
+        EngageTarget();
+    }
+
+    void BlindedUpdate() {
+        if (_showLogs) 
+        {
+            Debug.Log("I can't see shit you asshole");
         }
     }
 
@@ -91,15 +132,43 @@ public class NpcAI : MonoBehaviour
         Destroy(gameObject, 3f);
     }
 
-    void IdleUpdate()
+    void ChangeStateToBlinded()
     {
-        CalcDistanceToTarget();
-
-        if (_distanceToTarget < _chaseRange)
+        if (_currentState == NpcState.Blinded)
         {
-            //Debug.Log($"[NPC] Oh too close, I feel PROVOKED yummy!");
-            _currentState = NpcState.Provoked;
+            return;
         }
+
+        if (_showLogs)
+        {
+            Debug.Log("[NPC] (ChangeStateToBlinded)");
+        }
+
+        _currentState = NpcState.Blinded;
+
+        _navMeshAgent.isStopped = true;
+
+        _animator.SetBool("Attack", false);
+        _animator.SetTrigger("Blinded Trigger");
+
+        StartCoroutine(WakeUpFromBlinded());
+    }
+
+    IEnumerator WakeUpFromBlinded()
+    {
+        if (_showLogs)
+        {
+            Debug.Log($"[NPC] I'm gonna be blind for {_blindedTimeout} seconds");
+        }
+
+        yield return new WaitForSeconds(_blindedTimeout);
+
+        if (_showLogs)
+        {
+            Debug.Log($"[NPC] I CAN SEEEEEEE");
+        }
+
+        _currentState = NpcState.Provoked;
     }
 
     void CalcDistanceToTarget()
@@ -107,12 +176,7 @@ public class NpcAI : MonoBehaviour
         _distanceToTarget = Vector3.Distance(transform.position, _targetPlayer.position);
         //Debug.Log($"[NPC] distance to player is {_distanceToTarget}");
     }
-
-    void ProvokedUpdate()
-    {
-        EngageTarget();
-    }
-
+    
     void EngageTarget()
     {
         FaceTarget();
@@ -155,6 +219,11 @@ public class NpcAI : MonoBehaviour
         _navMeshAgent.isStopped = true;
 
         _animator.SetBool("Attack", true);
+
+        if (_player.IsFlashlightOn())
+        {
+            ChangeStateToBlinded();
+        }
     }
 
     public void AttackHitAnimEvent()

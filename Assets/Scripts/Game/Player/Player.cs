@@ -11,10 +11,13 @@ public class Player : MonoBehaviour
 
     WeaponSwitcher _weaponSwitcher;
 
+    Flashlight _flashlight;
+
     void Start()
     {
         _ammo = GetComponent<Ammo>();
         _weaponSwitcher = GetComponentInChildren<WeaponSwitcher>();
+        _flashlight = GetComponentInChildren<Flashlight>();
     }
 
 
@@ -47,6 +50,16 @@ public class Player : MonoBehaviour
             }
             
         }
+    }
+
+    public bool IsFlashlightOn()
+    {
+        if (_flashlight == null)
+        {
+            return false;
+        }
+
+        return _flashlight.IsOn();
     }
 
 }

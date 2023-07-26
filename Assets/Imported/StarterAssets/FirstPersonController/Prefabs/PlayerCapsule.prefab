@@ -844,6 +844,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4135013735270702856}
     m_Modifications:
+    - target: {fileID: 1619903691560697191, guid: 62f339b6958583c49872864edb0337b0,
+        type: 3}
+      propertyPath: _angleDecay
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1619903691560697191, guid: 62f339b6958583c49872864edb0337b0,
+        type: 3}
+      propertyPath: _lightDecay
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 3578656730809450276, guid: 62f339b6958583c49872864edb0337b0,
         type: 3}
       propertyPath: m_Name
