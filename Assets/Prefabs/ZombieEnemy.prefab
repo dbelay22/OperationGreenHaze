@@ -77,12 +77,15 @@ MonoBehaviour:
   _targetPlayer: {fileID: 0}
   _chaseRange: 70
   _faceTargetSpeed: 3
+  _blindedTimeout: 7
   _hitEnemyVFX: {fileID: 1000012909287652, guid: b99857eca648c07499e2234fede8385c,
     type: 3}
   _growlSFX: {fileID: 8300000, guid: 8b74874200f7c2a4da03f69010bc140d, type: 3}
   _punchSFX: {fileID: 8300000, guid: f0196fedf55e97b48b8b8ec447ba50e5, type: 3}
   _bulletHitSFX: {fileID: 8300000, guid: a3b060243bb50334aab10cf38fde898f, type: 3}
   _deathSFX: {fileID: 8300000, guid: eccc14a763ee8024fb70db5a8c6108e4, type: 3}
+  _blindedSFX: {fileID: 8300000, guid: f700a98ef23f9be41b0747313ebd015a, type: 3}
+  _showLogs: 0
 --- !u!114 &540048798153553761
 MonoBehaviour:
   m_ObjectHideFlags: 0

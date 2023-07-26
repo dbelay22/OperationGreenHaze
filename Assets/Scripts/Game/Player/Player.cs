@@ -52,14 +52,14 @@ public class Player : MonoBehaviour
         }
     }
 
-    public bool IsFlashlightOn()
+    public bool IsFlashlightOnAndCanBlind()
     {
         if (_flashlight == null)
         {
             return false;
         }
 
-        return _flashlight.IsOn();
+        return _flashlight.IsOnAndCanBlind();
     }
 
 }

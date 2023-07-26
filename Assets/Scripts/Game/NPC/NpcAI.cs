@@ -31,6 +31,7 @@ public class NpcAI : MonoBehaviour
     [SerializeField] AudioClip _punchSFX;
     [SerializeField] AudioClip _bulletHitSFX;
     [SerializeField] AudioClip _deathSFX;
+    [SerializeField] AudioClip _blindedSFX;
 
     [Header("Debug")]
     [SerializeField] bool _showLogs = false;
@@ -143,10 +144,16 @@ public class NpcAI : MonoBehaviour
             Debug.Log("[NPC] (ChangeStateToBlinded)");
         }
 
+        // set state
         _currentState = NpcState.Blinded;
 
+        // stop moving
         _navMeshAgent.isStopped = true;
 
+        // play sfx
+        _audioSource.PlayOneShot(_blindedSFX);
+
+        // set anim trigger
         _animator.SetTrigger("Blinded Trigger");
 
         StartCoroutine(WakeUpFromBlinded());
@@ -217,7 +224,7 @@ public class NpcAI : MonoBehaviour
 
         _animator.SetTrigger("Attack Trigger");
 
-        if (_player.IsFlashlightOn())
+        if (_player.IsFlashlightOnAndCanBlind())
         {
             ChangeStateToBlinded();
         }
