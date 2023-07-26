@@ -126,7 +126,6 @@ public class NpcAI : MonoBehaviour
         //Debug.Log($"[NPC] I'm a dead zombie dead, deja vú");
         _navMeshAgent.isStopped = true;
 
-        _animator.SetBool("Attack", false);
         _animator.SetTrigger("Dead Trigger");
 
         Destroy(gameObject, 3f);
@@ -148,7 +147,6 @@ public class NpcAI : MonoBehaviour
 
         _navMeshAgent.isStopped = true;
 
-        _animator.SetBool("Attack", false);
         _animator.SetTrigger("Blinded Trigger");
 
         StartCoroutine(WakeUpFromBlinded());
@@ -198,7 +196,6 @@ public class NpcAI : MonoBehaviour
         _navMeshAgent.isStopped = false;
         _navMeshAgent.SetDestination(_targetPlayer.position);
 
-        _animator.SetBool("Attack", false);
         _animator.SetTrigger("Move Trigger");
     }
 
@@ -218,7 +215,7 @@ public class NpcAI : MonoBehaviour
         //Debug.Log($"[NPC] Attacking player!");
         _navMeshAgent.isStopped = true;
 
-        _animator.SetBool("Attack", true);
+        _animator.SetTrigger("Attack Trigger");
 
         if (_player.IsFlashlightOn())
         {

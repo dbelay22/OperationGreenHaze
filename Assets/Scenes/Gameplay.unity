@@ -7435,7 +7435,7 @@ PrefabInstance:
     - target: {fileID: 540048798153553760, guid: 760dead5495272043ad64abb99c724f8,
         type: 3}
       propertyPath: _showLogs
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 540048798153553760, guid: 760dead5495272043ad64abb99c724f8,
         type: 3}
