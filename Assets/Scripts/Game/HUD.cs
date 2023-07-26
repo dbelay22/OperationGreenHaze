@@ -4,6 +4,7 @@ using UnityEngine;
 public class HUD : MonoBehaviour
 {
     [SerializeField] GameObject _gameOverCanvas;
+    [SerializeField] GameObject _gunReticleCanvas;
 
     #region Instance
     private static HUD _instance;
@@ -25,6 +26,7 @@ public class HUD : MonoBehaviour
 
     public void ShowGameOver()
     {
+        _gunReticleCanvas.SetActive(false);
         _gameOverCanvas.SetActive(true);
     }
 
