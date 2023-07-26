@@ -2,9 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Ammo))]
 public class Player : MonoBehaviour
 {
     const string AMMO_PICKUP_TAG = "AmmoPickup";
+
+    Ammo _ammo;
+
+    void Start()
+    {
+        _ammo = GetComponent<Ammo>();
+    }
+
+
     void OnTriggerEnter(Collider other)
     {
         GameObject trigger = other.gameObject;
@@ -18,12 +28,10 @@ public class Player : MonoBehaviour
 
         if (isAmmoPickup)
         {
-            WeaponSwitcher weaponSwitcher = GetComponentInChildren<WeaponSwitcher>();
-
             AmmoPickup ammoPickup = trigger.GetComponent<AmmoPickup>();
 
-            // Tell the switcher to add this ammo type to the corresponding slot
-            weaponSwitcher.AddAmmoPickupToSlot(ammoPickup.AmmoType, ammoPickup.AmmoAmount, ammoPickup);
+            _ammo.AddAmmoPickupToSlot(ammoPickup.AmmoType, ammoPickup.AmmoAmount);
         }
     }
+
 }

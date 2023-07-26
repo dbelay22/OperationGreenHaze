@@ -4,10 +4,9 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(Ammo))]
 public class Weapon : MonoBehaviour
 {
-    [SerializeField] GameObject _player;
+    [SerializeField] GameObject _playerGO;
 
     [Header("Shooting")]
     [SerializeField] Camera _fpCamera;
@@ -16,6 +15,9 @@ public class Weapon : MonoBehaviour
     [SerializeField] float _damage = 25;
     [SerializeField] ParticleSystem _muzzleFlashPS;
     [SerializeField] GameObject _hitImpactVFX;
+
+    [Header("Ammo")]
+    [SerializeField] AmmoType _ammoType;
     [SerializeField] int _ammoPerShot = 1;    
 
     [Header("Zoom")]
@@ -44,9 +46,10 @@ public class Weapon : MonoBehaviour
 
     void Start()
     {
-        _input = _player.GetComponent<StarterAssetsInputs>();
+        _input = _playerGO.GetComponent<StarterAssetsInputs>();
+        _ammo = _playerGO.GetComponent<Ammo>();
+        
         _audioSource = GetComponent<AudioSource>();
-        _ammo = GetComponent<Ammo>();
         
         _canShoot = true;
     }
@@ -67,7 +70,9 @@ public class Weapon : MonoBehaviour
 
         if (_input.shoot && _canShoot)
         {
-            if (_ammo.AmmoLeft <= 0)
+            int ammoLeft = _ammo.GetAmmoLeft(_ammoType);
+
+            if (ammoLeft <= 0)
             {
                 PlayOutOfAmmoSFX();
 
@@ -83,7 +88,7 @@ public class Weapon : MonoBehaviour
 
                 Shoot();
 
-                BroadcastMessage("OnBulletShot", _ammoPerShot, SendMessageOptions.RequireReceiver);
+                _ammo.OnBulletShot(_ammoType, _ammoPerShot);
             }
         }
 
@@ -226,12 +231,7 @@ public class Weapon : MonoBehaviour
 
     public AmmoType GetAmmoType()
     {
-        return _ammo.GetAmmoType();
-    }
-
-    public void IncreaseAmmoAmount(int amount)
-    {
-        _ammo.IncreaseAmmo(amount);
+        return _ammoType;
     }
 
     public void PlayPickupAmmoSFX()

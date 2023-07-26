@@ -1767,7 +1767,6 @@ GameObject:
   m_Component:
   - component: {fileID: 655818754810414203}
   - component: {fileID: 3788421771384621697}
-  - component: {fileID: 7934904162692400933}
   - component: {fileID: 4208746825564624711}
   m_Layer: 0
   m_Name: PT-9M Pistol_skin01
@@ -1811,14 +1810,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e30cae7808f2a541989a0061080747e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
+  _playerGO: {fileID: 0}
   _fpCamera: {fileID: 0}
   _raycastRange: 150
   _coolDownSeconds: 0.22
-  _damage: 20
+  _damage: 25
   _muzzleFlashPS: {fileID: 0}
   _hitImpactVFX: {fileID: 1892351807075712, guid: 44be68b4fc4366142a9cd1ae1f761ea4,
     type: 3}
+  _ammoType: 0
   _ammoPerShot: 3
   _virtualCamera: {fileID: 0}
   _fovDefault: 60
@@ -1827,20 +1827,6 @@ MonoBehaviour:
   _outOfAmmoSFX: {fileID: 8300000, guid: 0bfed1d16a640924ca709a3bc05126e7, type: 3}
   _reloadSFX: {fileID: 8300000, guid: 73fa5267721e7c54bb46416b44d4c662, type: 3}
   _fpController: {fileID: 0}
---- !u!114 &7934904162692400933
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8701951577818738156}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c9f170140cfa4d45a28c7e20b0d839c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _ammoStart: 17
-  _ammoTypeSerialized: 0
 --- !u!82 &4208746825564624711
 AudioSource:
   m_ObjectHideFlags: 0

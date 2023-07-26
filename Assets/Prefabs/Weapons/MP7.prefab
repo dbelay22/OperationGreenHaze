@@ -2500,7 +2500,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8916549146485933457}
   - component: {fileID: 1434361318}
-  - component: {fileID: 5655458851530672252}
   - component: {fileID: 1748713565}
   m_Layer: 0
   m_Name: MP7
@@ -2586,14 +2585,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e30cae7808f2a541989a0061080747e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
+  _playerGO: {fileID: 0}
   _fpCamera: {fileID: 0}
   _raycastRange: 250
   _coolDownSeconds: 0.33
-  _damage: 35
+  _damage: 50
   _muzzleFlashPS: {fileID: 8002341289794680614}
   _hitImpactVFX: {fileID: 1892351807075712, guid: 44be68b4fc4366142a9cd1ae1f761ea4,
     type: 3}
+  _ammoType: 1
   _ammoPerShot: 3
   _virtualCamera: {fileID: 0}
   _fovDefault: 60
@@ -2602,20 +2602,6 @@ MonoBehaviour:
   _outOfAmmoSFX: {fileID: 8300000, guid: 162c483b79b1aa149ac7cff83f8f28a1, type: 3}
   _reloadSFX: {fileID: 8300000, guid: 052628b47c5c29049a79ed9762b5bdce, type: 3}
   _fpController: {fileID: 0}
---- !u!114 &5655458851530672252
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5613363016151971714}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c9f170140cfa4d45a28c7e20b0d839c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _ammoStart: 30
-  _ammoTypeSerialized: 1
 --- !u!82 &1748713565
 AudioSource:
   m_ObjectHideFlags: 0
