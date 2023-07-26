@@ -9,9 +9,12 @@ public class Player : MonoBehaviour
 
     Ammo _ammo;
 
+    WeaponSwitcher _weaponSwitcher;
+
     void Start()
     {
         _ammo = GetComponent<Ammo>();
+        _weaponSwitcher = GetComponentInChildren<WeaponSwitcher>();
     }
 
 
@@ -35,6 +38,14 @@ public class Player : MonoBehaviour
 
             // bye pickup
             Destroy(trigger);
+
+            // update HUD if current ammo type
+            Weapon currentWeapon = _weaponSwitcher.GetCurrentWeapon();
+            if (ammoPickup.AmmoType.Equals(currentWeapon.GetAmmoType()))
+            {
+                HUD.Instance.UpdateAmmoAmount(currentWeapon.GetAmmoLeft());
+            }
+            
         }
     }
 

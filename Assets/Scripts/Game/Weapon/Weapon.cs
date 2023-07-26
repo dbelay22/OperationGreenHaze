@@ -53,7 +53,7 @@ public class Weapon : MonoBehaviour
         
         _canShoot = true;
 
-        HUD.Instance.ShowAmmoAmount(GetAmmoLeft());
+        HUD.Instance.UpdateAmmoAmount(GetAmmoLeft());
     }
 
     void OnEnable()
@@ -62,7 +62,7 @@ public class Weapon : MonoBehaviour
 
         ZoomOut();
 
-        HUD.Instance.ShowAmmoAmount(GetAmmoLeft());
+        HUD.Instance.UpdateAmmoAmount(GetAmmoLeft());
     }
 
     void Update()

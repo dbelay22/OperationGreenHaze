@@ -48,7 +48,7 @@ public class Ammo : MonoBehaviour
 
         //Debug.Log($"[Ammo] (OnBulletShot) ammo left: {slot.ammoAmount}, ammo type: {slot._ammoType}");
 
-        HUD.Instance.ShowAmmoAmount(slot.ammoAmount);
+        HUD.Instance.UpdateAmmoAmount(slot.ammoAmount);
     }
 
     public void AddAmmoPickup(AmmoType ammoType, int increase)
@@ -60,8 +60,6 @@ public class Ammo : MonoBehaviour
         slot.ammoAmount += increase;
 
         _audioSource.PlayOneShot(slot.pickupSFX);
-
-        HUD.Instance.ShowAmmoAmount(slot.ammoAmount);
     }
 
     public int GetAmmoLeft(AmmoType ammoType)

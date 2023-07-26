@@ -12,7 +12,7 @@ public enum NpcState
 
 public class NpcAI : MonoBehaviour
 {
-    [SerializeField] float EatBrainDamage = 10;
+    [SerializeField] int EatBrainDamage = 10;
 
     [Header("Target")]
     [SerializeField] Transform _targetPlayer;

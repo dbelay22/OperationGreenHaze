@@ -4,18 +4,23 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    const float START_HEALTH = 100f;
+    const int START_HEALTH = 100;
 
     [Header("Health")]
-    [SerializeField] float _currentHealth;
-
+    [SerializeField] int _currentHealth;
 
     void Start()
     {
         _currentHealth = START_HEALTH;
+
     }
 
-    public void Damage(float amount)
+    void Update()
+    {
+        HUD.Instance.UpdateHealthAmmount(_currentHealth);
+    }
+
+    public void Damage(int amount)
     {
         if (Game.Instance.isGameOver()) 
         {
@@ -24,11 +29,13 @@ public class PlayerHealth : MonoBehaviour
 
         _currentHealth -= amount;
 
-        Debug.Log($"[PlayerHealth] _currentHealth:{_currentHealth}");
+        HUD.Instance.UpdateHealthAmmount(_currentHealth);
+
+        //Debug.Log($"[PlayerHealth] _currentHealth:{_currentHealth}");
 
         if (_currentHealth <= 0)
         {
-            Debug.Log("[PlayerHealth] Oh I'm so dead now x-x");
+            //Debug.Log("[PlayerHealth] Oh I'm so dead now x-x");
             Game.Instance.ForceGameOver();
         }
     }

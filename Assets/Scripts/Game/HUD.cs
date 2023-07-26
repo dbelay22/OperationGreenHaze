@@ -10,6 +10,9 @@ public class HUD : MonoBehaviour
     [SerializeField] GameObject _ammoPanel;
     [SerializeField] TMP_Text _ammoLeftLabel;
 
+    [Header("Health")]
+    [SerializeField] GameObject _healthPanel;
+    [SerializeField] TMP_Text _healthLabel;
 
     [SerializeField] GameObject _gunReticleCanvas;
 
@@ -41,7 +44,10 @@ public class HUD : MonoBehaviour
 
         // show in-game
         _hudCanvas.SetActive(true);
+        
+        // de-activate panels
         _ammoPanel.SetActive(false);
+        _healthPanel.SetActive(false);
 
         _gunReticleCanvas.SetActive(true);
     }
@@ -56,10 +62,16 @@ public class HUD : MonoBehaviour
         _gameOverCanvas.SetActive(true);
     }
 
-    public void ShowAmmoAmount(int amount)
+    public void UpdateAmmoAmount(int amount)
     {
         _ammoPanel.SetActive(true);
         _ammoLeftLabel.text = amount.ToString();
+    }
+
+    public void UpdateHealthAmmount(int amount)
+    {
+        _healthPanel.SetActive(true);
+        _healthLabel.text = amount.ToString();
     }
 
 }

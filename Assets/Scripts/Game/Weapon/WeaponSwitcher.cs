@@ -15,6 +15,7 @@ public class WeaponSwitcher : MonoBehaviour
     AudioSource _audioSource;
 
     bool _canScrollToNextWeapon = true;
+    
     Weapon _activeWeapon;
 
     void Start()
