@@ -30,7 +30,11 @@ public class Player : MonoBehaviour
         {
             AmmoPickup ammoPickup = trigger.GetComponent<AmmoPickup>();
 
-            _ammo.AddAmmoPickupToSlot(ammoPickup.AmmoType, ammoPickup.AmmoAmount);
+            // add ammo to slot
+            _ammo.AddAmmoPickup(ammoPickup.AmmoType, ammoPickup.AmmoAmount);
+
+            // bye pickup
+            Destroy(trigger);
         }
     }
 

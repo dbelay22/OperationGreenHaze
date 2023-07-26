@@ -49,9 +49,9 @@ public class Ammo : MonoBehaviour
         Debug.Log($"[Ammo] (OnBulletShot) ammo left: {slot.ammoAmount}, ammo type: {slot._ammoType}");
     }
 
-    public void AddAmmoPickupToSlot(AmmoType ammoType, int increase)
+    public void AddAmmoPickup(AmmoType ammoType, int increase)
     {
-        Debug.Log($"[Ammo] (AddAmmoPickupToSlot) type:{ammoType}, amount:{increase}");
+        Debug.Log($"[Ammo] (AddAmmoPickup) type:{ammoType}, amount:{increase}");
 
         AmmoSlot slot = GetAmmoSlotOfType(ammoType);
 

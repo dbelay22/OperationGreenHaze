@@ -134,31 +134,5 @@ public class WeaponSwitcher : MonoBehaviour
     public Weapon GetCurrentWeapon() {
         return _weapons[_currentWeaponIdx];
     }
-
-    /*
-    public void AddAmmoPickupToSlot(AmmoType type, int amount, AmmoPickup ammoPickup)
-    {
-        Debug.Log($"[WeaponSwitcher] add ammo to slot, type: {type}, amount: {amount}");
-
-        Weapon weapon =_weapons.Find(item => item.GetAmmoType().Equals(type));
-
-        if (weapon == null)
-        {
-            Debug.LogError($"[WeaponSwitcher] Can't find weapon with ammo type {type}");
-            return;
-        }
-
-        Debug.Log($"[WeaponSwitcher] Found weapon of ammo type {weapon.GetAmmoType()}");
-
-        // this works only with 2 weapons
-        if (weapon.isActiveAndEnabled == false)
-        {            
-            CycleToNextWeapon();
-        }
-
-        weapon.PlayPickupAmmoSFX();
-
-        Destroy(ammoPickup.gameObject);
-    }
-    */
+    
 }
