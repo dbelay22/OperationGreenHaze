@@ -16,7 +16,7 @@ GameObject:
   m_TagString: AmmoPickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &7869202563899733495
 Transform:
@@ -72,6 +72,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SMG Ammo
+      objectReference: {fileID: 0}
+    - target: {fileID: 580695659351593366, guid: 28ce6cee091dba54c9a962af73bc3181,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 2765550932113172807, guid: 28ce6cee091dba54c9a962af73bc3181,
         type: 3}
@@ -142,6 +147,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5961478519883314918, guid: 28ce6cee091dba54c9a962af73bc3181,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7275954939926302879, guid: 28ce6cee091dba54c9a962af73bc3181,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28ce6cee091dba54c9a962af73bc3181, type: 3}
