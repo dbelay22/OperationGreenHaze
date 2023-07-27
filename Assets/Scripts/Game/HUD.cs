@@ -32,11 +32,6 @@ public class HUD : MonoBehaviour
         _instance = this;
     }
 
-    void Start()
-    {
-        ShowGameplay();
-    }
-
     public void ShowGameplay()
     {
         // hide game-over
@@ -45,10 +40,6 @@ public class HUD : MonoBehaviour
         // show in-game
         _hudCanvas.SetActive(true);
         
-        // de-activate panels
-        _ammoPanel.SetActive(false);
-        _healthPanel.SetActive(false);
-
         _gunReticleCanvas.SetActive(true);
     }
 
@@ -64,6 +55,8 @@ public class HUD : MonoBehaviour
 
     public void UpdateAmmoAmount(int amount)
     {
+        Debug.Log($"[HUD] (UpdateAmmoAmount) amount: {amount}");
+
         _ammoPanel.SetActive(true);
         _ammoLeftLabel.text = amount.ToString();
     }

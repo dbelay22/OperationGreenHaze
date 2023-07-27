@@ -77,7 +77,7 @@ MonoBehaviour:
   _targetPlayer: {fileID: 0}
   _chaseRange: 70
   _faceTargetSpeed: 3
-  _blindedTimeout: 7
+  _blindedTimeout: 5
   _hitEnemyVFX: {fileID: 1000012909287652, guid: b99857eca648c07499e2234fede8385c,
     type: 3}
   _growlSFX: {fileID: 8300000, guid: 8b74874200f7c2a4da03f69010bc140d, type: 3}
