@@ -284,17 +284,20 @@ public class NpcAI : MonoBehaviour
 
         if (health <= 0f)
         {
-            Dead();
+            ChangeStateToDead();
         }
     }
 
-    void Dead()
+    void ChangeStateToDead()
     {
-        // Disable collider so we can't shoot after dead
+        // Disable colliders so we can't shoot after dead
         GetComponent<CapsuleCollider>().enabled = false;
+        GetComponent<BoxCollider>().enabled = false;
 
+        // play SFX
         _audioSource.PlayOneShot(_deathSFX);
 
+        // change state
         _currentState = NpcState.Dead;
     }
 
