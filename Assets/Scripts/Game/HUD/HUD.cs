@@ -6,6 +6,9 @@ public class HUD : MonoBehaviour
     [Header("In-game")]
     [SerializeField] GameObject _hudCanvas;
 
+    [Header("Gameplay")]
+    [SerializeField] GameObject _gunReticleCanvas;
+
     [Header("Ammo")]
     [SerializeField] GameObject _ammoPanel;
     [SerializeField] TMP_Text _ammoLeftLabel;
@@ -14,10 +17,11 @@ public class HUD : MonoBehaviour
     [SerializeField] GameObject _healthPanel;
     [SerializeField] TMP_Text _healthLabel;
 
-    [SerializeField] GameObject _gunReticleCanvas;
+    [Header("VFX")]
+    [SerializeField] GameObject _playerDamageCanvas;
 
-    [Header("Other")]
-    [SerializeField] GameObject _gameOverCanvas;    
+    [Header("Interactive")]
+    [SerializeField] GameObject _gameOverCanvas;
 
     #region Instance
     private static HUD _instance;
@@ -40,7 +44,11 @@ public class HUD : MonoBehaviour
         // show in-game
         _hudCanvas.SetActive(true);
         
+        // show reticle
         _gunReticleCanvas.SetActive(true);
+
+        // hide vfx
+        _playerDamageCanvas.SetActive(false);
     }
 
     public void ShowGameOver()
@@ -65,6 +73,11 @@ public class HUD : MonoBehaviour
     {
         _healthPanel.SetActive(true);
         _healthLabel.text = amount.ToString();
+    }
+
+    public void ShowPlayerDamage()
+    {
+        _playerDamageCanvas.SetActive(true);
     }
 
 }

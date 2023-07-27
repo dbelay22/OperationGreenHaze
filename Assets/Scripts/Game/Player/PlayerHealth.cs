@@ -31,6 +31,8 @@ public class PlayerHealth : MonoBehaviour
 
         HUD.Instance.UpdateHealthAmmount(_currentHealth);
 
+        HUD.Instance.ShowPlayerDamage();
+
         //Debug.Log($"[PlayerHealth] _currentHealth:{_currentHealth}");
 
         if (_currentHealth <= 0)
