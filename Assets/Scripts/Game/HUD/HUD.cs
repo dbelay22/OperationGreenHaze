@@ -57,6 +57,9 @@ public class HUD : MonoBehaviour
         _gunReticleCanvas.SetActive(false);
         _hudCanvas.SetActive(false);
 
+        // hide vfx
+        _playerDamageCanvas.SetActive(false);
+
         // show game over
         _gameOverCanvas.SetActive(true);
     }
