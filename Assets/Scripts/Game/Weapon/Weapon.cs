@@ -91,8 +91,6 @@ public class Weapon : MonoBehaviour
                 PlayShootSFX();
 
                 Shoot();
-
-                _ammo.OnBulletShot(_ammoType, _ammoPerShot);
             }
         }
 
@@ -193,12 +191,14 @@ public class Weapon : MonoBehaviour
 
         bool hitSomething = Physics.Raycast(ray, out hit, _raycastRange);
 
+        bool hitEnemy = false;
+
         if (hitSomething)
         {
             //Debug.Log($"[Weapon](ShootUpdate) Just hit {hit.transform.name}, tag: {hit.transform.tag}, distance: {hit.distance}");
 
-            bool hitEnemy = hit.transform.tag.Equals("Enemy");
-
+            hitEnemy = hit.transform.tag.Equals("Enemy");                    
+            
             if (hitEnemy)
             {
                 NpcAI npc = hit.transform.GetComponent<NpcAI>();
@@ -208,8 +208,10 @@ public class Weapon : MonoBehaviour
             {
                 PlayHitImpactVFX(hit);
             }
-
         }
+
+        // Notify Ammo-slots manager
+        _ammo.OnBulletShot(_ammoType, _ammoPerShot, hitEnemy);
 
         StartCoroutine(CoolDown());
     }

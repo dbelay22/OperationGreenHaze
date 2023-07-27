@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,9 +18,37 @@ public class Ammo : MonoBehaviour
 
     AudioSource _audioSource;
 
+    // Accuracy
+    float _ammoShooted;
+    float _ammoHitEnemy;
+    float _accuracy;
+
     private void Start()
     {
         _audioSource = GetComponent<AudioSource>();
+
+        InitAccuracy();
+    }
+
+    void InitAccuracy()
+    {
+        _ammoShooted = 0;
+        _ammoHitEnemy = 0;
+        _accuracy = 0;
+    }
+
+    void UpdateAccuracy(bool hitEnemy)
+    {
+        _ammoShooted++;
+        
+        if (hitEnemy)
+        {
+            _ammoHitEnemy++;
+        }
+
+        _accuracy = _ammoHitEnemy / _ammoShooted * 100;
+
+        Debug.Log($"[Ammo] Accuracy is now {_accuracy} %");
     }
 
     AmmoSlot GetAmmoSlotOfType(AmmoType ammoType)
@@ -35,8 +64,10 @@ public class Ammo : MonoBehaviour
         return null;
     }
 
-    public void OnBulletShot(AmmoType ammoType, int amount)
+    public void OnBulletShot(AmmoType ammoType, int amount, bool hitEnemy)
     {
+        UpdateAccuracy(hitEnemy);
+
         AmmoSlot slot = GetAmmoSlotOfType(ammoType);
 
         slot.ammoAmount -= amount;
