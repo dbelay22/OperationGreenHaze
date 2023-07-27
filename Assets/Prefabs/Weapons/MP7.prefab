@@ -2598,7 +2598,7 @@ MonoBehaviour:
   _virtualCamera: {fileID: 0}
   _fovDefault: 60
   _fovZoom: 20
-  _shootSFX: {fileID: 8300000, guid: 4c784b621660b704cb9d46acbb497f0e, type: 3}
+  _shootSFX: {fileID: 8300000, guid: 83487b8e1aa2db3419426ca6115cba95, type: 3}
   _outOfAmmoSFX: {fileID: 8300000, guid: 162c483b79b1aa149ac7cff83f8f28a1, type: 3}
   _reloadSFX: {fileID: 8300000, guid: 052628b47c5c29049a79ed9762b5bdce, type: 3}
   _fpController: {fileID: 0}

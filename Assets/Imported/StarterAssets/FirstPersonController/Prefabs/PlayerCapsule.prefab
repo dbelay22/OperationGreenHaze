@@ -761,10 +761,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 2031027525386470617}
     m_Modifications:
     - target: {fileID: 1434361318, guid: a59b0609ea2fa5f44823a30f5c7ce800, type: 3}
-      propertyPath: _player
-      value: 
-      objectReference: {fileID: 8616685848737228372}
-    - target: {fileID: 1434361318, guid: a59b0609ea2fa5f44823a30f5c7ce800, type: 3}
       propertyPath: _playerGO
       value: 
       objectReference: {fileID: 8616685848737228372}
@@ -776,11 +772,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MP7
-      objectReference: {fileID: 0}
-    - target: {fileID: 5613363016151971714, guid: a59b0609ea2fa5f44823a30f5c7ce800,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8916549146485933457, guid: a59b0609ea2fa5f44823a30f5c7ce800,
         type: 3}
@@ -837,8 +828,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 5655458851530672252, guid: a59b0609ea2fa5f44823a30f5c7ce800, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a59b0609ea2fa5f44823a30f5c7ce800, type: 3}
 --- !u!4 &3497515062730427934 stripped
 Transform:
