@@ -55,7 +55,7 @@ public class HUD : MonoBehaviour
 
     public void UpdateAmmoAmount(int amount)
     {
-        Debug.Log($"[HUD] (UpdateAmmoAmount) amount: {amount}");
+        //Debug.Log($"[HUD] (UpdateAmmoAmount) amount: {amount}");
 
         _ammoPanel.SetActive(true);
         _ammoLeftLabel.text = amount.ToString();
