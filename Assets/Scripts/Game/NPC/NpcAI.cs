@@ -297,6 +297,9 @@ public class NpcAI : MonoBehaviour
         // play SFX
         _audioSource.PlayOneShot(_deathSFX);
 
+        // update HUD
+        HUD.Instance.IncreaseKills();
+
         // change state
         _currentState = NpcState.Dead;
     }

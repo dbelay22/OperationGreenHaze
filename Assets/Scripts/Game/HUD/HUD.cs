@@ -17,11 +17,19 @@ public class HUD : MonoBehaviour
     [SerializeField] GameObject _healthPanel;
     [SerializeField] TMP_Text _healthLabel;
 
+    [Header("Kills")]
+    [SerializeField] GameObject _killsPanel;
+    [SerializeField] TMP_Text _killsLabel;
+
+
     [Header("VFX")]
     [SerializeField] GameObject _playerDamageCanvas;
 
     [Header("Interactive")]
     [SerializeField] GameObject _gameOverCanvas;
+
+    int _currentKills;
+    int _totalKills;
 
     #region Instance
     private static HUD _instance;
@@ -78,9 +86,35 @@ public class HUD : MonoBehaviour
         _healthLabel.text = amount.ToString();
     }
 
-    public void ShowPlayerDamage()
+    public void ShowPlayerDamageVFX()
     {
         _playerDamageCanvas.SetActive(true);
+    }
+
+    public void InitKills(int total)
+    {
+        _currentKills = 0;
+        _totalKills = total;
+
+        _killsPanel.SetActive(true);
+        _killsLabel.text = GetLabelKillsOverTotal(_currentKills, _totalKills);
+    }
+
+    public void IncreaseKills()
+    {
+        _currentKills++;
+        
+        _killsLabel.text = GetLabelKillsOverTotal(_currentKills, _totalKills);
+
+        if (_currentKills >= _totalKills)
+        {
+            Debug.Log("[HUD] Win!!");
+        }
+    }
+
+    string GetLabelKillsOverTotal(int kills, int total)
+    {
+        return string.Format("{0} / {1}", kills, total);
     }
 
 }
