@@ -607,7 +607,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2765550932113172807}
   m_Layer: 0
-  m_Name: PT-9M Pistol Ammo
+  m_Name: PT-9M Ammo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4422,7 +4422,6 @@ GameObject:
   - component: {fileID: 5959147254615135122}
   - component: {fileID: 7120175264087443476}
   - component: {fileID: 7037714945700211472}
-  - component: {fileID: 3869970015940702131}
   m_Layer: 0
   m_Name: PistolCollec.001
   m_TagString: Untagged
@@ -4525,23 +4524,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &3869970015940702131
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5961478519883314918}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f50e828d885a0714084fca66327fc05e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Explode_Sound: {fileID: 8300000, guid: 35a89d3bf48583e40b4828aff321585f, type: 3}
-  Recall_Sound: {fileID: 8300000, guid: 35a89d3bf48583e40b4828aff321585f, type: 3}
-  Audio: {fileID: 0}
-  ExplodeSpeed: 0.25
-  pointB: {x: -0.000005588037, y: 0.01597551, z: 0.06}
 --- !u!1 &6173351273669606552
 GameObject:
   m_ObjectHideFlags: 0

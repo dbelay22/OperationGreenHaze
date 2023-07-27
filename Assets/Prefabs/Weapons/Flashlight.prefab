@@ -33,7 +33,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &9108277552187090784
 Light:
   m_ObjectHideFlags: 0
@@ -46,7 +46,7 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 0.96862745, b: 0.7764706, a: 1}
-  m_Intensity: 33
+  m_Intensity: 44
   m_Range: 11
   m_SpotAngle: 71.615524
   m_InnerSpotAngle: 44.151623
@@ -128,3 +128,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bcc9efc3bb52f14d87d0f3cacc0905b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _lightDecay: 0.4
+  _angleDecay: 0.4

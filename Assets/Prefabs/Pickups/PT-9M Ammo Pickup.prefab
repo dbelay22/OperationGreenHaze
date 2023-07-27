@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4171344225975997372}
   - component: {fileID: 753289213940700796}
   m_Layer: 0
-  m_Name: Ammo Pickup
+  m_Name: PT-9M Ammo Pickup
   m_TagString: AmmoPickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
