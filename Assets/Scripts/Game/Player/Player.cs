@@ -64,4 +64,9 @@ public class Player : MonoBehaviour
         return _flashlight.IsOnAndCanBlind();
     }
 
+    void OnPlayerDeath()
+    {
+        _weaponSwitcher.HideCurrentWeapon();
+    }
+
 }

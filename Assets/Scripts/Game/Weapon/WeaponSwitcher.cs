@@ -144,5 +144,10 @@ public class WeaponSwitcher : MonoBehaviour
     public Weapon GetCurrentWeapon() {
         return _weapons[_currentWeaponIdx];
     }
+
+    public void HideCurrentWeapon()
+    {
+        _activeWeapon.gameObject.SetActive(false);
+    }
     
 }

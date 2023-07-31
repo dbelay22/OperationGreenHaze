@@ -79,6 +79,9 @@ public class PlayerHealth : MonoBehaviour
         if (_currentHealth <= 0)
         {
             //Debug.Log("[PlayerHealth] Oh I'm so dead now x-x");
+
+            BroadcastMessage("OnPlayerDeath", SendMessageOptions.RequireReceiver);
+                        
             _audioSource.PlayOneShot(_dieSFX, 3.3f);
 
             Game.Instance.ForceGameOver();
