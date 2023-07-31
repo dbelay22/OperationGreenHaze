@@ -30,7 +30,8 @@ public class NpcAI : MonoBehaviour
     [SerializeField] AudioClip _growlSFX;
     [SerializeField] AudioClip _punchSFX;
     [SerializeField] AudioClip _bulletHitSFX;
-    [SerializeField] AudioClip _deathSFX;
+    [SerializeField] AudioClip _death01SFX;
+    [SerializeField] AudioClip _death02SFX;
     [SerializeField] AudioClip _blindedSFX;
 
     [Header("Debug")]
@@ -294,14 +295,21 @@ public class NpcAI : MonoBehaviour
         GetComponent<CapsuleCollider>().enabled = false;
         GetComponent<BoxCollider>().enabled = false;
 
-        // play SFX
-        _audioSource.PlayOneShot(_deathSFX);
+        PlayDeathSFX();
 
         // update HUD
         HUD.Instance.IncreaseKills();
 
         // change state
         _currentState = NpcState.Dead;
+    }
+
+    void PlayDeathSFX()
+    {
+        float rndm = Random.value;
+        
+        // play SFX
+        _audioSource.PlayOneShot(rndm < 0.5 ? _death01SFX : _death02SFX);
     }
 
     void OnDrawGizmosSelected()
