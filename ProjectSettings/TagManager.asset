@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - AmmoPickup
   - ToxicZone
+  - Quadrant
   layers:
   - Default
   - TransparentFX

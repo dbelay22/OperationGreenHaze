@@ -4,6 +4,8 @@ using Yxp.StateMachine;
 
 public class Game : MonoBehaviour
 {
+    public const string QUADRANT_TAG = "Quadrant";
+
     GameStateMachine _stateMachine = null;
 
     #region Instance

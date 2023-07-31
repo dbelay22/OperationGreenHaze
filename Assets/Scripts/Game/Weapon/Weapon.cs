@@ -197,7 +197,7 @@ public class Weapon : MonoBehaviour
         {
             //Debug.Log($"[Weapon](ShootUpdate) Just hit {hit.transform.name}, tag: {hit.transform.tag}, distance: {hit.distance}");
 
-            hitEnemy = hit.transform.tag.Equals("Enemy");                    
+            hitEnemy = hit.transform.tag.Equals("Enemy");                   
             
             if (hitEnemy)
             {
