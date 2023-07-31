@@ -108,7 +108,7 @@ public class HUD : MonoBehaviour
 
         if (_currentKills >= _totalKills)
         {
-            Debug.Log("[HUD] Win!!");
+            Debug.Log($"[HUD] WIN in {Time.realtimeSinceStartup / 60f}");
         }
     }
 

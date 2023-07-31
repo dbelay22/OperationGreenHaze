@@ -235,12 +235,12 @@ public class NpcAI : MonoBehaviour
         //Debug.Log("[NPC] I'm eating your brain now jojo");
         _playerHealth.Damage(EatBrainDamage);
 
-        if (Random.value < 0.6f)
+        if (Random.value < 0.7f)
         {
             _audioSource.PlayOneShot(_punchSFX);
         }
 
-        if (Random.value < 0.3f)
+        if (Random.value < 0.5f)
         {
             _audioSource.PlayOneShot(_growlSFX);
         }

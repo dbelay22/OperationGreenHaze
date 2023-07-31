@@ -16,7 +16,9 @@ public class Player : MonoBehaviour
     void Start()
     {
         _ammo = GetComponent<Ammo>();
+        
         _weaponSwitcher = GetComponentInChildren<WeaponSwitcher>();
+        
         _flashlight = GetComponentInChildren<Flashlight>();
     }
 
