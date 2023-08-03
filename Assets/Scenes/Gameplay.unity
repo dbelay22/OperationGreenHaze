@@ -3946,7 +3946,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &303751256
 Transform:
   m_ObjectHideFlags: 0
@@ -4255,7 +4255,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &329520157
 Transform:
   m_ObjectHideFlags: 0
@@ -4463,7 +4463,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -20769,7 +20769,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2103659409
 Transform:
   m_ObjectHideFlags: 0
@@ -21474,8 +21474,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8974531209230176576, guid: c6dc9c7b5a8020b41a4533f6b2fedab6,
         type: 3}
+      propertyPath: _winMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: f4ec9e24527b1194a82d54801ca51b4a, type: 3}
+    - target: {fileID: 8974531209230176576, guid: c6dc9c7b5a8020b41a4533f6b2fedab6,
+        type: 3}
       propertyPath: _musicSource
       value: 
-      objectReference: {fileID: 330585543}
+      objectReference: {fileID: 330585549}
+    - target: {fileID: 8974531209230176576, guid: c6dc9c7b5a8020b41a4533f6b2fedab6,
+        type: 3}
+      propertyPath: _gameOverMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: 999836f386abb6440b09072260754c64, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6dc9c7b5a8020b41a4533f6b2fedab6, type: 3}

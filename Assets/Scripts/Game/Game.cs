@@ -9,17 +9,18 @@ public class Game : MonoBehaviour
     GameStateMachine _stateMachine = null;
 
     #region Instance
+    
     private static Game _instance;
-    public static Game Instance
-    {
-        get { return _instance; }
-    }
-    #endregion
+ 
+    public static Game Instance { get { return _instance; } }
 
     void Awake()
     {
         _instance = this;
     }
+
+    #endregion
+
 
     void Start()
     {

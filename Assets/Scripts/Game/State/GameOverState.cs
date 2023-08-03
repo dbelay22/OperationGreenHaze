@@ -12,7 +12,7 @@ public class GameOverState : GameState
     {
         Debug.Log("*** GAME OVER ***");
         
-        AudioController.Instance.StopBackgroundMusic();
+        AudioController.Instance.PlayGameOverMusic();
 
         HUD.Instance.ShowGameOver();
 

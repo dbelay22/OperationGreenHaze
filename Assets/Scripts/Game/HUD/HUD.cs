@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -21,33 +22,34 @@ public class HUD : MonoBehaviour
     [SerializeField] GameObject _killsPanel;
     [SerializeField] TMP_Text _killsLabel;
 
-
     [Header("VFX")]
     [SerializeField] GameObject _playerDamageCanvas;
 
     [Header("Interactive")]
     [SerializeField] GameObject _gameOverCanvas;
+    [SerializeField] GameObject _winCanvas;
 
     int _currentKills;
     int _totalKills;
 
     #region Instance
+
     private static HUD _instance;
-    public static HUD Instance
-    {
-        get { return _instance; }
-    }
-    #endregion
+
+    public static HUD Instance { get { return _instance; } }
 
     void Awake()
     {
         _instance = this;
     }
 
+    #endregion
+
     public void ShowGameplay()
     {
-        // hide game-over
+        // hide states
         _gameOverCanvas.SetActive(false);
+        _winCanvas.SetActive(false);
 
         // show in-game
         _hudCanvas.SetActive(true);
@@ -61,16 +63,26 @@ public class HUD : MonoBehaviour
 
     public void ShowGameOver()
     {
-        // hide in-game hud
+        // hide in-game canvases
         _gunReticleCanvas.SetActive(false);
         _hudCanvas.SetActive(false);
-
-        // hide vfx
         _playerDamageCanvas.SetActive(false);
 
         // show game over
         _gameOverCanvas.SetActive(true);
     }
+
+    public void ShowWin()
+    {
+        // hide in-game canvases
+        _gunReticleCanvas.SetActive(false);
+        _hudCanvas.SetActive(false);
+        _playerDamageCanvas.SetActive(false);
+
+        // show win
+        _winCanvas.SetActive(true);
+    }
+
 
     public void UpdateAmmoAmount(int amount)
     {
