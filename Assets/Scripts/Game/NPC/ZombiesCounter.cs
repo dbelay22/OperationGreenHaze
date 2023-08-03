@@ -19,7 +19,7 @@ public class ZombiesCounter : MonoBehaviour
         
         foreach (Transform t in transform)
         {
-            if (t.tag.Equals(Game.QUADRANT_TAG))
+            if (t.tag.Equals(Game.QUADRANT_TAG) && t.gameObject.activeSelf)
             {
                 count += t.childCount;
             }
