@@ -5718,86 +5718,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 2719b803da1cef94dbb215721f829194, type: 3}
---- !u!1001 &497598644
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1142941162}
-    m_Modifications:
-    - target: {fileID: 2547763044447275354, guid: f6e604d7475253944ab5225aaf1afa98,
-        type: 3}
-      propertyPath: m_Name
-      value: SMG Ammo Pickup (7)
-      objectReference: {fileID: 0}
-    - target: {fileID: 2547763044447275354, guid: f6e604d7475253944ab5225aaf1afa98,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7869202563899733495, guid: f6e604d7475253944ab5225aaf1afa98,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7869202563899733495, guid: f6e604d7475253944ab5225aaf1afa98,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -79.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7869202563899733495, guid: f6e604d7475253944ab5225aaf1afa98,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.28
-      objectReference: {fileID: 0}
-    - target: {fileID: 7869202563899733495, guid: f6e604d7475253944ab5225aaf1afa98,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 7869202563899733495, guid: f6e604d7475253944ab5225aaf1afa98,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7869202563899733495, guid: f6e604d7475253944ab5225aaf1afa98,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7869202563899733495, guid: f6e604d7475253944ab5225aaf1afa98,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7869202563899733495, guid: f6e604d7475253944ab5225aaf1afa98,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7869202563899733495, guid: f6e604d7475253944ab5225aaf1afa98,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7869202563899733495, guid: f6e604d7475253944ab5225aaf1afa98,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7869202563899733495, guid: f6e604d7475253944ab5225aaf1afa98,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: f6e604d7475253944ab5225aaf1afa98, type: 3}
---- !u!4 &497598645 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7869202563899733495, guid: f6e604d7475253944ab5225aaf1afa98,
-    type: 3}
-  m_PrefabInstance: {fileID: 497598644}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &508137993
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11102,7 +11022,7 @@ PrefabInstance:
     - target: {fileID: 7869202563899733495, guid: f6e604d7475253944ab5225aaf1afa98,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7869202563899733495, guid: f6e604d7475253944ab5225aaf1afa98,
         type: 3}
@@ -11694,7 +11614,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1045312942}
   m_Layer: 0
-  m_Name: SW
+  m_Name: SW (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12191,7 +12111,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1142941162}
   m_Layer: 0
-  m_Name: NW
+  m_Name: NW (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12214,7 +12134,6 @@ Transform:
   - {fileID: 1000908632}
   - {fileID: 80870420}
   - {fileID: 5375567362049923995}
-  - {fileID: 497598645}
   - {fileID: 985707556}
   m_Father: {fileID: 970666307}
   m_RootOrder: 0
@@ -14673,7 +14592,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1387957536}
   m_Layer: 0
-  m_Name: SE
+  m_Name: SE (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16465,7 +16384,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1608353857}
   m_Layer: 0
-  m_Name: NE
+  m_Name: NE (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
