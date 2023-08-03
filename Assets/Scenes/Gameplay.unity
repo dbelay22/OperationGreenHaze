@@ -21503,7 +21503,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _winMusic
       value: 
-      objectReference: {fileID: 8300000, guid: f4ec9e24527b1194a82d54801ca51b4a, type: 3}
+      objectReference: {fileID: 8300000, guid: b04763ccd6903f1458945368b5712de7, type: 3}
     - target: {fileID: 8974531209230176576, guid: c6dc9c7b5a8020b41a4533f6b2fedab6,
         type: 3}
       propertyPath: _musicSource

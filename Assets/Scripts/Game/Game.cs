@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using Yxp.Helpers;
 using Yxp.StateMachine;
 
@@ -61,6 +62,13 @@ public class Game : MonoBehaviour
 
     public void ChangeStateToWin()
     {
+        StartCoroutine(WinDelayed());
+    }
+
+    IEnumerator WinDelayed()
+    {
+        yield return new WaitForSeconds(2f);
+
         _stateMachine.TransitionToState(new WinState());
 
         _player.GameplayIsOver();
