@@ -120,7 +120,9 @@ public class HUD : MonoBehaviour
 
         if (_currentKills >= _totalKills)
         {
-            Debug.Log($"[HUD] WIN in {Time.realtimeSinceStartup / 60f}");
+            Debug.Log($"[HUD] WIN in {Time.realtimeSinceStartup.ToString("N0")} seconds");
+            
+            Game.Instance.ChangeStateToWin();
         }
     }
 

@@ -51,7 +51,7 @@ public class WeaponSwitcher : MonoBehaviour
 
     void Update()
     {
-        if (Game.Instance.isGameOver())
+        if (Game.Instance.isGamePlayOver())
         {
             return;
         }

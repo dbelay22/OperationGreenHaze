@@ -65,9 +65,14 @@ public class Weapon : MonoBehaviour
         HUD.Instance.UpdateAmmoAmount(GetAmmoLeft());
     }
 
+    void OnDisable()
+    {
+        StopAllCoroutines();
+    }
+
     void Update()
     {
-        if (Game.Instance.isGameOver())
+        if (Game.Instance.isGamePlayOver())
         {
             return;
         }
@@ -213,7 +218,10 @@ public class Weapon : MonoBehaviour
         // Notify Ammo-slots manager
         _ammo.OnBulletShot(_ammoType, _ammoPerShot, hitEnemy);
 
-        StartCoroutine(CoolDown());
+        if (gameObject.activeInHierarchy) 
+        {
+            StartCoroutine(CoolDown());
+        }        
     }
 
     IEnumerator CoolDown()

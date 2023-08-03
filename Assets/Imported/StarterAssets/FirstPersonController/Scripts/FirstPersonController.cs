@@ -112,7 +112,7 @@ namespace StarterAssets
 
 		private void Update()
 		{
-			if (Game.Instance.isGameOver())
+			if (Game.Instance.isGamePlayOver())
 			{
 				return;
 			}
@@ -124,7 +124,7 @@ namespace StarterAssets
 
 		private void LateUpdate()
 		{
-			if (Game.Instance.isGameOver())
+			if (Game.Instance.isGamePlayOver())
 			{
 				return;
 			}

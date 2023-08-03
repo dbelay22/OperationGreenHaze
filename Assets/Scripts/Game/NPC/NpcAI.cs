@@ -233,6 +233,11 @@ public class NpcAI : MonoBehaviour
 
     public void AttackHitAnimEvent()
     {
+        if (Game.Instance.isGamePlayOver())
+        {
+            return;
+        }
+
         //Debug.Log("[NPC] I'm eating your brain now jojo");
         _playerHealth.Damage(EatBrainDamage);
 
@@ -241,7 +246,7 @@ public class NpcAI : MonoBehaviour
             _audioSource.PlayOneShot(_punchSFX);
         }
 
-        if (Random.value < 0.5f)
+        if (Random.value < 0.4f)
         {
             _audioSource.PlayOneShot(_growlSFX);
         }

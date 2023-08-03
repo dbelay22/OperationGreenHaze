@@ -8,6 +8,8 @@ public class Game : MonoBehaviour
 
     GameStateMachine _stateMachine = null;
 
+    [SerializeField] Player _player;
+
     #region Instance
     
     private static Game _instance;
@@ -52,9 +54,16 @@ public class Game : MonoBehaviour
         Camera.main.fieldOfView = value;
     }
 
-    public void ForceGameOver()
+    public void ChangeStateToGameOver()
     {
         _stateMachine.TransitionToState(new GameOverState());
+    }
+
+    public void ChangeStateToWin()
+    {
+        _stateMachine.TransitionToState(new WinState());
+
+        _player.GameplayIsOver();
     }
 
     public void TryAgain()
@@ -72,6 +81,13 @@ public class Game : MonoBehaviour
     {
         bool isGameOver = Game.Instance.GetCurrentState() is GameOverState;
         return isGameOver;
+    }
+
+    public bool isGamePlayOver()
+    {
+        bool isGameOver = Game.Instance.GetCurrentState() is GameOverState;
+        bool isWin = Game.Instance.GetCurrentState() is WinState;
+        return isGameOver || isWin;
     }
 
     public void QuitGame()

@@ -39,7 +39,7 @@ namespace Yxp.Input
             if (UnityEngine.Input.GetKeyDown(KeyCode.O))
             {
                 Debug.Log($"Force Game over");
-                Game.Instance.ForceGameOver();
+                Game.Instance.ChangeStateToGameOver();
             }
         }
         

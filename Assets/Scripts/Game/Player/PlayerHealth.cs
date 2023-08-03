@@ -84,7 +84,7 @@ public class PlayerHealth : MonoBehaviour
                         
             _audioSource.PlayOneShot(_dieSFX, 3.3f);
 
-            Game.Instance.ForceGameOver();
+            Game.Instance.ChangeStateToGameOver();
         }
     }
 

@@ -75,4 +75,9 @@ public class Flashlight : MonoBehaviour
         return canBlind;
     }
 
+    public void TurnOff()
+    {
+        _light.enabled = false;
+    }
+
 }

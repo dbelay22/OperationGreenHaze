@@ -66,7 +66,19 @@ public class Player : MonoBehaviour
 
     void OnPlayerDeath()
     {
+        GameplayIsOver();
+    }
+
+    public void GameplayIsOver()
+    {
+        // turn of flashlight
+        _flashlight.TurnOff();
+
+        // hide weapons
         _weaponSwitcher.HideCurrentWeapon();
+
+        // bye player ?
+        Destroy(gameObject);
     }
 
 }
