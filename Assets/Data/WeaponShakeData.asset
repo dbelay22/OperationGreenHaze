@@ -15,11 +15,11 @@ MonoBehaviour:
   weaponShakeDataList:
   - ammoType: 0
     shakeProperties:
-      magnitude: 0.05
-      duration: 0.07
-      maxFOVChange: 0.4
+      magnitude: 0.25
+      duration: 0.15
+      maxFOVChange: 0.5
   - ammoType: 1
     shakeProperties:
-      magnitude: 0.05
-      duration: 0.1
-      maxFOVChange: 1.5
+      magnitude: 0.5
+      duration: 0.15
+      maxFOVChange: 1

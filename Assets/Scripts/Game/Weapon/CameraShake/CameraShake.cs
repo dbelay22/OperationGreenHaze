@@ -9,18 +9,9 @@ public class CameraShake : MonoBehaviour
     [SerializeField] CinemachineVirtualCamera _virtualCamera;
 
     float _currentFoV;
-    float _originalFoV;
-
-    Vector3 _originalPosition;
-    
     float _currentShakeMagnitude;
 
     Coroutine _shakeCoroutine;
-
-    void Start()
-    {
-        _originalPosition = transform.localPosition;
-    }
 
     public void Shake(WeaponShakeData.ShakeProperties props)
     {
@@ -36,31 +27,30 @@ public class CameraShake : MonoBehaviour
     {
         float elapsedTime = 0f;
 
-        // Calculate target FoV
-        float _originalFoV = _virtualCamera.m_Lens.FieldOfView;        
-        float targetFoV = _originalFoV + Random.Range(-maxFoVChange, maxFoVChange);
-        _currentFoV = _originalFoV;
+        // FOV
+        float originalFoV = _virtualCamera.m_Lens.FieldOfView;
 
-        //Debug.Log($"[CameraShake] (ShakeCoroutine) ************************");
-        //Debug.Log($"[CameraShake] (ShakeCoroutine) _originalFoV={_originalFoV}, targetFoV={targetFoV}");
+        float targetFoV = originalFoV + Random.Range(-maxFoVChange, maxFoVChange);
+        
+        _currentFoV = originalFoV;
+
+        // Rotation
+        Vector3 originalRotation = transform.localEulerAngles;
 
         while (elapsedTime < duration)
         {
             float percentComplete = elapsedTime / duration;
 
-            //Debug.Log($"[CameraShake] (ShakeCoroutine) (................................");
-            //Debug.Log($"[CameraShake] (ShakeCoroutine) percentComplete={percentComplete}");
+            #region Local Rotation
 
-            #region Local Position change
-
+            // interpolation in time
             _currentShakeMagnitude = Mathf.Lerp(0f, magnitude, percentComplete);
-            //Debug.Log($"[CameraShake] (ShakeCoroutine) _currentShakeMagnitude={_currentShakeMagnitude}");
 
-            Vector3 randomOffset = Random.insideUnitSphere * _currentShakeMagnitude;
-            randomOffset.z = _originalPosition.z;
-            //Debug.Log($"[CameraShake] (ShakeCoroutine) randomOffset:{randomOffset}");
-            
-            transform.localPosition = _originalPosition + randomOffset;
+            // random rotation
+            Vector3 rotOffset = Random.insideUnitSphere * _currentShakeMagnitude;
+
+            // apply
+            transform.localEulerAngles = originalRotation + rotOffset;
 
             #endregion
 
@@ -73,8 +63,6 @@ public class CameraShake : MonoBehaviour
 
             _virtualCamera.m_Lens.FieldOfView = _currentFoV;
 
-            //_virtualCamera.m_Lens.FieldOfView = Mathf.SmoothDamp(_currentFoV, targetFoV, ref _currentShakeMagnitude, _smoothDampTime); ;
-
             #endregion
 
             elapsedTime += Time.deltaTime;
@@ -84,9 +72,9 @@ public class CameraShake : MonoBehaviour
 
         _currentShakeMagnitude = 0f;
 
-        transform.localPosition = _originalPosition;
-
-        _virtualCamera.m_Lens.FieldOfView = _originalFoV;
+        // back to previous state of FOV and rotation
+        transform.localEulerAngles = originalRotation;
+        _virtualCamera.m_Lens.FieldOfView = originalFoV;
     }
 
 }
