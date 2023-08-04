@@ -846,7 +846,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_NoiseProfile
       value: 
-      objectReference: {fileID: 11400000, guid: 554b0ed52734c154eab51f6cedd3a7d7,
+      objectReference: {fileID: 11400000, guid: b241f91b9ccf8ff489abf204b30d3112,
         type: 2}
     - target: {fileID: 8762286024517199035, guid: 9c489a8547f4d9e4387da15a4ff82c81,
         type: 3}
@@ -876,17 +876,17 @@ PrefabInstance:
     - target: {fileID: 8762286024517199035, guid: 9c489a8547f4d9e4387da15a4ff82c81,
         type: 3}
       propertyPath: m_PivotOffset.x
-      value: 0
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 8762286024517199035, guid: 9c489a8547f4d9e4387da15a4ff82c81,
         type: 3}
       propertyPath: m_PivotOffset.y
-      value: 0
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 8762286024517199035, guid: 9c489a8547f4d9e4387da15a4ff82c81,
         type: 3}
       propertyPath: m_PivotOffset.z
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c489a8547f4d9e4387da15a4ff82c81, type: 3}
@@ -6657,7 +6657,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &577114462
 Transform:
   m_ObjectHideFlags: 0

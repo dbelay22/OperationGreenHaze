@@ -22,4 +22,4 @@ MonoBehaviour:
     shakeProperties:
       magnitude: 0.05
       duration: 0.1
-      maxFOVChange: 1.2
+      maxFOVChange: 1.5
