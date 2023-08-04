@@ -74,6 +74,8 @@ public class PlayerHealth : MonoBehaviour
 
         HUD.Instance.ShowPlayerDamageVFX();
 
+        DirectorAI.Instance.OnEvent(DirectorEvent.Player_Damaged);
+
         //Debug.Log($"[PlayerHealth] _currentHealth:{_currentHealth}");
 
         if (_currentHealth <= 0)

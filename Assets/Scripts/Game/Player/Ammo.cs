@@ -48,7 +48,7 @@ public class Ammo : MonoBehaviour
 
         _accuracy = _ammoHitEnemy / _ammoShooted * 100;
 
-        Debug.Log($"[Ammo] Accuracy is now {_accuracy} %");
+        //Debug.Log($"[Ammo] Accuracy is now {_accuracy} %");
     }
 
     AmmoSlot GetAmmoSlotOfType(AmmoType ammoType)

@@ -52,6 +52,9 @@ public class NpcAI : MonoBehaviour
 
     AudioSource _audioSource;
 
+    bool _reportedAttack = false;
+    bool _reportedPlayerEscape = false;
+
     void Start()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
@@ -64,6 +67,9 @@ public class NpcAI : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
 
         _currentState = NpcState.Idle;
+
+        _reportedAttack = false;
+        _reportedPlayerEscape = false;
     }
 
     void Update()
@@ -182,7 +188,7 @@ public class NpcAI : MonoBehaviour
         _distanceToTarget = Vector3.Distance(transform.position, _targetPlayer.position);
         //Debug.Log($"[NPC] distance to player is {_distanceToTarget}");
     }
-    
+
     void EngageTarget()
     {
         FaceTarget();
@@ -191,10 +197,27 @@ public class NpcAI : MonoBehaviour
 
         if (_distanceToTarget > _navMeshAgent.stoppingDistance)
         {
+            // Report melee attack to Director
+            if (_reportedPlayerEscape == false && _reportedAttack == true)
+            {
+                _reportedAttack = false;
+                _reportedPlayerEscape = true;
+                DirectorAI.Instance.OnEvent(DirectorEvent.Player_Escape);
+            }
+
             ChaseTarget();
         }
         else if (_distanceToTarget <= _navMeshAgent.stoppingDistance)
-        {
+        {            
+            // Report melee attack to Director
+            if (_reportedAttack == false)
+            {
+                _reportedAttack = true;
+                _reportedPlayerEscape = false;
+                DirectorAI.Instance.OnEvent(DirectorEvent.Enemy_Melee_Attack);
+            }
+            
+            // ATTACK !!
             AttackTarget();
         }
     }
@@ -304,6 +327,8 @@ public class NpcAI : MonoBehaviour
 
         // update HUD
         HUD.Instance.IncreaseKills();
+
+        DirectorAI.Instance.OnEvent(DirectorEvent.Enemy_Killed);
 
         // change state
         _currentState = NpcState.Dead;
