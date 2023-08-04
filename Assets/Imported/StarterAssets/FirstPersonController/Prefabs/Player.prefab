@@ -143,8 +143,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 850d0d26f2d7bd145bfeafadcc0d5ea6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currentWeaponIdx: 0
   _switchSFX: {fileID: 8300000, guid: dc2d5ae4bdfe587419121f011a72d8c6, type: 3}
+  _shakeData: {fileID: 11400000, guid: bb54a1fccb9e5e140a357483a575aabc, type: 2}
 --- !u!1 &4135013735270702863
 GameObject:
   m_ObjectHideFlags: 0
@@ -154,6 +154,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4135013735270702856}
+  - component: {fileID: 531321455166961345}
   m_Layer: 0
   m_Name: PlayerCameraRoot
   m_TagString: CinemachineTarget
@@ -178,6 +179,21 @@ Transform:
   m_Father: {fileID: 8997996947095583982}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &531321455166961345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4135013735270702863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95fa74b59bd6741428935b7781eb9826, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _virtualCamera: {fileID: 0}
+  _smoothDampTime: 0.1
+  _maxFoVChange: 2
 --- !u!1 &5393215578589016642
 GameObject:
   m_ObjectHideFlags: 0
@@ -628,6 +644,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8be391971257c4f4f8878d2b33085f48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _cameraShake: {fileID: 531321455166961345}
 --- !u!114 &3030554342607450753
 MonoBehaviour:
   m_ObjectHideFlags: 0

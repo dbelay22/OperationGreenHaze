@@ -7,9 +7,14 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(AudioSource))]
 public class WeaponSwitcher : MonoBehaviour
 {
-    [SerializeField] int _currentWeaponIdx = 0;
+    [Header("SFX")]
     [SerializeField] AudioClip _switchSFX;
-    
+
+    [Header("Weapon Shake DB")]
+    [SerializeField] WeaponShakeData _shakeData;
+
+    WeaponShakeData.ShakeProperties _currentShakeProperties;
+
     List<Weapon> _weapons;
 
     AudioSource _audioSource;
@@ -17,6 +22,8 @@ public class WeaponSwitcher : MonoBehaviour
     bool _canScrollToNextWeapon = true;
     
     Weapon _activeWeapon;
+
+    int _currentWeaponIdx = 0;
 
     void Start()
     {
@@ -103,16 +110,30 @@ public class WeaponSwitcher : MonoBehaviour
         {
             Weapon weapon = child.gameObject.GetComponent<Weapon>();
             
-            bool active = weaponIndex == _currentWeaponIdx;
+            bool foundWeapon = weaponIndex == _currentWeaponIdx;
             
-            if (active)
+            if (foundWeapon)
             {
                 _activeWeapon = weapon;
-            }
-            
-            weapon.gameObject.SetActive(active);
+                UpdateCurrentShakeProperties(weapon);
+            }            
+
+            weapon.gameObject.SetActive(foundWeapon);
             
             weaponIndex++;            
+        }
+    }
+
+    void UpdateCurrentShakeProperties(Weapon weapon)
+    {
+        AmmoType currentAmmoType = weapon.GetAmmoType();
+
+        foreach (WeaponShakeData.WeaponShakeDataset shakeDataset in _shakeData.weaponShakeDataList)
+        {
+            if (shakeDataset.ammoType.Equals(currentAmmoType))
+            {
+                _currentShakeProperties = shakeDataset.shakeProperties;
+            }
         }
     }
 
@@ -149,5 +170,9 @@ public class WeaponSwitcher : MonoBehaviour
     {
         _activeWeapon.gameObject.SetActive(false);
     }
-    
+
+    public WeaponShakeData.ShakeProperties GetCurrentShakeProperties()
+    {
+        return _currentShakeProperties;
+    }
 }

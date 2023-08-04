@@ -66,12 +66,16 @@ public class Ammo : MonoBehaviour
 
     public void OnBulletShot(AmmoType ammoType, int amount, bool hitEnemy)
     {
+        // track accuracy
         UpdateAccuracy(hitEnemy);
 
+        // get slot
         AmmoSlot slot = GetAmmoSlotOfType(ammoType);
 
+        // reduce ammo
         slot.ammoAmount -= amount;
 
+        // clamp to zero
         if (slot.ammoAmount < 0)
         {
             slot.ammoAmount = 0;
@@ -79,6 +83,7 @@ public class Ammo : MonoBehaviour
 
         //Debug.Log($"[Ammo] (OnBulletShot) ammo left: {slot.ammoAmount}, ammo type: {slot._ammoType}");
 
+        // update HUD
         HUD.Instance.UpdateAmmoAmount(slot.ammoAmount);
     }
 

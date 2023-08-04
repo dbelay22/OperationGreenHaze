@@ -44,8 +44,11 @@ public class Weapon : MonoBehaviour
 
     Ammo _ammo;
 
+    Player _player;
+
     void Start()
     {
+        _player = _playerGO.GetComponent<Player>();
         _input = _playerGO.GetComponent<StarterAssetsInputs>();
         _ammo = _playerGO.GetComponent<Ammo>();
         
@@ -142,7 +145,9 @@ public class Weapon : MonoBehaviour
         while (time < duration)
         {
             cam.m_Lens.FieldOfView = Mathf.Lerp(startFOV, endFOV, time / duration);
+
             yield return null;
+
             time += Time.deltaTime;
         }
         _zooming = false;
@@ -182,7 +187,7 @@ public class Weapon : MonoBehaviour
         _muzzleFlashPS.Play();
     }
 
-    private void Shoot()
+    void Shoot()
     {
         _canShoot = false;
 
@@ -198,12 +203,14 @@ public class Weapon : MonoBehaviour
 
         bool hitEnemy = false;
 
+        // Did I Hit ?
         if (hitSomething)
         {
             //Debug.Log($"[Weapon](ShootUpdate) Just hit {hit.transform.name}, tag: {hit.transform.tag}, distance: {hit.distance}");
 
             hitEnemy = hit.transform.tag.Equals("Enemy");                   
             
+            // F*ck you zombie
             if (hitEnemy)
             {
                 NpcAI npc = hit.transform.GetComponent<NpcAI>();
@@ -215,9 +222,10 @@ public class Weapon : MonoBehaviour
             }
         }
 
-        // Notify Ammo-slots manager
-        _ammo.OnBulletShot(_ammoType, _ammoPerShot, hitEnemy);
+        // Notify Player
+        _player.OnBulletShot(_ammoType, _ammoPerShot, hitEnemy);
 
+        // cool down if still active
         if (gameObject.activeInHierarchy) 
         {
             StartCoroutine(CoolDown());

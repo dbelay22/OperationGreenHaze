@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
 {
     const string AMMO_PICKUP_TAG = "AmmoPickup";
 
+    [SerializeField] CameraShake _cameraShake;
+
     Ammo _ammo;
 
     WeaponSwitcher _weaponSwitcher;
@@ -22,6 +24,21 @@ public class Player : MonoBehaviour
         _flashlight = GetComponentInChildren<Flashlight>();
     }
 
+    #region Shooting
+    
+    public void OnBulletShot(AmmoType ammoType, int amount, bool hitEnemy)
+    {
+        WeaponShakeData.ShakeProperties shakeProperties = _weaponSwitcher.GetCurrentShakeProperties();
+        _cameraShake.Shake(shakeProperties);
+
+        // Notify Ammo-slots manager
+        _ammo.OnBulletShot(ammoType, amount, hitEnemy);
+    }
+
+    #endregion
+
+
+    #region Pickups
 
     void OnTriggerEnter(Collider other)
     {
@@ -53,6 +70,8 @@ public class Player : MonoBehaviour
             
         }
     }
+
+    #endregion
 
     public bool IsFlashlightOnAndCanBlind()
     {
