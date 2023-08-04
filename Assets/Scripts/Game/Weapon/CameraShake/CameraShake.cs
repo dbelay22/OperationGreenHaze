@@ -41,23 +41,24 @@ public class CameraShake : MonoBehaviour
         float targetFoV = _originalFoV + Random.Range(-maxFoVChange, maxFoVChange);
         _currentFoV = _originalFoV;
 
-        Debug.Log($"[CameraShake] (ShakeCoroutine) ************************");
-        Debug.Log($"[CameraShake] (ShakeCoroutine) _originalFoV={_originalFoV}, targetFoV={targetFoV}");
+        //Debug.Log($"[CameraShake] (ShakeCoroutine) ************************");
+        //Debug.Log($"[CameraShake] (ShakeCoroutine) _originalFoV={_originalFoV}, targetFoV={targetFoV}");
 
         while (elapsedTime < duration)
         {
             float percentComplete = elapsedTime / duration;
 
-            Debug.Log($"[CameraShake] (ShakeCoroutine) (................................");
-            Debug.Log($"[CameraShake] (ShakeCoroutine) percentComplete={percentComplete}");
+            //Debug.Log($"[CameraShake] (ShakeCoroutine) (................................");
+            //Debug.Log($"[CameraShake] (ShakeCoroutine) percentComplete={percentComplete}");
 
             #region Local Position change
 
-            _currentShakeMagnitude = Mathf.Lerp(magnitude, 0f, percentComplete);
-            Debug.Log($"[CameraShake] (ShakeCoroutine) _currentShakeMagnitude={_currentShakeMagnitude}");
+            _currentShakeMagnitude = Mathf.Lerp(0f, magnitude, percentComplete);
+            //Debug.Log($"[CameraShake] (ShakeCoroutine) _currentShakeMagnitude={_currentShakeMagnitude}");
 
             Vector3 randomOffset = Random.insideUnitSphere * _currentShakeMagnitude;
-            Debug.Log($"[CameraShake] (ShakeCoroutine) randomOffset:{randomOffset}");
+            randomOffset.z = _originalPosition.z;
+            //Debug.Log($"[CameraShake] (ShakeCoroutine) randomOffset:{randomOffset}");
             
             transform.localPosition = _originalPosition + randomOffset;
 
@@ -66,8 +67,9 @@ public class CameraShake : MonoBehaviour
             #region FOV change
 
             _currentFoV = Mathf.Lerp(_currentFoV, targetFoV, percentComplete);
-            Debug.Log($"[CameraShake] (ShakeCoroutine) _currentFoV={_currentFoV}");
-            Debug.Log($"[CameraShake] (ShakeCoroutine) ........................)");
+            
+            //Debug.Log($"[CameraShake] (ShakeCoroutine) _currentFoV={_currentFoV}");
+            //Debug.Log($"[CameraShake] (ShakeCoroutine) ........................)");
 
             _virtualCamera.m_Lens.FieldOfView = _currentFoV;
 
