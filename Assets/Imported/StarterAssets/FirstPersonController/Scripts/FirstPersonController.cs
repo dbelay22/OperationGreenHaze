@@ -64,6 +64,8 @@ namespace StarterAssets
 		private float _jumpTimeoutDelta;
 		private float _fallTimeoutDelta;
 
+		PlayerHealth _playerHealth;
+
 	
 #if ENABLE_INPUT_SYSTEM
 		private PlayerInput _playerInput;
@@ -108,6 +110,8 @@ namespace StarterAssets
 			// reset our timeouts on start
 			_jumpTimeoutDelta = JumpTimeout;
 			_fallTimeoutDelta = FallTimeout;
+
+			_playerHealth = GetComponent<PlayerHealth>();
 		}
 
 		private void Update()
@@ -163,8 +167,14 @@ namespace StarterAssets
 
 		private void Move()
 		{
+			// health affects speed
+			float sprintSpeedHealth = SprintSpeed * _playerHealth.CurrentHealthPercentage;
+			float moveSpeedHealth = MoveSpeed * _playerHealth.CurrentHealthPercentage;
+
 			// set target speed based on move speed, sprint speed and if sprint is pressed
-			float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
+			float targetSpeed = _input.sprint ? sprintSpeedHealth : moveSpeedHealth;
+
+			Debug.Log($"Player speed: {targetSpeed}");
 
 			// a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
 

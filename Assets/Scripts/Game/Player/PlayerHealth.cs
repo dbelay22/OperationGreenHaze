@@ -11,7 +11,10 @@ public class PlayerHealth : MonoBehaviour
     [Header("Health")]
     [SerializeField] int _toxicZoneDamage = 15;
     [SerializeField] int _currentHealth;
-    
+
+    public int CurrentHealth { get { return _currentHealth; } }
+    public float CurrentHealthPercentage { get { return _currentHealth / 100f; } }
+
 
     [Header("Sound FX")]
     [SerializeField] AudioClip _hit1SFX;
