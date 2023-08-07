@@ -65,8 +65,6 @@ namespace StarterAssets
 		private float _fallTimeoutDelta;
 
 		PlayerHealth _playerHealth;
-		float _healthSpeedFactor = 0.5f;
-
 	
 #if ENABLE_INPUT_SYSTEM
 		private PlayerInput _playerInput;
@@ -171,9 +169,9 @@ namespace StarterAssets
 			float speedFactor = 1;
 
 			// health affects speed
-			if (_playerHealth.CurrentHealthPercentage < 0.5)
+			if (_playerHealth.CurrentHealthPercentage <= 0.7)
 			{			
-				speedFactor = _playerHealth.CurrentHealthPercentage;
+				speedFactor = _playerHealth.CurrentHealthPercentage + 0.10f;
 			}
 			
 			float sprintSpeedHealth = SprintSpeed * speedFactor;
@@ -182,7 +180,7 @@ namespace StarterAssets
 			// set target speed based on move speed, sprint speed and if sprint is pressed
 			float targetSpeed = _input.sprint ? sprintSpeedHealth : moveSpeedHealth;
 
-			Debug.Log($"Player speed: {targetSpeed}");
+			Debug.Log($"Player speed: {targetSpeed}, speedFactor: {speedFactor}");
 
 			// a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
 
