@@ -65,6 +65,7 @@ namespace StarterAssets
 		private float _fallTimeoutDelta;
 
 		PlayerHealth _playerHealth;
+		float _healthSpeedFactor = 0.5f;
 
 	
 #if ENABLE_INPUT_SYSTEM
@@ -167,9 +168,16 @@ namespace StarterAssets
 
 		private void Move()
 		{
+			float speedFactor = 1;
+
 			// health affects speed
-			float sprintSpeedHealth = SprintSpeed * _playerHealth.CurrentHealthPercentage;
-			float moveSpeedHealth = MoveSpeed * _playerHealth.CurrentHealthPercentage;
+			if (_playerHealth.CurrentHealthPercentage < 0.5)
+			{			
+				speedFactor = _playerHealth.CurrentHealthPercentage;
+			}
+			
+			float sprintSpeedHealth = SprintSpeed * speedFactor;
+			float moveSpeedHealth = MoveSpeed * speedFactor;
 
 			// set target speed based on move speed, sprint speed and if sprint is pressed
 			float targetSpeed = _input.sprint ? sprintSpeedHealth : moveSpeedHealth;

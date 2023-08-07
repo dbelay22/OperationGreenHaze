@@ -231,7 +231,7 @@ public class NpcAI : MonoBehaviour
 
     void ChaseTarget()
     {
-        if (_navMeshAgent.isStopped)
+        if (_navMeshAgent.isStopped == true)
         {
             // Randomize speed
             float rndSpeed = Random.Range(_minSpeed, _maxSpeed);
@@ -241,10 +241,10 @@ public class NpcAI : MonoBehaviour
             Debug.Log($"[NPC] <{transform.name}> Moving at rndSpeed: {rndSpeed}, _navMeshAgent.speed:{_navMeshAgent.speed}");
 
             // Go!
-            _navMeshAgent.isStopped = false;           
-
-            _animator.SetTrigger("Move Trigger");
+            _navMeshAgent.isStopped = false;            
         }
+
+        _animator.SetTrigger("Move Trigger");
 
         _navMeshAgent.SetDestination(_targetPlayer.position);
     }
