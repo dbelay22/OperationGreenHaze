@@ -17,9 +17,9 @@ MonoBehaviour:
     shakeProperties:
       magnitude: 0.25
       duration: 0.15
-      maxFOVChange: 0.5
+      maxFOVChange: 0.35
   - ammoType: 1
     shakeProperties:
-      magnitude: 0.5
+      magnitude: 0.45
       duration: 0.15
-      maxFOVChange: 1
+      maxFOVChange: 0.7
