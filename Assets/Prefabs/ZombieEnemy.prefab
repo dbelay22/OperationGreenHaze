@@ -74,9 +74,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EatBrainDamage: 5
+  _minSpeed: 0.5
+  _maxSpeed: 2.5
   _targetPlayer: {fileID: 0}
   _chaseRange: 50
-  _faceTargetSpeed: 3
+  _faceTargetSpeed: 1
   _blindedTimeout: 5
   _hitEnemyVFX: {fileID: 1000012909287652, guid: b99857eca648c07499e2234fede8385c,
     type: 3}

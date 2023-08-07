@@ -13,7 +13,12 @@ public enum NpcState
 
 public class NpcAI : MonoBehaviour
 {
+    [Header("Attack")]
     [SerializeField] int EatBrainDamage = 10;
+
+    [Header("Speed")]
+    [SerializeField] [Range(0f, 5f)] float _minSpeed = 0f;
+    [SerializeField] [Range(0f, 5f)] float _maxSpeed = 5f;
 
     [Header("Target")]
     [SerializeField] Transform _targetPlayer;
@@ -108,6 +113,8 @@ public class NpcAI : MonoBehaviour
     
     void IdleUpdate()
     {
+        _navMeshAgent.isStopped = true;
+
         CalcDistanceToTarget();
 
         if (_distanceToTarget < _chaseRange)
@@ -224,10 +231,22 @@ public class NpcAI : MonoBehaviour
 
     void ChaseTarget()
     {
-        _navMeshAgent.isStopped = false;
-        _navMeshAgent.SetDestination(_targetPlayer.position);
+        if (_navMeshAgent.isStopped)
+        {
+            // Randomize speed
+            float rndSpeed = Random.Range(_minSpeed, _maxSpeed);
+            
+            _navMeshAgent.speed = rndSpeed;
+            
+            Debug.Log($"[NPC] <{transform.name}> Moving at rndSpeed: {rndSpeed}, _navMeshAgent.speed:{_navMeshAgent.speed}");
 
-        _animator.SetTrigger("Move Trigger");
+            // Go!
+            _navMeshAgent.isStopped = false;           
+
+            _animator.SetTrigger("Move Trigger");
+        }
+
+        _navMeshAgent.SetDestination(_targetPlayer.position);
     }
 
     void FaceTarget()
