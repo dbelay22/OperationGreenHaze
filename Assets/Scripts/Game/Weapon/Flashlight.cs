@@ -6,6 +6,9 @@ using UnityEngine;
 [RequireComponent(typeof(Light))]
 public class Flashlight : MonoBehaviour
 {
+    [Header("Model")]
+    [SerializeField] GameObject _prefab;
+
     [Header("Decay")]
     [SerializeField] float _lightDecay = 0.2f;
     [SerializeField] float _angleDecay = 0.2f;
@@ -13,12 +16,13 @@ public class Flashlight : MonoBehaviour
     Light _light;
 
     bool _isOn = false;
-    float _minIntensityToBlind;
+    float _minIntensityToBlind;    
 
     void Start()
     {
         _light = GetComponent<Light>();
-        _light.enabled = false;
+        
+        TurnOff();
 
         // min half intensity to blind a zombie
         _minIntensityToBlind = _light.intensity / 2;
@@ -37,6 +41,7 @@ public class Flashlight : MonoBehaviour
             _isOn = !_isOn;
 
             _light.enabled = _isOn;
+            _prefab.SetActive(_isOn);
         }
     }
 
@@ -78,6 +83,7 @@ public class Flashlight : MonoBehaviour
     public void TurnOff()
     {
         _light.enabled = false;
+        _prefab.SetActive(false);
     }
 
 }
