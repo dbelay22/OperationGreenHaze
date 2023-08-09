@@ -171,7 +171,7 @@ namespace StarterAssets
 			// health affects speed
 			if (_playerHealth.CurrentHealthPercentage <= 0.7)
 			{			
-				speedFactor = _playerHealth.CurrentHealthPercentage + 0.10f;
+				speedFactor = 1 - (1 - _playerHealth.CurrentHealthPercentage / 2f);
 			}
 			
 			float sprintSpeedHealth = SprintSpeed * speedFactor;
