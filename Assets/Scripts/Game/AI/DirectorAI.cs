@@ -7,7 +7,8 @@ public enum DirectorEvent
     Enemy_Melee_Attack,
     Player_Escape,
     Player_Damaged,
-    Enemy_Killed
+    Enemy_Killed,
+    Player_Use_Medkit
 }
 
 public class DirectorAI : MonoBehaviour
@@ -18,15 +19,17 @@ public class DirectorAI : MonoBehaviour
     float _lastReportedStressLevel = 0f;
 
     // stress - enemies
-    float _meleeAttackCount = 0f;
-    float _playerEscapeCount = 0f;
-    float _playerDamageCount = 0f;
-    float _enemyKillCount = 0f;
+    int _meleeAttackCount = 0;
+    int _playerEscapeCount = 0;
+    int _playerDamageCount = 0;
+    int _playerUseMedkitCount = 0;
+    int _enemyKillCount = 0;
 
     #region Instance
 
     private static DirectorAI _instance;
     
+
     public static DirectorAI Instance { get { return _instance; } }
 
     void Awake()
@@ -75,6 +78,12 @@ public class DirectorAI : MonoBehaviour
 
                 break;
 
+            case DirectorEvent.Player_Use_Medkit:
+
+                _playerUseMedkitCount++;
+
+                break;
+
             case DirectorEvent.Enemy_Killed:
 
                 _enemyKillCount++;
@@ -90,7 +99,7 @@ public class DirectorAI : MonoBehaviour
 
     float StressLevelUpdate()
     {
-        _playerStress = (_meleeAttackCount + _playerDamageCount - _playerEscapeCount - (_enemyKillCount * 0.2f)) * _stressFactor;
+        _playerStress = (_meleeAttackCount + _playerDamageCount - _playerEscapeCount - (_enemyKillCount * 0.2f) - _playerUseMedkitCount) * _stressFactor;
 
         _playerStress = Mathf.Clamp(_playerStress, 0, 10);
 

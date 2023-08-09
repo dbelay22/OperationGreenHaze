@@ -12,7 +12,6 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] int _toxicZoneDamage = 15;
     [SerializeField] int _currentHealth;
 
-    public int CurrentHealth { get { return _currentHealth; } }
     public float CurrentHealthPercentage { get { return _currentHealth / 100f; } }
 
 
@@ -33,7 +32,7 @@ public class PlayerHealth : MonoBehaviour
 
     void Update()
     {
-        HUD.Instance.UpdateHealthAmmount(_currentHealth);
+        HUD.Instance.UpdateHealthAmmount(GetCurrentHealthClamped());
     }
 
     void OnTriggerEnter(Collider other)
@@ -50,10 +49,7 @@ public class PlayerHealth : MonoBehaviour
         if (isToxicZone)
         {
             // take damage
-            _currentHealth -= _toxicZoneDamage;
-
-            // update UI
-            HUD.Instance.UpdateHealthAmmount(_currentHealth);
+            HealthChange(0 - _toxicZoneDamage);
 
             // play TOS
             _audioSource.PlayOneShot(_tosSFX);
@@ -68,29 +64,27 @@ public class PlayerHealth : MonoBehaviour
         }
 
         // take damage
-        _currentHealth -= amount;
-
-        // update UI
-        HUD.Instance.UpdateHealthAmmount(_currentHealth);
+        HealthChange(0 - amount);
 
         PlayHitSFX();
 
         HUD.Instance.ShowPlayerDamageVFX();
 
         DirectorAI.Instance.OnEvent(DirectorEvent.Player_Damaged);
+    }
 
-        //Debug.Log($"[PlayerHealth] _currentHealth:{_currentHealth}");
-
-        if (_currentHealth <= 0)
+    public void ImproveByPickup(int amount)
+    {
+        if (Game.Instance.isGameOver())
         {
-            //Debug.Log("[PlayerHealth] Oh I'm so dead now x-x");
-
-            BroadcastMessage("OnPlayerDeath", SendMessageOptions.RequireReceiver);
-                        
-            _audioSource.PlayOneShot(_dieSFX, 3.3f);
-
-            Game.Instance.ChangeStateToGameOver();
+            return;
         }
+
+        // more health!
+        HealthChange(amount);
+
+        // Inform director
+        DirectorAI.Instance.OnEvent(DirectorEvent.Player_Use_Medkit);
     }
 
     void PlayHitSFX()
@@ -105,4 +99,33 @@ public class PlayerHealth : MonoBehaviour
             _audioSource.PlayOneShot(_hit2SFX);
         }        
     }
+
+    void HealthChange(int amount)
+    {
+        _currentHealth += amount;
+
+        // clamp
+        int clampedHealth = GetCurrentHealthClamped();
+        //Debug.Log($"[PlayerHealth] _currentHealth:{_currentHealth} -> clamped: {clampedHealth}");
+
+        _currentHealth = clampedHealth;
+
+        // update UI
+        HUD.Instance.UpdateHealthAmmount(clampedHealth);        
+
+        if (_currentHealth <= 0)
+        {
+            BroadcastMessage("OnPlayerDeath", SendMessageOptions.RequireReceiver);
+
+            _audioSource.PlayOneShot(_dieSFX, 3.3f);
+
+            Game.Instance.ChangeStateToGameOver();
+        }
+    }
+
+    int GetCurrentHealthClamped()
+    {
+        return Mathf.Clamp(_currentHealth, 0, 100);
+    }
+
 }

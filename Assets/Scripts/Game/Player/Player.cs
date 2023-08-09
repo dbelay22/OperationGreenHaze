@@ -1,13 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Ammo))]
+[RequireComponent(typeof(PlayerHealth))]
 public class Player : MonoBehaviour
 {
     const string AMMO_PICKUP_TAG = "AmmoPickup";
-
+    const string MEDKIT_PICKUP_TAG = "MedkitPickup";
+    
+    [Header("Camera Shake")]
     [SerializeField] CameraShake _cameraShake;
+
+    [Header("SFX")]
+    [SerializeField] AudioClip _pickupSFX;
 
     Ammo _ammo;
 
@@ -15,10 +22,18 @@ public class Player : MonoBehaviour
 
     Flashlight _flashlight;
 
+    PlayerHealth _playerHealth;
+
+    AudioSource _audioSource;
+
     void Start()
     {
         _ammo = GetComponent<Ammo>();
-        
+
+        _playerHealth = GetComponent<PlayerHealth>();
+
+        _audioSource = GetComponent<AudioSource>();
+
         _weaponSwitcher = GetComponentInChildren<WeaponSwitcher>();
         
         _flashlight = GetComponentInChildren<Flashlight>();
@@ -44,10 +59,36 @@ public class Player : MonoBehaviour
     {
         GameObject trigger = other.gameObject;
 
-        ProcessAmmoPickup(trigger);
+        if (ProcessAmmoPickup(trigger))
+        {
+        }
+        else if (ProcessMedkitPickup(trigger))
+        { 
+        }        
     }
 
-    void ProcessAmmoPickup(GameObject trigger) 
+    bool ProcessMedkitPickup(GameObject trigger)
+    {
+        bool isMedkit = trigger.CompareTag(MEDKIT_PICKUP_TAG);
+
+        if (isMedkit)
+        {
+            MedkitPickup medkit = trigger.GetComponent<MedkitPickup>();
+
+            // sound!
+            _audioSource.PlayOneShot(_pickupSFX);
+
+            // improve health
+            _playerHealth.ImproveByPickup(medkit.HealthAmount);
+
+            // bye pickup
+            Destroy(trigger);
+        }
+
+        return isMedkit;
+    }
+
+    bool ProcessAmmoPickup(GameObject trigger) 
     {
         bool isAmmoPickup = trigger.CompareTag(AMMO_PICKUP_TAG);
 
@@ -69,6 +110,8 @@ public class Player : MonoBehaviour
             }
             
         }
+
+        return isAmmoPickup;
     }
 
     #endregion

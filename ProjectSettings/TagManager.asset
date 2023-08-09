@@ -9,6 +9,9 @@ TagManager:
   - AmmoPickup
   - ToxicZone
   - Quadrant
+  - MedkitPickup
+  - FlashlightPickup
+  - BatteryPickup
   layers:
   - Default
   - TransparentFX
