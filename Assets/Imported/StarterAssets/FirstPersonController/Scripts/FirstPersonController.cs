@@ -171,7 +171,7 @@ namespace StarterAssets
 			// health affects speed
 			if (_playerHealth.CurrentHealthPercentage <= 0.7)
 			{			
-				speedFactor = 1 - (1 - _playerHealth.CurrentHealthPercentage / 2f);
+				speedFactor = 1 - ((1 - _playerHealth.CurrentHealthPercentage) / 2f);
 			}
 			
 			float sprintSpeedHealth = SprintSpeed * speedFactor;
@@ -180,7 +180,10 @@ namespace StarterAssets
 			// set target speed based on move speed, sprint speed and if sprint is pressed
 			float targetSpeed = _input.sprint ? sprintSpeedHealth : moveSpeedHealth;
 
-			Debug.Log($"Player speed: {targetSpeed}, speedFactor: {speedFactor}");
+			if (speedFactor < 1)
+            {
+				Debug.Log($"Player speed: {targetSpeed}, speedFactor: {speedFactor}");
+			}			
 
 			// a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
 
