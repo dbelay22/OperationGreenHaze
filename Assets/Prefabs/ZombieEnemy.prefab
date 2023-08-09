@@ -74,8 +74,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EatBrainDamage: 5
-  _minSpeed: 0.5
-  _maxSpeed: 2.5
+  _minSpeed: 1
+  _maxSpeed: 2
   _targetPlayer: {fileID: 0}
   _chaseRange: 50
   _faceTargetSpeed: 1
