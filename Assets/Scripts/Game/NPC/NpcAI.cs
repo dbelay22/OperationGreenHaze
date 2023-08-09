@@ -238,7 +238,7 @@ public class NpcAI : MonoBehaviour
             
             _navMeshAgent.speed = rndSpeed;
             
-            Debug.Log($"[NPC] <{transform.name}> Moving at rndSpeed: {rndSpeed}, _navMeshAgent.speed:{_navMeshAgent.speed}");
+            //Debug.Log($"[NPC] <{transform.name}> Moving at rndSpeed: {rndSpeed}, _navMeshAgent.speed:{_navMeshAgent.speed}");
 
             // Go!
             _navMeshAgent.isStopped = false;            
