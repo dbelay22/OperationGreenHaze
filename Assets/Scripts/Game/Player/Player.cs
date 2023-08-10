@@ -9,7 +9,8 @@ public class Player : MonoBehaviour
 {
     const string AMMO_PICKUP_TAG = "AmmoPickup";
     const string MEDKIT_PICKUP_TAG = "MedkitPickup";
-    
+    const string FLASHLIGHT_PICKUP_TAG = "FlashlightPickup";
+
     [Header("Camera Shake")]
     [SerializeField] CameraShake _cameraShake;
 
@@ -61,10 +62,34 @@ public class Player : MonoBehaviour
 
         if (ProcessAmmoPickup(trigger))
         {
+            DirectorAI.Instance.OnEvent(DirectorEvent.Player_Pickup_Ammo);
         }
         else if (ProcessMedkitPickup(trigger))
-        { 
-        }        
+        {
+            DirectorAI.Instance.OnEvent(DirectorEvent.Player_Pickup_Medkit);
+        }
+        else if (ProcessFlashlightPickup(trigger))
+        {
+            DirectorAI.Instance.OnEvent(DirectorEvent.Player_Pickup_Flashlight);
+        }
+    }
+
+    bool ProcessFlashlightPickup(GameObject trigger)
+    {
+        bool isFlashlight = trigger.CompareTag(FLASHLIGHT_PICKUP_TAG);
+
+        if (isFlashlight)
+        {
+            // sound!
+            _audioSource.PlayOneShot(_pickupSFX);
+
+            _flashlight.ReportPickUp();
+
+            // bye pickup
+            Destroy(trigger);
+        }
+
+        return isFlashlight;
     }
 
     bool ProcessMedkitPickup(GameObject trigger)

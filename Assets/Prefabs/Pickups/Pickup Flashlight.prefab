@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1995603681312478582}
+  - component: {fileID: 2638056512683537675}
   m_Layer: 0
   m_Name: Pickup Flashlight
   m_TagString: FlashlightPickup
@@ -32,6 +33,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -3, y: 20.919, z: 0}
+--- !u!65 &2638056512683537675
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1995603681312478583}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 0.2, z: 0.6}
+  m_Center: {x: 0.01, y: 0.05, z: 0.15}
 --- !u!1001 &1995603680972916929
 PrefabInstance:
   m_ObjectHideFlags: 0

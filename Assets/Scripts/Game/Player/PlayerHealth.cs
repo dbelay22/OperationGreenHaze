@@ -82,9 +82,6 @@ public class PlayerHealth : MonoBehaviour
 
         // more health!
         HealthChange(amount);
-
-        // Inform director
-        DirectorAI.Instance.OnEvent(DirectorEvent.Player_Use_Medkit);
     }
 
     void PlayHitSFX()

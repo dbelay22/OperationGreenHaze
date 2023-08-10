@@ -8,7 +8,9 @@ public enum DirectorEvent
     Player_Escape,
     Player_Damaged,
     Enemy_Killed,
-    Player_Use_Medkit
+    Player_Pickup_Medkit,
+    Player_Pickup_Ammo,
+    Player_Pickup_Flashlight
 }
 
 public class DirectorAI : MonoBehaviour
@@ -22,7 +24,9 @@ public class DirectorAI : MonoBehaviour
     int _meleeAttackCount = 0;
     int _playerEscapeCount = 0;
     int _playerDamageCount = 0;
-    int _playerUseMedkitCount = 0;
+    int _playerPickupMedkitCount = 0;
+    int _playerPickupAmmoCount = 0;
+    int _playerPickupFlashlightCount = 0;
     int _enemyKillCount = 0;
 
     #region Instance
@@ -30,7 +34,7 @@ public class DirectorAI : MonoBehaviour
     private static DirectorAI _instance;
     
 
-    public static DirectorAI Instance { get { return _instance; } }
+    public static DirectorAI Instance { get { return _instance; } }    
 
     void Awake()
     {
@@ -78,9 +82,21 @@ public class DirectorAI : MonoBehaviour
 
                 break;
 
-            case DirectorEvent.Player_Use_Medkit:
+            case DirectorEvent.Player_Pickup_Medkit:
 
-                _playerUseMedkitCount++;
+                _playerPickupMedkitCount++;
+
+                break;
+
+            case DirectorEvent.Player_Pickup_Ammo:
+
+                _playerPickupAmmoCount++;
+
+                break;
+
+            case DirectorEvent.Player_Pickup_Flashlight:
+
+                _playerPickupFlashlightCount++;
 
                 break;
 
@@ -99,7 +115,7 @@ public class DirectorAI : MonoBehaviour
 
     float StressLevelUpdate()
     {
-        _playerStress = (_meleeAttackCount + _playerDamageCount - _playerEscapeCount - (_enemyKillCount * 0.2f) - _playerUseMedkitCount) * _stressFactor;
+        _playerStress = (_meleeAttackCount + _playerDamageCount - _playerEscapeCount - (_enemyKillCount * 0.2f) - _playerPickupMedkitCount - _playerPickupAmmoCount - _playerPickupFlashlightCount) * _stressFactor;
 
         _playerStress = Mathf.Clamp(_playerStress, 0, 10);
 

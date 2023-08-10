@@ -16,11 +16,14 @@ public class Flashlight : MonoBehaviour
     Light _light;
 
     bool _isOn = false;
-    float _minIntensityToBlind;    
+    float _minIntensityToBlind;
+    bool _flashlightPickedUp = false;
 
     void Start()
     {
         _light = GetComponent<Light>();
+
+        _flashlightPickedUp = false;
         
         TurnOff();
 
@@ -30,6 +33,14 @@ public class Flashlight : MonoBehaviour
 
     void Update()
     {
+        _light.enabled = _isOn;
+        _prefab.SetActive(_isOn);
+
+        if (_flashlightPickedUp == false)
+        {
+            return;
+        }
+
         if (_isOn)
         {
             DecreaseIntensity();
@@ -38,10 +49,7 @@ public class Flashlight : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F))
         {
-            _isOn = !_isOn;
-
-            _light.enabled = _isOn;
-            _prefab.SetActive(_isOn);
+            _isOn = !_isOn;            
         }
     }
 
@@ -70,7 +78,7 @@ public class Flashlight : MonoBehaviour
 
     public bool IsOnAndCanBlind()
     {
-        if (!_isOn)
+        if (_isOn == false)
         {
             return false;
         }
@@ -82,8 +90,12 @@ public class Flashlight : MonoBehaviour
 
     public void TurnOff()
     {
-        _light.enabled = false;
-        _prefab.SetActive(false);
+        _isOn = false;
     }
 
+    public void ReportPickUp()
+    {
+        _flashlightPickedUp = true;
+        _isOn = true;
+    }
 }
