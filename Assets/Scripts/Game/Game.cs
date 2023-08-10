@@ -6,6 +6,7 @@ using Yxp.StateMachine;
 public class Game : MonoBehaviour
 {
     public const string QUADRANT_TAG = "Quadrant";
+    public const string ENEMY_GROUP_TAG = "EnemyGroup";
 
     GameStateMachine _stateMachine = null;
 

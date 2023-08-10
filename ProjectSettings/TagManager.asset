@@ -12,6 +12,7 @@ TagManager:
   - MedkitPickup
   - FlashlightPickup
   - BatteryPickup
+  - EnemyGroup
   layers:
   - Default
   - TransparentFX
