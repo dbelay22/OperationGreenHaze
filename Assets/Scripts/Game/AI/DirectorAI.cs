@@ -59,55 +59,32 @@ public class DirectorAI : MonoBehaviour
         switch (directorEvent)
         {
             case DirectorEvent.Enemy_Melee_Attack:                
-                
                 _meleeAttackCount++;
-
-                //Debug.Log($"[DirectorAI] (OnEvent) _meleeAttackCount: {_meleeAttackCount}");
-
                 break;
 
             case DirectorEvent.Player_Escape:
-
                 _playerEscapeCount++;
-
-                //Debug.Log($"[DirectorAI] (OnEvent) _playerEscapeCount: {_playerEscapeCount}");
-
                 break;
 
             case DirectorEvent.Player_Damaged:
-
                 _playerDamageCount++;
-
-                //Debug.Log($"[DirectorAI] (OnEvent) _playerDamageCount: {_playerDamageCount}");
-
                 break;
 
             case DirectorEvent.Player_Pickup_Medkit:
-
                 _playerPickupMedkitCount++;
-
                 break;
 
             case DirectorEvent.Player_Pickup_Ammo:
-
                 _playerPickupAmmoCount++;
-
                 break;
 
             case DirectorEvent.Player_Pickup_Flashlight:
-
                 _playerPickupFlashlightCount++;
-
                 break;
 
             case DirectorEvent.Enemy_Killed:
-
                 _enemyKillCount++;
-
-                //Debug.Log($"[DirectorAI] (OnEvent) _enemyKillCount: {_enemyKillCount}");
-
                 break;
-
         }
     }
 
