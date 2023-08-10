@@ -22,6 +22,9 @@ public class HUD : MonoBehaviour
     [SerializeField] GameObject _killsPanel;
     [SerializeField] TMP_Text _killsLabel;
 
+    [Header("Timer")]
+    [SerializeField] TMP_Text _timerLabel;
+
     [Header("VFX")]
     [SerializeField] GameObject _playerDamageCanvas;
 
@@ -31,6 +34,8 @@ public class HUD : MonoBehaviour
 
     int _currentKills;
     int _totalKills;
+
+    float _elapsedSeconds = 0;
 
     #region Instance
 
@@ -44,6 +49,33 @@ public class HUD : MonoBehaviour
     }
 
     #endregion
+
+    void Start()
+    {
+        TimerInit();
+    }
+
+    void Update()
+    {
+        TimerUpdate();
+    }
+
+    void TimerInit()
+    {
+        _elapsedSeconds = 0;
+    }
+
+    void TimerUpdate()
+    {
+        _elapsedSeconds += Time.deltaTime;
+
+        int timerMinutes = Mathf.FloorToInt(_elapsedSeconds / 60);
+        int timerSeconds = Mathf.FloorToInt(_elapsedSeconds - (timerMinutes * 60));
+
+        Debug.Log($"[HUD] secs: {_elapsedSeconds} / {timerMinutes}:{timerSeconds}");
+
+        _timerLabel.text = GetTimeElapsedLabel(timerMinutes, timerSeconds);
+    }
 
     public void ShowGameplay()
     {
@@ -129,6 +161,11 @@ public class HUD : MonoBehaviour
     string GetLabelKillsOverTotal(int kills, int total)
     {
         return string.Format("{0} / {1}", kills, total);
+    }
+
+    string GetTimeElapsedLabel(int minutes, int seconds)
+    {
+        return string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
 }

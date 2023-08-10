@@ -753,7 +753,7 @@ PrefabInstance:
     - target: {fileID: 4208746825564624711, guid: bdc71fe84784acd43b8e3816e10eb765,
         type: 3}
       propertyPath: m_Volume
-      value: 0.15
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 8701951577818738156, guid: bdc71fe84784acd43b8e3816e10eb765,
         type: 3}
@@ -794,10 +794,6 @@ PrefabInstance:
       propertyPath: _fpController
       value: 
       objectReference: {fileID: 8616685848737228371}
-    - target: {fileID: 1748713565, guid: a59b0609ea2fa5f44823a30f5c7ce800, type: 3}
-      propertyPath: m_Volume
-      value: 0.15
-      objectReference: {fileID: 0}
     - target: {fileID: 5613363016151971714, guid: a59b0609ea2fa5f44823a30f5c7ce800,
         type: 3}
       propertyPath: m_Name
