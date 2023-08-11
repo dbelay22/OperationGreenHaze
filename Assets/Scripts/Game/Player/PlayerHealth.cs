@@ -12,6 +12,8 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] int _toxicZoneDamage = 15;
     [SerializeField] int _currentHealth;
 
+    public float CurrentHealth { get { return _currentHealth; } }
+
     public float CurrentHealthPercentage { get { return _currentHealth / 100f; } }
 
 

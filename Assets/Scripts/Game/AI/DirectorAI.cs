@@ -10,26 +10,35 @@ public enum DirectorEvent
     Enemy_Killed,
     Player_Pickup_Medkit,
     Player_Pickup_Ammo,
-    Player_Pickup_Flashlight
+    Player_Pickup_Flashlight,
+    Shot_Accuracy_Update,
 }
 
 public class DirectorAI : MonoBehaviour
 {
     [SerializeField] float _stressFactor = 0.2f;
 
+    // stress
     float _playerStress = 0;
     float _lastReportedStressLevel = 0f;
     float _avgStressLevel = 0f;
     float _stressChangeCount = 0f;
 
-    // stress - enemies
+    // zombie attack
     int _meleeAttackCount = 0;
     int _playerEscapeCount = 0;
     int _playerDamageCount = 0;
+
+    // pickups
     int _playerPickupMedkitCount = 0;
     int _playerPickupAmmoCount = 0;
     int _playerPickupFlashlightCount = 0;
+
+    // kills
     int _enemyKillCount = 0;
+
+    // shot accuracy
+    float _shotAccuracy = 0f;
 
     #region Instance
 
@@ -59,6 +68,7 @@ public class DirectorAI : MonoBehaviour
     {
         Debug.Log($"[Director] DUMP......................");
         Debug.Log($"[Director] Elapsed Seconds: {HUD.Instance.ElapsedSeconds}");
+        Debug.Log($"[Director] Shot Accuracy: {_shotAccuracy} %");
         Debug.Log($"[Director] Enemy Kill Count: {_enemyKillCount}");
         Debug.Log($"[Director] ..........................");
         Debug.Log($"[Director] AVG Stress Level: {_avgStressLevel}");
@@ -111,7 +121,7 @@ public class DirectorAI : MonoBehaviour
         return _playerStress;
     }
 
-    public void OnEvent(DirectorEvent directorEvent)
+    public void OnEvent(DirectorEvent directorEvent, object eventValue = null)
     {
         switch (directorEvent)
         {
@@ -141,6 +151,10 @@ public class DirectorAI : MonoBehaviour
 
             case DirectorEvent.Enemy_Killed:
                 _enemyKillCount++;
+                break;
+
+            case DirectorEvent.Shot_Accuracy_Update:
+                _shotAccuracy = (float) eventValue;
                 break;
         }
     }
