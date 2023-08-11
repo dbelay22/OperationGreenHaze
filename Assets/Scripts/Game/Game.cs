@@ -11,6 +11,9 @@ public class Game : MonoBehaviour
     GameStateMachine _stateMachine = null;
 
     [SerializeField] Player _player;
+    
+    [SerializeField] int _minutesOfGameplay;
+    public int MinutesOfGameplay { get { return _minutesOfGameplay; } }
 
     #region Instance
     

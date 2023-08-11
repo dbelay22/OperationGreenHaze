@@ -36,6 +36,7 @@ public class HUD : MonoBehaviour
     int _totalKills;
 
     float _elapsedSeconds = 0;
+    int _minutesOfGameplay = 0;
 
     #region Instance
 
@@ -63,18 +64,25 @@ public class HUD : MonoBehaviour
     void TimerInit()
     {
         _elapsedSeconds = 0;
+        _minutesOfGameplay = Game.Instance.MinutesOfGameplay;
     }
 
     void TimerUpdate()
     {
         _elapsedSeconds += Time.deltaTime;
 
-        int timerMinutes = Mathf.FloorToInt(_elapsedSeconds / 60);
-        int timerSeconds = Mathf.FloorToInt(_elapsedSeconds - (timerMinutes * 60));
+        float timeLeftSeconds = (_minutesOfGameplay * 60) - _elapsedSeconds;
 
-        Debug.Log($"[HUD] secs: {_elapsedSeconds} / {timerMinutes}:{timerSeconds}");
+        int timerMinutes = Mathf.FloorToInt(timeLeftSeconds / 60);
+        int timerSeconds = Mathf.FloorToInt(timeLeftSeconds - (timerMinutes * 60));
 
         _timerLabel.text = GetTimeElapsedLabel(timerMinutes, timerSeconds);
+
+        if (timeLeftSeconds <= 0)
+        {
+            Game.Instance.ChangeStateToGameOver();
+        }
+        
     }
 
     public void ShowGameplay()
