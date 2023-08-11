@@ -9,6 +9,10 @@ public class DebugShortcuts : MonoBehaviour
 
     void ListenDebugShortcuts()
     {
-
+        // [T] Dump Director Stats
+        if (UnityEngine.Input.GetKeyDown(KeyCode.T))
+        {
+            DirectorAI.Instance.DumpStats();
+        }
     }
 }

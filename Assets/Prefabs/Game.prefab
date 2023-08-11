@@ -71,4 +71,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 0}
-  _minutesOfGameplay: 1
+  _minutesOfGameplay: 5

@@ -36,6 +36,9 @@ public class HUD : MonoBehaviour
     int _totalKills;
 
     float _elapsedSeconds = 0;
+
+    public float ElapsedSeconds { get { return _elapsedSeconds; } }
+
     int _minutesOfGameplay = 0;
 
     #region Instance

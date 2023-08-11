@@ -19,6 +19,8 @@ public class DirectorAI : MonoBehaviour
 
     float _playerStress = 0;
     float _lastReportedStressLevel = 0f;
+    float _avgStressLevel = 0f;
+    float _stressChangeCount = 0f;
 
     // stress - enemies
     int _meleeAttackCount = 0;
@@ -45,8 +47,7 @@ public class DirectorAI : MonoBehaviour
 
     void Start()
     {
-        _playerStress = 0f;
-        _lastReportedStressLevel = 0f;
+        StressStart();
     }
 
     void Update()
@@ -54,11 +55,67 @@ public class DirectorAI : MonoBehaviour
         StressLevelUpdate();
     }
 
+    public void DumpStats()
+    {
+        Debug.Log($"[Director] DUMP......................");
+        Debug.Log($"[Director] Elapsed Seconds: {HUD.Instance.ElapsedSeconds}");
+        Debug.Log($"[Director] Enemy Kill Count: {_enemyKillCount}");
+        Debug.Log($"[Director] ..........................");
+        Debug.Log($"[Director] AVG Stress Level: {_avgStressLevel}");
+        Debug.Log($"[Director] Last Reported Stress Level: {_lastReportedStressLevel}");
+        Debug.Log($"[Director] Stress Change Count: {_stressChangeCount}");
+        Debug.Log($"[Director] ..........................");
+        Debug.Log($"[Director] Melee Attack Count: {_meleeAttackCount}");
+        Debug.Log($"[Director] Player Escape Count: {_playerEscapeCount}");
+        Debug.Log($"[Director] Player Damage Count: {_playerDamageCount}");
+        Debug.Log($"[Director] ..........................");
+        Debug.Log($"[Director] Player Pickup Medkit Count: {_playerPickupMedkitCount}");
+        Debug.Log($"[Director] Player Pickup Ammo Count: {_playerPickupAmmoCount}");      
+        Debug.Log($"[Director] END OF DUMP...............");
+    }
+
+    void StressStart()
+    {
+        _playerStress = 0f;
+        _lastReportedStressLevel = 0f;
+        _avgStressLevel = 0f;
+        _stressChangeCount = 0f;
+    }
+
+    float StressLevelUpdate()
+    {
+        _playerStress = (_meleeAttackCount + _playerDamageCount - _playerEscapeCount - (_enemyKillCount * 0.2f) - _playerPickupMedkitCount - _playerPickupAmmoCount - _playerPickupFlashlightCount) * _stressFactor;
+
+        _playerStress = Mathf.Clamp(_playerStress, 0, 10);
+
+        if (_lastReportedStressLevel != _playerStress)
+        {
+            _stressChangeCount++;
+
+            // AVG
+            if (_avgStressLevel == 0f)
+            {
+                // init value
+                _avgStressLevel = _playerStress;
+            }
+            else
+            {
+                _avgStressLevel = (_avgStressLevel + _playerStress) / 2;
+            }
+
+            Debug.Log($"[DirectorAI] (OnEvent) Stress Level Update: {_playerStress}, AVG: {_avgStressLevel}");
+
+            _lastReportedStressLevel = _playerStress;
+        }
+
+        return _playerStress;
+    }
+
     public void OnEvent(DirectorEvent directorEvent)
     {
         switch (directorEvent)
         {
-            case DirectorEvent.Enemy_Melee_Attack:                
+            case DirectorEvent.Enemy_Melee_Attack:
                 _meleeAttackCount++;
                 break;
 
@@ -86,23 +143,6 @@ public class DirectorAI : MonoBehaviour
                 _enemyKillCount++;
                 break;
         }
-    }
-
-    
-
-    float StressLevelUpdate()
-    {
-        _playerStress = (_meleeAttackCount + _playerDamageCount - _playerEscapeCount - (_enemyKillCount * 0.2f) - _playerPickupMedkitCount - _playerPickupAmmoCount - _playerPickupFlashlightCount) * _stressFactor;
-
-        _playerStress = Mathf.Clamp(_playerStress, 0, 10);
-
-        if (_lastReportedStressLevel != _playerStress)
-        {
-            Debug.Log($"[DirectorAI] (OnEvent) Stress Level Update: {_playerStress}");
-            _lastReportedStressLevel = _playerStress;
-        }
-
-        return _playerStress;
     }
 
 
