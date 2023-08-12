@@ -94,9 +94,13 @@ public class DirectorAI : MonoBehaviour
 
     float StressLevelUpdate()
     {
-        _playerStress = (_meleeAttackCount + _playerDamageCount - _playerEscapeCount - (_enemyKillCount * 0.2f) - _playerPickupMedkitCount - _playerPickupAmmoCount - _playerPickupFlashlightCount) * _stressFactor;
+        _playerStress = (_meleeAttackCount + _playerDamageCount + _playerEscapeCount + (_enemyKillCount * 0.2f) - _playerPickupMedkitCount - _playerPickupAmmoCount - _playerPickupFlashlightCount) * _stressFactor;
+
+        Debug.Log($"[DirectorAI] (OnEvent) Stress Level Update - Stress Brute: {_playerStress} - _lastReportedStressLevel: {_lastReportedStressLevel}");
 
         _playerStress = Mathf.Clamp(_playerStress, 0, 10);
+
+        Debug.Log($"[DirectorAI] (OnEvent) Stress Level Update - Stress Clamp: {_playerStress} - _lastReportedStressLevel: {_lastReportedStressLevel}");
 
         if (_lastReportedStressLevel != _playerStress)
         {
@@ -113,7 +117,7 @@ public class DirectorAI : MonoBehaviour
                 _avgStressLevel = (_avgStressLevel + _playerStress) / 2;
             }
 
-            Debug.Log($"[DirectorAI] (OnEvent) Stress Level Update: {_playerStress}, AVG: {_avgStressLevel}");
+            Debug.Log($"[DirectorAI] (OnEvent) Stress Level Update - AVG: {_avgStressLevel}");
 
             _lastReportedStressLevel = _playerStress;
         }
