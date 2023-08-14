@@ -7,9 +7,12 @@ public class PlayerHealth : MonoBehaviour
 {
     const int START_HEALTH = 100;
     const string TOXIC_ZONE_TRIGGER = "ToxicZone";
+    const string FIRE_ZONE_TRIGGER = "FireZone";
+
 
     [Header("Health")]
     [SerializeField] int _toxicZoneDamage = 15;
+    [SerializeField] int _fireZoneDamage = 15;
     [SerializeField] int _currentHealth;
 
     public float CurrentHealth { get { return _currentHealth; } }
@@ -42,6 +45,8 @@ public class PlayerHealth : MonoBehaviour
         GameObject trigger = other.gameObject;
 
         ProcessToxicZone(trigger);
+        
+        ProcessFireZone(trigger);
     }
 
     void ProcessToxicZone(GameObject trigger)
@@ -55,6 +60,20 @@ public class PlayerHealth : MonoBehaviour
 
             // play TOS
             _audioSource.PlayOneShot(_tosSFX);
+        }
+    }    
+    
+    void ProcessFireZone(GameObject trigger)
+    {
+        bool isFireZone = trigger.CompareTag(FIRE_ZONE_TRIGGER);
+
+        if (isFireZone)
+        {
+            // take damage
+            HealthChange(0 - _fireZoneDamage);
+
+            // play sfx
+            _audioSource.PlayOneShot(_hit2SFX);
         }
     }
 
