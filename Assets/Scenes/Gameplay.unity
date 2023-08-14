@@ -28065,6 +28065,11 @@ PrefabInstance:
       propertyPath: _player
       value: 
       objectReference: {fileID: 1643913571}
+    - target: {fileID: 1293183577256976173, guid: e3b1c388b804aa04e88ab4d184b73691,
+        type: 3}
+      propertyPath: _minutesOfGameplay
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4044473443273092785, guid: e3b1c388b804aa04e88ab4d184b73691,
         type: 3}
       propertyPath: m_RootOrder
