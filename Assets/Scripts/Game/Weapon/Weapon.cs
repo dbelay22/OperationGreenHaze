@@ -221,6 +221,11 @@ public class Weapon : MonoBehaviour
                 bool isHeadshot = colliderType == typeof(CapsuleCollider);
 
                 npc.HitByBullet(isHeadshot ? _headshotDamage : _damage, hit);
+
+                if (isHeadshot)
+                {
+                    DirectorAI.Instance.OnEvent(DirectorEvent.Enemy_Killed_Headshot);
+                }
             }
             else
             {

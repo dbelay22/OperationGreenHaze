@@ -8,6 +8,7 @@ public enum DirectorEvent
     Player_Escape,
     Player_Damaged,
     Enemy_Killed,
+    Enemy_Killed_Headshot,
     Player_Pickup_Medkit,
     Player_Pickup_Ammo,
     Player_Pickup_Flashlight,
@@ -36,6 +37,7 @@ public class DirectorAI : MonoBehaviour
 
     // kills
     int _enemyKillCount = 0;
+    int _enemyKillByHeadshotCount = 0;
 
     // shot accuracy
     float _shotAccuracy = 0f;
@@ -70,15 +72,19 @@ public class DirectorAI : MonoBehaviour
         Debug.Log($"[Director] Elapsed Seconds: {HUD.Instance.ElapsedSeconds}");
         Debug.Log($"[Director] Shot Accuracy: {_shotAccuracy} %");
         Debug.Log($"[Director] Enemy Kill Count: {_enemyKillCount}");
-        Debug.Log($"[Director] ..........................");
+        Debug.Log($"[Director] Enemy Kill HEADSHOT Count: {_enemyKillByHeadshotCount}");
+
+        Debug.Log($"[Director] ..........................");        
         Debug.Log($"[Director] AVG Stress Level: {_avgStressLevel}");
         Debug.Log($"[Director] Last Reported Stress Level: {_lastReportedStressLevel}");
         Debug.Log($"[Director] Stress Change Count: {_stressChangeCount}");
-        Debug.Log($"[Director] ..........................");
+        
+        Debug.Log($"[Director] ..........................");        
         Debug.Log($"[Director] Melee Attack Count: {_meleeAttackCount}");
         Debug.Log($"[Director] Player Escape Count: {_playerEscapeCount}");
         Debug.Log($"[Director] Player Damage Count: {_playerDamageCount}");
-        Debug.Log($"[Director] ..........................");
+        
+        Debug.Log($"[Director] ..........................");        
         Debug.Log($"[Director] Player Pickup Medkit Count: {_playerPickupMedkitCount}");
         Debug.Log($"[Director] Player Pickup Ammo Count: {_playerPickupAmmoCount}");      
         Debug.Log($"[Director] END OF DUMP...............");
@@ -94,7 +100,7 @@ public class DirectorAI : MonoBehaviour
 
     float StressLevelUpdate()
     {
-        _playerStress = (_meleeAttackCount + _playerDamageCount + _playerEscapeCount + (_enemyKillCount * 0.2f) - _playerPickupMedkitCount - _playerPickupAmmoCount - _playerPickupFlashlightCount) * _stressFactor;
+        _playerStress = (_meleeAttackCount + _playerDamageCount + _playerEscapeCount + (_enemyKillByHeadshotCount + _enemyKillCount * 0.2f) - _playerPickupMedkitCount - _playerPickupAmmoCount - _playerPickupFlashlightCount) * _stressFactor;
 
         //Debug.Log($"[DirectorAI] (OnEvent) Stress Level Update - Stress Brute: {_playerStress} - _lastReportedStressLevel: {_lastReportedStressLevel}");
 
@@ -155,6 +161,10 @@ public class DirectorAI : MonoBehaviour
 
             case DirectorEvent.Enemy_Killed:
                 _enemyKillCount++;
+                break;
+
+            case DirectorEvent.Enemy_Killed_Headshot:
+                _enemyKillByHeadshotCount++;
                 break;
 
             case DirectorEvent.Shot_Accuracy_Update:
