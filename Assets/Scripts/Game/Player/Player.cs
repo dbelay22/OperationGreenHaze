@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
 
     [Header("SFX")]
     [SerializeField] AudioClip _pickupSFX;
+    [SerializeField] AudioClip _errorSFX;
 
     Ammo _ammo;
 
@@ -98,16 +99,24 @@ public class Player : MonoBehaviour
 
         if (isMedkit)
         {
-            MedkitPickup medkit = trigger.GetComponent<MedkitPickup>();
+            if (_playerHealth.CurrentHealthPercentage < 1)
+            {
+                MedkitPickup medkit = trigger.GetComponent<MedkitPickup>();
 
-            // sound!
-            _audioSource.PlayOneShot(_pickupSFX);
+                // sound!
+                _audioSource.PlayOneShot(_pickupSFX);
 
-            // improve health
-            _playerHealth.ImproveByPickup(medkit.HealthAmount);
+                // improve health
+                _playerHealth.ImproveByPickup(medkit.HealthAmount);
 
-            // bye pickup
-            Destroy(trigger);
+                // bye pickup
+                Destroy(trigger);
+            }
+            else
+            {
+                _audioSource.PlayOneShot(_errorSFX);
+                return false;
+            }
         }
 
         return isMedkit;
