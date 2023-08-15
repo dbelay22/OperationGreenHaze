@@ -13,6 +13,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] float _raycastRange = 250;
     [SerializeField] float _coolDownSeconds = 1f;
     [SerializeField] float _damage = 25;
+    [SerializeField] float _headshotDamage = 100;
     [SerializeField] ParticleSystem _muzzleFlashPS;
     [SerializeField] GameObject _hitImpactVFX;
 
@@ -208,13 +209,18 @@ public class Weapon : MonoBehaviour
         {
             //Debug.Log($"[Weapon](ShootUpdate) Just hit {hit.transform.name}, tag: {hit.transform.tag}, distance: {hit.distance}");
 
-            hitEnemy = hit.transform.tag.Equals("Enemy");                   
+            hitEnemy = hit.transform.tag.Equals("Enemy");
             
             // F*ck you zombie
             if (hitEnemy)
             {
                 NpcAI npc = hit.transform.GetComponent<NpcAI>();
-                npc.HitByBullet(_damage, hit);
+                
+                Type colliderType = hit.collider.GetType();
+
+                bool isHeadshot = colliderType == typeof(CapsuleCollider);
+
+                npc.HitByBullet(isHeadshot ? _headshotDamage : _damage, hit);
             }
             else
             {

@@ -292,7 +292,7 @@ public class NpcAI : MonoBehaviour
         {
             _audioSource.PlayOneShot(_growlSFX);
         }
-    }
+    }   
 
     public void HitByBullet(float damage, RaycastHit hit)
     {
@@ -304,6 +304,11 @@ public class NpcAI : MonoBehaviour
 
         BroadcastMessage("OnHitByBullet", damage, SendMessageOptions.RequireReceiver);
 
+        PlayHitByBulletFX(hit);
+    }
+
+    void PlayHitByBulletFX(RaycastHit hit)
+    {
         PlayHitEnemySFX();
 
         PlayHitEnemyVFX(hit);

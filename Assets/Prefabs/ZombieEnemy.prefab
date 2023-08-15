@@ -132,7 +132,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.1
+  m_Radius: 0.15
   m_Height: 0.51
   m_Direction: 1
   m_Center: {x: 0, y: 1.74, z: 0.02}
@@ -330,7 +330,7 @@ PrefabInstance:
     - target: {fileID: 4493914613880827488, guid: 6dc4cf4496348884d8ee27743ae38562,
         type: 3}
       propertyPath: m_TagString
-      value: Enemy
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 7389507112651452681, guid: 6dc4cf4496348884d8ee27743ae38562,
         type: 3}
@@ -347,3 +347,23 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 540048798484164009}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3799126871127040949 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3731116051764432412, guid: 6dc4cf4496348884d8ee27743ae38562,
+    type: 3}
+  m_PrefabInstance: {fileID: 540048798484164009}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &4953061656171729409
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3799126871127040949}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -5861692221299373288, guid: 79969b20b5ba62e499ee433a4dd38701, type: 3}
