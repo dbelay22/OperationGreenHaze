@@ -14,5 +14,11 @@ public class DebugShortcuts : MonoBehaviour
         {
             DirectorAI.Instance.DumpStats();
         }
+
+        // [G] GOD Mode
+        if (UnityEngine.Input.GetKeyDown(KeyCode.G))
+        {
+            Game.Instance.ToggleGodMode();
+        }
     }
 }

@@ -120,6 +120,11 @@ public class PlayerHealth : MonoBehaviour
 
     void HealthChange(int amount)
     {
+        if (Game.Instance.IsGodModeOn)
+        {
+            return;
+        }
+
         _currentHealth += amount;
 
         // clamp

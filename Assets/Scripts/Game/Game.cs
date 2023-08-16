@@ -11,14 +11,18 @@ public class Game : MonoBehaviour
     GameStateMachine _stateMachine = null;
 
     [SerializeField] Player _player;
-    
+
     [SerializeField] int _minutesOfGameplay;
     public int MinutesOfGameplay { get { return _minutesOfGameplay; } }
 
+    private bool _isGodModeOn;
+
+    public bool IsGodModeOn { get { return _isGodModeOn; } }
+
     #region Instance
-    
+
     private static Game _instance;
- 
+
     public static Game Instance { get { return _instance; } }
 
     void Awake()
@@ -31,6 +35,8 @@ public class Game : MonoBehaviour
 
     void Start()
     {
+        _isGodModeOn = false;
+
         _stateMachine = new GameStateMachine();
         _stateMachine.TransitionToState(new PlayState());
     }
@@ -39,8 +45,6 @@ public class Game : MonoBehaviour
     {
         _stateMachine.Update();
     }
-
-
 
     //=======================================================    
     // TODO Refactor, move
@@ -100,6 +104,13 @@ public class Game : MonoBehaviour
         bool isGameOver = Game.Instance.GetCurrentState() is GameOverState;
         bool isWin = Game.Instance.GetCurrentState() is WinState;
         return isGameOver || isWin;
+    }
+
+    public void ToggleGodMode()
+    {
+        _isGodModeOn = !_isGodModeOn;
+
+        Debug.Log($"[Game] GOD MODE ON: {_isGodModeOn}");
     }
 
     public void QuitGame()
