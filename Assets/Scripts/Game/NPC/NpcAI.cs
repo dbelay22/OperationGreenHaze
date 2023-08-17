@@ -126,6 +126,8 @@ public class NpcAI : MonoBehaviour
 
     void ProvokedUpdate()
     {
+        SetCollidersActive(true);
+
         EngageTarget();
     }
 
@@ -170,6 +172,9 @@ public class NpcAI : MonoBehaviour
         // set anim trigger
         _animator.SetTrigger("Blinded Trigger");
 
+        // disable colliders so player can walk over
+        SetCollidersActive(false);
+
         StartCoroutine(WakeUpFromBlinded());
     }
 
@@ -188,6 +193,8 @@ public class NpcAI : MonoBehaviour
         }
 
         _currentState = NpcState.Provoked;
+
+        SetCollidersActive(true);
     }
 
     void CalcDistanceToTarget()
@@ -341,11 +348,16 @@ public class NpcAI : MonoBehaviour
         }
     }
 
+    void SetCollidersActive(bool active)
+    {
+        GetComponent<CapsuleCollider>().enabled = active;
+        GetComponent<BoxCollider>().enabled = active;
+    }
+
     void ChangeStateToDead()
     {
         // Disable colliders so we can't shoot after dead
-        GetComponent<CapsuleCollider>().enabled = false;
-        GetComponent<BoxCollider>().enabled = false;
+        SetCollidersActive(false);
 
         PlayDeathSFX();
 
