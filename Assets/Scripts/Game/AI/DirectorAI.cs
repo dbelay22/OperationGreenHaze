@@ -74,19 +74,24 @@ public class DirectorAI : MonoBehaviour
         Debug.Log($"[Director] Enemy Kill Count: {_enemyKillCount}");
         Debug.Log($"[Director] Enemy Kill HEADSHOT Count: {_enemyKillByHeadshotCount}");
 
-        Debug.Log($"[Director] ..........................");        
+        Debug.Log($"[Director] ..........................");
         Debug.Log($"[Director] AVG Stress Level: {_avgStressLevel}");
         Debug.Log($"[Director] Last Reported Stress Level: {_lastReportedStressLevel}");
         Debug.Log($"[Director] Stress Change Count: {_stressChangeCount}");
         
-        Debug.Log($"[Director] ..........................");        
+        Debug.Log($"[Director] ..........................");
         Debug.Log($"[Director] Melee Attack Count: {_meleeAttackCount}");
         Debug.Log($"[Director] Player Escape Count: {_playerEscapeCount}");
         Debug.Log($"[Director] Player Damage Count: {_playerDamageCount}");
         
-        Debug.Log($"[Director] ..........................");        
+        Debug.Log($"[Director] ..........................");
         Debug.Log($"[Director] Player Pickup Medkit Count: {_playerPickupMedkitCount}");
-        Debug.Log($"[Director] Player Pickup Ammo Count: {_playerPickupAmmoCount}");      
+        Debug.Log($"[Director] Player Pickup Ammo Count: {_playerPickupAmmoCount}");
+
+        Debug.Log($"[Director] ..........................");
+        Debug.Log($"[Director] Player Ammo Not Used: {Player.Instance.GetUnusedAmmo()}");
+        Debug.Log($"[Director] Player Health: {Player.Instance.GetCurrentHealth()}");
+
         Debug.Log($"[Director] END OF DUMP...............");
     }
 

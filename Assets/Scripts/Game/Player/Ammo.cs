@@ -109,4 +109,16 @@ public class Ammo : MonoBehaviour
         return slot.ammoAmount;
     }
 
+    public string GetAllAmmoLeftString()
+    {
+        string ammoLeft = "";
+        
+        foreach (AmmoSlot slot in _ammoSlots)
+        {
+            ammoLeft += "| Type: " + slot.GetType() + ", Count:" + slot.ammoAmount + " |";
+        }
+
+        return ammoLeft;
+    }
+
 }

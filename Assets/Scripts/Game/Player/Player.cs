@@ -28,6 +28,21 @@ public class Player : MonoBehaviour
 
     AudioSource _audioSource;
 
+
+    #region Instance
+
+    private static Player _instance;
+
+
+    public static Player Instance { get { return _instance; } }
+
+    void Awake()
+    {
+        _instance = this;
+    }
+
+    #endregion
+
     void Start()
     {
         _ammo = GetComponent<Ammo>();
@@ -175,6 +190,16 @@ public class Player : MonoBehaviour
 
         // bye player ?
         Destroy(gameObject);
+    }
+
+    public string GetUnusedAmmo()
+    {
+        return _ammo.GetAllAmmoLeftString();
+    }
+
+    public float GetCurrentHealth()
+    {
+        return _playerHealth.CurrentHealth;
     }
 
 }
