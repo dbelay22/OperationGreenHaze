@@ -27,7 +27,7 @@ public class AudioController : MonoBehaviour
         _musicSource.Play();
     }
 
-    void StopBackgroundMusic()
+    public void StopBackgroundMusic()
     {
         _musicSource.Stop();
     }

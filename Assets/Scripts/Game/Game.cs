@@ -83,6 +83,16 @@ public class Game : MonoBehaviour
         _player.GameplayIsOver();
     }
 
+    public void ChangeStateToPaused()
+    {
+        _stateMachine.TransitionToState(new PauseState());
+    }
+
+    public void ResumeGame()
+    {
+        _stateMachine.TransitionToState(new PlayState());
+    }
+
     public void TryAgain()
     {
         Debug.Log("Try again");
@@ -105,6 +115,11 @@ public class Game : MonoBehaviour
         bool isGameOver = Game.Instance.GetCurrentState() is GameOverState;
         bool isWin = Game.Instance.GetCurrentState() is WinState;
         return isGameOver || isWin;
+    }
+
+    public bool isGamePaused()
+    { 
+        return Game.Instance.GetCurrentState() is PauseState;
     }
 
     public void ToggleGodMode()

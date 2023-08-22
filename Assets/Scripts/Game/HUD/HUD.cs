@@ -31,6 +31,7 @@ public class HUD : MonoBehaviour
     [Header("Interactive")]
     [SerializeField] GameObject _gameOverCanvas;
     [SerializeField] GameObject _winCanvas;
+    [SerializeField] GameObject _pauseScreen;
 
     int _currentKills;
     int _totalKills;
@@ -93,6 +94,7 @@ public class HUD : MonoBehaviour
         // hide states
         _gameOverCanvas.SetActive(false);
         _winCanvas.SetActive(false);
+        _pauseScreen.SetActive(false);
 
         // show in-game
         _hudCanvas.SetActive(true);
@@ -126,6 +128,16 @@ public class HUD : MonoBehaviour
         _winCanvas.SetActive(true);
     }
 
+    public void ShowPause()
+    {
+        // hide in-game canvases
+        _gunReticleCanvas.SetActive(false);
+        _hudCanvas.SetActive(false);
+        _playerDamageCanvas.SetActive(false);
+
+        // show pause
+        _pauseScreen.SetActive(true);       
+    }
 
     public void UpdateAmmoAmount(int amount)
     {

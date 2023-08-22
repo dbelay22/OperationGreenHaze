@@ -12,7 +12,8 @@ public class PlayState : GameState
     {
         Debug.Log("*** PLAY ***");
 
-        //Time.timeScale = 1;
+        Time.timeScale = 1;
+        
         LockCursor();
 
         HUD.Instance.ShowGameplay();

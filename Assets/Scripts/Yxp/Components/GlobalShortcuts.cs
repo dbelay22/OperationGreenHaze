@@ -26,7 +26,7 @@ namespace Yxp.Input
             // [Esc]ape
             if (UnityEngine.Input.GetKeyDown(KeyCode.Escape))
             {
-                Game.Instance.QuitGame();
+                Game.Instance.ChangeStateToPaused();
             }
         }
 

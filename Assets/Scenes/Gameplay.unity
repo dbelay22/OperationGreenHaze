@@ -34754,6 +34754,21 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5332070320096044798, guid: 545132ff8dd00c0439f065f0580e16b1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 435832133}
+    - target: {fileID: 5332070320096044798, guid: 545132ff8dd00c0439f065f0580e16b1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ResumeGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 5332070320096044798, guid: 545132ff8dd00c0439f065f0580e16b1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Game, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 6134340127218976780, guid: 545132ff8dd00c0439f065f0580e16b1,
         type: 3}
       propertyPath: m_Camera
@@ -34763,6 +34778,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SortingOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6675707224628253047, guid: 545132ff8dd00c0439f065f0580e16b1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 435832133}
+    - target: {fileID: 6675707224628253047, guid: 545132ff8dd00c0439f065f0580e16b1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: QuitGame
       objectReference: {fileID: 0}
     - target: {fileID: 6807168928814015281, guid: 545132ff8dd00c0439f065f0580e16b1,
         type: 3}
