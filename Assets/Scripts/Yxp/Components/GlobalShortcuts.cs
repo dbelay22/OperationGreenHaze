@@ -22,6 +22,12 @@ namespace Yxp.Input
                 Debug.Log($"Quitting from platform {Application.platform}");
                 Application.Quit();
             }
+
+            // [Esc]ape
+            if (UnityEngine.Input.GetKeyDown(KeyCode.Escape))
+            {
+                Game.Instance.QuitGame();
+            }
         }
 
         void SceneShortcuts()
