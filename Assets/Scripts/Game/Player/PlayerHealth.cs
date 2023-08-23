@@ -79,7 +79,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void Damage(int amount)
     {
-        if (Game.Instance.isGameOver()) 
+        if (!Game.Instance.isGameplayOn())
         {
             return;
         }
@@ -96,7 +96,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void ImproveByPickup(int amount)
     {
-        if (Game.Instance.isGameOver())
+        if (!Game.Instance.isGameplayOn())
         {
             return;
         }
@@ -108,11 +108,11 @@ public class PlayerHealth : MonoBehaviour
     void PlayHitSFX()
     {
         float randomness = Random.value;
-        if (randomness <= 0.3f)
+        if (randomness <= 0.33f)
         {
             _audioSource.PlayOneShot(_hit1SFX);
         }
-        else if (randomness <= 0.6f)
+        else if (randomness <= 0.55f)
         {
             _audioSource.PlayOneShot(_hit2SFX);
         }        

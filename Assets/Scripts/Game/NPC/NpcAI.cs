@@ -79,7 +79,7 @@ public class NpcAI : MonoBehaviour
 
     void Update()
     {
-        if (Game.Instance.isGameOver())
+        if (!Game.Instance.isGameplayOn())
         {
             return;
         }
@@ -282,7 +282,7 @@ public class NpcAI : MonoBehaviour
 
     public void AttackHitAnimEvent()
     {
-        if (Game.Instance.isGamePlayOver())
+        if (!Game.Instance.isGameplayOn())
         {
             return;
         }
@@ -290,16 +290,19 @@ public class NpcAI : MonoBehaviour
         //Debug.Log("[NPC] I'm eating your brain now jojo");
         _playerHealth.Damage(EatBrainDamage);
 
+
         if (Random.value < 0.7f)
         {
             _audioSource.PlayOneShot(_punchSFX);
         }
 
+        /* TESTMUTE
         if (Random.value < 0.4f)
         {
             _audioSource.PlayOneShot(_growlSFX);
         }
-    }   
+        */
+    }
 
     public void HitByBullet(float damage, RaycastHit hit)
     {

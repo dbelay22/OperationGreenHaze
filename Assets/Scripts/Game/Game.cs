@@ -122,6 +122,11 @@ public class Game : MonoBehaviour
         return Game.Instance.GetCurrentState() is PauseState;
     }
 
+    public bool isGameplayOn()
+    {
+        return Game.Instance.GetCurrentState() is PlayState;
+    }
+
     public void ToggleGodMode()
     {
         _isGodModeOn = !_isGodModeOn;

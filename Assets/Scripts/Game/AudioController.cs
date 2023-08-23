@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class AudioController : MonoBehaviour
 {
-    [Header("Entities with AudioSource")]
+    [Header("BG Music AudioSource")]
     [SerializeField] AudioSource _musicSource;
 
     [Header("Audio Clips")]

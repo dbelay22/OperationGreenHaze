@@ -76,7 +76,7 @@ public class Weapon : MonoBehaviour
 
     void Update()
     {
-        if (Game.Instance.isGamePlayOver() || Game.Instance.isGamePaused())
+        if (!Game.Instance.isGameplayOn())
         {
             return;
         }
