@@ -85,12 +85,18 @@ public class Game : MonoBehaviour
 
     public void ChangeStateToPaused()
     {
-        _stateMachine.TransitionToState(new PauseState());
+        if (isGameplayOn())
+        {
+            _stateMachine.TransitionToState(new PauseState());
+        }        
     }
 
     public void ResumeGame()
     {
-        _stateMachine.TransitionToState(new PlayState());
+        if (isGamePaused())
+        {
+            _stateMachine.TransitionToState(new PlayState());
+        }
     }
 
     public void TryAgain()
