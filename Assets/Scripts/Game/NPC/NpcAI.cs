@@ -173,7 +173,7 @@ public class NpcAI : MonoBehaviour
         _animator.SetTrigger("Blinded Trigger");
 
         // disable colliders so player can walk over
-        SetCollidersActive(false);
+        //SetCollidersActive(false);
 
         StartCoroutine(WakeUpFromBlinded());
     }
