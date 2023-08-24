@@ -40401,16 +40401,59 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 933081261, guid: f9eaac36ceac73642ac41385fbe6ba04, type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 933081261, guid: f9eaac36ceac73642ac41385fbe6ba04, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6935842856030921401, guid: f9eaac36ceac73642ac41385fbe6ba04,
         type: 3}
       propertyPath: m_Name
-      value: DirectorAI
+      value: Director
       objectReference: {fileID: 0}
-    - target: {fileID: 6935842856030921401, guid: f9eaac36ceac73642ac41385fbe6ba04,
+    - target: {fileID: 6935842856030921402, guid: f9eaac36ceac73642ac41385fbe6ba04,
         type: 3}
-      propertyPath: m_IsActive
-      value: 1
+      propertyPath: _raidSirenSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: f51a67c03986e544db008e8dc60b4540, type: 3}
+    - target: {fileID: 6935842856030921402, guid: f9eaac36ceac73642ac41385fbe6ba04,
+        type: 3}
+      propertyPath: _airRaidSirenSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: f51a67c03986e544db008e8dc60b4540, type: 3}
+    - target: {fileID: 6935842856030921402, guid: f9eaac36ceac73642ac41385fbe6ba04,
+        type: 3}
+      propertyPath: _explosionStartSeconds
+      value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 6935842856030921402, guid: f9eaac36ceac73642ac41385fbe6ba04,
+        type: 3}
+      propertyPath: _explosions.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6935842856030921402, guid: f9eaac36ceac73642ac41385fbe6ba04,
+        type: 3}
+      propertyPath: _raidSirenStartSeconds
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6935842856030921402, guid: f9eaac36ceac73642ac41385fbe6ba04,
+        type: 3}
+      propertyPath: _explosions.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 9591e6afb3c39be4aa991217006b3e11, type: 3}
+    - target: {fileID: 6935842856030921402, guid: f9eaac36ceac73642ac41385fbe6ba04,
+        type: 3}
+      propertyPath: _explosions.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: f210d0b327cb8394897c9b7b305ff053, type: 3}
+    - target: {fileID: 6935842856030921402, guid: f9eaac36ceac73642ac41385fbe6ba04,
+        type: 3}
+      propertyPath: _explosions.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 28c684aaf2c578d438cbf24226bff679, type: 3}
     - target: {fileID: 6935842856030921403, guid: f9eaac36ceac73642ac41385fbe6ba04,
         type: 3}
       propertyPath: m_RootOrder

@@ -11,7 +11,9 @@ public class WinState : GameState
 
         HUD.Instance.ShowWin();
 
-        DirectorAI.Instance.DumpStats();
+        Director.Instance.DumpStats();
+
+        Director.Instance.GameIsOver();
 
         UnlockCursor();        
     }

@@ -224,7 +224,7 @@ public class Weapon : MonoBehaviour
 
                 if (isHeadshot)
                 {
-                    DirectorAI.Instance.OnEvent(DirectorEvent.Enemy_Killed_Headshot);
+                    Director.Instance.OnEvent(DirectorEvents.Enemy_Killed_Headshot);
                 }
             }
             else

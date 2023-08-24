@@ -50,7 +50,7 @@ public class Ammo : MonoBehaviour
 
         _accuracy = _ammoHitEnemy / _ammoShooted * 100;
 
-        DirectorAI.Instance.OnEvent(DirectorEvent.Shot_Accuracy_Update, _accuracy);
+        Director.Instance.OnEvent(DirectorEvents.Shot_Accuracy_Update, _accuracy);
 
         //Debug.Log($"[Ammo] Accuracy is now {_accuracy} %");
     }

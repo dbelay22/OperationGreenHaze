@@ -78,15 +78,15 @@ public class Player : MonoBehaviour
 
         if (ProcessAmmoPickup(trigger))
         {
-            DirectorAI.Instance.OnEvent(DirectorEvent.Player_Pickup_Ammo);
+            Director.Instance.OnEvent(DirectorEvents.Player_Pickup_Ammo);
         }
         else if (ProcessMedkitPickup(trigger))
         {
-            DirectorAI.Instance.OnEvent(DirectorEvent.Player_Pickup_Medkit);
+            Director.Instance.OnEvent(DirectorEvents.Player_Pickup_Medkit);
         }
         else if (ProcessFlashlightPickup(trigger))
         {
-            DirectorAI.Instance.OnEvent(DirectorEvent.Player_Pickup_Flashlight);
+            Director.Instance.OnEvent(DirectorEvents.Player_Pickup_Flashlight);
         }
     }
 

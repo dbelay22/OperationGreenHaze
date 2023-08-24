@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum DirectorEvent
+public enum DirectorEvents
 { 
     Enemy_Melee_Attack,
     Player_Escape,
@@ -15,9 +15,20 @@ public enum DirectorEvent
     Shot_Accuracy_Update,
 }
 
-public class DirectorAI : MonoBehaviour
+[RequireComponent(typeof(AudioSource))]
+public class Director : MonoBehaviour
 {
-    [SerializeField] float _stressFactor = 0.2f;
+    [SerializeField] float _stressFactor = 0.1f;
+
+    [Header("Raid Siren")]
+    [SerializeField] AudioClip _raidSirenSFX;
+    [SerializeField] float _raidSirenStartSeconds = 30;
+
+    [Header("Explosions")]
+    [SerializeField] AudioClip[] _explosions;
+    [SerializeField] float _explosionStartSeconds = 37;
+
+    AudioSource _audioSource;
 
     // stress
     float _playerStress = 0;
@@ -44,10 +55,10 @@ public class DirectorAI : MonoBehaviour
 
     #region Instance
 
-    private static DirectorAI _instance;
+    private static Director _instance;
     
 
-    public static DirectorAI Instance { get { return _instance; } }    
+    public static Director Instance { get { return _instance; } }    
 
     void Awake()
     {
@@ -58,12 +69,39 @@ public class DirectorAI : MonoBehaviour
 
     void Start()
     {
+        _audioSource = GetComponent<AudioSource>();
+
         StressStart();
+
+        StartCoroutine(PlaySirenSFX());
+
+        StartCoroutine(PlayExplosionSFX());
     }
 
     void Update()
     {
         StressLevelUpdate();
+    }
+
+    IEnumerator PlayExplosionSFX()
+    {
+        yield return new WaitForSeconds(_explosionStartSeconds);
+
+        int rndIndex = Random.Range(0, _explosions.Length);
+
+        _audioSource.PlayOneShot(_explosions[rndIndex]);
+
+        StartCoroutine(PlayExplosionSFX());
+    }
+
+
+    IEnumerator PlaySirenSFX() 
+    {
+        yield return new WaitForSeconds(_raidSirenStartSeconds);
+
+        _audioSource.PlayOneShot(_raidSirenSFX);
+
+        StartCoroutine(PlaySirenSFX());
     }
 
     public void DumpStats()
@@ -136,47 +174,51 @@ public class DirectorAI : MonoBehaviour
         return _playerStress;
     }
 
-    public void OnEvent(DirectorEvent directorEvent, object eventValue = null)
+    public void OnEvent(DirectorEvents directorEvent, object eventValue = null)
     {
         switch (directorEvent)
         {
-            case DirectorEvent.Enemy_Melee_Attack:
+            case DirectorEvents.Enemy_Melee_Attack:
                 _meleeAttackCount++;
                 break;
 
-            case DirectorEvent.Player_Escape:
+            case DirectorEvents.Player_Escape:
                 _playerEscapeCount++;
                 break;
 
-            case DirectorEvent.Player_Damaged:
+            case DirectorEvents.Player_Damaged:
                 _playerDamageCount++;
                 break;
 
-            case DirectorEvent.Player_Pickup_Medkit:
+            case DirectorEvents.Player_Pickup_Medkit:
                 _playerPickupMedkitCount++;
                 break;
 
-            case DirectorEvent.Player_Pickup_Ammo:
+            case DirectorEvents.Player_Pickup_Ammo:
                 _playerPickupAmmoCount++;
                 break;
 
-            case DirectorEvent.Player_Pickup_Flashlight:
+            case DirectorEvents.Player_Pickup_Flashlight:
                 _playerPickupFlashlightCount++;
                 break;
 
-            case DirectorEvent.Enemy_Killed:
+            case DirectorEvents.Enemy_Killed:
                 _enemyKillCount++;
                 break;
 
-            case DirectorEvent.Enemy_Killed_Headshot:
+            case DirectorEvents.Enemy_Killed_Headshot:
                 _enemyKillByHeadshotCount++;
                 break;
 
-            case DirectorEvent.Shot_Accuracy_Update:
+            case DirectorEvents.Shot_Accuracy_Update:
                 _shotAccuracy = (float) eventValue;
                 break;
         }
     }
 
+    public void GameIsOver()
+    {
+        StopAllCoroutines();
+    }
 
 }

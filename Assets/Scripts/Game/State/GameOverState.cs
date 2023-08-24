@@ -16,7 +16,9 @@ public class GameOverState : GameState
 
         HUD.Instance.ShowGameOver();
 
-        DirectorAI.Instance.DumpStats();
+        Director.Instance.DumpStats();
+
+        Director.Instance.GameIsOver();
 
         UnlockCursor();
 

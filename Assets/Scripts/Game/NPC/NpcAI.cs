@@ -217,7 +217,7 @@ public class NpcAI : MonoBehaviour
             {
                 _reportedAttack = false;
                 _reportedPlayerEscape = true;
-                DirectorAI.Instance.OnEvent(DirectorEvent.Player_Escape);
+                Director.Instance.OnEvent(DirectorEvents.Player_Escape);
             }
 
             ChaseTarget();
@@ -229,7 +229,7 @@ public class NpcAI : MonoBehaviour
             {
                 _reportedAttack = true;
                 _reportedPlayerEscape = false;
-                DirectorAI.Instance.OnEvent(DirectorEvent.Enemy_Melee_Attack);
+                Director.Instance.OnEvent(DirectorEvents.Enemy_Melee_Attack);
             }
             
             // ATTACK !!
@@ -370,7 +370,7 @@ public class NpcAI : MonoBehaviour
         // update HUD
         HUD.Instance.IncreaseKills();
 
-        DirectorAI.Instance.OnEvent(DirectorEvent.Enemy_Killed);
+        Director.Instance.OnEvent(DirectorEvents.Enemy_Killed);
 
         // change state
         _currentState = NpcState.Dead;

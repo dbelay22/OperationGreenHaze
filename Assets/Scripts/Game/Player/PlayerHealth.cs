@@ -91,7 +91,7 @@ public class PlayerHealth : MonoBehaviour
 
         HUD.Instance.ShowPlayerDamageVFX();
 
-        DirectorAI.Instance.OnEvent(DirectorEvent.Player_Damaged);
+        Director.Instance.OnEvent(DirectorEvents.Player_Damaged);
     }
 
     public void ImproveByPickup(int amount)
