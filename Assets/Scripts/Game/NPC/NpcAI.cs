@@ -357,6 +357,9 @@ public class NpcAI : MonoBehaviour
 
     void ChangeStateToDead()
     {
+        // change state
+        _currentState = NpcState.Dead;
+
         _animator.SetTrigger("Dead Trigger");
 
         PlayDeathSFX();
@@ -370,20 +373,20 @@ public class NpcAI : MonoBehaviour
         // update HUD
         HUD.Instance.IncreaseKills();
 
-        Director.Instance.OnEvent(DirectorEvents.Enemy_Killed);        
+        Director.Instance.OnEvent(DirectorEvents.Enemy_Killed);
 
         Destroy(gameObject, 1.5f);
-
-        // change state
-        _currentState = NpcState.Dead;
     }
 
     void PlayDeathSFX()
     {
-        float rndm = Random.value;
-        
+        if (Random.value < 0.4)
+        {
+            return;
+        }
+
         // play SFX
-        _audioSource.PlayOneShot(rndm < 0.5 ? _death01SFX : _death02SFX);
+        _audioSource.PlayOneShot(Random.value < 0.5 ? _death01SFX : _death02SFX);
     }
 
     void OnDrawGizmosSelected()
