@@ -83,7 +83,8 @@ MonoBehaviour:
   _hitEnemyVFX: {fileID: 1000012909287652, guid: b99857eca648c07499e2234fede8385c,
     type: 3}
   _growlSFX: {fileID: 8300000, guid: 8b74874200f7c2a4da03f69010bc140d, type: 3}
-  _punchSFX: {fileID: 8300000, guid: 8969b2df2abcc7d4caea59c404f0978b, type: 3}
+  _punchSFX: {fileID: 8300000, guid: f0196fedf55e97b48b8b8ec447ba50e5, type: 3}
+  _synthSFX: {fileID: 8300000, guid: 8969b2df2abcc7d4caea59c404f0978b, type: 3}
   _bulletHitSFX: {fileID: 8300000, guid: a3b060243bb50334aab10cf38fde898f, type: 3}
   _death01SFX: {fileID: 8300000, guid: eccc14a763ee8024fb70db5a8c6108e4, type: 3}
   _death02SFX: {fileID: 8300000, guid: 40d22a24612dee440be6d7c8e38ff7be, type: 3}

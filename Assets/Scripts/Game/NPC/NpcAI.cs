@@ -34,6 +34,7 @@ public class NpcAI : MonoBehaviour
     [Header("SFX")]
     [SerializeField] AudioClip _growlSFX;
     [SerializeField] AudioClip _punchSFX;
+    [SerializeField] AudioClip _synthSFX;
     [SerializeField] AudioClip _bulletHitSFX;
     [SerializeField] AudioClip _death01SFX;
     [SerializeField] AudioClip _death02SFX;
@@ -291,17 +292,19 @@ public class NpcAI : MonoBehaviour
         _playerHealth.Damage(EatBrainDamage);
 
 
-        if (Random.value < 0.7f)
+        float rndHit = Random.value;
+        if (rndHit < 0.3f)
         {
             _audioSource.PlayOneShot(_punchSFX);
         }
-
-        /* TESTMUTE
-        if (Random.value < 0.4f)
+        else if (rndHit < 0.6f)
+        {
+            _audioSource.PlayOneShot(_synthSFX);
+        } 
+        else if (rndHit < 0.9f)
         {
             _audioSource.PlayOneShot(_growlSFX);
         }
-        */
     }
 
     public void HitByBullet(float damage, RaycastHit hit)
