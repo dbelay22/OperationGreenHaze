@@ -72,10 +72,6 @@ public class Director : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
 
         StressStart();
-
-        StartCoroutine(PlaySirenSFX());
-
-        StartCoroutine(PlayExplosionSFX());
     }
 
     void Update()
@@ -83,27 +79,18 @@ public class Director : MonoBehaviour
         StressLevelUpdate();
     }
 
-    IEnumerator PlayExplosionSFX()
+    public void PlayExplosionSFX()
     {
-        yield return new WaitForSeconds(_explosionStartSeconds);
-
         int rndIndex = Random.Range(0, _explosions.Length);
 
         Debug.Log($"[Director] (Explosion SFX) rndIndex: {rndIndex}");
 
         _audioSource.PlayOneShot(_explosions[rndIndex]);
-
-        StartCoroutine(PlayExplosionSFX());
     }
 
-
-    IEnumerator PlaySirenSFX() 
+    public void PlaySirenSFX() 
     {
-        yield return new WaitForSeconds(_raidSirenStartSeconds);
-
         _audioSource.PlayOneShot(_raidSirenSFX);
-
-        StartCoroutine(PlaySirenSFX());
     }
 
     public void DumpStats()
