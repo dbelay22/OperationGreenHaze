@@ -141,12 +141,7 @@ public class NpcAI : MonoBehaviour
 
     void DeadUpdate()
     {
-        //Debug.Log($"[NPC] I'm a dead zombie dead, deja vú");
-        _navMeshAgent.isStopped = true;
-
-        _animator.SetTrigger("Dead Trigger");
-
-        Destroy(gameObject, 3f);
+        // nothing here
     }
 
     void ChangeStateToBlinded()
@@ -362,15 +357,22 @@ public class NpcAI : MonoBehaviour
 
     void ChangeStateToDead()
     {
-        // Disable colliders so we can't shoot after dead
-        SetCollidersActive(false);
+        _animator.SetTrigger("Dead Trigger");
 
         PlayDeathSFX();
 
+        //Debug.Log($"[NPC] I'm a dead zombie dead, deja vú");
+        _navMeshAgent.isStopped = true;
+
+        // Disable colliders so we can't shoot after dead
+        SetCollidersActive(false);
+        
         // update HUD
         HUD.Instance.IncreaseKills();
 
-        Director.Instance.OnEvent(DirectorEvents.Enemy_Killed);
+        Director.Instance.OnEvent(DirectorEvents.Enemy_Killed);        
+
+        Destroy(gameObject, 1.5f);
 
         // change state
         _currentState = NpcState.Dead;
