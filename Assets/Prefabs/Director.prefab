@@ -46,7 +46,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stressFactor: 0.1
-  _airRaidSirenSFX: {fileID: 0}
+  _raidSirenSFX: {fileID: 8300000, guid: f51a67c03986e544db008e8dc60b4540, type: 3}
+  _raidSirenStartSeconds: 15
+  _explosions:
+  - {fileID: 8300000, guid: 9591e6afb3c39be4aa991217006b3e11, type: 3}
+  - {fileID: 8300000, guid: f210d0b327cb8394897c9b7b305ff053, type: 3}
+  - {fileID: 8300000, guid: 28c684aaf2c578d438cbf24226bff679, type: 3}
+  _explosionStartSeconds: 20
 --- !u!82 &933081261
 AudioSource:
   m_ObjectHideFlags: 0
@@ -58,8 +64,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_PlayOnAwake: 0
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0

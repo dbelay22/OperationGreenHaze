@@ -115,7 +115,7 @@ public class Ammo : MonoBehaviour
         
         foreach (AmmoSlot slot in _ammoSlots)
         {
-            ammoLeft += "| Type: " + slot.GetType() + ", Count:" + slot.ammoAmount + " |";
+            ammoLeft += "| Type: " + slot._ammoType + ", Count:" + slot.ammoAmount + " |";
         }
 
         return ammoLeft;

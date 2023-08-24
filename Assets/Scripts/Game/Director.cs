@@ -22,11 +22,11 @@ public class Director : MonoBehaviour
 
     [Header("Raid Siren")]
     [SerializeField] AudioClip _raidSirenSFX;
-    [SerializeField] float _raidSirenStartSeconds = 30;
+    [SerializeField] float _raidSirenStartSeconds = 15;
 
     [Header("Explosions")]
     [SerializeField] AudioClip[] _explosions;
-    [SerializeField] float _explosionStartSeconds = 37;
+    [SerializeField] float _explosionStartSeconds = 20;
 
     AudioSource _audioSource;
 
@@ -88,6 +88,8 @@ public class Director : MonoBehaviour
         yield return new WaitForSeconds(_explosionStartSeconds);
 
         int rndIndex = Random.Range(0, _explosions.Length);
+
+        Debug.Log($"[Director] (Explosion SFX) rndIndex: {rndIndex}");
 
         _audioSource.PlayOneShot(_explosions[rndIndex]);
 
