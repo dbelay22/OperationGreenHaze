@@ -1,0 +1,18 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class SubMenu : MonoBehaviour
+{
+    [SerializeField] GameObject _mainMenu;
+
+    void Update()
+    {
+        // [Esc] Back to main menu
+        if (UnityEngine.Input.GetKeyDown(KeyCode.Escape))
+        {
+            gameObject.SetActive(false);
+            _mainMenu.SetActive(true);
+        }
+    }
+}
