@@ -112,25 +112,25 @@ public class Game : MonoBehaviour
 
     public bool isGameOver()
     {
-        bool isGameOver = Game.Instance.GetCurrentState() is GameOverState;
+        bool isGameOver = GetCurrentState() is GameOverState;
         return isGameOver;
     }
 
     public bool isGamePlayOver()
     {
-        bool isGameOver = Game.Instance.GetCurrentState() is GameOverState;
-        bool isWin = Game.Instance.GetCurrentState() is WinState;
+        bool isGameOver = GetCurrentState() is GameOverState;
+        bool isWin = GetCurrentState() is WinState;
         return isGameOver || isWin;
     }
 
     public bool isGamePaused()
     { 
-        return Game.Instance.GetCurrentState() is PauseState;
+        return GetCurrentState() is PauseState;
     }
 
     public bool isGameplayOn()
     {
-        return Game.Instance.GetCurrentState() is PlayState;
+        return GetCurrentState() is PlayState;
     }
 
     public void ToggleGodMode()

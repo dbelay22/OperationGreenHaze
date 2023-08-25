@@ -9,12 +9,13 @@ public class GameStateMachine : IGameStateMachine
     {
         if (state == null) 
         {
+            Debug.LogWarning("[GSM] (TransitionToState) Can't transition to a null state");
             return false;
         }
 
         if (_currentState != null && state != null && _currentState.GetType() == state.GetType())
         {
-            Debug.LogWarning("Can't transition to the same state type");
+            Debug.LogWarning("[GSM] (TransitionToState) Can't transition to the same state type");
             return false;
         }
 
