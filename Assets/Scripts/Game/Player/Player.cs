@@ -126,6 +126,8 @@ public class Player : MonoBehaviour
 
                 // bye pickup
                 Destroy(trigger);
+
+                return true;
             }
             else
             {
@@ -134,7 +136,7 @@ public class Player : MonoBehaviour
             }
         }
 
-        return isMedkit;
+        return false;
     }
 
     bool ProcessAmmoPickup(GameObject trigger) 

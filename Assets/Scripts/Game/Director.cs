@@ -18,23 +18,17 @@ public enum DirectorEvents
 [RequireComponent(typeof(AudioSource))]
 public class Director : MonoBehaviour
 {
-    [SerializeField] float _stressFactor = 0.1f;
-
     [Header("Raid Siren")]
     [SerializeField] AudioClip _raidSirenSFX;
-    [SerializeField] float _raidSirenStartSeconds = 15;
 
     [Header("Explosions")]
     [SerializeField] AudioClip[] _explosions;
-    [SerializeField] float _explosionStartSeconds = 20;
 
     AudioSource _audioSource;
 
     // stress
     float _playerStress = 0;
-    float _lastReportedStressLevel = 0f;
-    float _avgStressLevel = 0f;
-    float _stressChangeCount = 0f;
+    float _maxStress = 0;
 
     // zombie attack
     int _meleeAttackCount = 0;
@@ -79,6 +73,19 @@ public class Director : MonoBehaviour
         StressLevelUpdate();
     }
 
+    void OnGUI()
+    {
+        // Make a background box
+        //GUI.Box(new Rect(10, 300, 300, 550), "Director Stats");
+
+        GUI.backgroundColor = Color.grey;
+        GUI.contentColor = Color.green;
+
+        string stats = DumpStats();
+
+        GUI.TextArea(new Rect(10, 350, 280, 375), stats);
+    }
+
     public void PlayExplosionSFX()
     {
         int rndIndex = Random.Range(0, _explosions.Length);
@@ -93,72 +100,56 @@ public class Director : MonoBehaviour
         _audioSource.PlayOneShot(_raidSirenSFX);
     }
 
-    public void DumpStats()
+    public string DumpStats()
     {
-        Debug.Log($"[Director] DUMP......................");
-        Debug.Log($"[Director] Elapsed Seconds: {HUD.Instance.ElapsedSeconds}");
-        Debug.Log($"[Director] Shot Accuracy: {_shotAccuracy} %");
-        Debug.Log($"[Director] Enemy Kill Count: {_enemyKillCount}");
-        Debug.Log($"[Director] Enemy Kill HEADSHOT Count: {_enemyKillByHeadshotCount}");
+        string stats = $"[Director] DUMP......................\n" +
+            $"[Director] Elapsed Seconds: {HUD.Instance.ElapsedSeconds}\n" +
+            $"[Director] Shot Accuracy: {_shotAccuracy} %\n" +
+            $"[Director] Enemy Kill Count: {_enemyKillCount}\n" +
+            $"[Director] Enemy Kill HEADSHOT Count: {_enemyKillByHeadshotCount}\n" +
+            
+            $"[Director] ..........................\n" +
+            $"[Director] Stress Level: {_playerStress}\n" +
+            
+            $"[Director] ..........................\n" +
+            $"[Director] Melee Attack Count: {_meleeAttackCount}\n" +
+            $"[Director] Player Escape Count: {_playerEscapeCount}\n" +
+            $"[Director] Player Damage Count: {_playerDamageCount}\n" +
+            
+            $"[Director] ..........................\n" +
+            $"[Director] Player Pickup Medkit Count: {_playerPickupMedkitCount}\n" +
+            $"[Director] Player Pickup Ammo Count: {_playerPickupAmmoCount}\n" +
+            
+            $"[Director] ..........................\n" +
+            $"[Director] Player Ammo Not Used: {Player.Instance.GetUnusedAmmo()}\n" +
+            $"[Director] Player Health: {Player.Instance.GetCurrentHealth()}\n" +
+            $"[Director] END OF DUMP...............";
 
-        Debug.Log($"[Director] ..........................");
-        Debug.Log($"[Director] AVG Stress Level: {_avgStressLevel}");
-        Debug.Log($"[Director] Last Reported Stress Level: {_lastReportedStressLevel}");
-        Debug.Log($"[Director] Stress Change Count: {_stressChangeCount}");
-        
-        Debug.Log($"[Director] ..........................");
-        Debug.Log($"[Director] Melee Attack Count: {_meleeAttackCount}");
-        Debug.Log($"[Director] Player Escape Count: {_playerEscapeCount}");
-        Debug.Log($"[Director] Player Damage Count: {_playerDamageCount}");
-        
-        Debug.Log($"[Director] ..........................");
-        Debug.Log($"[Director] Player Pickup Medkit Count: {_playerPickupMedkitCount}");
-        Debug.Log($"[Director] Player Pickup Ammo Count: {_playerPickupAmmoCount}");
+        //Debug.Log(stats);
 
-        Debug.Log($"[Director] ..........................");
-        Debug.Log($"[Director] Player Ammo Not Used: {Player.Instance.GetUnusedAmmo()}");
-        Debug.Log($"[Director] Player Health: {Player.Instance.GetCurrentHealth()}");
-
-        Debug.Log($"[Director] END OF DUMP...............");
+        return stats;
     }
 
     void StressStart()
     {
         _playerStress = 0f;
-        _lastReportedStressLevel = 0f;
-        _avgStressLevel = 0f;
-        _stressChangeCount = 0f;
+        _maxStress = 0f;
     }
 
     float StressLevelUpdate()
     {
-        _playerStress = (_meleeAttackCount + _playerDamageCount + _playerEscapeCount + (_enemyKillByHeadshotCount + _enemyKillCount * 0.2f) - _playerPickupMedkitCount - _playerPickupAmmoCount - _playerPickupFlashlightCount) * _stressFactor;
+        _playerStress = Mathf.Round(
+            _meleeAttackCount + _playerDamageCount
+            - (_playerEscapeCount * 0.2f) - (_enemyKillByHeadshotCount * 0.1f) - (_playerPickupAmmoCount * 0.2f) - (_playerPickupFlashlightCount * 0.2f)
+         );
 
         //Debug.Log($"[DirectorAI] (OnEvent) Stress Level Update - Stress Brute: {_playerStress} - _lastReportedStressLevel: {_lastReportedStressLevel}");
 
-        _playerStress = Mathf.Clamp(_playerStress, 0, 10);
+        _playerStress = Mathf.Clamp(_playerStress, 0, 100);
+
+        _maxStress = Mathf.Max(_playerStress, _maxStress);
 
         //Debug.Log($"[DirectorAI] (OnEvent) Stress Level Update - Stress Clamp: {_playerStress} - _lastReportedStressLevel: {_lastReportedStressLevel}");
-
-        if (_lastReportedStressLevel != _playerStress)
-        {
-            _stressChangeCount++;
-
-            // AVG
-            if (_avgStressLevel == 0f)
-            {
-                // init value
-                _avgStressLevel = _playerStress;
-            }
-            else
-            {
-                _avgStressLevel = (_avgStressLevel + _playerStress) / 2;
-            }
-
-            //Debug.Log($"[DirectorAI] (OnEvent) Stress Level Update - AVG: {_avgStressLevel}");
-
-            _lastReportedStressLevel = _playerStress;
-        }
 
         return _playerStress;
     }
