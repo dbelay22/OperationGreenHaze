@@ -4,16 +4,15 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 
-public class MainMenu : MonoBehaviour
+public class MainMenu : MonoBehaviour, IPointerEnterHandler
 {
-    [SerializeField] GameObject _firstButton;
+    [Header("Audio")]
+    [SerializeField] AudioSource _audioSource;
+    [SerializeField] AudioClip _navigateSFX;
+    [SerializeField] AudioClip _optionSelectSFX;
 
     void Start()
     {
-        Debug.Log("[MainMenu] Start!");
-
-        EventSystem.current.SetSelectedGameObject(_firstButton);
-
         UnlockCursor();
     }
 
@@ -32,4 +31,40 @@ public class MainMenu : MonoBehaviour
     {
         Application.Quit();
     }
+
+    // When mouse enters the menu
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        PlayNavigateSFX();
+    }
+
+    // Option is Selected (keyboard only ?)
+    public void OptionSelected()
+    {
+        PlayNavigateSFX();
+    }
+
+    public void PlayOptionSelectSFX()
+    {
+        if (_audioSource == null)
+        {
+            Debug.LogError("[MainMenu] (PlayOptionSelectSFX) AudioSource is null");
+            return;
+        }
+
+        _audioSource.PlayOneShot(_optionSelectSFX);
+    }
+
+
+    public void PlayNavigateSFX()
+    {
+        if (_audioSource == null)
+        {
+            Debug.LogError("[MainMenu] (OnPointerEnter) AudioSource is null");
+            return;
+        }
+
+        _audioSource.PlayOneShot(_navigateSFX);
+    }    
+
 }
