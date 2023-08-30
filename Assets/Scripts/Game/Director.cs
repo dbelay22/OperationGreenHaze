@@ -13,6 +13,7 @@ public enum DirectorEvents
     Player_Pickup_Ammo,
     Player_Pickup_Flashlight,
     Shot_Accuracy_Update,
+    Player_Pickup_Mission,
 }
 
 [RequireComponent(typeof(AudioSource))]

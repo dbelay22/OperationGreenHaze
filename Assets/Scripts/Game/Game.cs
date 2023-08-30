@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Yxp.Helpers;
@@ -19,6 +20,9 @@ public class Game : MonoBehaviour
     private bool _isGodModeOn;
 
     public bool IsGodModeOn { get { return _isGodModeOn; } }
+
+    bool _allEnemiesKilled = false;
+    bool _allMissionPickupsCompleted = false;
 
     #region Instance
 
@@ -69,19 +73,48 @@ public class Game : MonoBehaviour
         _stateMachine.TransitionToState(new GameOverState());
     }
 
-    public void ChangeStateToWin()
+#region Mission
+
+    public void ReportAllMissionPickupsCompleted()
     {
+        Debug.Log("[Game] (ReportAllMissionPickupsCompleted)");
+        _allMissionPickupsCompleted = true;
+        CheckGameWin();
+    }
+
+    public void ReportAllEnemiesKilled()
+    {
+        Debug.Log("[Game] (ReportAllEnemiesKilled)");
+        _allEnemiesKilled = true;
+        CheckGameWin();
+    }
+
+    void CheckGameWin()
+    {
+        if (_allEnemiesKilled && _allMissionPickupsCompleted)
+        {
+            Debug.Log("[Game] ALL MISSIONS COMPLETED !! ");
+            ChangeStateToWin();
+        }
+    }
+
+    void ChangeStateToWin()
+    {
+        Debug.Log($"[Game] WIN in {Time.realtimeSinceStartup.ToString("N0")} seconds");
+        
         StartCoroutine(WinDelayed());
     }
 
     IEnumerator WinDelayed()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
 
         _stateMachine.TransitionToState(new WinState());
 
         _player.GameplayIsOver();
     }
+
+#endregion Mission
 
     public void ChangeStateToPaused()
     {

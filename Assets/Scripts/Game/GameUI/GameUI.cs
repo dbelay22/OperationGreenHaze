@@ -175,9 +175,7 @@ public class GameUI : MonoBehaviour
 
         if (_currentKills >= _totalKills)
         {
-            Debug.Log($"[GameUI] WIN in {Time.realtimeSinceStartup.ToString("N0")} seconds");
-            
-            Game.Instance.ChangeStateToWin();
+            Game.Instance.ReportAllEnemiesKilled();
         }
     }
 

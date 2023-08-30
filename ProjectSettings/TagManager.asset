@@ -11,10 +11,9 @@ TagManager:
   - Quadrant
   - MedkitPickup
   - FlashlightPickup
-  - BatteryPickup
   - EnemyGroup
   - FireZone
-  - GrenadePickup
+  - MissionPickup
   layers:
   - Default
   - TransparentFX
