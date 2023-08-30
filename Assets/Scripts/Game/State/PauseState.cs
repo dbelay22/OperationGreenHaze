@@ -16,7 +16,7 @@ public class PauseState : GameState
         
         UnlockCursor();
 
-        HUD.Instance.ShowPause();
+        GameUI.Instance.ShowPause();
 
         AudioController.Instance.StopBackgroundMusic();
     }

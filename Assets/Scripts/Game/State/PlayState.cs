@@ -16,7 +16,7 @@ public class PlayState : GameState
         
         LockCursor();
 
-        HUD.Instance.ShowGameplay();
+        GameUI.Instance.ShowGameplay();
 
         AudioController.Instance.PlayBackgroundMusic();
     }

@@ -37,7 +37,7 @@ public class PlayerHealth : MonoBehaviour
 
     void Update()
     {
-        HUD.Instance.UpdateHealthAmmount(GetCurrentHealthClamped());
+        GameUI.Instance.UpdateHealthAmmount(GetCurrentHealthClamped());
     }
 
     void OnTriggerEnter(Collider other)
@@ -89,7 +89,7 @@ public class PlayerHealth : MonoBehaviour
 
         PlayHitSFX();
 
-        HUD.Instance.ShowPlayerDamageVFX();
+        GameUI.Instance.ShowPlayerDamageVFX();
 
         Director.Instance.OnEvent(DirectorEvents.Player_Damaged);
     }
@@ -134,7 +134,7 @@ public class PlayerHealth : MonoBehaviour
         _currentHealth = clampedHealth;
 
         // update UI
-        HUD.Instance.UpdateHealthAmmount(clampedHealth);        
+        GameUI.Instance.UpdateHealthAmmount(clampedHealth);        
 
         if (_currentHealth <= 0)
         {

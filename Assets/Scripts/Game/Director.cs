@@ -47,6 +47,8 @@ public class Director : MonoBehaviour
     // shot accuracy
     float _shotAccuracy = 0f;
 
+    bool _statsOnScreen = false;
+
     #region Instance
 
     private static Director _instance;
@@ -64,19 +66,32 @@ public class Director : MonoBehaviour
     void Start()
     {
         _audioSource = GetComponent<AudioSource>();
-
+        
+        _statsOnScreen = false;
+        
         StressStart();
     }
 
     void Update()
     {
         StressLevelUpdate();
+
+        // [T] Show Director Stats
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            _statsOnScreen = !_statsOnScreen;
+        }
     }
 
     void OnGUI()
     {
         // Make a background box
         //GUI.Box(new Rect(10, 300, 300, 550), "Director Stats");
+
+        if (_statsOnScreen == false)
+        {
+            return;
+        }
 
         GUI.backgroundColor = Color.grey;
         GUI.contentColor = Color.green;
@@ -103,7 +118,7 @@ public class Director : MonoBehaviour
     public string DumpStats()
     {
         string stats = $"[Director] DUMP......................\n" +
-            $"[Director] Elapsed Seconds: {HUD.Instance.ElapsedSeconds}\n" +
+            $"[Director] Elapsed Seconds: {GameUI.Instance.ElapsedSeconds}\n" +
             $"[Director] Shot Accuracy: {_shotAccuracy} %\n" +
             $"[Director] Enemy Kill Count: {_enemyKillCount}\n" +
             $"[Director] Enemy Kill HEADSHOT Count: {_enemyKillByHeadshotCount}\n" +

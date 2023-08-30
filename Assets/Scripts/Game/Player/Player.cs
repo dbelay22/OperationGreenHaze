@@ -153,11 +153,11 @@ public class Player : MonoBehaviour
             // bye pickup
             Destroy(trigger);
 
-            // update HUD if current ammo type
+            // update GameUI if current ammo type
             Weapon currentWeapon = _weaponSwitcher.GetCurrentWeapon();
             if (ammoPickup.AmmoType.Equals(currentWeapon.GetAmmoType()))
             {
-                HUD.Instance.UpdateAmmoAmount(currentWeapon.GetAmmoLeft());
+                GameUI.Instance.UpdateAmmoAmount(currentWeapon.GetAmmoLeft());
             }
             
         }

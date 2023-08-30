@@ -87,8 +87,8 @@ public class Ammo : MonoBehaviour
 
         //Debug.Log($"[Ammo] (OnBulletShot) ammo left: {slot.ammoAmount}, ammo type: {slot._ammoType}");
 
-        // update HUD
-        HUD.Instance.UpdateAmmoAmount(slot.ammoAmount);
+        // update GameUI
+        GameUI.Instance.UpdateAmmoAmount(slot.ammoAmount);
     }
 
     public void AddAmmoPickup(AmmoType ammoType, int increase)

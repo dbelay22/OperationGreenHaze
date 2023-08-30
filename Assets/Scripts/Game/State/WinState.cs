@@ -9,7 +9,7 @@ public class WinState : GameState
 
         AudioController.Instance.PlayWinMusic();
 
-        HUD.Instance.ShowWin();
+        GameUI.Instance.ShowWin();
 
         Director.Instance.DumpStats();
 

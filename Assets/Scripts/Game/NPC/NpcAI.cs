@@ -370,8 +370,8 @@ public class NpcAI : MonoBehaviour
         // Disable colliders so we can't shoot after dead
         SetCollidersActive(false);
         
-        // update HUD
-        HUD.Instance.IncreaseKills();
+        // update GameUI
+        GameUI.Instance.IncreaseKills();
 
         Director.Instance.OnEvent(DirectorEvents.Enemy_Killed);
 
