@@ -5,11 +5,11 @@ using UnityEngine.EventSystems;
 
 public class MenuButton : MonoBehaviour, ISelectHandler
 {
-    [SerializeField] MainMenu _mainMenu;
+    [SerializeField] MenuBase _menu;
 
     public void OnSelect(BaseEventData eventData)
     {
-        _mainMenu.OptionSelected();
+        _menu.OptionSelected();
     }
 
 }
