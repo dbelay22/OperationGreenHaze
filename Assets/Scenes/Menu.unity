@@ -2930,7 +2930,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: GREEN RAID
+  m_text: OPERATION GREEN JUICE
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d2aef554373963e44ba1571db9053eda, type: 2}
   m_sharedMaterial: {fileID: -7579048477728149101, guid: d2aef554373963e44ba1571db9053eda,
