@@ -13,7 +13,16 @@ public class MainMenu : MenuBase
 
     public void Quit()
     {
+        LevelLoader.Instance.StartCrossfade();
+        
+        StartCoroutine(QuitDelayed());
+    }
+
+    IEnumerator QuitDelayed()
+    {
+        yield return new WaitForSeconds(1f);
+
         Application.Quit();
-    }   
+    }
 
 }

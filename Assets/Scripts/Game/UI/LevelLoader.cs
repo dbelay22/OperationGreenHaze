@@ -42,7 +42,7 @@ public class LevelLoader : MonoBehaviour
     {
         Debug.Log($"(LoadLevel) index:{levelIndex}");
 
-        _transitionAnimator.SetTrigger("StartCrossfade");
+        StartCrossfade();
 
         Debug.Log($"(LoadLevel) Triggered StartCrossfade, now wait {_transitionTime} seconds");
 
@@ -51,5 +51,10 @@ public class LevelLoader : MonoBehaviour
         Debug.Log($"(LoadLevel) Time elapsed! load scene now! {levelIndex}");
 
         SceneManager.LoadScene(levelIndex);
+    }
+
+    public void StartCrossfade()
+    {
+        _transitionAnimator.SetTrigger("StartCrossfade");
     }
 }
