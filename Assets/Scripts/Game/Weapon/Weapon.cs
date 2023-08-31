@@ -6,6 +6,9 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+    const string ENEMY_TAG = "Enemy";
+    const string BOOMBOX_TAG = "BoomBox";
+
     [SerializeField] GameObject _playerGO;
 
     [Header("Shooting")]
@@ -202,35 +205,21 @@ public class Weapon : MonoBehaviour
 
         bool hitSomething = Physics.Raycast(ray, out hit, _raycastRange);
 
-        bool hitEnemy = false;
+        bool hitEnemy = false, hitBoomBox = false;
 
         // Did I Hit ?
         if (hitSomething)
         {
             //Debug.Log($"[Weapon](ShootUpdate) Just hit {hit.transform.name}, tag: {hit.transform.tag}, distance: {hit.distance}");
 
-            hitEnemy = hit.transform.tag.Equals("Enemy");
-            
-            // F*ck you zombie
-            if (hitEnemy)
-            {
-                NpcAI npc = hit.transform.GetComponent<NpcAI>();
-                
-                Type colliderType = hit.collider.GetType();
+            hitEnemy = ProcessHitEnemy(hit);
 
-                bool isHeadshot = colliderType == typeof(CapsuleCollider);
+            hitBoomBox = ProcessHitBoomBox(hit);
 
-                npc.HitByBullet(isHeadshot ? _headshotDamage : _damage, hit);
-
-                if (isHeadshot)
-                {
-                    Director.Instance.OnEvent(DirectorEvents.Enemy_Killed_Headshot);
-                }
-            }
-            else
+            if (!hitEnemy && !hitBoomBox)
             {
                 PlayHitImpactVFX(hit);
-            }
+            }                        
         }
 
         // Notify Player
@@ -241,6 +230,44 @@ public class Weapon : MonoBehaviour
         {
             StartCoroutine(CoolDown());
         }        
+    }
+
+    bool ProcessHitBoomBox(RaycastHit hit)
+    {
+        bool hitBoomBox = hit.transform.CompareTag(BOOMBOX_TAG);
+
+        if (hitBoomBox)
+        {
+            BoomBox bbox = hit.transform.GetComponent<BoomBox>();
+            
+            bbox.BoomNow();
+        }
+
+        return hitBoomBox;
+    }
+
+    bool ProcessHitEnemy(RaycastHit hit)
+    {
+        bool hitEnemy = hit.transform.CompareTag(ENEMY_TAG);
+
+        // F*ck you zombie
+        if (hitEnemy)
+        {
+            NpcAI npc = hit.transform.GetComponent<NpcAI>();
+
+            Type colliderType = hit.collider.GetType();
+
+            bool isHeadshot = colliderType == typeof(CapsuleCollider);
+
+            npc.HitByBullet(isHeadshot ? _headshotDamage : _damage, hit);
+
+            if (isHeadshot)
+            {
+                Director.Instance.OnEvent(DirectorEvents.Enemy_Killed_Headshot);
+            }
+        }        
+
+        return hitEnemy;
     }
 
     IEnumerator CoolDown()
