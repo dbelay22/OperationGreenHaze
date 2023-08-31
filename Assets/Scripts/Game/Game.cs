@@ -175,7 +175,7 @@ public class Game : MonoBehaviour
 
     public void QuitGame()
     {
-        StopAllCoroutines();
+        Time.timeScale = 1;
         LevelLoader.Instance.LoadPreviousLevel();
     }
 
