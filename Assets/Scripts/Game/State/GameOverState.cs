@@ -21,8 +21,6 @@ public class GameOverState : GameState
         Director.Instance.GameIsOver();
 
         UnlockCursor();
-
-        //Time.timeScale = 0;
     }
 
     void UnlockCursor()

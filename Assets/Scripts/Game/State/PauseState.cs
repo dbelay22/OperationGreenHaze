@@ -28,7 +28,10 @@ public class PauseState : GameState
     }
 
     public override void ExitState()
-    {        
+    {
+        Debug.Log("[PauseState] (ExitState) time scale back to 1");
+
+        Time.timeScale = 1;
     }
 
     public override void Update()

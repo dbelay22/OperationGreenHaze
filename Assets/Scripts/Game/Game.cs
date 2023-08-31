@@ -173,9 +173,10 @@ public class Game : MonoBehaviour
         Debug.Log($"[Game] GOD MODE ON: {_isGodModeOn}");
     }
 
-    public void QuitGame()
+    public void QuitToMainMenu()
     {
-        Time.timeScale = 1;
+        _stateMachine.Shutdown();
+
         LevelLoader.Instance.LoadPreviousLevel();
     }
 
