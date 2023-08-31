@@ -13,19 +13,9 @@ public class PauseState : GameState
         Debug.Log("*** PAUSE ***");
 
         Time.timeScale = 0;
-        
-        UnlockCursor();
 
-        GameUI.Instance.ShowPause();
-
-        AudioController.Instance.StopBackgroundMusic();
-    }
-
-    void UnlockCursor()
-    {
-        Cursor.lockState = CursorLockMode.Confined;
-        Cursor.visible = true;
-    }
+        GameUI.Instance.ShowPause();      
+    }      
 
     public override void ExitState()
     {

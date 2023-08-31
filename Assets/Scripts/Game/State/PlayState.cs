@@ -27,8 +27,19 @@ public class PlayState : GameState
         Cursor.visible = false;
     }
 
+    void UnlockCursor()
+    {
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
+    }
+
     public override void ExitState()
-    {        
+    {
+        Debug.Log("[PlayState] (ExitState) Unlocking cursor & stopping music");
+
+        UnlockCursor();
+
+        AudioController.Instance.StopBackgroundMusic();
     }
 
     public override void Update()
