@@ -8,7 +8,7 @@ public class MainMenu : MenuBase
 {
     public void Play()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        LevelLoader.Instance.LoadNextLevel();
     }
 
     public void Quit()

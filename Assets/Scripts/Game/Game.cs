@@ -175,7 +175,8 @@ public class Game : MonoBehaviour
 
     public void QuitGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        StopAllCoroutines();
+        LevelLoader.Instance.LoadPreviousLevel();
     }
 
     //=======================================================
