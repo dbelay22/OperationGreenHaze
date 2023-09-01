@@ -6,6 +6,7 @@ using UnityEngine;
 public class BoomBox: MonoBehaviour
 {
     const string ENEMY_TAG = "Enemy";
+    const string BOOMBOX_TAG = "BoomBox";
 
     [SerializeField] GameObject _object;
 
@@ -98,6 +99,7 @@ public class BoomBox: MonoBehaviour
         {
             if (collider.CompareTag(ENEMY_TAG))
             {
+                // ENEMY
                 Debug.Log($"[BoomBox] (ProcessExplosionDamage) enemy {collider.name} affected by explosion");
 
                 NpcHealth npcHealth;
@@ -107,6 +109,18 @@ public class BoomBox: MonoBehaviour
                 if (npcHealth != null)
                 {
                     npcHealth.HitByExplosion();
+                }
+            }
+            else if (collider.CompareTag(BOOMBOX_TAG))
+            {
+                // OTHER BOOMBOX
+                BoomBox boombox;
+
+                collider.TryGetComponent<BoomBox>(out boombox);
+
+                if (boombox != null)
+                {
+                    boombox.BoomNow();
                 }
             }
             else
