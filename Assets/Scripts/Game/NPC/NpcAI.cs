@@ -267,7 +267,6 @@ public class NpcAI : MonoBehaviour
 
     void AttackTarget()
     {
-        //Debug.Log($"[NPC] Attacking player!");
         _navMeshAgent.isStopped = true;
 
         _animator.SetTrigger("Attack Trigger");
@@ -340,8 +339,6 @@ public class NpcAI : MonoBehaviour
 
     void OnHealthChange(float health)
     {
-        //Debug.Log($"[NpcAI] OnHealthChange [{health}]");
-
         if (health <= 0f)
         {
             ChangeStateToDead();
@@ -376,21 +373,29 @@ public class NpcAI : MonoBehaviour
 
         PlayDeathVFX();
 
-        Destroy(gameObject, 0.45f);        
+        StartCoroutine(HideNPC());
     }
+
+    IEnumerator HideNPC()
+    {
+        yield return new WaitForSeconds(0.45f);
+
+        transform.Find("Model").gameObject.SetActive(false);
+
+        Destroy(gameObject, 3f);
+    }
+
 
     void PlayDeathVFX()
     {
         GameObject vfx = Instantiate(_deadVFX, transform.position, Quaternion.LookRotation(Vector3.up));
-
-        Debug.Log($"PlayDeathVFX : position:{transform.position}");
 
         Destroy(vfx, 3f);
     }
 
     void PlayDeathSFX()
     {
-        if (Random.value < 0.4)
+        if (Random.value < 0.22)
         {
             return;
         }
