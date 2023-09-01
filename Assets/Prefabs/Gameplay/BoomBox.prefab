@@ -52,9 +52,10 @@ MonoBehaviour:
     type: 3}
   _explosionSFX: {fileID: 8300000, guid: 80745bf1482152445a98fb7c03d90844, type: 3}
   _durationSeconds: 1
+  _damageRadius: 5
   _fireAndSmokeVFX: {fileID: 1972207730512856, guid: c96c4179f311469448ed6b0996802ea3,
     type: 3}
-  _lifeTime: 12
+  _lifeTime: 15
 --- !u!82 &7195804802140517100
 AudioSource:
   m_ObjectHideFlags: 0
