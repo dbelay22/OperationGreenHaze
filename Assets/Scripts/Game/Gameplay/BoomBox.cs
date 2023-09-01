@@ -5,12 +5,15 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class BoomBox: MonoBehaviour
 {
+    const string ENEMY_TAG = "Enemy";
+
     [SerializeField] GameObject _object;
 
     [Header("Explosion")]
     [SerializeField] GameObject _explosionVFX;
     [SerializeField] AudioClip _explosionSFX;
     [SerializeField] float _durationSeconds = 1f;
+    [SerializeField] float _damageRadius = 1f;
 
     [Header("After Explosion")]
     [SerializeField] GameObject _fireAndSmokeVFX;
@@ -66,6 +69,8 @@ public class BoomBox: MonoBehaviour
         BoxCollider collider = GetComponent<BoxCollider>();
         collider.enabled = false;
 
+        ProcessExplosionDamage(transform.position, _damageRadius);
+
         // object destroy
         Destroy(_object);
 
@@ -83,6 +88,35 @@ public class BoomBox: MonoBehaviour
         StartCoroutine(AutoDestroy());
     }
 
+    void ProcessExplosionDamage(Vector3 center, float radius)
+    {
+        Collider[] colliders = Physics.OverlapSphere(center, radius);
+
+        Debug.Log($"[BoomBox] (ProcessExplosionDamage) colliders affected by explosion: {colliders.Length}");
+
+        foreach (var collider in colliders)
+        {
+            if (collider.CompareTag(ENEMY_TAG))
+            {
+                Debug.Log($"[BoomBox] (ProcessExplosionDamage) enemy {collider.name} affected by explosion");
+
+                NpcHealth npcHealth;
+
+                collider.TryGetComponent<NpcHealth>(out npcHealth);
+
+                if (npcHealth != null)
+                {
+                    npcHealth.HitByExplosion();
+                }
+            }
+            else
+            {
+                Debug.Log($"[BoomBox] (ProcessExplosionDamage) object {collider.name} affected by explosion");
+            }
+            
+        }
+    }
+
 
     IEnumerator AutoDestroy()
     {
@@ -93,6 +127,12 @@ public class BoomBox: MonoBehaviour
         _fireZoneTrigger.SetActive(false);
 
         Destroy(gameObject);
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, _damageRadius);
     }
 
 }
