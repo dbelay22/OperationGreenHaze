@@ -259,7 +259,7 @@ public class Weapon : MonoBehaviour
 
             bool isHeadshot = colliderType == typeof(CapsuleCollider);
 
-            npc.HitByBullet(isHeadshot ? _headshotDamage : _damage, hit);
+            npc.HitByBullet(isHeadshot ? _headshotDamage : _damage, hit, isHeadshot);
 
             if (isHeadshot)
             {

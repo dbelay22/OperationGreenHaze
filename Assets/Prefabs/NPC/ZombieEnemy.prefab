@@ -80,8 +80,11 @@ MonoBehaviour:
   _chaseRange: 50
   _faceTargetSpeed: 1
   _blindedTimeout: 5
-  _hitEnemyVFX: {fileID: 1000012909287652, guid: b99857eca648c07499e2234fede8385c,
+  _hitBulletVFX: {fileID: 1000012909287652, guid: b99857eca648c07499e2234fede8385c,
     type: 3}
+  _headshotVFX: {fileID: 1828176872806910, guid: b3b6d749f90e64b46b804a0ec2fb5192,
+    type: 3}
+  _deadVFX: {fileID: 1547757601392324, guid: dacf4067622a9074a934e3f915b84063, type: 3}
   _growlSFX: {fileID: 8300000, guid: 8b74874200f7c2a4da03f69010bc140d, type: 3}
   _punchSFX: {fileID: 8300000, guid: f0196fedf55e97b48b8b8ec447ba50e5, type: 3}
   _synthSFX: {fileID: 8300000, guid: 8969b2df2abcc7d4caea59c404f0978b, type: 3}
@@ -206,7 +209,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0

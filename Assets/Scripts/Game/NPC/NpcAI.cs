@@ -29,7 +29,9 @@ public class NpcAI : MonoBehaviour
     [SerializeField] float _blindedTimeout = 7f;
 
     [Header("VFX")]
-    [SerializeField] GameObject _hitEnemyVFX;
+    [SerializeField] GameObject _hitBulletVFX;
+    [SerializeField] GameObject _headshotVFX;
+    [SerializeField] GameObject _deadVFX;
 
     [Header("SFX")]
     [SerializeField] AudioClip _growlSFX;
@@ -302,7 +304,7 @@ public class NpcAI : MonoBehaviour
         }
     }
 
-    public void HitByBullet(float damage, RaycastHit hit)
+    public void HitByBullet(float damage, RaycastHit hit, bool isHeadshot = false)
     {
         if (_currentState == NpcState.Idle)
         {
@@ -312,29 +314,26 @@ public class NpcAI : MonoBehaviour
 
         BroadcastMessage("OnHitByBullet", damage, SendMessageOptions.RequireReceiver);
 
-        PlayHitByBulletFX(hit);
+        PlayHitByBulletFX(hit, isHeadshot);
     }
 
-    void PlayHitByBulletFX(RaycastHit hit)
+    void PlayHitByBulletFX(RaycastHit hit, bool isHeadshot = false)
     {
-        PlayHitEnemySFX();
+        PlayHitByBulletSFX();
 
-        PlayHitEnemyVFX(hit);
+        PlayHitByBulletVFX(hit, isHeadshot);
     }
 
-    void PlayHitEnemySFX()
+    void PlayHitByBulletSFX()
     {
         _audioSource.PlayOneShot(_bulletHitSFX);
     }
 
-    void PlayHitEnemyVFX(RaycastHit hit)
+    void PlayHitByBulletVFX(RaycastHit hit, bool isHeadshot = false)
     {
-        if (_hitEnemyVFX == null)
-        {
-            return;
-        }
+        GameObject prefabVfx = isHeadshot ? _headshotVFX : _hitBulletVFX;
 
-        GameObject vfx = Instantiate(_hitEnemyVFX, hit.point, Quaternion.LookRotation(hit.normal));
+        GameObject vfx = Instantiate(prefabVfx, hit.point, Quaternion.LookRotation(hit.normal));
                 
         Destroy(vfx, 0.7f);
     }
@@ -375,7 +374,18 @@ public class NpcAI : MonoBehaviour
 
         Director.Instance.OnEvent(DirectorEvents.Enemy_Killed);
 
-        Destroy(gameObject, 1.5f);
+        PlayDeathVFX();
+
+        Destroy(gameObject, 0.45f);        
+    }
+
+    void PlayDeathVFX()
+    {
+        GameObject vfx = Instantiate(_deadVFX, transform.position, Quaternion.LookRotation(Vector3.up));
+
+        Debug.Log($"PlayDeathVFX : position:{transform.position}");
+
+        Destroy(vfx, 3f);
     }
 
     void PlayDeathSFX()
