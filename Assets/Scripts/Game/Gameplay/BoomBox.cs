@@ -17,8 +17,8 @@ public class BoomBox: MonoBehaviour
     [SerializeField] float _lifeTime = 5f;
 
     AudioSource _audioSource;
-
     
+    GameObject _fireZoneTrigger;
     
     void Start()
     {
@@ -30,8 +30,22 @@ public class BoomBox: MonoBehaviour
 
         _audioSource = GetComponent<AudioSource>();
 
-        // set in the same place as the object
-        //transform.position = _object.transform.position;
+        FireZoneStart();
+    }
+
+    void FireZoneStart()
+    {
+        Transform t = transform.Find("FireZone");
+        
+        if (t == null)
+        {
+            Debug.LogError($"[BoomBox] (FireZoneStart) Can't find the FireZone: {transform.name}");
+            return;
+        }
+        
+        _fireZoneTrigger = t.gameObject;
+
+        _fireZoneTrigger.SetActive(false);
     }
 
     public void BoomNow()
@@ -63,6 +77,7 @@ public class BoomBox: MonoBehaviour
 
         // spawn fire and smoke
         Instantiate(_fireAndSmokeVFX, transform);
+        _fireZoneTrigger.SetActive(true);
 
         // bye
         StartCoroutine(AutoDestroy());
@@ -73,7 +88,9 @@ public class BoomBox: MonoBehaviour
     {
         yield return new WaitForSeconds(_lifeTime);
 
-        StopAllCoroutines();        
+        StopAllCoroutines();
+
+        _fireZoneTrigger.SetActive(false);
 
         Destroy(gameObject);
     }
