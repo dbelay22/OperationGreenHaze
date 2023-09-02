@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4574092743336782076}
   - component: {fileID: 2707888752502140122}
   m_Layer: 0
-  m_Name: ExplosiveBarrelA
+  m_Name: BarrelRedExplosive
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -287,6 +287,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 23000011789784872, guid: 85a8f6f8dca77df4e9c05f21b5e8ed87,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fadf3a73fdffa2d4abf2aa0c3ac3392d, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85a8f6f8dca77df4e9c05f21b5e8ed87, type: 3}
 --- !u!4 &8984966398410819220 stripped
