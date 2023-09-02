@@ -146,6 +146,11 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+    public void HitByExplosion()
+    {
+        Damage(100);
+    }
+
     int GetCurrentHealthClamped()
     {
         return Mathf.Clamp(_currentHealth, 0, 100);

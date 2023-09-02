@@ -7,6 +7,7 @@ public class BoomBox: MonoBehaviour
 {
     const string ENEMY_TAG = "Enemy";
     const string BOOMBOX_TAG = "BoomBox";
+    const string PLAYER_TAG = "Player";
 
     [SerializeField] GameObject _object;
 
@@ -105,11 +106,27 @@ public class BoomBox: MonoBehaviour
             {
                 ProcessChainReaction(collider);
             }
+            else if (collider.CompareTag(PLAYER_TAG))
+            {
+                ProcessPlayerDamage(collider);
+            }
             else
             {
                 Debug.Log($"[BoomBox] (ProcessExplosionDamage) object {collider.name} affected by explosion");
             }
             
+        }
+    }
+
+    void ProcessPlayerDamage(Collider collider)
+    {
+        PlayerHealth playerHealth;
+
+        collider.TryGetComponent<PlayerHealth>(out playerHealth);
+
+        if (playerHealth != null)
+        {
+            playerHealth.HitByExplosion();
         }
     }
 
