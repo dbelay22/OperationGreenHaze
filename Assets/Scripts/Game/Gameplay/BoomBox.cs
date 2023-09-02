@@ -99,29 +99,11 @@ public class BoomBox: MonoBehaviour
         {
             if (collider.CompareTag(ENEMY_TAG))
             {
-                // ENEMY
-                Debug.Log($"[BoomBox] (ProcessExplosionDamage) enemy {collider.name} affected by explosion");
-
-                NpcHealth npcHealth;
-
-                collider.TryGetComponent<NpcHealth>(out npcHealth);
-
-                if (npcHealth != null)
-                {
-                    npcHealth.HitByExplosion();
-                }
+                ProcessEnemyDamage(collider);
             }
             else if (collider.CompareTag(BOOMBOX_TAG))
             {
-                // OTHER BOOMBOX
-                BoomBox boombox;
-
-                collider.TryGetComponent<BoomBox>(out boombox);
-
-                if (boombox != null)
-                {
-                    boombox.BoomNow();
-                }
+                ProcessChainReaction(collider);
             }
             else
             {
@@ -131,6 +113,38 @@ public class BoomBox: MonoBehaviour
         }
     }
 
+    void ProcessChainReaction(Collider collider)
+    {
+        BoomBox boombox;
+
+        collider.TryGetComponent<BoomBox>(out boombox);
+
+        if (boombox != null)
+        {
+            StartCoroutine(ChainReactionDelayed(boombox));
+        }
+    }
+
+    IEnumerator ChainReactionDelayed(BoomBox bbox)
+    {
+        float reactionTime = Random.Range(0.2f, 0.8f);
+
+        yield return new WaitForSeconds(reactionTime);
+        
+        bbox.BoomNow();
+    }
+
+    void ProcessEnemyDamage(Collider collider)
+    {
+        NpcHealth npcHealth;
+
+        collider.TryGetComponent<NpcHealth>(out npcHealth);
+
+        if (npcHealth != null)
+        {
+            npcHealth.HitByExplosion();
+        }
+    }
 
     IEnumerator AutoDestroy()
     {
