@@ -203,6 +203,8 @@ public class Player : MonoBehaviour
 
     void OnPlayerDeath()
     {
+        GameUI.Instance.ShowPlayerDamageVFX();
+
         GameplayIsOver();
     }
 
