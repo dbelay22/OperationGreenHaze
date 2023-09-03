@@ -20,12 +20,17 @@ public class NpcHealth : MonoBehaviour
 
     public void HitByExplosion()
     {
-        Debug.Log($"[NpcHealth] (HitByExplosion) !!!");
         TakeDamage(TOP_HEALTH);
     }
 
     void TakeDamage(float damage)
     {
+        if (_health <= 0)
+        {
+            // dead can't dead again, does it ?
+            return;
+        }
+
         _health -= damage;
 
         BroadcastMessage("OnHealthChange", _health, SendMessageOptions.RequireReceiver);

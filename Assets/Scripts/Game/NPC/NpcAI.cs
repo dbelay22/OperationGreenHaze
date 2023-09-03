@@ -56,8 +56,6 @@ public class NpcAI : MonoBehaviour
     Player _player;
     PlayerHealth _playerHealth;
 
-    GameObject _lastBulletHitInstance;
-
     AudioSource _audioSource;
 
     bool _reportedAttack = false;
@@ -302,6 +300,24 @@ public class NpcAI : MonoBehaviour
         }
     }
 
+    public void HitByExplosion(Transform explosionTransform)
+    {
+        Vector3 forceDirection = transform.position - explosionTransform.position;
+        
+        forceDirection.Normalize();
+
+        float FORCE_EXPLOSION = 10f;
+
+        Vector3 forceVector = forceDirection * FORCE_EXPLOSION;
+
+        //forceVector.y = .5f;
+
+        Rigidbody rb = Get3DModel().GetComponent<Rigidbody>();
+
+        // vuela, vuela
+        rb.AddForceAtPosition(forceVector, transform.position, ForceMode.Impulse);
+    }
+
     public void HitByBullet(float damage, RaycastHit hit, bool isHeadshot = false)
     {
         if (_currentState == NpcState.Idle)
@@ -370,27 +386,33 @@ public class NpcAI : MonoBehaviour
 
         Director.Instance.OnEvent(DirectorEvents.Enemy_Killed);
 
-        PlayDeathVFX();
+        //PlayDeathVFX();
 
         StartCoroutine(HideNPC());
     }
 
     IEnumerator HideNPC()
     {
-        yield return new WaitForSeconds(0.45f);
+        yield return new WaitForSeconds(2.2f);
 
-        transform.Find("Model").gameObject.SetActive(false);
+        Get3DModel().SetActive(false);
 
         Destroy(gameObject, 3f);
     }
 
-
+    GameObject Get3DModel() 
+    {
+        return transform.Find("Model").gameObject;
+    }
+       
+    /*
     void PlayDeathVFX()
     {
-        GameObject vfx = Instantiate(_deadVFX, transform.position, Quaternion.LookRotation(Vector3.up));
+        GameObject vfx = Instantiate(_deadVFX, Get3DModel().transform.position, Quaternion.LookRotation(Vector3.up));
 
         Destroy(vfx, 3f);
     }
+    */
 
     void PlayDeathSFX()
     {

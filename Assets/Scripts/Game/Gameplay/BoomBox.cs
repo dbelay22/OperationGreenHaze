@@ -14,7 +14,6 @@ public class BoomBox: MonoBehaviour
     [Header("Explosion")]
     [SerializeField] GameObject _explosionVFX;
     [SerializeField] AudioClip _explosionSFX;
-    [SerializeField] float _durationSeconds = 1f;
     [SerializeField] float _damageRadius = 1f;
 
     [Header("After Explosion")]
@@ -94,28 +93,46 @@ public class BoomBox: MonoBehaviour
     {
         Collider[] colliders = Physics.OverlapSphere(center, radius);
 
-        Debug.Log($"[BoomBox] (ProcessExplosionDamage) colliders affected by explosion: {colliders.Length}");
+        //Debug.Log($"[BoomBox] (ProcessExplosionDamage) colliders affected by explosion: {colliders.Length}");
+
+        bool shouldBendTime = false;
 
         foreach (var collider in colliders)
         {
             if (collider.CompareTag(ENEMY_TAG))
             {
                 ProcessEnemyDamage(collider);
+                shouldBendTime = true;
             }
             else if (collider.CompareTag(BOOMBOX_TAG))
             {
                 ProcessChainReaction(collider);
+                shouldBendTime = true;
             }
             else if (collider.CompareTag(PLAYER_TAG))
             {
                 ProcessPlayerDamage(collider);
+                shouldBendTime = true;
             }
             else
             {
                 Debug.Log($"[BoomBox] (ProcessExplosionDamage) object {collider.name} affected by explosion");
-            }
-            
+            }            
         }
+
+        if (shouldBendTime && true == false)
+        {
+            StartCoroutine(TimeBend());
+        }        
+    }
+
+    IEnumerator TimeBend()
+    {
+        Time.timeScale = 0.3f;
+
+        yield return new WaitForSeconds(3f);
+
+        Time.timeScale = 1f;
     }
 
     void ProcessPlayerDamage(Collider collider)
@@ -153,13 +170,21 @@ public class BoomBox: MonoBehaviour
 
     void ProcessEnemyDamage(Collider collider)
     {
-        NpcHealth npcHealth;
+        NpcHealth npcHealth;        
 
         collider.TryGetComponent<NpcHealth>(out npcHealth);
 
         if (npcHealth != null)
         {
-            npcHealth.HitByExplosion();
+            npcHealth.HitByExplosion();            
+        }
+        
+        NpcAI npc;
+        collider.TryGetComponent<NpcAI>(out npc);
+
+        if (npc != null)
+        {
+            npc.HitByExplosion(transform);
         }
     }
 
