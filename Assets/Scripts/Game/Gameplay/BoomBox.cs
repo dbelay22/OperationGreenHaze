@@ -95,24 +95,23 @@ public class BoomBox: MonoBehaviour
 
         //Debug.Log($"[BoomBox] (ProcessExplosionDamage) colliders affected by explosion: {colliders.Length}");
 
-        bool shouldBendTime = false;
+        //bool shouldBendTime = false;
 
         foreach (var collider in colliders)
         {
             if (collider.CompareTag(ENEMY_TAG))
             {
                 ProcessEnemyDamage(collider);
-                shouldBendTime = true;
+                //shouldBendTime = true;
             }
             else if (collider.CompareTag(BOOMBOX_TAG))
             {
                 ProcessChainReaction(collider);
-                shouldBendTime = true;
             }
             else if (collider.CompareTag(PLAYER_TAG))
             {
                 ProcessPlayerDamage(collider);
-                shouldBendTime = true;
+                //shouldBendTime = true;
             }
             else
             {
@@ -120,20 +119,24 @@ public class BoomBox: MonoBehaviour
             }            
         }
 
-        if (shouldBendTime && true == false)
+        /*
+        if (shouldBendTime)
         {
             StartCoroutine(TimeBend());
-        }        
+        } 
+        */
     }
 
+    /*
     IEnumerator TimeBend()
     {
-        Time.timeScale = 0.3f;
+        Time.timeScale = 0.11f;
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(0.11f);
 
         Time.timeScale = 1f;
     }
+    */
 
     void ProcessPlayerDamage(Collider collider)
     {

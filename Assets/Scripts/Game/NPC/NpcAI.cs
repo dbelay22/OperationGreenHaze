@@ -169,7 +169,7 @@ public class NpcAI : MonoBehaviour
         _animator.SetTrigger("Blinded Trigger");
 
         // disable colliders so player can walk over
-        //SetCollidersActive(false);
+        SetCollidersActive(false);
 
         StartCoroutine(WakeUpFromBlinded());
     }
@@ -306,16 +306,14 @@ public class NpcAI : MonoBehaviour
         
         forceDirection.Normalize();
 
-        float FORCE_EXPLOSION = 10f;
+        float FORCE_EXPLOSION = 20f;
 
         Vector3 forceVector = forceDirection * FORCE_EXPLOSION;
-
-        //forceVector.y = .5f;
 
         Rigidbody rb = Get3DModel().GetComponent<Rigidbody>();
 
         // vuela, vuela
-        rb.AddForceAtPosition(forceVector, transform.position, ForceMode.Impulse);
+        rb.AddForceAtPosition(forceVector, transform.position, ForceMode.Impulse);        
     }
 
     public void HitByBullet(float damage, RaycastHit hit, bool isHeadshot = false)
@@ -379,14 +377,12 @@ public class NpcAI : MonoBehaviour
         _navMeshAgent.isStopped = true;
 
         // Disable colliders so we can't shoot after dead
-        SetCollidersActive(false);
+        //SetCollidersActive(false);
         
         // update GameUI
         GameUI.Instance.IncreaseKills();
 
         Director.Instance.OnEvent(DirectorEvents.Enemy_Killed);
-
-        //PlayDeathVFX();
 
         StartCoroutine(HideNPC());
     }
@@ -404,15 +400,6 @@ public class NpcAI : MonoBehaviour
     {
         return transform.Find("Model").gameObject;
     }
-       
-    /*
-    void PlayDeathVFX()
-    {
-        GameObject vfx = Instantiate(_deadVFX, Get3DModel().transform.position, Quaternion.LookRotation(Vector3.up));
-
-        Destroy(vfx, 3f);
-    }
-    */
 
     void PlayDeathSFX()
     {
