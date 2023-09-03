@@ -113,10 +113,12 @@ public class BoomBox: MonoBehaviour
                 ProcessPlayerDamage(collider);
                 //shouldBendTime = true;
             }
+            /*
             else
             {
                 Debug.Log($"[BoomBox] (ProcessExplosionDamage) object {collider.name} affected by explosion");
-            }            
+            } 
+            */
         }
 
         /*

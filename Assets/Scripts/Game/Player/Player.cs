@@ -204,8 +204,19 @@ public class Player : MonoBehaviour
     void OnPlayerDeath()
     {
         GameUI.Instance.ShowPlayerDamageVFX();
-
+        
         GameplayIsOver();
+
+        StartCoroutine(TimeBend());
+    }
+
+    IEnumerator TimeBend()
+    {
+        Time.timeScale = 0.19f;
+
+        yield return new WaitForSeconds(1f);
+
+        Time.timeScale = 1f;
     }
 
     public void GameplayIsOver()
@@ -217,7 +228,7 @@ public class Player : MonoBehaviour
         _weaponSwitcher.HideCurrentWeapon();
 
         // bye player ?
-        Destroy(gameObject);
+        Destroy(gameObject, 3f);
     }
 
     public string GetUnusedAmmo()
