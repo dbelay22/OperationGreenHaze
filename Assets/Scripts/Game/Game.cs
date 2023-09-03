@@ -173,6 +173,15 @@ public class Game : MonoBehaviour
         Debug.Log($"[Game] GOD MODE ON: {_isGodModeOn}");
     }
 
+    public IEnumerator TimeBend(float slowTimeScale, float waitTime)
+    {
+        Time.timeScale = slowTimeScale;
+
+        yield return new WaitForSeconds(waitTime);
+
+        Time.timeScale = 1f;
+    }
+
     public void QuitToMainMenu()
     {
         _stateMachine.Shutdown();

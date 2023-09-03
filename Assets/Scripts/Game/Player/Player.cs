@@ -207,17 +207,8 @@ public class Player : MonoBehaviour
         
         GameplayIsOver();
 
-        StartCoroutine(TimeBend());
-    }
-
-    IEnumerator TimeBend()
-    {
-        Time.timeScale = 0.19f;
-
-        yield return new WaitForSeconds(1f);
-
-        Time.timeScale = 1f;
-    }
+        StartCoroutine(Game.Instance.TimeBend(0.19f, 1f));
+    }   
 
     public void GameplayIsOver()
     {
