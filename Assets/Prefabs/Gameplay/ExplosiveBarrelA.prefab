@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrel_v1_LD3
       objectReference: {fileID: 0}
+    - target: {fileID: 1000012581530574, guid: 85a8f6f8dca77df4e9c05f21b5e8ed87, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4000012177816388, guid: 85a8f6f8dca77df4e9c05f21b5e8ed87, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -134,6 +138,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ExplosiveBarrelA
+      objectReference: {fileID: 0}
+    - target: {fileID: 3991991700096660462, guid: 990c9378a0e42304e9044112d2c72efb,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 3991991700096660463, guid: 990c9378a0e42304e9044112d2c72efb,
         type: 3}
