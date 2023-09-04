@@ -306,14 +306,14 @@ public class NpcAI : MonoBehaviour
         
         forceDirection.Normalize();
 
-        float FORCE_EXPLOSION = 20f;
+        float EXPLOSION_FORCE = 20f;
 
-        Vector3 forceVector = forceDirection * FORCE_EXPLOSION;
+        Vector3 forceVector = forceDirection * EXPLOSION_FORCE;
 
         Rigidbody rb = Get3DModel().GetComponent<Rigidbody>();
 
         // vuela, vuela
-        rb.AddForceAtPosition(forceVector, transform.position, ForceMode.Impulse);        
+        rb.AddForceAtPosition(forceVector, transform.position, ForceMode.Impulse);
     }
 
     public void HitByBullet(float damage, RaycastHit hit, bool isHeadshot = false)
@@ -377,7 +377,7 @@ public class NpcAI : MonoBehaviour
         _navMeshAgent.isStopped = true;
 
         // Disable colliders so we can't shoot after dead
-        //SetCollidersActive(false);
+        SetCollidersActive(false);
         
         // update GameUI
         GameUI.Instance.IncreaseKills();

@@ -70,10 +70,9 @@ public class BoomBox: MonoBehaviour
         BoxCollider collider = GetComponent<BoxCollider>();
         collider.enabled = false;
 
-        ProcessExplosionDamage(transform.position, _damageRadius);
+        _object.gameObject.SetActive(false);
 
-        // object destroy
-        Destroy(_object);
+        ProcessExplosionDamage(transform.position, _damageRadius);
 
         // play sound
         _audioSource.PlayOneShot(_explosionSFX);
@@ -200,6 +199,8 @@ public class BoomBox: MonoBehaviour
         StopAllCoroutines();
 
         _fireZoneTrigger.SetActive(false);
+
+        Destroy(_object.gameObject);
 
         Destroy(gameObject);
     }

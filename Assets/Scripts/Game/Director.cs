@@ -106,8 +106,6 @@ public class Director : MonoBehaviour
     {
         int rndIndex = Random.Range(0, _explosions.Length);
 
-        Debug.Log($"[Director] (Explosion SFX) rndIndex: {rndIndex}");
-
         _audioSource.PlayOneShot(_explosions[rndIndex]);
     }
 
