@@ -96,6 +96,6 @@ public class Flashlight : MonoBehaviour
     public void ReportPickUp()
     {
         _flashlightPickedUp = true;
-        _isOn = true;
+        _isOn = false;
     }
 }

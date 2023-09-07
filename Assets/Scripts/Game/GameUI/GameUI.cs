@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -6,32 +7,37 @@ public class GameUI : MonoBehaviour
 {
     [Header("In-game")]
     [SerializeField] GameObject _hudCanvas;
-
-    [Header("Gameplay")]
     [SerializeField] GameObject _gunReticleCanvas;
 
-    [Header("Ammo")]
+    [Header("In-game/HUD/Ammo")]
     [SerializeField] GameObject _ammoPanel;
     [SerializeField] TMP_Text _ammoLeftLabel;
 
-    [Header("Health")]
+    [Header("In-game/HUD/Health")]
     [SerializeField] GameObject _healthPanel;
-    [SerializeField] TMP_Text _healthLabel;
+    [SerializeField] TMP_Text _healthLabel;   
 
-    [Header("Kills")]
+    [Header("In-game/HUD/Kills")]
     [SerializeField] GameObject _killsPanel;
     [SerializeField] TMP_Text _killsLabel;
 
-    [Header("Timer")]
+    [Header("In-game/HUD/Timer")]
     [SerializeField] TMP_Text _timerLabel;
 
-    [Header("VFX")]
+    [Header("In-game/VFX")]
     [SerializeField] GameObject _playerDamageCanvas;
 
-    [Header("Interactive")]
+    [Header("In-game/Interactive")]
+    [SerializeField] GameObject _pauseScreen;
+
+    [Header("In-game/Messages")]
+    [SerializeField] GameObject _inGameMessagesCanvas;
+    [SerializeField] TMP_Text _textInGameMessage;
+
+    [Header("State")]
     [SerializeField] GameObject _gameOverCanvas;
     [SerializeField] GameObject _winCanvas;
-    [SerializeField] GameObject _pauseScreen;
+
 
     int _currentKills;
     int _totalKills;
@@ -40,11 +46,12 @@ public class GameUI : MonoBehaviour
 
     public float ElapsedSeconds { get { return _elapsedSeconds; } }
 
-    int _minutesOfGameplay = 0;
+    int _minutesOfGameplay = 0;    
 
     #region Instance
 
     private static GameUI _instance;
+    
 
     public static GameUI Instance { get { return _instance; } }
 
@@ -104,6 +111,9 @@ public class GameUI : MonoBehaviour
 
         // hide vfx
         _playerDamageCanvas.SetActive(false);
+
+        // hide messages
+        _inGameMessagesCanvas.SetActive(false);
     }
 
     public void ShowGameOver()
@@ -178,6 +188,24 @@ public class GameUI : MonoBehaviour
             Game.Instance.ReportAllEnemiesKilled();
         }
     }
+
+    public void ShowMessage(string message, float lifetime)
+    {
+        _textInGameMessage.text = message;
+
+        _inGameMessagesCanvas.SetActive(true);
+
+        StartCoroutine(HideMessages(lifetime));
+    }
+
+    IEnumerator HideMessages(float time)
+    {
+        yield return new WaitForSeconds(time);
+
+        _textInGameMessage.text = "";
+        _inGameMessagesCanvas.SetActive(false);
+    }
+
 
     string GetLabelKillsOverTotal(int kills, int total)
     {
