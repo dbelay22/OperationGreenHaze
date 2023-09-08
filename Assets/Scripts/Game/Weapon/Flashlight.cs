@@ -13,6 +13,11 @@ public class Flashlight : MonoBehaviour
     [SerializeField] float _lightDecay = 0.2f;
     [SerializeField] float _angleDecay = 0.2f;
 
+    [Header("In-game message")]
+    [SerializeField] float _inGameMessageLifetime = 4f;
+
+    float _timeOfPickup;
+
     Light _light;
 
     bool _isOn = false;
@@ -49,8 +54,29 @@ public class Flashlight : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F))
         {
-            _isOn = !_isOn;            
+            ToggleOnOff();
         }
+    }
+
+    void ToggleOnOff()
+    {
+        if (_flashlightPickedUp == false)
+        {
+            return;
+        }
+
+        float curTime = Time.time;
+        float timeEndMessage = _timeOfPickup + _inGameMessageLifetime;
+
+        Debug.Log($"[Flashlight] (ToggleOnOff) curTime: {curTime}, msg end time: {timeEndMessage}");
+        
+        if (curTime < timeEndMessage)
+        {
+            Debug.Log($"[Flashlight] (ToggleOnOff) HIDE THE MESSAGE NOW");
+            GameUI.Instance.HideMessagesNow();
+        }
+
+        _isOn = !_isOn;
     }
 
     void DecreaseIntensity()
@@ -95,7 +121,12 @@ public class Flashlight : MonoBehaviour
 
     public void ReportPickUp()
     {
+        // show in-game message
+        GameUI.Instance.ShowMessage("Press F to toggle Flashlight", _inGameMessageLifetime);
+
         _flashlightPickedUp = true;
-        _isOn = false;
+        _timeOfPickup = Time.time;
+
+        _isOn = true;
     }
 }

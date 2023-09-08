@@ -46,14 +46,16 @@ public class GameUI : MonoBehaviour
 
     public float ElapsedSeconds { get { return _elapsedSeconds; } }
 
-    int _minutesOfGameplay = 0;    
+    int _minutesOfGameplay = 0;
+
+    Coroutine _hideMessagesCoroutine;
 
     #region Instance
 
     private static GameUI _instance;
     
 
-    public static GameUI Instance { get { return _instance; } }
+    public static GameUI Instance { get { return _instance; } }    
 
     void Awake()
     {
@@ -195,15 +197,28 @@ public class GameUI : MonoBehaviour
 
         _inGameMessagesCanvas.SetActive(true);
 
-        StartCoroutine(HideMessages(lifetime));
+        _hideMessagesCoroutine = StartCoroutine(HideMessagesDelayed(lifetime));
     }
 
-    IEnumerator HideMessages(float time)
+    IEnumerator HideMessagesDelayed(float time)
     {
         yield return new WaitForSeconds(time);
 
+        HideMessagesNow();
+
+        _hideMessagesCoroutine = null;
+    }
+
+    public void HideMessagesNow()
+    {
+        if (_hideMessagesCoroutine != null)
+        {
+            StopCoroutine(_hideMessagesCoroutine);
+            _hideMessagesCoroutine = null;
+        }        
+
         _textInGameMessage.text = "";
-        _inGameMessagesCanvas.SetActive(false);
+        _inGameMessagesCanvas.SetActive(false);        
     }
 
 

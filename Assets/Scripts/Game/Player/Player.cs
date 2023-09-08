@@ -125,9 +125,6 @@ public class Player : MonoBehaviour
 
             _flashlight.ReportPickUp();
 
-            // show in-game message
-            GameUI.Instance.ShowMessage("Press F to toggle Flashlight", 5f);
-
             // bye pickup
             Destroy(trigger);
         }
