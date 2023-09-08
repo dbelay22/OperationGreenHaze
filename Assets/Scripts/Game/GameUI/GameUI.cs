@@ -67,6 +67,8 @@ public class GameUI : MonoBehaviour
     void Start()
     {
         TimerInit();
+
+        _hideMessagesCoroutine = null;
     }
 
     void Update()
@@ -113,9 +115,6 @@ public class GameUI : MonoBehaviour
 
         // hide vfx
         _playerDamageCanvas.SetActive(false);
-
-        // hide messages
-        _inGameMessagesCanvas.SetActive(false);
     }
 
     public void ShowGameOver()
@@ -191,8 +190,10 @@ public class GameUI : MonoBehaviour
         }
     }
 
-    public void ShowMessage(string message, float lifetime)
+    public void ShowInGameMessage(string message, float lifetime)
     {
+        Debug.Log($"[GameUI] (ShowInGameMessage) showing message: {message}, lifetime: {lifetime}");
+
         _textInGameMessage.text = message;
 
         _inGameMessagesCanvas.SetActive(true);
@@ -211,6 +212,8 @@ public class GameUI : MonoBehaviour
 
     public void HideMessagesNow()
     {
+        Debug.Log($"[GameUI] (HideMessagesNow)...");
+
         if (_hideMessagesCoroutine != null)
         {
             StopCoroutine(_hideMessagesCoroutine);
