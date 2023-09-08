@@ -27,6 +27,14 @@ public class Tutorial : MonoBehaviour
         ShowCurrentStep();
     }
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            _shouldExecuteNextStep = false;
+        }
+    }
+
     void ShowCurrentStep()
     {
         Debug.Log($"[Tutorial] (ShowCurrentStep) _currentStepIndex:{_currentStepIndex}, _tutorialSteps.Length: {_tutorialSteps.Length}");
@@ -63,13 +71,5 @@ public class Tutorial : MonoBehaviour
 
         ShowCurrentStep();
     }
-
-    
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        { 
-            _shouldExecuteNextStep = false;
-        }
-    }
+       
 }
