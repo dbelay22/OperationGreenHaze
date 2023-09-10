@@ -192,7 +192,7 @@ public class GameUI : MonoBehaviour
 
     public void ShowInGameMessage(string message, float lifetime)
     {
-        Debug.Log($"[GameUI] (ShowInGameMessage) showing message: {message}, lifetime: {lifetime}");
+        //Debug.Log($"[GameUI] (ShowInGameMessage) showing message: {message}, lifetime: {lifetime}");
 
         _textInGameMessage.text = message;
 
@@ -212,7 +212,7 @@ public class GameUI : MonoBehaviour
 
     public void HideMessagesNow()
     {
-        Debug.Log($"[GameUI] (HideMessagesNow)...");
+        //Debug.Log($"[GameUI] (HideMessagesNow)...");
 
         if (_hideMessagesCoroutine != null)
         {
