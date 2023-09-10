@@ -6,7 +6,8 @@ using UnityEngine.AI;
 public enum NpcState
 { 
     Idle,
-    Provoked,
+    IdleWaitingReaction,
+    Provoked,    
     Blinded,
     Dead
 }
@@ -24,6 +25,9 @@ public class NpcAI : MonoBehaviour
     [SerializeField] Transform _targetPlayer;
     [SerializeField] float _chaseRange = 17;
     [SerializeField] float _faceTargetSpeed = 3f;
+
+    [Header("Provoked")]
+    [SerializeField] [Range(0f, 10f)] float _maxProvokedReactionTime = 0f;
 
     [Header("Blinded")]
     [SerializeField] float _blindedTimeout = 7f;
@@ -100,6 +104,9 @@ public class NpcAI : MonoBehaviour
             case NpcState.Idle:
                 IdleUpdate();
                 break;
+            case NpcState.IdleWaitingReaction:
+                // nothing, just wait
+                break;
             case NpcState.Provoked:
                 ProvokedUpdate();
                 break;
@@ -108,7 +115,7 @@ public class NpcAI : MonoBehaviour
                 break;
             case NpcState.Dead:
                 DeadUpdate();
-                break;
+                break;            
         }
     }
     
@@ -120,8 +127,7 @@ public class NpcAI : MonoBehaviour
 
         if (_distanceToTarget < _chaseRange)
         {
-            //Debug.Log($"[NPC] Oh too close, I feel PROVOKED yummy!");
-            _currentState = NpcState.Provoked;
+            StartCoroutine(ChangeStateToProvokedDelayed());
         }
     }
 
@@ -142,6 +148,29 @@ public class NpcAI : MonoBehaviour
     void DeadUpdate()
     {
         // nothing here
+    }
+
+    IEnumerator ChangeStateToProvokedDelayed()
+    {
+        _currentState = NpcState.IdleWaitingReaction;
+
+        yield return null;
+
+        if (_maxProvokedReactionTime > 0)
+        {
+            float time = Random.Range(0f, _maxProvokedReactionTime);
+
+            Debug.Log($"[NPC] (ChangeStateToProvokedDelayed) [{transform.parent.name}/{transform.name}] time: {time}");
+
+            yield return new WaitForSeconds(time);
+        }
+
+        ChangeStateToProvokedNow();
+    }
+
+    void ChangeStateToProvokedNow()
+    {
+        _currentState = NpcState.Provoked;
     }
 
     void ChangeStateToBlinded()
@@ -188,7 +217,7 @@ public class NpcAI : MonoBehaviour
             Debug.Log($"[NPC] I CAN SEEEEEEE");
         }
 
-        _currentState = NpcState.Provoked;
+        ChangeStateToProvokedNow();
 
         SetCollidersActive(true);
     }
@@ -320,8 +349,7 @@ public class NpcAI : MonoBehaviour
     {
         if (_currentState == NpcState.Idle)
         {
-            //Debug.Log($"[NpcAI] (HitByBullet) was IDLE, now PROVOKED");
-            _currentState = NpcState.Provoked;
+            ChangeStateToProvokedNow();
         }
 
         BroadcastMessage("OnHitByBullet", damage, SendMessageOptions.RequireReceiver);
