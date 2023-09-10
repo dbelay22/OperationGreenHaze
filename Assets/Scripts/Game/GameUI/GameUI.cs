@@ -21,6 +21,9 @@ public class GameUI : MonoBehaviour
     [SerializeField] GameObject _killsPanel;
     [SerializeField] TMP_Text _killsLabel;
 
+    [Header("In-game/HUD/MiniMap")]
+    [SerializeField] GameObject _minimapCanvas;
+
     [Header("In-game/HUD/Timer")]
     [SerializeField] TMP_Text _timerLabel;
 
@@ -107,33 +110,31 @@ public class GameUI : MonoBehaviour
         _winCanvas.SetActive(false);
         _pauseScreen.SetActive(false);
 
-        // show in-game
-        _hudCanvas.SetActive(true);
-        
-        // show reticle
-        _gunReticleCanvas.SetActive(true);
+        ShowHUD(true);
+    }
 
-        // hide vfx
+    void ShowHUD(bool active)
+    {
+        _gunReticleCanvas.SetActive(active);
+        _hudCanvas.SetActive(active);        
+        _minimapCanvas.SetActive(active);
+
         _playerDamageCanvas.SetActive(false);
     }
 
     public void ShowGameOver()
     {
         // hide in-game canvases
-        _gunReticleCanvas.SetActive(false);
-        _hudCanvas.SetActive(false);
-        _playerDamageCanvas.SetActive(false);
+        ShowHUD(false);
 
         // show game over
         _gameOverCanvas.SetActive(true);
-    }
+    }    
 
     public void ShowWin()
     {
         // hide in-game canvases
-        _gunReticleCanvas.SetActive(false);
-        _hudCanvas.SetActive(false);
-        _playerDamageCanvas.SetActive(false);
+        ShowHUD(false);
 
         // show win
         _winCanvas.SetActive(true);
@@ -142,9 +143,7 @@ public class GameUI : MonoBehaviour
     public void ShowPause()
     {
         // hide in-game canvases
-        _gunReticleCanvas.SetActive(false);
-        _hudCanvas.SetActive(false);
-        _playerDamageCanvas.SetActive(false);
+        ShowHUD(false);
 
         // show pause
         _pauseScreen.SetActive(true);       
