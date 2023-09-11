@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9108277552187090784}
   - component: {fileID: 7142827785593909232}
   - component: {fileID: 1619903691560697191}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Flashlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,8 +129,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bcc9efc3bb52f14d87d0f3cacc0905b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _prefab: {fileID: 0}
   _lightDecay: 0.4
   _angleDecay: 0.4
+  _inGameMessageLifetime: 4
 --- !u!1001 &8865801575658737045
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -141,6 +143,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: b694b8ec5c41f6247843a2b67222fda6, type: 3}
       propertyPath: m_Name
       value: Flashlight
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: b694b8ec5c41f6247843a2b67222fda6, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b694b8ec5c41f6247843a2b67222fda6, type: 3}
       propertyPath: m_RootOrder

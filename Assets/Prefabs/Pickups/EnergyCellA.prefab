@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 2573742181110186168}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 20, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.35, y: 0.35, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6582889515237017266}
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_Sprite: {fileID: 21300000, guid: bc4811636dadc5f4ea617df7c20f53ad, type: 3}
   m_Color: {r: 0.6063595, g: 0, b: 1, a: 1}
   m_FlipX: 0
-  m_FlipY: 1
+  m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 6582889515237017266}
   - component: {fileID: 385345453157145682}
   - component: {fileID: 2489621064386661315}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: EnergyCellA
   m_TagString: MissionPickup
   m_Icon: {fileID: 0}
@@ -220,7 +220,7 @@ PrefabInstance:
     - target: {fileID: 7180474826093858418, guid: 305be5e0fdd8efe4ba012079676d5c7c,
         type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 305be5e0fdd8efe4ba012079676d5c7c, type: 3}

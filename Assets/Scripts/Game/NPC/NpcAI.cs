@@ -160,7 +160,7 @@ public class NpcAI : MonoBehaviour
         {
             float time = Random.Range(0f, _maxProvokedReactionTime);
 
-            Debug.Log($"[NPC] (ChangeStateToProvokedDelayed) [{transform.parent.name}/{transform.name}] time: {time}");
+            //Debug.Log($"[NPC] (ChangeStateToProvokedDelayed) [{transform.parent.name}/{transform.name}] time: {time}");
 
             yield return new WaitForSeconds(time);
         }

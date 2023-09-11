@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4000010553517452}
   - component: {fileID: 198000013980960414}
   - component: {fileID: 199000011784288542}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BloodGlobs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4601,7 +4601,7 @@ GameObject:
   - component: {fileID: 4000013488956786}
   - component: {fileID: 198000011254678926}
   - component: {fileID: 199000010223498802}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GoopSprayEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}

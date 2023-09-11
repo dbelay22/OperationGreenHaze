@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1766814854480584842}
   - component: {fileID: 1766814854462236118}
   - component: {fileID: 1766814854462266486}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Fireball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4812,7 +4812,7 @@ GameObject:
   - component: {fileID: 1766814854480584848}
   - component: {fileID: 1766814854486700442}
   - component: {fileID: 6529789182506988377}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Hit Effect VFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4929,7 +4929,7 @@ GameObject:
   - component: {fileID: 1766814854480584862}
   - component: {fileID: 1766814854462236126}
   - component: {fileID: 1766814854462266494}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Hit Impact Sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}

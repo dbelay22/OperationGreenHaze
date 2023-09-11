@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7869202563899733495}
   - component: {fileID: 7723062241177824162}
   - component: {fileID: 8862614921751936839}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pickup SMG Ammo
   m_TagString: AmmoPickup
   m_Icon: {fileID: 0}
@@ -72,6 +72,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SMG Ammo
+      objectReference: {fileID: 0}
+    - target: {fileID: 580695659351593366, guid: 28ce6cee091dba54c9a962af73bc3181,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 580695659351593366, guid: 28ce6cee091dba54c9a962af73bc3181,
         type: 3}
@@ -150,8 +155,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5961478519883314918, guid: 28ce6cee091dba54c9a962af73bc3181,
         type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5961478519883314918, guid: 28ce6cee091dba54c9a962af73bc3181,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7275954939926302879, guid: 28ce6cee091dba54c9a962af73bc3181,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7275954939926302879, guid: 28ce6cee091dba54c9a962af73bc3181,
         type: 3}

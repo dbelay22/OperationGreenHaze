@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4859880167833556}
   - component: {fileID: 198938402097657526}
   - component: {fileID: 199945756000676788}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: NPCDeath
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4836,7 +4836,7 @@ GameObject:
   - component: {fileID: 4350635744541424}
   - component: {fileID: 198956070365097430}
   - component: {fileID: 199349929391414068}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Gas
   m_TagString: Untagged
   m_Icon: {fileID: 0}

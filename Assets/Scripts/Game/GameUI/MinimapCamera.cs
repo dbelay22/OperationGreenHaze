@@ -7,7 +7,6 @@ public class MinimapCamera : MonoBehaviour
     [SerializeField] Transform _player;
     [SerializeField] Vector3 _offset;
 
-    // Update is called once per frame
     void Update()
     {
         transform.position = _player.position + _offset;

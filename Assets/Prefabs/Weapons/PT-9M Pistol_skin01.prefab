@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 671736909225313804}
   - component: {fileID: 3346146646726164956}
   - component: {fileID: 2187578743027508775}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Decal.058
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 6522665948385327147}
   - component: {fileID: 9120935232398355991}
   - component: {fileID: 1284921813240729061}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Decal.044
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 5562584335214326071}
   - component: {fileID: 7445488508812994011}
   - component: {fileID: 920905713287441915}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Magazine.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -261,7 +261,7 @@ GameObject:
   - component: {fileID: 5745490273420855937}
   - component: {fileID: 5767558666880305786}
   - component: {fileID: 1663202913259044893}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FrontSlid.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -344,7 +344,7 @@ GameObject:
   - component: {fileID: 4347416131599990978}
   - component: {fileID: 7810487080092590752}
   - component: {fileID: 1120363561826025882}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Grip.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -429,7 +429,7 @@ GameObject:
   - component: {fileID: 9083655888077071402}
   - component: {fileID: 4896431489233072883}
   - component: {fileID: 4453397390404308915}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FrontSight.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -512,7 +512,7 @@ GameObject:
   - component: {fileID: 6236513987130983894}
   - component: {fileID: 2011848079675005762}
   - component: {fileID: 7046333143477272435}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BarrelIntern.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -595,7 +595,7 @@ GameObject:
   - component: {fileID: 1103929873690002700}
   - component: {fileID: 161037905931561509}
   - component: {fileID: 5345678462232412689}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RedDot.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -681,7 +681,7 @@ GameObject:
   - component: {fileID: 5093294752869426856}
   - component: {fileID: 2665227864697944551}
   - component: {fileID: 503851018785386052}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RedDot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -764,7 +764,7 @@ GameObject:
   - component: {fileID: 5663020289909781254}
   - component: {fileID: 2611413489096950196}
   - component: {fileID: 8439534186855505094}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Barrel.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -848,7 +848,7 @@ GameObject:
   - component: {fileID: 4914225531057805967}
   - component: {fileID: 7736966895035967126}
   - component: {fileID: 5459376289374858586}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Trigger.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -931,7 +931,7 @@ GameObject:
   - component: {fileID: 3108907907598308821}
   - component: {fileID: 2782454021859892622}
   - component: {fileID: 6596857520422631983}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Detail.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1020,7 +1020,7 @@ GameObject:
   - component: {fileID: 6314728488782176612}
   - component: {fileID: 4722376915286302658}
   - component: {fileID: 514387826451748097}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Decal.037
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1103,7 +1103,7 @@ GameObject:
   - component: {fileID: 206606264972621060}
   - component: {fileID: 858838211215036583}
   - component: {fileID: 8158182632394722518}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Decal.049
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1186,7 +1186,7 @@ GameObject:
   - component: {fileID: 1823751478572143379}
   - component: {fileID: 8399856790854395525}
   - component: {fileID: 6055433982990549702}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Decal.042
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1269,7 +1269,7 @@ GameObject:
   - component: {fileID: 6641300688259588887}
   - component: {fileID: 1144082330795814453}
   - component: {fileID: 8205415634660079292}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RedDotGlass.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1352,7 +1352,7 @@ GameObject:
   - component: {fileID: 6568172249908335885}
   - component: {fileID: 1720669560920287722}
   - component: {fileID: 1089475616191955359}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Decal.036
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1435,7 +1435,7 @@ GameObject:
   - component: {fileID: 4487837711869256635}
   - component: {fileID: 3468789510189250585}
   - component: {fileID: 2728274359667663976}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Detail.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1518,7 +1518,7 @@ GameObject:
   - component: {fileID: 2997810764290486036}
   - component: {fileID: 3832639647614997203}
   - component: {fileID: 8584621763524324669}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Decal.043
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1601,7 +1601,7 @@ GameObject:
   - component: {fileID: 3426029375495470261}
   - component: {fileID: 4660190907602702548}
   - component: {fileID: 7192009265179848394}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Chamber.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1685,7 +1685,7 @@ GameObject:
   - component: {fileID: 1426087780620294901}
   - component: {fileID: 2337095176211978713}
   - component: {fileID: 7544813403982156352}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DisassemblyLever.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1768,7 +1768,7 @@ GameObject:
   - component: {fileID: 655818754810414203}
   - component: {fileID: 3788421771384621697}
   - component: {fileID: 4208746825564624711}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PT-9M Pistol_skin01
   m_TagString: Untagged
   m_Icon: {fileID: 0}

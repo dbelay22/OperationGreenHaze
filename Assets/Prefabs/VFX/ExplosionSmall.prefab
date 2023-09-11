@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4009803976983246}
   - component: {fileID: 198207014375249716}
   - component: {fileID: 199177305528973174}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Embers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4812,7 +4812,7 @@ GameObject:
   - component: {fileID: 4361801158873524}
   - component: {fileID: 198656289721292014}
   - component: {fileID: 199514137936353666}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ExplosionSmall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9723,7 +9723,7 @@ GameObject:
   - component: {fileID: 4138755341248686}
   - component: {fileID: 198263872644927810}
   - component: {fileID: 199132262764125350}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AdditonalSmoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
