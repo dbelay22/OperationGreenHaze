@@ -9,6 +9,17 @@ public class MinimapCamera : MonoBehaviour
 
     void Update()
     {
+        if (Game.Instance.isGameplayOn() == false) 
+        {
+            return;
+        }
+
+        if (transform == null)
+        {
+            Debug.LogWarning("[MinimapCamera] my transform was destroyed WTF!");
+            return;
+        }
+
         transform.position = _player.position + _offset;
 
         // rotation
