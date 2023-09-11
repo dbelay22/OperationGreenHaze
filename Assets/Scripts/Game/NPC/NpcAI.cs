@@ -46,6 +46,9 @@ public class NpcAI : MonoBehaviour
     [SerializeField] AudioClip _death02SFX;
     [SerializeField] AudioClip _blindedSFX;
 
+    [Header("Minimap")]
+    [SerializeField] GameObject _minimapIcon;
+
     [Header("Debug")]
     [SerializeField] bool _showLogs = false;
 
@@ -80,6 +83,8 @@ public class NpcAI : MonoBehaviour
 
         _reportedAttack = false;
         _reportedPlayerEscape = false;
+
+        _minimapIcon.SetActive(true);
     }
 
     void Update()
@@ -397,6 +402,8 @@ public class NpcAI : MonoBehaviour
         // change state
         _currentState = NpcState.Dead;
 
+        _minimapIcon.SetActive(false);
+
         _animator.SetTrigger("Dead Trigger");
 
         PlayDeathSFX();
@@ -431,7 +438,7 @@ public class NpcAI : MonoBehaviour
 
     void PlayDeathSFX()
     {
-        if (Random.value < 0.22)
+        if (Random.value < 0.5)
         {
             return;
         }

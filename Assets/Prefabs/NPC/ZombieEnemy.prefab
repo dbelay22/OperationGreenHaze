@@ -94,6 +94,7 @@ MonoBehaviour:
   _death01SFX: {fileID: 8300000, guid: eccc14a763ee8024fb70db5a8c6108e4, type: 3}
   _death02SFX: {fileID: 8300000, guid: 40d22a24612dee440be6d7c8e38ff7be, type: 3}
   _blindedSFX: {fileID: 8300000, guid: f700a98ef23f9be41b0747313ebd015a, type: 3}
+  _minimapIcon: {fileID: 2168988010698024418}
   _showLogs: 0
 --- !u!114 &540048798153553761
 MonoBehaviour:
