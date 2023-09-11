@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class NpcHealth : MonoBehaviour
 {
-    const float TOP_HEALTH = 100f;
+    const float HEALTH_SCALE_ONE = 100f;
     
-    float _health;
+    float _currentHealth;
 
     void Start()
     {
         NpcAI npc = GetComponent<NpcAI>();
 
-        _health = TOP_HEALTH * npc.SizeScale;
+        _currentHealth = HEALTH_SCALE_ONE * npc.SizeScale;
 
-        Debug.Log($"[NpcHealth] (Start) npc.SizeScale:{npc.SizeScale}, _health:{_health}");
+        Debug.Log($"[NpcHealth] (Start) npc.SizeScale:{npc.SizeScale}, _health:{_currentHealth}");
     }
 
     void OnHitByBullet(float damage)
@@ -24,20 +24,20 @@ public class NpcHealth : MonoBehaviour
 
     public void HitByExplosion()
     {
-        TakeDamage(TOP_HEALTH);
+        TakeDamage(HEALTH_SCALE_ONE);
     }
 
     void TakeDamage(float damage)
     {
-        if (_health <= 0)
+        if (_currentHealth <= 0)
         {
             // dead can't dead again, does it ?
             return;
         }
 
-        _health -= damage;
+        _currentHealth -= damage;
 
-        BroadcastMessage("OnHealthChange", _health, SendMessageOptions.RequireReceiver);
+        BroadcastMessage("OnHealthChange", _currentHealth, SendMessageOptions.RequireReceiver);
     }
 
 }
