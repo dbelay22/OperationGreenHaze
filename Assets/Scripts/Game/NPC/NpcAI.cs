@@ -68,6 +68,15 @@ public class NpcAI : MonoBehaviour
     bool _reportedAttack = false;
     bool _reportedPlayerEscape = false;
 
+    float _sizeScale = 1;
+
+    public float SizeScale { get { return _sizeScale; } }
+
+    void Awake()
+    {
+        RandomizeSizeScale();
+    }
+
     void Start()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
@@ -85,6 +94,22 @@ public class NpcAI : MonoBehaviour
         _reportedPlayerEscape = false;
 
         _minimapIcon.SetActive(true);
+    }
+
+    void RandomizeSizeScale()
+    {
+        if (Random.value < 0.7f)
+        {
+            _sizeScale = Random.Range(0.9f, 1.3f);        
+        }
+        else         
+        {
+            _sizeScale = Random.Range(1.4f, 1.8f);
+        }
+
+        Debug.Log($"[NPC] (RandomizeScale) _sizeScale: {_sizeScale}");
+
+        transform.localScale = new Vector3(_sizeScale, _sizeScale, _sizeScale);
     }
 
     void Update()

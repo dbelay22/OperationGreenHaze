@@ -10,7 +10,11 @@ public class NpcHealth : MonoBehaviour
 
     void Start()
     {
-        _health = TOP_HEALTH;    
+        NpcAI npc = GetComponent<NpcAI>();
+
+        _health = TOP_HEALTH * npc.SizeScale;
+
+        Debug.Log($"[NpcHealth] (Start) npc.SizeScale:{npc.SizeScale}, _health:{_health}");
     }
 
     void OnHitByBullet(float damage)
