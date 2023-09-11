@@ -8,6 +8,8 @@ public class MissionSystem : MonoBehaviour
 
     Dictionary<string, bool> _missionsCompleted;
 
+    int _missionsCompletedCount;
+
     #region Instance
 
     private static MissionSystem _instance;
@@ -29,10 +31,13 @@ public class MissionSystem : MonoBehaviour
     void MissionsCompletedStart()
     {
         _missionsCompleted = new Dictionary<string, bool>();
+        
         foreach (GameObject pickup in _missionPickups)
         {
             _missionsCompleted.Add(pickup.name, false);
         }
+        
+        _missionsCompletedCount = 0;
     }
     
     public void OnMissionItemPickup(GameObject pickup)
@@ -57,7 +62,15 @@ public class MissionSystem : MonoBehaviour
 
                 if (IsAllMissionsCompleted())
                 {
+                    GameUI.Instance.ShowInGameMessage("OBJECTIVE COMPLETE", 3f);
+
                     Game.Instance.ReportAllMissionPickupsCompleted();
+                }
+                else
+                {
+                    _missionsCompletedCount++;
+
+                    GameUI.Instance.ShowInGameMessage($"GOOD JOB, OBJECTIVE ITEM {_missionsCompletedCount}/{_missionsCompleted.Count} IS SAFE", 3f);
                 }
             }
         }
