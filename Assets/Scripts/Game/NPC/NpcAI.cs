@@ -100,11 +100,11 @@ public class NpcAI : MonoBehaviour
     {
         if (Random.value < 0.7f)
         {
-            _sizeScale = Random.Range(0.9f, 1.3f);        
+            _sizeScale = Random.Range(0.9f, 1f);
         }
         else         
         {
-            _sizeScale = Random.Range(1.4f, 1.8f);
+            _sizeScale = Random.Range(1.4f, 1.7f);
         }
 
         Debug.Log($"[NPC] (RandomizeScale) _sizeScale: {_sizeScale}");
@@ -294,9 +294,14 @@ public class NpcAI : MonoBehaviour
     {
         if (_navMeshAgent.isStopped == true)
         {
+            // scaled speed inverse, greater the zombie, slower
+            float scaleSpeed = _sizeScale >= 1.4f ? 0.5f : 1f;
+
             // Randomize speed
-            float rndSpeed = Random.Range(_minSpeed, _maxSpeed);
-            
+            float rndSpeed = Random.Range(_minSpeed * scaleSpeed, _maxSpeed * scaleSpeed);
+
+            Debug.Log($"[NPC] rndSpeed: {rndSpeed}, scaleSpeed: {scaleSpeed}, _sizeScale: {_sizeScale}");
+
             _navMeshAgent.speed = rndSpeed;
             
             //Debug.Log($"[NPC] <{transform.name}> Moving at rndSpeed: {rndSpeed}, _navMeshAgent.speed:{_navMeshAgent.speed}");
