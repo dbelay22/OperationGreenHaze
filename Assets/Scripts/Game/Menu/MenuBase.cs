@@ -12,7 +12,7 @@ public class MenuBase : MonoBehaviour, IPointerEnterHandler
 
     void Start()
     {
-        Debug.Log($"[MenuBase] I'm {this.name}");
+        //Debug.Log($"[MenuBase] I'm {this.name}");
         UnlockCursor();
     }
 
@@ -53,6 +53,7 @@ public class MenuBase : MonoBehaviour, IPointerEnterHandler
             return;
         }
 
+        _audioSource.Stop();
         _audioSource.PlayOneShot(_navigateSFX);
     }
 
