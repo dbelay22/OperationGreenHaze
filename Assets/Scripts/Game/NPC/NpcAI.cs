@@ -294,8 +294,8 @@ public class NpcAI : MonoBehaviour
     {
         if (_navMeshAgent.isStopped == true)
         {
-            // scaled speed inverse, greater the zombie, slower
-            float scaleSpeed = _sizeScale >= 1.4f ? 0.5f : 1.5f;
+            // scaled speed, greater the zombie -> slower it is
+            float scaleSpeed = _sizeScale >= 1.4f ? 0.5f : 1f;
 
             // Randomize speed
             float rndSpeed = Random.Range(_minSpeed * scaleSpeed, _maxSpeed * scaleSpeed);
