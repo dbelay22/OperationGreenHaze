@@ -186,7 +186,7 @@ public class Game : MonoBehaviour
     {
         _stateMachine.Shutdown();
 
-        LevelLoader.Instance.LoadPreviousLevel();
+        LevelLoader.Instance.LoadMainMenu();
     }
 
     //=======================================================
