@@ -14,7 +14,7 @@ public class NpcHealth : MonoBehaviour
 
         _currentHealth = HEALTH_SCALE_ONE * npc.SizeScale;
 
-        Debug.Log($"[NpcHealth] (Start) npc.SizeScale:{npc.SizeScale}, _health:{_currentHealth}");
+        //Debug.Log($"[NpcHealth] (Start) npc.SizeScale:{npc.SizeScale}, _health:{_currentHealth}");
     }
 
     void OnHitByBullet(float damage)

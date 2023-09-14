@@ -5,27 +5,42 @@ using TMPro;
 
 public class IntroStudio : MonoBehaviour
 {
-    [SerializeField] float _introDuration = 3f;
-    [SerializeField] TMP_Text _text;
+    [SerializeField] float _fadeInDuration = 3f;
+    [SerializeField] CanvasGroup _textCanvasGroup;
+
+    void Awake()
+    {
+        HideTextCanvasGroup();
+    }
+
+    void HideTextCanvasGroup()
+    {
+        _textCanvasGroup.alpha = 0;
+    }
 
     void Start()
     {
-        StartCoroutine(FadeText());
+        StartCoroutine(FadeInText());
     }
 
-    IEnumerator FadeText()
+    IEnumerator FadeInText()
     {
         float time = 0;
 
-        while (time < _introDuration)
+        while (time < _fadeInDuration)
         {
-            _text.alpha = Mathf.Lerp(0, 1, time / _introDuration);
+            _textCanvasGroup.alpha = Mathf.Lerp(0, 1, time / _fadeInDuration);
 
             yield return null;
 
             time += Time.deltaTime;
         }
 
+        OnFadeInEnd();
+    }
+
+    void OnFadeInEnd() 
+    {
         LevelLoader.Instance.LoadNextLevel();
     }
 

@@ -7,8 +7,8 @@ using TMPro;
 public class IntroGame : MonoBehaviour
 {
     [Header("Telegram message")]
-    [SerializeField] float _fadeTextDuration = 3f;
-    [SerializeField] TMP_Text _text;
+    [SerializeField] float _fadeInTextDuration = 3f;
+    [SerializeField] TMP_Text _textToFadeIn;
     [SerializeField] TMP_Text _pressKeyText;
 
     [Header("Arrival")]
@@ -16,9 +16,13 @@ public class IntroGame : MonoBehaviour
 
     AudioSource _audioSource;
 
+    bool _keyWasPressed = false;
+
     void Start()
     {
-        _pressKeyText.enabled = false;
+        _pressKeyText.enabled = true;
+        
+        _keyWasPressed = false;
 
         _audioSource = GetComponent<AudioSource>();
 
@@ -27,35 +31,37 @@ public class IntroGame : MonoBehaviour
 
     void Update()
     {
-        if (Input.anyKeyDown)
+        if (Input.anyKeyDown && _keyWasPressed == false)
         {
-            Debug.Log("[IntroGame] (Update) Any key pressed!");
-            Step2_HelicopterArrival();
+            OnAnyKeyPressed();
         }
+    }
+
+    void OnAnyKeyPressed()
+    {
+        _keyWasPressed = true;
+
+        StopAllCoroutines();
+
+        Step2_HelicopterArrival();
     }
 
     IEnumerator Step1_ShowTelegramMessage()
     {
-        Debug.Log("[IntroGame] (Step1_ShowTelegramMessage)...");
-
         float time = 0;
 
-        while (time < _fadeTextDuration)
+        while (time < _fadeInTextDuration)
         {
-            _text.alpha = Mathf.Lerp(0, 1, time / _fadeTextDuration);
+            _textToFadeIn.alpha = Mathf.Lerp(0, 1, time / _fadeInTextDuration);
 
             yield return null;
 
             time += Time.deltaTime;
         }
-
-        _pressKeyText.enabled = true;
     }        
 
     void Step2_HelicopterArrival()
     {
-        Debug.Log("[IntroGame] (Step2_HelicopterArrival)...");
-        
         _pressKeyText.enabled = false;
 
         _audioSource.PlayOneShot(_helicopterSFX);
@@ -65,22 +71,16 @@ public class IntroGame : MonoBehaviour
 
     IEnumerator Step3_FadeOut()
     {
-        Debug.Log("[IntroGame] (Step3_FadeOut)...");
-        float time = 0;
+        float time = 0;       
 
-        while (time < _fadeTextDuration)
+        while (time < _fadeInTextDuration)
         {
-            _text.alpha = Mathf.Lerp(1, 0, time / _fadeTextDuration);
+            _textToFadeIn.alpha = Mathf.Lerp(1, 0, time / _fadeInTextDuration);
 
             yield return null;
 
             time += Time.deltaTime;
         }
-
-        Debug.Log("[IntroGame] (LoadNextLevel)...");
-
-        // let sfx be heard
-        yield return new WaitForSeconds(5f);
 
         LevelLoader.Instance.LoadNextLevel();
     }

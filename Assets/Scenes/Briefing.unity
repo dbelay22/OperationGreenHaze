@@ -608,6 +608,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelLoader
       objectReference: {fileID: 0}
+    - target: {fileID: 8590017504149797435, guid: 8d5527c5e4f98894e92bac85cc80ebda,
+        type: 3}
+      propertyPath: _transitionTime
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d5527c5e4f98894e92bac85cc80ebda, type: 3}
 --- !u!1 &1831164503
@@ -621,6 +626,8 @@ GameObject:
   - component: {fileID: 1831164504}
   - component: {fileID: 1831164506}
   - component: {fileID: 1831164505}
+  - component: {fileID: 1831164508}
+  - component: {fileID: 1831164507}
   m_Layer: 5
   m_Name: PressAnyKey
   m_TagString: Untagged
@@ -746,6 +753,46 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1831164503}
   m_CullTransparentMesh: 1
+--- !u!95 &1831164507
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1831164503}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!320 &1831164508
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1831164503}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: b50cbe70186591045984a600b246119c, type: 2}
+  m_InitialState: 1
+  m_WrapMode: 1
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: 3012392141919133531, guid: b50cbe70186591045984a600b246119c, type: 2}
+    value: {fileID: 1831164507}
+  m_ExposedReferences:
+    m_References: []
 --- !u!1 &1985347504
 GameObject:
   m_ObjectHideFlags: 0
@@ -826,8 +873,8 @@ GameObject:
   - component: {fileID: 1995176521}
   - component: {fileID: 1995176520}
   - component: {fileID: 1995176519}
-  - component: {fileID: 1995176523}
   - component: {fileID: 1995176524}
+  - component: {fileID: 1995176523}
   m_Layer: 5
   m_Name: UI Canvas
   m_TagString: Untagged
@@ -931,8 +978,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ee8355e639e2e5418222811d2c3e31e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fadeTextDuration: 3
-  _text: {fileID: 1038338375}
+  _fadeInTextDuration: 2
+  _textToFadeIn: {fileID: 1038338375}
   _pressKeyText: {fileID: 1831164505}
   _helicopterSFX: {fileID: 8300000, guid: a03c09c2fe7ac9e439484c7ab9015ae9, type: 3}
 --- !u!82 &1995176524

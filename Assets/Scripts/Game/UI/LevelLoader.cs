@@ -9,7 +9,6 @@ public class LevelLoader : MonoBehaviour
 
     [SerializeField] float _transitionTime = 1f;
 
-
     #region Instance
 
     private static LevelLoader _instance;
@@ -45,15 +44,15 @@ public class LevelLoader : MonoBehaviour
 
     IEnumerator LoadLevel(int levelIndex)
     {
-        Debug.Log($"(LoadLevel) index:{levelIndex}");
+        //Debug.Log($"(LoadLevel) index:{levelIndex}");
 
         StartCrossfade();
 
-        Debug.Log($"(LoadLevel) Triggered StartCrossfade, now wait {_transitionTime} seconds");
+        //Debug.Log($"(LoadLevel) Triggered StartCrossfade, now wait {_transitionTime} seconds");
 
         yield return new WaitForSeconds(_transitionTime);
 
-        Debug.Log($"(LoadLevel) Time elapsed! load scene now! {levelIndex}");
+        //Debug.Log($"(LoadLevel) Time elapsed! load scene now! {levelIndex}");
 
         SceneManager.LoadScene(levelIndex);
     }

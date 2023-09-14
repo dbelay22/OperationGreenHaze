@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: a1dddef5573c3394d8980395c3e254cc
   - enabled: 1
-    path: Assets/Scenes/IntroGame.unity
+    path: Assets/Scenes/Briefing.unity
     guid: 62d75c9fab59dc4478d5fc6e2bdadfce
   - enabled: 1
     path: Assets/Scenes/Gameplay.unity
