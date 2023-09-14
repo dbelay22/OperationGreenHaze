@@ -174,7 +174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.06666667, g: 0.06666667, b: 0.06666667, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -258,13 +258,15 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: " [Telegram Message]\n\nAgent Roy, urgent mission.\r\n\r\nOur contact confirms
-    a horrifying biological nightmare inside a hidden facility. \nCloning experiments
-    gone terribly wrong. \nEnemies have breached it, and it's under heavy air attack.
-    Ground support will arrive soon.\r\n\r\nYou are our last hope.\r\n\r\nYour mission:
-    Infiltrate, Eliminate every abomination, and Secure Project Z99's data.\r\n\r\nThese
-    'zombies' were never human. Show no mercy.\r\n\r\nTime is against us.\r\n\r\nYou
-    have 7 minutes to clean the facility. \nA waiting helicopter will extract you
-    upon mission completion.\r\n\r\nMake us proud."
+    a horrifying biological nightmare.\nInside a secret hidden facility cloning experiments
+    gone terribly wrong.\nEnemies have breached it, and it's under heavy air attack
+    now.\nGround support is heading to the lab so you must rush.\r\n\r\nYour mission
+    objectives: \n1 - Infiltrate and eliminate every abomination, no one must survive.\n2
+    - Secure Project 'Green Haze' data storages (2). They show as a purple circle
+    in the map.\n\nThese 'zombies' were never human. Show no mercy.\r\n\r\nYou have
+    7 minutes to complete the mission and leave the place.\nAn helicopter will be
+    waiting for you at the other side upon mission completion.\r\n\nRemember, be
+    quick or be death.\n\r\nGood luck"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2dc3fdd9dc8158248b1a258b64101281, type: 2}
   m_sharedMaterial: {fileID: -2414874082546053195, guid: 2dc3fdd9dc8158248b1a258b64101281,
@@ -292,12 +294,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 39.15
+  m_fontSize: 37.3
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 33
-  m_fontSizeMax: 55
+  m_fontSizeMin: 1
+  m_fontSizeMax: 99
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
@@ -685,8 +687,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190335
-  m_fontColor: {r: 1, g: 0, b: 0, a: 1}
+    rgba: 4278190250
+  m_fontColor: {r: 0.6666667, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -709,7 +711,7 @@ MonoBehaviour:
   m_enableAutoSizing: 1
   m_fontSizeMin: 22
   m_fontSizeMax: 29
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
