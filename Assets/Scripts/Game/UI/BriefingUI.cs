@@ -16,6 +16,8 @@ public class BriefingUI : MonoBehaviour
 
     bool _keyWasPressed = false;
 
+    TypewriterEffect _typewriterEffect;
+
     void Start()
     {
         _pressKeyText.enabled = true;
@@ -25,6 +27,8 @@ public class BriefingUI : MonoBehaviour
         // play helicopter sfx
         _audioSource = GetComponent<AudioSource>();
         _audioSource.PlayOneShot(_bgMusic);
+
+        _typewriterEffect = GetComponentInChildren<TypewriterEffect>();
 
         // show telegram
         StartCoroutine(ShowTelegramMessage());
@@ -55,6 +59,8 @@ public class BriefingUI : MonoBehaviour
     void OnAnyKeyPressed()
     {
         _keyWasPressed = true;
+
+        _typewriterEffect.Flush();
 
         StopAllCoroutines();
 
