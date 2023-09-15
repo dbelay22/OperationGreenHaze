@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class IntroStudio : MonoBehaviour
+public class AGameByUI : MonoBehaviour
 {
     [SerializeField] float _fadeInDuration = 3f;
     [SerializeField] CanvasGroup _textCanvasGroup;
