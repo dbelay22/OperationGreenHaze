@@ -68,9 +68,12 @@ public class NpcAI : MonoBehaviour
     bool _reportedAttack = false;
     bool _reportedPlayerEscape = false;
 
-    float _sizeScale = 1;
+    float _currentSizeScale = 1;
 
-    public float SizeScale { get { return _sizeScale; } }
+    float[] DEFAULT_SIZE_SCALE_RANGE = { 1f, 1.1f };
+    float[] BIG_SIZE_SCALE_RANGE = { 1.15f, 1.35f };
+
+    public float SizeScale { get { return _currentSizeScale; } }
 
     void Awake()
     {
@@ -80,7 +83,7 @@ public class NpcAI : MonoBehaviour
     void Start()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
-        
+
         _animator = GetComponent<Animator>();
 
         _player = _targetPlayer.GetComponent<Player>();
@@ -98,18 +101,18 @@ public class NpcAI : MonoBehaviour
 
     void RandomizeSizeScale()
     {
-        if (Random.value < 0.44f)
+        if (Random.value < 0.6f)
         {
-            _sizeScale = Random.Range(0.9f, 1f);
+            _currentSizeScale = Random.Range(DEFAULT_SIZE_SCALE_RANGE[0], DEFAULT_SIZE_SCALE_RANGE[1]);
         }
         else         
         {
-            _sizeScale = Random.Range(1.4f, 1.7f);
+            _currentSizeScale = Random.Range(BIG_SIZE_SCALE_RANGE[0], BIG_SIZE_SCALE_RANGE[1]);
         }
 
-        Debug.Log($"[NPC] (RandomizeScale) _sizeScale: {_sizeScale}");
+        Debug.Log($"[NPC] (RandomizeScale) _sizeScale: {_currentSizeScale}");
 
-        transform.localScale = new Vector3(_sizeScale, _sizeScale, _sizeScale);
+        transform.localScale = new Vector3(_currentSizeScale, _currentSizeScale, _currentSizeScale);
     }
 
     void Update()
@@ -294,13 +297,13 @@ public class NpcAI : MonoBehaviour
     {
         if (_navMeshAgent.isStopped == true)
         {
-            // scaled speed, greater the zombie -> slower it is
-            float scaleSpeed = _sizeScale >= 1.4f ? 0.5f : 1f;
+            // big zombies are a little slower
+            float scaleSpeed = _currentSizeScale >= BIG_SIZE_SCALE_RANGE[0] ? 0.85f : 1f;
 
             // Randomize speed
             float rndSpeed = Random.Range(_minSpeed * scaleSpeed, _maxSpeed * scaleSpeed);
 
-            Debug.Log($"[NPC] rndSpeed: {rndSpeed}, scaleSpeed: {scaleSpeed}, _sizeScale: {_sizeScale}");
+            //Debug.Log($"[NPC] rndSpeed: {rndSpeed}, scaleSpeed: {scaleSpeed}, _sizeScale: {_sizeScale}");
 
             _navMeshAgent.speed = rndSpeed;
             
