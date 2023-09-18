@@ -110,7 +110,7 @@ public class NpcAI : MonoBehaviour
             _currentSizeScale = Random.Range(BIG_SIZE_SCALE_RANGE[0], BIG_SIZE_SCALE_RANGE[1]);
         }
 
-        Debug.Log($"[NPC] (RandomizeScale) _sizeScale: {_currentSizeScale}");
+        //Debug.Log($"[NPC] (RandomizeScale) _sizeScale: {_currentSizeScale}");
 
         transform.localScale = new Vector3(_currentSizeScale, _currentSizeScale, _currentSizeScale);
     }

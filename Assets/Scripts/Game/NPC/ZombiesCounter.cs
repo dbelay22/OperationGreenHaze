@@ -8,7 +8,7 @@ public class ZombiesCounter : MonoBehaviour
     {
         int zombiesCount = CountZombies();
 
-        Debug.Log($"[ZombiesCounter] (Start) zombiesCount:{zombiesCount}");
+        //Debug.Log($"[ZombiesCounter] (Start) zombiesCount:{zombiesCount}");
 
         GameUI.Instance.InitKills(zombiesCount);
     }
