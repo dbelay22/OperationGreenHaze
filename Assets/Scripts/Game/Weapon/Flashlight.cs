@@ -68,11 +68,8 @@ public class Flashlight : MonoBehaviour
         float curTime = Time.time;
         float timeEndMessage = _timeOfPickup + _inGameMessageLifetime;
 
-        Debug.Log($"[Flashlight] (ToggleOnOff) curTime: {curTime}, msg end time: {timeEndMessage}");
-        
         if (curTime < timeEndMessage)
         {
-            Debug.Log($"[Flashlight] (ToggleOnOff) HIDE THE MESSAGE NOW");
             GameUI.Instance.HideMessagesNow();
         }
 

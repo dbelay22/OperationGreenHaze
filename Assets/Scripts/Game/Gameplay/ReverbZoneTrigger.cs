@@ -28,8 +28,6 @@ public class ReverbZoneTrigger : MonoBehaviour
     {
         if (other.transform.CompareTag(Tags.PLAYER_TAG))
         {
-            Debug.Log($"[ReverbZoneTrigger] (ProcessReverbZoneEnable) Setting reverb {enableReverb}");
-
             _reverbZone.enabled = enableReverb;
         }
     }
