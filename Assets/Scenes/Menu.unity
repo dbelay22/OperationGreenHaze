@@ -3082,12 +3082,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "A Game by\nDiego Belay\n\n3D Art from the asset store:\n- 'Autumn Mountian'
-    by GameWarming\r\n- 'Energy Cells' by AntiDed GameDev\r\n- 'Fighter Interceptor'
-    by Dmitry Ikonnikov\r\n- 'Flashlight' by RRFreelance / Polytricity\r\n- 'Industrial
-    Set v3.0' by Dmitrii Kutsenko\r\n- 'MP7' by Delthor Games\r\n- 'Old Building'
-    by Rusik3Dmodels\r\n- 'Pillars Pack' by WhiteXopc\r\n- 'PT-9M Pistol' by NZ Bullet
-    Studio\r\n- 'Quick Outline' by Chris Nolet\r\n- 'Survival Game Tools' by cookiepopworks.com\r\n-
+  m_text: "A Game by\nDiego Belay\n\n3D Art:\n- 'Autumn Mountian' by GameWarming\r\n-
+    'Energy Cells' by AntiDed GameDev\r\n- 'Fighter Interceptor' by Dmitry Ikonnikov\r\n-
+    'Flashlight' by RRFreelance / Polytricity\r\n- 'Industrial Set v3.0' by Dmitrii
+    Kutsenko\r\n- 'MP7' by Delthor Games\r\n- 'Old Building' by Rusik3Dmodels\r\n-
+    'Pillars Pack' by WhiteXopc\r\n- 'PT-9M Pistol' by NZ Bullet Studio\r\n- 'Quick
+    Outline' by Chris Nolet\r\n- 'Survival Game Tools' by cookiepopworks.com\r\n-
     'The Wasteland LITE' by Aquarius Max\r\n- 'Too Many Crosshairs' by Clean Shirt
     Labs\r\n- 'Transformer box' Dorlak_1989\r\n- 'Zombie' by Pxltiger\r"
   m_isRightToLeft: 0
