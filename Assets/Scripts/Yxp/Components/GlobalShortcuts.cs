@@ -37,6 +37,13 @@ namespace Yxp.Input
             {
                 SceneHelper.ReloadCurrentScene();
             }
+
+            // [M]ute sound
+            if (UnityEngine.Input.GetKeyDown(KeyCode.M))
+            {
+                AudioController.Instance.ToggleAudioOnOff();
+            }
+
         }
 
         void StateShortcuts()

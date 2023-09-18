@@ -9,6 +9,8 @@ public class AudioController : MonoBehaviour
     [SerializeField] AudioClip _gameOverMusic;
     [SerializeField] AudioClip _winMusic;
 
+    bool _audioIsOn = true;
+
     #region Instance
 
     private static AudioController _instance;
@@ -21,6 +23,13 @@ public class AudioController : MonoBehaviour
     }
 
     #endregion
+
+    void Start()
+    {
+        _audioIsOn = true;
+        
+        SetAudioVolume(_audioIsOn);
+    }
 
     public void PlayBackgroundMusic()
     {
@@ -50,6 +59,18 @@ public class AudioController : MonoBehaviour
         {
             _musicSource.PlayOneShot(_gameOverMusic);
         }
+    }
+
+    public void ToggleAudioOnOff()
+    {
+        _audioIsOn = !_audioIsOn;
+        
+        SetAudioVolume(_audioIsOn);
+    }
+
+    void SetAudioVolume(bool audioIsOn)
+    {
+        AudioListener.volume = audioIsOn ? 1f : 0f;
     }
 
 }
