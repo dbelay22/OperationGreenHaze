@@ -12,7 +12,7 @@ public class ChildCounter : MonoBehaviour
     {
         _childCount = transform.childCount;
 
-        Debug.Log($"[{_counterName}] (Start) _childCount:{_childCount}");        
+        //Debug.Log($"[{_counterName}] (Start) _childCount:{_childCount}");        
     }
 
     void Update()
@@ -23,7 +23,7 @@ public class ChildCounter : MonoBehaviour
         {
             _childCount = childCount;
 
-            Debug.Log($"[{_counterName}] _childCount now: {_childCount}");
+            //Debug.Log($"[{_counterName}] _childCount now: {_childCount}");
         }
     }
 }

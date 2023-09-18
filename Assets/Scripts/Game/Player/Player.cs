@@ -6,12 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(Ammo))]
 [RequireComponent(typeof(PlayerHealth))]
 public class Player : MonoBehaviour
-{
-    const string AMMO_PICKUP_TAG = "AmmoPickup";
-    const string MEDKIT_PICKUP_TAG = "MedkitPickup";
-    const string FLASHLIGHT_PICKUP_TAG = "FlashlightPickup";
-    const string MISSION_PICKUP_TAG = "MissionPickup";
-
+{ 
     [Header("Camera Shake")]
     [SerializeField] CameraShake _cameraShake;
 
@@ -97,7 +92,7 @@ public class Player : MonoBehaviour
 
     bool ProcessMissionPickup(GameObject trigger)
     {
-        bool isMissionPickup = trigger.CompareTag(MISSION_PICKUP_TAG);
+        bool isMissionPickup = trigger.CompareTag(Tags.MISSION_PICKUP_TAG);
 
         if (isMissionPickup)
         {
@@ -116,7 +111,7 @@ public class Player : MonoBehaviour
 
     bool ProcessFlashlightPickup(GameObject trigger)
     {
-        bool isFlashlight = trigger.CompareTag(FLASHLIGHT_PICKUP_TAG);
+        bool isFlashlight = trigger.CompareTag(Tags.FLASHLIGHT_PICKUP_TAG);
 
         if (isFlashlight)
         {
@@ -134,7 +129,7 @@ public class Player : MonoBehaviour
 
     bool ProcessMedkitPickup(GameObject trigger)
     {
-        bool isMedkit = trigger.CompareTag(MEDKIT_PICKUP_TAG);
+        bool isMedkit = trigger.CompareTag(Tags.MEDKIT_PICKUP_TAG);
 
         if (isMedkit)
         {
@@ -165,7 +160,7 @@ public class Player : MonoBehaviour
 
     bool ProcessAmmoPickup(GameObject trigger) 
     {
-        bool isAmmoPickup = trigger.CompareTag(AMMO_PICKUP_TAG);
+        bool isAmmoPickup = trigger.CompareTag(Tags.AMMO_PICKUP_TAG);
 
         if (isAmmoPickup)
         {

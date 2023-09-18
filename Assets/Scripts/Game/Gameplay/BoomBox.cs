@@ -5,10 +5,6 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class BoomBox: MonoBehaviour
 {
-    const string ENEMY_TAG = "Enemy";
-    const string BOOMBOX_TAG = "BoomBox";
-    const string PLAYER_TAG = "Player";
-
     [SerializeField] GameObject _object;
 
     [Header("Explosion")]
@@ -70,7 +66,7 @@ public class BoomBox: MonoBehaviour
         BoxCollider collider = GetComponent<BoxCollider>();
         collider.enabled = false;
 
-        _object.gameObject.SetActive(false);
+        _object.SetActive(false);
 
         ProcessExplosionDamage(transform.position, _damageRadius);
 
@@ -98,16 +94,16 @@ public class BoomBox: MonoBehaviour
 
         foreach (var collider in colliders)
         {
-            if (collider.CompareTag(ENEMY_TAG))
+            if (collider.CompareTag(Tags.ENEMY_TAG))
             {
                 ProcessEnemyDamage(collider);
                 //shouldBendTime = true;
             }
-            else if (collider.CompareTag(BOOMBOX_TAG))
+            else if (collider.CompareTag(Tags.BOOMBOX_TAG))
             {
                 ProcessChainReaction(collider);
             }
-            else if (collider.CompareTag(PLAYER_TAG))
+            else if (collider.CompareTag(Tags.PLAYER_TAG))
             {
                 ProcessPlayerDamage(collider);
                 //shouldBendTime = true;
@@ -141,9 +137,7 @@ public class BoomBox: MonoBehaviour
 
     void ProcessPlayerDamage(Collider collider)
     {
-        PlayerHealth playerHealth;
-
-        collider.TryGetComponent<PlayerHealth>(out playerHealth);
+        collider.TryGetComponent<PlayerHealth> (out PlayerHealth playerHealth);
 
         if (playerHealth != null)
         {
@@ -153,9 +147,7 @@ public class BoomBox: MonoBehaviour
 
     void ProcessChainReaction(Collider collider)
     {
-        BoomBox boombox;
-
-        collider.TryGetComponent<BoomBox>(out boombox);
+        collider.TryGetComponent<BoomBox>(out BoomBox boombox);
 
         if (boombox != null)
         {
@@ -174,17 +166,14 @@ public class BoomBox: MonoBehaviour
 
     void ProcessEnemyDamage(Collider collider)
     {
-        NpcHealth npcHealth;        
-
-        collider.TryGetComponent<NpcHealth>(out npcHealth);
+        collider.TryGetComponent<NpcHealth>(out NpcHealth npcHealth);
 
         if (npcHealth != null)
         {
             npcHealth.HitByExplosion();            
         }
         
-        NpcAI npc;
-        collider.TryGetComponent<NpcAI>(out npc);
+        collider.TryGetComponent<NpcAI>(out NpcAI npc);
 
         if (npc != null)
         {
@@ -200,7 +189,7 @@ public class BoomBox: MonoBehaviour
 
         _fireZoneTrigger.SetActive(false);
 
-        Destroy(_object.gameObject);
+        Destroy(_object);
 
         Destroy(gameObject);
     }

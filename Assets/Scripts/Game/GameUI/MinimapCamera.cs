@@ -9,7 +9,7 @@ public class MinimapCamera : MonoBehaviour
 
     void Update()
     {
-        if (Game.Instance.isGameplayOn() == false) 
+        if (Game.Instance.IsGameplayOn() == false) 
         {
             return;
         }

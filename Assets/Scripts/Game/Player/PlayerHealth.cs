@@ -79,7 +79,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void Damage(int amount)
     {
-        if (!Game.Instance.isGameplayOn())
+        if (!Game.Instance.IsGameplayOn())
         {
             return;
         }
@@ -96,7 +96,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void ImproveByPickup(int amount)
     {
-        if (!Game.Instance.isGameplayOn())
+        if (!Game.Instance.IsGameplayOn())
         {
             return;
         }

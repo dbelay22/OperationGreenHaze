@@ -114,7 +114,7 @@ public class NpcAI : MonoBehaviour
 
     void Update()
     {
-        if (!Game.Instance.isGameplayOn())
+        if (!Game.Instance.IsGameplayOn())
         {
             return;
         }
@@ -340,7 +340,7 @@ public class NpcAI : MonoBehaviour
 
     public void AttackHitAnimEvent()
     {
-        if (!Game.Instance.isGameplayOn())
+        if (!Game.Instance.IsGameplayOn())
         {
             return;
         }

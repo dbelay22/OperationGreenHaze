@@ -7,9 +7,6 @@ using Yxp.StateMachine;
 
 public class Game : MonoBehaviour
 {
-    public const string QUADRANT_TAG = "Quadrant";
-    public const string ENEMY_GROUP_TAG = "EnemyGroup";
-
     GameStateMachine _stateMachine = null;
 
     [SerializeField] Player _player;
@@ -100,7 +97,7 @@ public class Game : MonoBehaviour
 
     void ChangeStateToWin()
     {
-        Debug.Log($"[Game] WIN in {Time.realtimeSinceStartup.ToString("N0")} seconds");
+        Debug.Log($"[Game] WIN in {Time.realtimeSinceStartup:N0} seconds");
         
         StartCoroutine(WinDelayed());
     }
@@ -118,7 +115,7 @@ public class Game : MonoBehaviour
 
     public void ChangeStateToPaused()
     {
-        if (isGameplayOn())
+        if (IsGameplayOn())
         {
             _stateMachine.TransitionToState(new PauseState());
         }        
@@ -126,7 +123,7 @@ public class Game : MonoBehaviour
 
     public void ResumeGame()
     {
-        if (isGamePaused())
+        if (IsGamePaused())
         {
             _stateMachine.TransitionToState(new PlayState());
         }
@@ -143,25 +140,25 @@ public class Game : MonoBehaviour
         return _stateMachine.GetCurrentState();
     }
 
-    public bool isGameOver()
+    public bool IsGameOver()
     {
         bool isGameOver = GetCurrentState() is GameOverState;
         return isGameOver;
     }
 
-    public bool isGamePlayOver()
+    public bool IsGamePlayOver()
     {
         bool isGameOver = GetCurrentState() is GameOverState;
         bool isWin = GetCurrentState() is WinState;
         return isGameOver || isWin;
     }
 
-    public bool isGamePaused()
+    public bool IsGamePaused()
     { 
         return GetCurrentState() is PauseState;
     }
 
-    public bool isGameplayOn()
+    public bool IsGameplayOn()
     {
         return GetCurrentState() is PlayState;
     }

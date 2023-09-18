@@ -6,9 +6,6 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    const string ENEMY_TAG = "Enemy";
-    const string BOOMBOX_TAG = "BoomBox";
-
     [SerializeField] GameObject _playerGO;
 
     [Header("Shooting")]
@@ -79,7 +76,7 @@ public class Weapon : MonoBehaviour
 
     void Update()
     {
-        if (!Game.Instance.isGameplayOn())
+        if (!Game.Instance.IsGameplayOn())
         {
             return;
         }
@@ -201,11 +198,9 @@ public class Weapon : MonoBehaviour
         //Debug.DrawRay(ray.origin, ray.direction, Color.red, 10f);
 
         // Raycast now
-        RaycastHit hit;
+        bool hitSomething = Physics.Raycast(ray, out RaycastHit hit, _raycastRange);
 
-        bool hitSomething = Physics.Raycast(ray, out hit, _raycastRange);
-
-        bool hitEnemy = false, hitBoomBox = false;
+        bool hitEnemy = false;
 
         // Did I Hit ?
         if (hitSomething)
@@ -214,7 +209,7 @@ public class Weapon : MonoBehaviour
 
             hitEnemy = ProcessHitEnemy(hit);
 
-            hitBoomBox = ProcessHitBoomBox(hit);
+            bool hitBoomBox = ProcessHitBoomBox(hit);
 
             if (!hitEnemy && !hitBoomBox)
             {
@@ -234,7 +229,7 @@ public class Weapon : MonoBehaviour
 
     bool ProcessHitBoomBox(RaycastHit hit)
     {
-        bool hitBoomBox = hit.transform.CompareTag(BOOMBOX_TAG);
+        bool hitBoomBox = hit.transform.CompareTag(Tags.BOOMBOX_TAG);
 
         if (hitBoomBox)
         {
@@ -248,7 +243,7 @@ public class Weapon : MonoBehaviour
 
     bool ProcessHitEnemy(RaycastHit hit)
     {
-        bool hitEnemy = hit.transform.CompareTag(ENEMY_TAG);
+        bool hitEnemy = hit.transform.CompareTag(Tags.ENEMY_TAG);
 
         // F*ck you zombie
         if (hitEnemy)

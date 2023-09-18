@@ -115,7 +115,7 @@ namespace StarterAssets
 
 		private void Update()
 		{
-			if (!Game.Instance.isGameplayOn())
+			if (!Game.Instance.IsGameplayOn())
 			{
 				return;
 			}
@@ -127,7 +127,7 @@ namespace StarterAssets
 
 		private void LateUpdate()
 		{
-			if (!Game.Instance.isGameplayOn())
+			if (!Game.Instance.IsGameplayOn())
 			{
 				return;
 			}
