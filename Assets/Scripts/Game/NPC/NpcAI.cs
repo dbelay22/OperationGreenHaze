@@ -70,8 +70,8 @@ public class NpcAI : MonoBehaviour
 
     float _currentSizeScale = 1;
 
-    float[] DEFAULT_SIZE_SCALE_RANGE = { 1f, 1f };
-    float[] BIG_SIZE_SCALE_RANGE = { 1.2f, 1.35f };
+    readonly float[] DEFAULT_SIZE_SCALE_RANGE = { 1f, 1f };
+    readonly float[] BIG_SIZE_SCALE_RANGE = { 1.2f, 1.35f };
 
     public float SizeScale { get { return _currentSizeScale; } }
 
@@ -129,7 +129,7 @@ public class NpcAI : MonoBehaviour
     {
         if (_showLogs)
         {
-            Debug.Log($"[Npc] _currentState={_currentState.ToString()}");
+            Debug.Log($"[Npc] _currentState={_currentState}");
         } 
         
         switch (_currentState)

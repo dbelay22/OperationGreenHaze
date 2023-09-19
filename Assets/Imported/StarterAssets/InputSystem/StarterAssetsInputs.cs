@@ -62,6 +62,8 @@ namespace StarterAssets
 		public void MoveInput(Vector2 newMoveDirection)
 		{
 			move = newMoveDirection;
+
+			//Debug.Log($"[SA-Inputs] (MoveInput) move:{move}");
 		} 
 
 		public void LookInput(Vector2 newLookDirection)
@@ -77,6 +79,8 @@ namespace StarterAssets
 		public void SprintInput(bool newSprintState)
 		{
 			sprint = newSprintState;
+
+			//Debug.Log($"[SA-Inputs] (SprintInput) newSprintState:{newSprintState}");
 		}
 
 		public void ShootInput(bool newShootState)

@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Ammo))]
@@ -12,7 +9,7 @@ public class Player : MonoBehaviour
 
     [Header("SFX")]
     [SerializeField] AudioClip _pickupSFX;
-    [SerializeField] AudioClip _errorSFX;
+    [SerializeField] AudioClip _errorSFX;   
 
     Ammo _ammo;
 
@@ -23,7 +20,6 @@ public class Player : MonoBehaviour
     PlayerHealth _playerHealth;
 
     AudioSource _audioSource;
-
 
     #region Instance
 
@@ -53,7 +49,7 @@ public class Player : MonoBehaviour
     }
 
     #region Shooting
-    
+
     public void OnBulletShot(AmmoType ammoType, int amount, bool hitEnemy)
     {
         WeaponShakeData.ShakeProperties shakeProperties = _weaponSwitcher.GetCurrentShakeProperties();
@@ -97,7 +93,7 @@ public class Player : MonoBehaviour
         if (isMissionPickup)
         {
             // sound!
-            _audioSource.PlayOneShot(_pickupSFX);
+            PlayAudioClip(_pickupSFX);
 
             MissionSystem.Instance.OnMissionItemPickup(trigger);
 
@@ -116,7 +112,7 @@ public class Player : MonoBehaviour
         if (isFlashlight)
         {
             // sound!
-            _audioSource.PlayOneShot(_pickupSFX);
+            PlayAudioClip(_pickupSFX);
 
             _flashlight.ReportPickUp();
 
@@ -138,7 +134,7 @@ public class Player : MonoBehaviour
                 MedkitPickup medkit = trigger.GetComponent<MedkitPickup>();
 
                 // sound!
-                _audioSource.PlayOneShot(_pickupSFX);
+                PlayAudioClip(_pickupSFX);
 
                 // improve health
                 _playerHealth.ImproveByPickup(medkit.HealthAmount);
@@ -150,7 +146,7 @@ public class Player : MonoBehaviour
             }
             else
             {
-                _audioSource.PlayOneShot(_errorSFX);
+                PlayAudioClip(_errorSFX);
                 return false;
             }
         }
@@ -186,6 +182,18 @@ public class Player : MonoBehaviour
 
     #endregion
 
+    bool PlayAudioClip(AudioClip clip)
+    {
+        if (_audioSource.isPlaying)
+        {
+            return false;
+        }
+
+        _audioSource.PlayOneShot(clip);
+
+        return true;
+    }
+
     public bool IsFlashlightOnAndCanBlind()
     {
         if (_flashlight == null)
@@ -203,7 +211,7 @@ public class Player : MonoBehaviour
         GameplayIsOver();
 
         StartCoroutine(Game.Instance.TimeBend(0.19f, 1f));
-    }   
+    }
 
     public void GameplayIsOver()
     {

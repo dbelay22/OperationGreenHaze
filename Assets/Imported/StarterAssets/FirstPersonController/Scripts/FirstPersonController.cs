@@ -177,8 +177,11 @@ namespace StarterAssets
 			float sprintSpeedHealth = SprintSpeed * speedFactor;
 			float moveSpeedHealth = MoveSpeed * speedFactor;
 
+
+			bool _isPlayerVeryHurt = _playerHealth.CurrentHealthPercentage < 0.5;
+
 			// set target speed based on move speed, sprint speed and if sprint is pressed
-			float targetSpeed = _input.sprint ? sprintSpeedHealth : moveSpeedHealth;
+			float targetSpeed = _input.sprint && _isPlayerVeryHurt == false ? sprintSpeedHealth : moveSpeedHealth;
 
 			/*
 			if (speedFactor < 1)
@@ -227,6 +230,13 @@ namespace StarterAssets
 
 			// move the player
 			_controller.Move(inputDirection.normalized * (_speed * Time.deltaTime) + new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
+
+			/*
+			if (_speed > 0)
+			{
+				Debug.Log($"[FPC] (Move) Speed > 0 - {(_input.sprint ? "Running" : "Moving")}");
+			}
+			*/
 		}
 
 		private void JumpAndGravity()
