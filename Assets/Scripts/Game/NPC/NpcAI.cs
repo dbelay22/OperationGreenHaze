@@ -7,7 +7,7 @@ public enum NpcState
 { 
     Idle,
     IdleWaitingReaction,
-    Provoked,    
+    Provoked,
     Blinded,
     Dead
 }
@@ -105,7 +105,7 @@ public class NpcAI : MonoBehaviour
         {
             _currentSizeScale = Random.Range(DEFAULT_SIZE_SCALE_RANGE[0], DEFAULT_SIZE_SCALE_RANGE[1]);
         }
-        else         
+        else
         {
             _currentSizeScale = Random.Range(BIG_SIZE_SCALE_RANGE[0], BIG_SIZE_SCALE_RANGE[1]);
         }
@@ -130,8 +130,8 @@ public class NpcAI : MonoBehaviour
         if (_showLogs)
         {
             Debug.Log($"[Npc] _currentState={_currentState}");
-        } 
-        
+        }
+
         switch (_currentState)
         {
             case NpcState.Idle:
@@ -148,13 +148,13 @@ public class NpcAI : MonoBehaviour
                 break;
             case NpcState.Dead:
                 DeadUpdate();
-                break;            
+                break;
         }
     }
-    
+
     void IdleUpdate()
     {
-        _navMeshAgent.isStopped = true;
+        StopMoving();
 
         CalcDistanceToTarget();
 
@@ -172,7 +172,7 @@ public class NpcAI : MonoBehaviour
     }
 
     void BlindedUpdate() {
-        if (_showLogs) 
+        if (_showLogs)
         {
             Debug.Log("I can't see shit you asshole");
         }
@@ -221,8 +221,7 @@ public class NpcAI : MonoBehaviour
         // set state
         _currentState = NpcState.Blinded;
 
-        // stop moving
-        _navMeshAgent.isStopped = true;
+        StopMoving();
 
         // play sfx
         _audioSource.PlayOneShot(_blindedSFX);
@@ -263,7 +262,7 @@ public class NpcAI : MonoBehaviour
     void EngageTarget()
     {
         FaceTarget();
-        
+
         CalcDistanceToTarget();
 
         if (_distanceToTarget > _navMeshAgent.stoppingDistance)
@@ -279,7 +278,7 @@ public class NpcAI : MonoBehaviour
             ChaseTarget();
         }
         else if (_distanceToTarget <= _navMeshAgent.stoppingDistance)
-        {            
+        {
             // Report melee attack to Director
             if (_reportedAttack == false)
             {
@@ -287,7 +286,7 @@ public class NpcAI : MonoBehaviour
                 _reportedPlayerEscape = false;
                 Director.Instance.OnEvent(DirectorEvents.Enemy_Melee_Attack);
             }
-            
+
             // ATTACK !!
             AttackTarget();
         }
@@ -295,10 +294,10 @@ public class NpcAI : MonoBehaviour
 
     void ChaseTarget()
     {
-        if (_navMeshAgent.isStopped == true)
+        if (IsMoving() == false)
         {
             // big zombies are a little slower
-            float scaleSpeed = _currentSizeScale >= BIG_SIZE_SCALE_RANGE[0] ? 0.85f : 1f;
+            float scaleSpeed = _currentSizeScale >= BIG_SIZE_SCALE_RANGE[0] ? 0.9f : 1f;
 
             // Randomize speed
             float rndSpeed = Random.Range(_minSpeed * scaleSpeed, _maxSpeed * scaleSpeed);
@@ -306,16 +305,35 @@ public class NpcAI : MonoBehaviour
             //Debug.Log($"[NPC] rndSpeed: {rndSpeed}, scaleSpeed: {scaleSpeed}, _sizeScale: {_sizeScale}");
 
             _navMeshAgent.speed = rndSpeed;
-            
+
             //Debug.Log($"[NPC] <{transform.name}> Moving at rndSpeed: {rndSpeed}, _navMeshAgent.speed:{_navMeshAgent.speed}");
 
-            // Go!
-            _navMeshAgent.isStopped = false;            
+            StartMoving();
         }
 
         _animator.SetTrigger("Move Trigger");
 
         _navMeshAgent.SetDestination(_targetPlayer.position);
+    }
+
+    bool IsMoving()
+    {
+        return (_navMeshAgent.isStopped == false);
+    }
+
+    void StartMoving()
+    {
+        // Go!
+        _navMeshAgent.isStopped = false;
+
+        BroadcastMessage("OnNPCStartWalking");
+    }
+
+    void StopMoving()
+    {
+        _navMeshAgent.isStopped = true;
+
+        BroadcastMessage("OnNPCStoppedWalking");
     }
 
     void FaceTarget()
@@ -331,7 +349,7 @@ public class NpcAI : MonoBehaviour
 
     void AttackTarget()
     {
-        _navMeshAgent.isStopped = true;
+        StopMoving();
 
         _animator.SetTrigger("Attack Trigger");
 
@@ -341,7 +359,12 @@ public class NpcAI : MonoBehaviour
         }
     }
 
-    public void AttackHitAnimEvent()
+    public void OnZombieStepAnimEvent()
+    {
+        BroadcastMessage("ZombieStepAnimEvent");
+    }
+
+    public void OnAttackHitAnimEvent()
     {
         if (!Game.Instance.IsGameplayOn())
         {
@@ -441,8 +464,7 @@ public class NpcAI : MonoBehaviour
 
         PlayDeathSFX();
 
-        //Debug.Log($"[NPC] I'm a dead zombie dead, deja vú");
-        _navMeshAgent.isStopped = true;
+        StopMoving();
 
         // Disable colliders so we can't shoot after dead
         SetCollidersActive(false);
