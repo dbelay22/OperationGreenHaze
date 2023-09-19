@@ -101,7 +101,7 @@ public class NpcAI : MonoBehaviour
 
     void RandomizeSizeScale()
     {
-        if (Random.value < 0.6f)
+        if (Random.value < 0.7f)
         {
             _currentSizeScale = Random.Range(DEFAULT_SIZE_SCALE_RANGE[0], DEFAULT_SIZE_SCALE_RANGE[1]);
         }
@@ -224,7 +224,7 @@ public class NpcAI : MonoBehaviour
         StopMoving();
 
         // play sfx
-        _audioSource.PlayOneShot(_blindedSFX);
+        PlayAudioClip(_blindedSFX);
 
         // set anim trigger
         _animator.SetTrigger("Blinded Trigger");
@@ -314,6 +314,31 @@ public class NpcAI : MonoBehaviour
         _animator.SetTrigger("Move Trigger");
 
         _navMeshAgent.SetDestination(_targetPlayer.position);
+
+        PlayChaseSFX();
+    }
+
+    float _lastTimeChaseSFX = 0;
+    
+    const float CHASE_SFX_INTERVAL = 7f;
+
+    void PlayChaseSFX()
+    {
+
+        if (Time.time < _lastTimeChaseSFX + CHASE_SFX_INTERVAL)
+        {
+            // wait, not yet
+            return;
+        }
+
+        if (Random.value > 0.5)
+        {
+            float rndSound = Random.value;
+
+            PlayAudioClip(rndSound > 0.7 ? _synthSFX : _growlSFX);
+            
+            _lastTimeChaseSFX = Time.time;
+        }
     }
 
     bool IsMoving()
@@ -378,15 +403,15 @@ public class NpcAI : MonoBehaviour
         float rndHit = Random.value;
         if (rndHit < 0.3f)
         {
-            _audioSource.PlayOneShot(_punchSFX);
+            PlayAudioClip(_punchSFX);
         }
         else if (rndHit < 0.6f)
         {
-            _audioSource.PlayOneShot(_synthSFX);
+            PlayAudioClip(_synthSFX);
         } 
         else if (rndHit < 0.9f)
         {
-            _audioSource.PlayOneShot(_growlSFX);
+            PlayAudioClip(_growlSFX);
         }
     }
 
@@ -427,7 +452,7 @@ public class NpcAI : MonoBehaviour
 
     void PlayHitByBulletSFX()
     {
-        _audioSource.PlayOneShot(_bulletHitSFX);
+        PlayAudioClip(_bulletHitSFX);
     }
 
     void PlayHitByBulletVFX(RaycastHit hit, bool isHeadshot = false)
@@ -493,13 +518,22 @@ public class NpcAI : MonoBehaviour
 
     void PlayDeathSFX()
     {
-        if (Random.value < 0.5)
+        if (Random.value > 0.3)
         {
-            return;
+            PlayAudioClip(Random.value > 0.5 ? _death01SFX : _death02SFX);
+        }
+    }
+
+    bool PlayAudioClip(AudioClip clip)
+    {
+        if (_audioSource.isPlaying)
+        {
+            return false;
         }
 
-        // play SFX
-        _audioSource.PlayOneShot(Random.value < 0.5 ? _death01SFX : _death02SFX);
+        _audioSource.PlayOneShot(clip);
+
+        return true;
     }
 
     void OnDrawGizmosSelected()

@@ -68,8 +68,6 @@ public class ZombieSteps : MonoBehaviour
             return false;
         }
 
-        Debug.Log($"[ZSteps] (PlayAudioClip) step sound now!");
-
         _audioSource.PlayOneShot(clip);
 
         return true;
