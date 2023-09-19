@@ -63,7 +63,7 @@ public class ZombieSteps : MonoBehaviour
 
     bool PlayAudioClip(AudioClip clip)
     {
-        if (_audioSource.isPlaying)
+        if (_audioSource.isPlaying || Game.Instance.IsGamePlayOver())
         {
             return false;
         }
