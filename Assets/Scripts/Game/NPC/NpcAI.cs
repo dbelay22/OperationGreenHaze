@@ -70,8 +70,8 @@ public class NpcAI : MonoBehaviour
 
     float _currentSizeScale = 1;
 
-    float[] DEFAULT_SIZE_SCALE_RANGE = { 1f, 1.1f };
-    float[] BIG_SIZE_SCALE_RANGE = { 1.15f, 1.35f };
+    float[] DEFAULT_SIZE_SCALE_RANGE = { 1f, 1f };
+    float[] BIG_SIZE_SCALE_RANGE = { 1.2f, 1.35f };
 
     public float SizeScale { get { return _currentSizeScale; } }
 
