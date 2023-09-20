@@ -245,8 +245,13 @@ PrefabInstance:
       propertyPath: m_text
       value: 'Agent Roy
 
+        
 
-        R. I. P.'
+        Your legacy lives on.
+
+        
+
+        R.I.P.'
       objectReference: {fileID: 0}
     - target: {fileID: 4268806864832699247, guid: ef8945843775fcd41aea9e95e6ebc283,
         type: 3}
