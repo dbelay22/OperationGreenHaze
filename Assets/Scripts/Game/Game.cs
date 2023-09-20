@@ -72,7 +72,7 @@ public class Game : MonoBehaviour
 
 #region Mission
 
-    public void ReportAllMissionPickupsCompleted()
+    public void ReportAllMissionPickupsCollected()
     {
         Debug.Log("[Game] (ReportAllMissionPickupsCompleted)");
         

@@ -95,7 +95,7 @@ public class Player : MonoBehaviour
             // sound!
             PlayAudioClip(_pickupSFX);
 
-            MissionSystem.Instance.OnMissionItemPickup(trigger);
+            MissionPickups.Instance.OnMissionItemPickup(trigger);
 
             Destroy(trigger);
 
