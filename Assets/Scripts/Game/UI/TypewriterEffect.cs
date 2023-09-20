@@ -67,10 +67,26 @@ public class TypewriterEffect : MonoBehaviour
 			return;
 		}
 
-		int rndIdx = UnityEngine.Random.Range(0, _typewritterClips.Length);
-
-		_audioSource.PlayOneShot(_typewritterClips[rndIdx]);
+		StartCoroutine(PlayTypeAWordSFXDelayed());
     }
+
+	IEnumerator PlayTypeAWordSFXDelayed()
+	{
+		int rndCharCount = UnityEngine.Random.Range(1, 10);
+
+		for (int i = 0; i < rndCharCount; i++)
+		{
+			// play random press sfx			
+			int rndIdx = UnityEngine.Random.Range(0, _typewritterClips.Length);
+
+			_audioSource.PlayOneShot(_typewritterClips[rndIdx]);
+
+			yield return new WaitForSeconds(UnityEngine.Random.Range(0.05f, 0.09f));
+		}
+
+		yield return new WaitForSeconds(UnityEngine.Random.Range(0.2f, 0.3f));
+	}
+
 
     public void Flush()
 	{

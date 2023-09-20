@@ -237,7 +237,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 900}
+  m_SizeDelta: {x: 0, y: 551.238}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1038338375
 MonoBehaviour:
@@ -259,16 +259,34 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: " [Telegram Message]\n\nAgent Roy, urgent mission.\r\n\r\nOur contact confirms
-    a horrifying biological nightmare.\nInside a secret hidden facility cloning experiments
-    gone terribly wrong.\nEnemies have breached it, and it's under heavy air attack
-    now.\nGround support is heading to the lab so you must rush.\r\n\r\nYour mission
-    objectives: \n1 - Infiltrate and eliminate every abomination, no one must survive.\n2
-    - Secure Project 'Green Haze' data storages (2). They show as a purple circle
-    in the map.\n\nThese 'zombies' were never human. Show no mercy.\r\n\r\nYou have
-    7 minutes to complete the mission and leave the place.\nAn helicopter will be
-    waiting for you at the other side upon mission completion.\r\n\nRemember, be
-    quick or be death.\n\r\nGood luck"
+  m_text: 'Agent Roy, urgent mission briefing:
+
+    
+
+    Contact confirms biological
+    nightmare in secret cloning facility.
+
+    Enemies breached, heavy air attack.
+    Ground support en route.
+
+    
+
+    Mission Objectives:
+
+    1 - Eliminate
+    all abominations, no survivors.
+
+    2 - Secure ''Green Haze'' project data
+    (2 purple circles on map).
+
+    
+
+    Time limit: 7 minutes. Helicopter awaits
+    upon success.
+
+    
+
+    Speed is crucial. Good luck.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2dc3fdd9dc8158248b1a258b64101281, type: 2}
   m_sharedMaterial: {fileID: -2414874082546053195, guid: 2dc3fdd9dc8158248b1a258b64101281,
