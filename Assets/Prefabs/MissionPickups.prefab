@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7290056394435805261}
-  - component: {fileID: 8986582628011750342}
+  - component: {fileID: 4568402740389154910}
   m_Layer: 0
-  m_Name: MissionSystem
+  m_Name: MissionPickups
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8986582628011750342
+--- !u!114 &4568402740389154910
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,6 +41,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6396904221285289583}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b364b2469b915043892c5266ba0959d, type: 3}
+  m_Script: {fileID: 11500000, guid: 99982fe9ed7da8943b9ba62b381c9e81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pickups: []

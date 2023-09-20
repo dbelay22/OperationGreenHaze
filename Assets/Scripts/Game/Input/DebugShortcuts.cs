@@ -14,5 +14,16 @@ public class DebugShortcuts : MonoBehaviour
         {
             Game.Instance.ToggleGodMode();
         }
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            Game.Instance.ReportAllEnemiesKilled();
+        }
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            Game.Instance.ReportAllMissionPickupsCollected();
+        }
+
     }
 }

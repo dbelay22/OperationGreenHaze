@@ -80,7 +80,7 @@ public class Game : MonoBehaviour
 
         if (CheckGameWin() == false)
         {
-            GameUI.Instance.ShowInGameMessage("GREAT! PROJECT DATA IS SECURE, ELIMINATE REMAINING ABOMINATIONS", 4f);
+            GameUI.Instance.ShowInGameMessage("Good job! Project data is now secure\nNext: Eliminate remaining abominations", 4f);
         }        
     }
 
@@ -91,7 +91,7 @@ public class Game : MonoBehaviour
 
         if (CheckGameWin() == false)
         {
-            GameUI.Instance.ShowInGameMessage("WELL DONE! AND GOOD BYE AMONITATIONS. NOW SECURE PROJECT DATA", 4f);
+            GameUI.Instance.ShowInGameMessage("Well done! And good bye abominations\nNext: Secure project data", 4f);
         }
     }
 
