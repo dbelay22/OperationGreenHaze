@@ -16,17 +16,8 @@ public enum DirectorEvents
     Player_Pickup_Mission,
 }
 
-[RequireComponent(typeof(AudioSource))]
 public class Director : MonoBehaviour
 {
-    [Header("Raid Siren")]
-    [SerializeField] AudioClip _raidSirenSFX;
-
-    [Header("Explosions")]
-    [SerializeField] AudioClip[] _explosions;
-
-    AudioSource _audioSource;
-
     // stress
     float _playerStress = 0;
     float _maxStress = 0;
@@ -66,8 +57,6 @@ public class Director : MonoBehaviour
 
     void Start()
     {
-        _audioSource = GetComponent<AudioSource>();
-        
         _statsOnScreen = false;
         
         StressStart();
@@ -100,19 +89,7 @@ public class Director : MonoBehaviour
         string stats = DumpStats();
 
         GUI.TextArea(new Rect(10, 350, 280, 375), stats);
-    }
-
-    public void PlayExplosionSFX()
-    {
-        int rndIndex = Random.Range(0, _explosions.Length);
-
-        _audioSource.PlayOneShot(_explosions[rndIndex]);
-    }
-
-    public void PlaySirenSFX() 
-    {
-        _audioSource.PlayOneShot(_raidSirenSFX);
-    }
+    }    
 
     public string DumpStats()
     {
@@ -139,7 +116,7 @@ public class Director : MonoBehaviour
             $"[Director] Player Health: {Player.Instance.GetCurrentHealth()}\n" +
             $"[Director] END OF DUMP...............";
 
-        //Debug.Log(stats);
+        Debug.Log(stats);
 
         return stats;
     }
@@ -208,11 +185,6 @@ public class Director : MonoBehaviour
                 _shotAccuracy = (float) eventValue;
                 break;
         }
-    }
-
-    public void GameIsOver()
-    {
-        StopAllCoroutines();
     }
 
 }

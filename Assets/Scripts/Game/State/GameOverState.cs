@@ -18,8 +18,6 @@ public class GameOverState : GameState
 
         Director.Instance.DumpStats();
 
-        Director.Instance.GameIsOver();
-
         UnlockCursor();
     }
 

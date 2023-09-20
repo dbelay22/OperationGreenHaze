@@ -13,8 +13,6 @@ public class WinState : GameState
 
         Director.Instance.DumpStats();
 
-        Director.Instance.GameIsOver();
-
         UnlockCursor();        
     }
 
