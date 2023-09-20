@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -47,6 +48,11 @@ public class LevelLoader : MonoBehaviour
         StartCoroutine(CrossfadeToSceneName("Win", _transitionTime));
     }
 
+    public void LoadLoseScene()
+    {
+        StartCoroutine(CrossfadeToSceneName("Lose", _transitionTime));
+    }
+
     IEnumerator CrossfadeToSceneIndex(int sceneIndex, float time)
     {
         StartCrossfade();
@@ -71,4 +77,6 @@ public class LevelLoader : MonoBehaviour
     {
         _transitionAnimator.SetTrigger("StartCrossfade");
     }
+
+
 }

@@ -11,12 +11,12 @@ public class GameOverState : GameState
     public override void EnterState()
     {
         Debug.Log("*** GAME OVER ***");
-        
-        AudioController.Instance.PlayGameOverMusic();
-
-        GameUI.Instance.ShowGameOver();
 
         Director.Instance.DumpStats();
+
+        AudioController.Instance.PlayGameOverMusic();
+        
+        GameUI.Instance.ShowGameOver();
 
         UnlockCursor();
     }

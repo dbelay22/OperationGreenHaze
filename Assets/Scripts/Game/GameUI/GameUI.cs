@@ -127,8 +127,13 @@ public class GameUI : MonoBehaviour
         // hide in-game canvases
         ShowHUD(false);
 
+        // hide in-game messages
+        HideMessagesNow();
+
         // show game over
         _gameOverCanvas.SetActive(true);
+
+        StartCoroutine(LoadLoseSceneDelayed());
     }    
 
     public void ShowWin()
@@ -150,6 +155,13 @@ public class GameUI : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         LevelLoader.Instance.LoadWinScene();
+    }
+
+    IEnumerator LoadLoseSceneDelayed()
+    {
+        yield return new WaitForSeconds(1f);
+
+        LevelLoader.Instance.LoadLoseScene();
     }
 
 

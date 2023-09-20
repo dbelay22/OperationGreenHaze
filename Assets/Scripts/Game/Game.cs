@@ -91,7 +91,7 @@ public class Game : MonoBehaviour
 
         if (CheckGameWin() == false)
         {
-            GameUI.Instance.ShowInGameMessage("Well done! And good bye abominations\nNext: Secure project data", 4f);
+            GameUI.Instance.ShowInGameMessage("Does it taste good ?\nNext: Secure project data\nFind the purple icons on the map", 4f);
         }
     }
 
