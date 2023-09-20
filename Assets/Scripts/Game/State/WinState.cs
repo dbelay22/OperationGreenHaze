@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using Yxp.StateMachine;
 
@@ -7,13 +9,13 @@ public class WinState : GameState
     {
         Debug.Log("*** WIN ***");
 
+        Director.Instance.DumpStats();
+
         AudioController.Instance.PlayWinMusic();
 
         GameUI.Instance.ShowWin();
 
-        Director.Instance.DumpStats();
-
-        UnlockCursor();        
+        UnlockCursor();       
     }
 
     void UnlockCursor()

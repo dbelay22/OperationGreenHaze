@@ -27,34 +27,44 @@ public class LevelLoader : MonoBehaviour
     {
         int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
 
-        StartCoroutine(LoadLevel(nextSceneIndex));
-    }
-
-    public void LoadMainMenu()
-    {
-        SceneManager.LoadScene("Menu");
-    }
+        StartCoroutine(CrossfadeToSceneIndex(nextSceneIndex, _transitionTime));
+    }    
 
     public void LoadPreviousLevel()
     {
         int previousSceneIndex = SceneManager.GetActiveScene().buildIndex - 1;
 
-        StartCoroutine(LoadLevel(previousSceneIndex));
+        StartCoroutine(CrossfadeToSceneIndex(previousSceneIndex, _transitionTime));
     }
 
-    IEnumerator LoadLevel(int levelIndex)
+    public void LoadMainMenu()
     {
-        //Debug.Log($"(LoadLevel) index:{levelIndex}");
+        StartCoroutine(CrossfadeToSceneName("Menu", _transitionTime));
+    }
+
+    public void LoadWinScene()
+    {
+        StartCoroutine(CrossfadeToSceneName("Win", _transitionTime));
+    }
+
+    IEnumerator CrossfadeToSceneIndex(int sceneIndex, float time)
+    {
+        StartCrossfade();
+
+        yield return new WaitForSeconds(time);
+
+        SceneManager.LoadScene(sceneIndex);
+    }
+
+    IEnumerator CrossfadeToSceneName(string sceneName, float time)
+    {
+        //Debug.Log($"[LevelLoader] CrossfadeToSceneName) sceneName:{sceneName}");
 
         StartCrossfade();
 
-        //Debug.Log($"(LoadLevel) Triggered StartCrossfade, now wait {_transitionTime} seconds");
+        yield return new WaitForSeconds(time);
 
-        yield return new WaitForSeconds(_transitionTime);
-
-        //Debug.Log($"(LoadLevel) Time elapsed! load scene now! {levelIndex}");
-
-        SceneManager.LoadScene(levelIndex);
+        SceneManager.LoadScene(sceneName);
     }
 
     public void StartCrossfade()

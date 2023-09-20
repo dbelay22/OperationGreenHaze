@@ -136,9 +136,22 @@ public class GameUI : MonoBehaviour
         // hide in-game canvases
         ShowHUD(false);
 
+        // hide in-game messages
+        HideMessagesNow();
+
         // show win
         _winCanvas.SetActive(true);
+
+        StartCoroutine(LoadWinSceneDelayed());
     }
+
+    IEnumerator LoadWinSceneDelayed()
+    {
+        yield return new WaitForSeconds(1f);
+
+        LevelLoader.Instance.LoadWinScene();
+    }
+
 
     public void ShowPause()
     {
