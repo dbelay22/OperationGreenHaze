@@ -210,7 +210,7 @@ public class Player : MonoBehaviour
         
         GameplayIsOver();
 
-        StartCoroutine(Game.Instance.TimeBend(0.19f, 1f));
+        StartCoroutine(Game.Instance.TimeBend(0.2f, 1f));
     }
 
     public void GameplayIsOver()

@@ -142,7 +142,6 @@ public class Game : MonoBehaviour
 
     public void TryAgain()
     {
-        Debug.Log("Try again");
         SceneHelper.ReloadCurrentScene();
     }
 
