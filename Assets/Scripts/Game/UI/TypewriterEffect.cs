@@ -45,13 +45,16 @@ public class TypewriterEffect : MonoBehaviour
 				_tmpProText.text = _tmpProText.text.Substring(0, _tmpProText.text.Length - _leadingChar.Length);
 			}
 
-			_tmpProText.text += c;
-
-			_tmpProText.text += _leadingChar;
+			_tmpProText.text += c.ToString() + _leadingChar;
 
 			PlayTypeSFX();
 
-			yield return new WaitForSeconds(_timeBtwChars);
+			// hides a glitch when it renders the new line in the text (¿?)
+			bool isEnter = c.GetHashCode() == 851981;
+			if (isEnter == false)
+			{
+				yield return new WaitForSeconds(_timeBtwChars);
+			}			
 		}
 
 		if (_leadingChar != "")

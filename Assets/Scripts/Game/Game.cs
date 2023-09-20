@@ -75,24 +75,35 @@ public class Game : MonoBehaviour
     public void ReportAllMissionPickupsCompleted()
     {
         Debug.Log("[Game] (ReportAllMissionPickupsCompleted)");
+        
         _allMissionPickupsCompleted = true;
-        CheckGameWin();
+
+        if (CheckGameWin() == false)
+        {
+            GameUI.Instance.ShowInGameMessage("GREAT! PROJECT DATA IS SECURE, ELIMINATE REMAINING ABOMINATIONS", 4f);
+        }        
     }
 
     public void ReportAllEnemiesKilled()
     {
         Debug.Log("[Game] (ReportAllEnemiesKilled)");
         _allEnemiesKilled = true;
-        CheckGameWin();
+
+        if (CheckGameWin() == false)
+        {
+            GameUI.Instance.ShowInGameMessage("WELL DONE! AND GOOD BYE AMONITATIONS. NOW SECURE PROJECT DATA", 4f);
+        }
     }
 
-    void CheckGameWin()
+    bool CheckGameWin()
     {
         if (_allEnemiesKilled && _allMissionPickupsCompleted)
         {
             Debug.Log("[Game] ALL MISSIONS COMPLETED !! ");
             ChangeStateToWin();
+            return true;
         }
+        return false;
     }
 
     void ChangeStateToWin()

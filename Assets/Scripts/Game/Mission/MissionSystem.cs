@@ -62,8 +62,6 @@ public class MissionSystem : MonoBehaviour
 
                 if (IsAllMissionsCompleted())
                 {
-                    GameUI.Instance.ShowInGameMessage("OBJECTIVE COMPLETE", 3f);
-
                     Game.Instance.ReportAllMissionPickupsCompleted();
                 }
                 else
