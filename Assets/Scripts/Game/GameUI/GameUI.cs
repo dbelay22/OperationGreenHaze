@@ -54,6 +54,10 @@ public class GameUI : MonoBehaviour
 
     int _minutesOfGameplay = 0;
 
+    int _lastSecondUpdate = -1;
+
+    int _lastMinuteUpdate = -1;
+
     Coroutine _hideMessagesCoroutine;
 
     #region Instance
@@ -90,11 +94,10 @@ public class GameUI : MonoBehaviour
     void TimerInit()
     {
         _elapsedSeconds = 0;
+        _lastSecondUpdate = -1;
+        _lastMinuteUpdate = -1;
         _minutesOfGameplay = Game.Instance.MinutesOfGameplay;
     }
-
-    int _lastSecondUpdate = -1;
-    int _lastMinuteUpdate = -1;
 
     void TimerUpdate()
     {
@@ -115,18 +118,15 @@ public class GameUI : MonoBehaviour
         // update label
         _timerLabel.text = GetTimeElapsedLabel(timerMinutes, timerSeconds);
 
+
+        // SFX
         if (timeLeftSeconds <= 0)
         {
             // GAME OVER
             _timerAudioSource.PlayOneShot(_timerBeepLong);
-            
             Game.Instance.ChangeStateToGameOver();
-            
-            return;
-        }
-
-        // SFX
-        if (timeLeftSeconds <= 10 && _timerAudioSource.isPlaying == false)
+        } 
+        else if (timeLeftSeconds <= 10 && _timerAudioSource.isPlaying == false)
         {
             if (_timerAudioSource.isPlaying == false)
             {
@@ -148,6 +148,7 @@ public class GameUI : MonoBehaviour
             _timerAudioSource.PlayOneShot(_timerBeepLong);
         }
 
+        // update values shown
         _lastMinuteUpdate = timerMinutes;
         _lastSecondUpdate = timerSeconds;
     }
