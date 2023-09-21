@@ -33,6 +33,11 @@ public class PlayerSteps : MonoBehaviour
 
     void Update()
     {
+        if (Game.Instance.IsGameplayOn() == false)
+        {
+            return;
+        }
+
         StepSoundUpdate();
     }
 
