@@ -137,12 +137,11 @@ public class GameUI : MonoBehaviour
             // last minute
             _timerAudioSource.PlayOneShot(_timerBeepShort);
         } 
-        else if (_lastMinuteUpdate != timerMinutes)
+        else if (timerMinutes != _lastMinuteUpdate && timerMinutes < _minutesOfGameplay-1)
         {
-            // every minute
+            // every past minute
             _timerAudioSource.PlayOneShot(_timerBeepLong);
         }
-
 
         _lastMinuteUpdate = timerMinutes;
         _lastSecondUpdate = timerSeconds;
