@@ -26,6 +26,9 @@ public class GameUI : MonoBehaviour
 
     [Header("In-game/HUD/Timer")]
     [SerializeField] TMP_Text _timerLabel;
+    [SerializeField] AudioSource _timerAudioSource;
+    [SerializeField] AudioClip _timerBeepShort;
+    [SerializeField] AudioClip _timerBeepLong;
 
     [Header("In-game/VFX")]
     [SerializeField] GameObject _playerDamageCanvas;
@@ -76,6 +79,11 @@ public class GameUI : MonoBehaviour
 
     void Update()
     {
+        if (Game.Instance.IsGameplayOn() == false)
+        {
+            return;
+        }
+
         TimerUpdate();
     }
 
@@ -85,22 +93,59 @@ public class GameUI : MonoBehaviour
         _minutesOfGameplay = Game.Instance.MinutesOfGameplay;
     }
 
+    int _lastSecondUpdate = -1;
+    int _lastMinuteUpdate = -1;
+
     void TimerUpdate()
     {
         _elapsedSeconds += Time.deltaTime;
 
         float timeLeftSeconds = (_minutesOfGameplay * 60) - _elapsedSeconds;
-
+        
         int timerMinutes = Mathf.FloorToInt(timeLeftSeconds / 60);
+        
         int timerSeconds = Mathf.FloorToInt(timeLeftSeconds - (timerMinutes * 60));
 
+        if (timerSeconds == _lastSecondUpdate)
+        {
+            // no need to update until next second
+            return;
+        }
+
+        // update label
         _timerLabel.text = GetTimeElapsedLabel(timerMinutes, timerSeconds);
 
         if (timeLeftSeconds <= 0)
         {
+            // GAME OVER
+
+            _timerAudioSource.PlayOneShot(_timerBeepLong);
+
             Game.Instance.ChangeStateToGameOver();
+
+            return;
         }
-        
+
+        // SFX
+        if (timeLeftSeconds <= 9 && _timerAudioSource.isPlaying == false)
+        {
+            // last 10 seconds
+            _timerAudioSource.PlayOneShot(_timerBeepLong);
+        } 
+        else if (timeLeftSeconds <= 59 && _timerAudioSource.isPlaying == false)
+        {
+            // last minute
+            _timerAudioSource.PlayOneShot(_timerBeepShort);
+        } 
+        else if (_lastMinuteUpdate != timerMinutes)
+        {
+            // every minute
+            _timerAudioSource.PlayOneShot(_timerBeepLong);
+        }
+
+
+        _lastMinuteUpdate = timerMinutes;
+        _lastSecondUpdate = timerSeconds;
     }
 
     public void ShowGameplay()
