@@ -60,6 +60,8 @@ public class GameUI : MonoBehaviour
 
     Coroutine _hideMessagesCoroutine;
 
+    bool _timeIsUp = false;
+
     #region Instance
 
     private static GameUI _instance;
@@ -83,7 +85,7 @@ public class GameUI : MonoBehaviour
 
     void Update()
     {
-        if (Game.Instance.IsGameplayOn() == false)
+        if (_timeIsUp ||Game.Instance.IsGameplayOn() == false)
         {
             return;
         }
@@ -93,6 +95,7 @@ public class GameUI : MonoBehaviour
 
     void TimerInit()
     {
+        _timeIsUp = false;
         _elapsedSeconds = 0;
         _lastSecondUpdate = -1;
         _lastMinuteUpdate = -1;
@@ -158,7 +161,9 @@ public class GameUI : MonoBehaviour
 
     IEnumerator OnTimeOut()
     {
-        yield return new WaitForSeconds(0.5f);
+        _timeIsUp = true;
+
+        yield return new WaitForSeconds(1f);
 
         Game.Instance.ChangeStateToGameOver();
     }
