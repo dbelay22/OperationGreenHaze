@@ -118,24 +118,29 @@ public class GameUI : MonoBehaviour
         if (timeLeftSeconds <= 0)
         {
             // GAME OVER
-
             _timerAudioSource.PlayOneShot(_timerBeepLong);
-
+            
             Game.Instance.ChangeStateToGameOver();
-
+            
             return;
         }
 
         // SFX
-        if (timeLeftSeconds <= 9 && _timerAudioSource.isPlaying == false)
+        if (timeLeftSeconds <= 10 && _timerAudioSource.isPlaying == false)
         {
-            // last 10 seconds
-            _timerAudioSource.PlayOneShot(_timerBeepLong);
+            if (_timerAudioSource.isPlaying == false)
+            {
+                // last 10 seconds
+                _timerAudioSource.PlayOneShot(_timerBeepLong);
+            }
         } 
-        else if (timeLeftSeconds <= 59 && _timerAudioSource.isPlaying == false)
+        else if (timeLeftSeconds <= 59)
         {
-            // last minute
-            _timerAudioSource.PlayOneShot(_timerBeepShort);
+            if (_timerAudioSource.isPlaying == false) 
+            {
+                // last minute
+                _timerAudioSource.PlayOneShot(_timerBeepShort);
+            }
         } 
         else if (timerMinutes != _lastMinuteUpdate && timerMinutes < _minutesOfGameplay-1)
         {
