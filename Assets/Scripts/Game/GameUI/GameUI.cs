@@ -113,20 +113,10 @@ public class GameUI : MonoBehaviour
         {
             // no need to update until next second
             return;
-        }
-
-        // update label
-        _timerLabel.text = GetTimeElapsedLabel(timerMinutes, timerSeconds);
-
+        }       
 
         // SFX
-        if (timeLeftSeconds <= 0)
-        {
-            // GAME OVER
-            _timerAudioSource.PlayOneShot(_timerBeepLong);
-            Game.Instance.ChangeStateToGameOver();
-        } 
-        else if (timeLeftSeconds <= 10 && _timerAudioSource.isPlaying == false)
+        if (timeLeftSeconds <= 10 && _timerAudioSource.isPlaying == false)
         {
             if (_timerAudioSource.isPlaying == false)
             {
@@ -148,9 +138,29 @@ public class GameUI : MonoBehaviour
             _timerAudioSource.PlayOneShot(_timerBeepLong);
         }
 
+        // Check timeout
+        if (timerMinutes == 0 && timerSeconds == 0)
+        {
+            _timerLabel.text = "Time's Up";
+
+            StartCoroutine(OnTimeOut());
+            
+            return;
+        }
+
+        // update label
+        _timerLabel.text = GetTimeElapsedLabel(timerMinutes, timerSeconds);
+
         // update values shown
         _lastMinuteUpdate = timerMinutes;
         _lastSecondUpdate = timerSeconds;
+    }
+
+    IEnumerator OnTimeOut()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        Game.Instance.ChangeStateToGameOver();
     }
 
     public void ShowGameplay()
