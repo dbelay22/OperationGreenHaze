@@ -9,9 +9,17 @@ public class Game : MonoBehaviour
 {
     GameStateMachine _stateMachine = null;
 
+    [Header("Player")]
     [SerializeField] Player _player;
 
+    [Header("Gameplay")]
     [SerializeField] int _minutesOfGameplay;
+
+    [Header("Dev")]
+    [SerializeField] bool _isDevBuild;
+
+    public bool IsDevBuild { get { return _isDevBuild; } }
+
     public int MinutesOfGameplay { get { return _minutesOfGameplay; } }
 
     private bool _isGodModeOn;
@@ -218,7 +226,7 @@ public class Game : MonoBehaviour
         _stateMachine.Shutdown();
 
         LevelLoader.Instance.LoadMainMenu();
-    }
+    }    
 
     //=======================================================
 }

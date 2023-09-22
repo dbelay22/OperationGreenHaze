@@ -7,35 +7,10 @@ namespace Yxp.Input
     {
         void Update()
         {
-            GeneralShortcuts();
-
-            SceneShortcuts();
-
-            StateShortcuts();
-        }
-
-        void GeneralShortcuts()
-        {
-            // [Q]uit
-            if (UnityEngine.Input.GetKeyDown(KeyCode.Q))
-            {
-                Debug.Log($"Quitting from platform {Application.platform}");
-                Application.Quit();
-            }
-
             // [Esc]ape
             if (UnityEngine.Input.GetKeyDown(KeyCode.Escape))
             {
                 Game.Instance.ChangeStateToPaused();
-            }
-        }
-
-        void SceneShortcuts()
-        {
-            // [R]eload Current Scene
-            if (UnityEngine.Input.GetKeyDown(KeyCode.R))
-            {
-                SceneHelper.ReloadCurrentScene();
             }
 
             // [M]ute sound
@@ -43,18 +18,6 @@ namespace Yxp.Input
             {
                 AudioController.Instance.ToggleAudioOnOff();
             }
-
-        }
-
-        void StateShortcuts()
-        {
-            // [O] Force Game Over
-            if (UnityEngine.Input.GetKeyDown(KeyCode.O))
-            {
-                Debug.Log($"Force Game over");
-                Game.Instance.ChangeStateToGameOver();
-            }
-        }
-        
+        }        
     }
 }
