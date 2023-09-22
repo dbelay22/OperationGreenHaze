@@ -1279,7 +1279,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Find exit
+  m_text: Locate and clear exit.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2dc3fdd9dc8158248b1a258b64101281, type: 2}
   m_sharedMaterial: {fileID: -2414874082546053195, guid: 2dc3fdd9dc8158248b1a258b64101281,
@@ -1307,7 +1307,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 17.6
+  m_fontSize: 16.9
   m_fontSizeBase: 22
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1655,8 +1655,9 @@ GameObject:
   - component: {fileID: 1581616922238482422}
   - component: {fileID: 5028590153109609295}
   - component: {fileID: 585205604877516119}
+  - component: {fileID: 4115609337258926555}
   m_Layer: 5
-  m_Name: MissionPanel
+  m_Name: ObjectivesPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1724,6 +1725,25 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4115609337258926555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3692474964094094962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5496ff8b2829394a85dd472d7c603df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objectiveIcons:
+  - _iconPending: {fileID: 4179392875968075284}
+    _iconCompleted: {fileID: 2670717174531852629}
+  - _iconPending: {fileID: 4736939248146163805}
+    _iconCompleted: {fileID: 4458835626657630731}
+  - _iconPending: {fileID: 6411714187193090445}
+    _iconCompleted: {fileID: 3528967925363134650}
 --- !u!1 &3932453721606075089
 GameObject:
   m_ObjectHideFlags: 0
@@ -1821,7 +1841,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4882910066336238006
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4545,7 +4565,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8872452969280310882
 RectTransform:
   m_ObjectHideFlags: 0

@@ -20,6 +20,7 @@ public class Game : MonoBehaviour
 
     bool _allEnemiesKilled = false;
     bool _allMissionPickupsCompleted = false;
+    bool _exitClear = false;
 
     #region Instance
 
@@ -38,6 +39,10 @@ public class Game : MonoBehaviour
     void Start()
     {
         _isGodModeOn = false;
+
+        _allEnemiesKilled = false;
+        _allMissionPickupsCompleted = false;
+        _exitClear = false;
 
         _stateMachine = new GameStateMachine();
         _stateMachine.TransitionToState(new PlayState());
@@ -78,26 +83,45 @@ public class Game : MonoBehaviour
         
         _allMissionPickupsCompleted = true;
 
+        ObjectivesPanel.Instance.SetPickupDataComplete();
+
         if (CheckGameWin() == false)
         {
-            GameUI.Instance.ShowInGameMessage("Good job! Project data is now secure\nNext: Eliminate remaining abominations", 4f);
+            GameUI.Instance.ShowInGameMessage("Good job! Project data is now secure", 4f);
         }        
     }
 
     public void ReportAllEnemiesKilled()
     {
         Debug.Log("[Game] (ReportAllEnemiesKilled)");
+
         _allEnemiesKilled = true;
+
+        ObjectivesPanel.Instance.SetKillemAllComplete();
 
         if (CheckGameWin() == false)
         {
-            GameUI.Instance.ShowInGameMessage("Does it taste good ?\nNext: Secure project data\nFind the purple icons on the map", 4f);
+            GameUI.Instance.ShowInGameMessage("Does it taste good ?", 4f);
+        }
+    }
+
+    public void ReportExitClear()
+    {
+        Debug.Log("[Game] (ReportExitClear)");
+
+        _exitClear = true;
+
+        ObjectivesPanel.Instance.SetFindExitComplete();
+
+        if (CheckGameWin() == false)
+        {
+            Game.Instance.ChangeStateToGameOver();
         }
     }
 
     bool CheckGameWin()
     {
-        if (_allEnemiesKilled && _allMissionPickupsCompleted)
+        if (_allEnemiesKilled && _allMissionPickupsCompleted && _exitClear)
         {
             Debug.Log("[Game] ALL MISSIONS COMPLETED !! ");
             ChangeStateToWin();

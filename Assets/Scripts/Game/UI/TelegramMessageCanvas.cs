@@ -59,7 +59,6 @@ public class TelegramMessageCanvas : MonoBehaviour
 
     IEnumerator FadeOut()
     {
-        Debug.Log("[TMC] FadeOut)...");
         float time = 0;
 
         while (time < _fadeInOutDuration)
@@ -72,8 +71,6 @@ public class TelegramMessageCanvas : MonoBehaviour
         }
 
         OnFadeOutComplete();
-
-        Debug.Log("[TMC] ...FadeOut)");
     }
 
     public virtual void OnFadeOutComplete() 

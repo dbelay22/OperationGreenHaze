@@ -82,6 +82,8 @@ public class BoomBox: MonoBehaviour
 
         StartCoroutine(HideTargetDelayed(_timeToDissapear));
 
+        BroadcastMessage("OnBoomBoxExplosion", SendMessageOptions.DontRequireReceiver);
+
         // bye
         StartCoroutine(AutoDestroy());
     }
@@ -115,34 +117,9 @@ public class BoomBox: MonoBehaviour
             else if (collider.CompareTag(Tags.PLAYER_TAG))
             {
                 ProcessPlayerDamage(collider);
-                //shouldBendTime = true;
             }
-            /*
-            else
-            {
-                Debug.Log($"[BoomBox] (ProcessExplosionDamage) object {collider.name} affected by explosion");
-            } 
-            */
         }
-
-        /*
-        if (shouldBendTime)
-        {
-            StartCoroutine(TimeBend());
-        } 
-        */
     }
-
-    /*
-    IEnumerator TimeBend()
-    {
-        Time.timeScale = 0.11f;
-
-        yield return new WaitForSeconds(0.11f);
-
-        Time.timeScale = 1f;
-    }
-    */
 
     void ProcessPlayerDamage(Collider collider)
     {
