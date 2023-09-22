@@ -66,7 +66,7 @@ public class MissionPickups : MonoBehaviour
                 {
                     _objectivesCompletedCount++;
 
-                    GameUI.Instance.ShowInGameMessage($"GOOD JOB, ITEM {_objectivesCompletedCount}/{_objectivesCompleted.Count} IS SAFE", 3f);
+                    GameUI.Instance.ShowInGameMessage($"Item {_objectivesCompletedCount}/{_objectivesCompleted.Count} is safe, find the next one.", 4f);
                 }
             }
         }

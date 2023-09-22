@@ -93,10 +93,7 @@ public class Game : MonoBehaviour
 
         ObjectivesPanel.Instance.SetPickupDataComplete();
 
-        if (CheckGameWin() == false)
-        {
-            GameUI.Instance.ShowInGameMessage("Good job! Project data is now secure", 4f);
-        }        
+        ShowObjectiveCompletedMessage();   
     }
 
     public void ReportAllEnemiesKilled()
@@ -107,9 +104,14 @@ public class Game : MonoBehaviour
 
         ObjectivesPanel.Instance.SetKillemAllComplete();
 
+        ShowObjectiveCompletedMessage();
+    }
+
+    void ShowObjectiveCompletedMessage()
+    {
         if (CheckGameWin() == false)
         {
-            GameUI.Instance.ShowInGameMessage("Does it taste good ? Objective Completed", 4f);
+            GameUI.Instance.ShowInGameMessage("Objective Completed", 4f);
         }
     }
 
