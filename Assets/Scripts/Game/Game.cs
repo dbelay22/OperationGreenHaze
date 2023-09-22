@@ -101,7 +101,7 @@ public class Game : MonoBehaviour
 
         if (CheckGameWin() == false)
         {
-            GameUI.Instance.ShowInGameMessage("Does it taste good ?", 4f);
+            GameUI.Instance.ShowInGameMessage("Does it taste good ? Objective Completed", 4f);
         }
     }
 
