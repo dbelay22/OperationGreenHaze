@@ -494,7 +494,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5393215578589016641
 Transform:
   m_ObjectHideFlags: 0
@@ -999,6 +999,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cameraShake: {fileID: 531321455166961345}
   _pickupSFX: {fileID: 8300000, guid: 60195966134dee34d9b12a1e7bfb5829, type: 3}
+  _missionPickupSFX: {fileID: 0}
   _errorSFX: {fileID: 8300000, guid: 4d655304a635f57478081732ac3e8b63, type: 3}
 --- !u!114 &3030554342607450753
 MonoBehaviour:
