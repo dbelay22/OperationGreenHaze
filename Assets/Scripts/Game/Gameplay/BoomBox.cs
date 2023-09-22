@@ -5,7 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class BoomBox: MonoBehaviour
 {
-    [SerializeField] GameObject _object;
+    [Header("Target object")]
+    [SerializeField] GameObject _target;
+    [SerializeField] float _timeToDissapear = 0.5f;
 
     [Header("Explosion")]
     [SerializeField] GameObject _explosionVFX;
@@ -22,9 +24,9 @@ public class BoomBox: MonoBehaviour
     
     void Start()
     {
-        if (_object == null)
+        if (_target == null)
         {
-            Debug.LogError("[BoomBox] (Start) object is not set");
+            Debug.LogError("[BoomBox] (Start) target is not set");
             return;
         }
 
@@ -50,7 +52,7 @@ public class BoomBox: MonoBehaviour
 
     public void BoomNow()
     {
-        if (_object == null)
+        if (_target == null)
         {
             Debug.LogError("[BoomBox] (BoomNow) object is not set");
             return;
@@ -64,9 +66,7 @@ public class BoomBox: MonoBehaviour
 
         // deactivate box collider
         BoxCollider collider = GetComponent<BoxCollider>();
-        collider.enabled = false;
-
-        _object.SetActive(false);
+        collider.enabled = false;        
 
         ProcessExplosionDamage(transform.position, _damageRadius);
 
@@ -80,8 +80,17 @@ public class BoomBox: MonoBehaviour
         Instantiate(_fireAndSmokeVFX, transform);
         _fireZoneTrigger.SetActive(true);
 
+        StartCoroutine(HideTargetDelayed(_timeToDissapear));
+
         // bye
         StartCoroutine(AutoDestroy());
+    }
+
+    IEnumerator HideTargetDelayed(float time)
+    {
+        yield return new WaitForSeconds(time);
+
+        _target.SetActive(false);
     }
 
     void ProcessExplosionDamage(Vector3 center, float radius)
@@ -189,7 +198,7 @@ public class BoomBox: MonoBehaviour
 
         _fireZoneTrigger.SetActive(false);
 
-        Destroy(_object);
+        Destroy(_target);
 
         Destroy(gameObject);
     }
