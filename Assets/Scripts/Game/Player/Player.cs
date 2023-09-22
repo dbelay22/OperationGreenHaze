@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
 
     [Header("SFX")]
     [SerializeField] AudioClip _pickupSFX;
+    [SerializeField] AudioClip _missionPickupSFX;
     [SerializeField] AudioClip _errorSFX;   
 
     Ammo _ammo;
@@ -93,7 +94,7 @@ public class Player : MonoBehaviour
         if (isMissionPickup)
         {
             // sound!
-            PlayAudioClip(_pickupSFX);
+            PlayAudioClip(_missionPickupSFX, true);
 
             MissionPickups.Instance.OnMissionItemPickup(trigger);
 
@@ -182,11 +183,18 @@ public class Player : MonoBehaviour
 
     #endregion
 
-    bool PlayAudioClip(AudioClip clip)
+    bool PlayAudioClip(AudioClip clip, bool forcePlay = false)
     {
         if (_audioSource.isPlaying)
         {
-            return false;
+            if (forcePlay == false)
+            {
+                return false;
+            }
+            else
+            {
+                _audioSource.Stop();
+            }            
         }
 
         _audioSource.PlayOneShot(clip);
