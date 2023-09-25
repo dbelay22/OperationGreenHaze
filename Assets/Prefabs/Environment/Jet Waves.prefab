@@ -124,7 +124,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -230,8 +230,8 @@ MonoBehaviour:
     m_Events:
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: Director, Assembly-CSharp
+        - m_Target: {fileID: 7712905486533860791}
+          m_TargetAssemblyTypeName: JetWaves, Assembly-CSharp
           m_MethodName: PlaySirenSFX
           m_Mode: 1
           m_Arguments:
@@ -244,8 +244,8 @@ MonoBehaviour:
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: Director, Assembly-CSharp
+        - m_Target: {fileID: 7712905486533860791}
+          m_TargetAssemblyTypeName: JetWaves, Assembly-CSharp
           m_MethodName: PlayExplosionSFX
           m_Mode: 1
           m_Arguments:
@@ -321,6 +321,11 @@ PrefabInstance:
     - target: {fileID: 5225857505257780483, guid: 7a78a7fbdcaa5d54b8538ab49a603248,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5225857505257780484, guid: 7a78a7fbdcaa5d54b8538ab49a603248,
+        type: 3}
+      propertyPath: reverbZoneMixCustomCurve.m_Curve.Array.data[0].value
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5225857505257780485, guid: 7a78a7fbdcaa5d54b8538ab49a603248,
@@ -414,6 +419,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5225857505257780484, guid: 7a78a7fbdcaa5d54b8538ab49a603248,
+        type: 3}
+      propertyPath: reverbZoneMixCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5225857505257780485, guid: 7a78a7fbdcaa5d54b8538ab49a603248,
         type: 3}
       propertyPath: m_SceneBindings.Array.data[0].key
@@ -503,6 +513,11 @@ PrefabInstance:
     - target: {fileID: 5225857505257780483, guid: 7a78a7fbdcaa5d54b8538ab49a603248,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5225857505257780484, guid: 7a78a7fbdcaa5d54b8538ab49a603248,
+        type: 3}
+      propertyPath: reverbZoneMixCustomCurve.m_Curve.Array.data[0].value
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5225857505257780485, guid: 7a78a7fbdcaa5d54b8538ab49a603248,
@@ -599,6 +614,11 @@ PrefabInstance:
     - target: {fileID: 5225857505257780484, guid: 7a78a7fbdcaa5d54b8538ab49a603248,
         type: 3}
       propertyPath: Loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5225857505257780484, guid: 7a78a7fbdcaa5d54b8538ab49a603248,
+        type: 3}
+      propertyPath: reverbZoneMixCustomCurve.m_Curve.Array.data[0].value
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5225857505257780485, guid: 7a78a7fbdcaa5d54b8538ab49a603248,
