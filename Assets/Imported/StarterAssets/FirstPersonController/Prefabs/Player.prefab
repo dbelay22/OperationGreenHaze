@@ -47,18 +47,18 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.3
+  m_Volume: 0.17
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 256
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
+  MaxDistance: 10
+  Pan2D: 0.22
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -1179,8 +1179,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4208746825564624711, guid: bdc71fe84784acd43b8e3816e10eb765,
         type: 3}
+      propertyPath: Pan2D
+      value: 0.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 4208746825564624711, guid: bdc71fe84784acd43b8e3816e10eb765,
+        type: 3}
+      propertyPath: Priority
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4208746825564624711, guid: bdc71fe84784acd43b8e3816e10eb765,
+        type: 3}
       propertyPath: m_Volume
-      value: 0.3
+      value: 0.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 4208746825564624711, guid: bdc71fe84784acd43b8e3816e10eb765,
+        type: 3}
+      propertyPath: MaxDistance
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4208746825564624711, guid: bdc71fe84784acd43b8e3816e10eb765,
+        type: 3}
+      propertyPath: rolloffMode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4208746825564624711, guid: bdc71fe84784acd43b8e3816e10eb765,
         type: 3}
@@ -1305,8 +1325,24 @@ PrefabInstance:
       value: 0.44
       objectReference: {fileID: 0}
     - target: {fileID: 1748713565, guid: a59b0609ea2fa5f44823a30f5c7ce800, type: 3}
+      propertyPath: Pan2D
+      value: 0.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 1748713565, guid: a59b0609ea2fa5f44823a30f5c7ce800, type: 3}
+      propertyPath: Priority
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1748713565, guid: a59b0609ea2fa5f44823a30f5c7ce800, type: 3}
       propertyPath: m_Volume
-      value: 0.2
+      value: 0.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 1748713565, guid: a59b0609ea2fa5f44823a30f5c7ce800, type: 3}
+      propertyPath: MaxDistance
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1748713565, guid: a59b0609ea2fa5f44823a30f5c7ce800, type: 3}
+      propertyPath: rolloffMode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1748713565, guid: a59b0609ea2fa5f44823a30f5c7ce800, type: 3}
       propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
