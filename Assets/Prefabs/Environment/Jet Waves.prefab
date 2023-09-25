@@ -50,7 +50,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.33
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -325,6 +325,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5225857505257780484, guid: 7a78a7fbdcaa5d54b8538ab49a603248,
         type: 3}
+      propertyPath: MaxDistance
+      value: 700
+      objectReference: {fileID: 0}
+    - target: {fileID: 5225857505257780484, guid: 7a78a7fbdcaa5d54b8538ab49a603248,
+        type: 3}
+      propertyPath: rolloffMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5225857505257780484, guid: 7a78a7fbdcaa5d54b8538ab49a603248,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5225857505257780484, guid: 7a78a7fbdcaa5d54b8538ab49a603248,
+        type: 3}
       propertyPath: reverbZoneMixCustomCurve.m_Curve.Array.data[0].value
       value: 0
       objectReference: {fileID: 0}
@@ -421,6 +436,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5225857505257780484, guid: 7a78a7fbdcaa5d54b8538ab49a603248,
         type: 3}
+      propertyPath: MaxDistance
+      value: 700
+      objectReference: {fileID: 0}
+    - target: {fileID: 5225857505257780484, guid: 7a78a7fbdcaa5d54b8538ab49a603248,
+        type: 3}
+      propertyPath: rolloffMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5225857505257780484, guid: 7a78a7fbdcaa5d54b8538ab49a603248,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5225857505257780484, guid: 7a78a7fbdcaa5d54b8538ab49a603248,
+        type: 3}
       propertyPath: reverbZoneMixCustomCurve.m_Curve.Array.data[0].value
       value: 0
       objectReference: {fileID: 0}
@@ -514,6 +544,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5225857505257780484, guid: 7a78a7fbdcaa5d54b8538ab49a603248,
+        type: 3}
+      propertyPath: MaxDistance
+      value: 700
+      objectReference: {fileID: 0}
+    - target: {fileID: 5225857505257780484, guid: 7a78a7fbdcaa5d54b8538ab49a603248,
+        type: 3}
+      propertyPath: rolloffMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5225857505257780484, guid: 7a78a7fbdcaa5d54b8538ab49a603248,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5225857505257780484, guid: 7a78a7fbdcaa5d54b8538ab49a603248,
         type: 3}
@@ -615,6 +660,21 @@ PrefabInstance:
         type: 3}
       propertyPath: Loop
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5225857505257780484, guid: 7a78a7fbdcaa5d54b8538ab49a603248,
+        type: 3}
+      propertyPath: MaxDistance
+      value: 700
+      objectReference: {fileID: 0}
+    - target: {fileID: 5225857505257780484, guid: 7a78a7fbdcaa5d54b8538ab49a603248,
+        type: 3}
+      propertyPath: rolloffMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5225857505257780484, guid: 7a78a7fbdcaa5d54b8538ab49a603248,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5225857505257780484, guid: 7a78a7fbdcaa5d54b8538ab49a603248,
         type: 3}
