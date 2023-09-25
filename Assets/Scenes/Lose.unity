@@ -235,6 +235,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4268806862878180131, guid: ef8945843775fcd41aea9e95e6ebc283,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4268806862878180133, guid: ef8945843775fcd41aea9e95e6ebc283,
         type: 3}
       propertyPath: m_Name
@@ -245,11 +250,11 @@ PrefabInstance:
       propertyPath: m_text
       value: 'Agent Roy
 
-        
+
 
         Your legacy lives on.
 
-        
+
 
         R.I.P.'
       objectReference: {fileID: 0}
