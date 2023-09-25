@@ -325,6 +325,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5225857505257780484, guid: 7a78a7fbdcaa5d54b8538ab49a603248,
         type: 3}
+      propertyPath: Priority
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5225857505257780484, guid: 7a78a7fbdcaa5d54b8538ab49a603248,
+        type: 3}
       propertyPath: MaxDistance
       value: 700
       objectReference: {fileID: 0}
@@ -436,6 +441,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5225857505257780484, guid: 7a78a7fbdcaa5d54b8538ab49a603248,
         type: 3}
+      propertyPath: Priority
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5225857505257780484, guid: 7a78a7fbdcaa5d54b8538ab49a603248,
+        type: 3}
       propertyPath: MaxDistance
       value: 700
       objectReference: {fileID: 0}
@@ -543,6 +553,11 @@ PrefabInstance:
     - target: {fileID: 5225857505257780483, guid: 7a78a7fbdcaa5d54b8538ab49a603248,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5225857505257780484, guid: 7a78a7fbdcaa5d54b8538ab49a603248,
+        type: 3}
+      propertyPath: Priority
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5225857505257780484, guid: 7a78a7fbdcaa5d54b8538ab49a603248,
@@ -659,6 +674,11 @@ PrefabInstance:
     - target: {fileID: 5225857505257780484, guid: 7a78a7fbdcaa5d54b8538ab49a603248,
         type: 3}
       propertyPath: Loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5225857505257780484, guid: 7a78a7fbdcaa5d54b8538ab49a603248,
+        type: 3}
+      propertyPath: Priority
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5225857505257780484, guid: 7a78a7fbdcaa5d54b8538ab49a603248,
