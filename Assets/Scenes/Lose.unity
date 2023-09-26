@@ -287,7 +287,7 @@ MonoBehaviour:
   _fadeInOutDuration: 3
   _telegramText: {fileID: 51472111}
   _pressKeyText: {fileID: 51472110}
-  _bgMusic: {fileID: 8300000, guid: 54e9314942090da4ab1c0a455fad8b0e, type: 3}
+  _bgMusic: {fileID: 0}
 --- !u!114 &51472110 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4268806864832699247, guid: ef8945843775fcd41aea9e95e6ebc283,

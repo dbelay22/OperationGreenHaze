@@ -24,9 +24,13 @@ public class TelegramMessageCanvas : MonoBehaviour
 
         _keyWasPressed = false;
 
-        // play helicopter sfx
+        // play sfx
         _audioSource = GetComponent<AudioSource>();
-        _audioSource.PlayOneShot(_bgMusic);
+
+        if (_bgMusic != null)
+        {
+            _audioSource.PlayOneShot(_bgMusic);
+        }
 
         _typewriterEffect = GetComponentInChildren<TypewriterEffect>();
     }
@@ -44,8 +48,6 @@ public class TelegramMessageCanvas : MonoBehaviour
         _keyWasPressed = true;
 
         _typewriterEffect.Flush();
-
-        //StopAllCoroutines();
 
         StartFadeOut();
     }
@@ -75,7 +77,6 @@ public class TelegramMessageCanvas : MonoBehaviour
 
     public virtual void OnFadeOutComplete() 
     {
-        Debug.Log("[TMC] OnFadeOutComplete)...");
     }
 
 }
