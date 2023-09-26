@@ -10,6 +10,28 @@ public class DebugShortcuts : MonoBehaviour
             return;
         }
 
+        ProcessDebugShortcuts();
+    }
+
+    void ProcessDebugShortcuts()
+    {
+        // + Volume
+        if (Input.GetKeyDown(KeyCode.KeypadPlus))
+        {
+            AudioListener.volume += 0.1f;
+            
+            Debug.Log($"[DebugShortcuts] AudioListerner volume now: {AudioListener.volume}");
+        }
+
+        // - Volume
+        if (Input.GetKeyDown(KeyCode.KeypadMinus))
+        {
+            AudioListener.volume -= 0.1f;
+
+            Debug.Log($"[DebugShortcuts] AudioListerner volume now: {AudioListener.volume}");
+        }
+
+
         // [G] GOD Mode
         if (Input.GetKeyDown(KeyCode.G))
         {
@@ -47,6 +69,7 @@ public class DebugShortcuts : MonoBehaviour
         {
             SceneHelper.ReloadCurrentScene();
         }
+        
     }
         
 }
