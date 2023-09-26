@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Light))]
+[RequireComponent(typeof(AudioSource))]
 public class Flashlight : MonoBehaviour
 {
     [Header("Model")]
@@ -24,9 +25,12 @@ public class Flashlight : MonoBehaviour
     float _minIntensityToBlind;
     bool _flashlightPickedUp = false;
 
+    AudioSource _audioSource;
+
     void Start()
     {
         _light = GetComponent<Light>();
+        _audioSource = GetComponent<AudioSource>();
 
         _flashlightPickedUp = false;
         
@@ -55,7 +59,13 @@ public class Flashlight : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F))
         {
             ToggleOnOff();
+            PlaySFX();
         }
+    }
+
+    void PlaySFX()
+    {
+        _audioSource.Play();
     }
 
     void ToggleOnOff()
