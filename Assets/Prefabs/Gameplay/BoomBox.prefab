@@ -47,11 +47,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0147dabbc26fac3419ea06d8b17b14d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _object: {fileID: 0}
+  _target: {fileID: 0}
+  _timeToDissapear: 0.5
   _explosionVFX: {fileID: 1121192042590650, guid: 8bb8571d55847ae4a8dfac69b0b76e36,
     type: 3}
   _explosionSFX: {fileID: 8300000, guid: 80745bf1482152445a98fb7c03d90844, type: 3}
-  _durationSeconds: 1
   _damageRadius: 3.5
   _fireAndSmokeVFX: {fileID: 1972207730512856, guid: c96c4179f311469448ed6b0996802ea3,
     type: 3}
@@ -65,7 +65,8 @@ AudioSource:
   m_GameObject: {fileID: 3991991700096660462}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -5799029158802785967, guid: 13d1b11299e98ea41970b6a4efd17cfb,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 0.33
