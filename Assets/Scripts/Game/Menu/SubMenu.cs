@@ -9,7 +9,7 @@ public class SubMenu : MonoBehaviour
     void Update()
     {
         // [Esc] Back to main menu
-        if (UnityEngine.Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             gameObject.SetActive(false);
             _mainMenu.SetActive(true);
