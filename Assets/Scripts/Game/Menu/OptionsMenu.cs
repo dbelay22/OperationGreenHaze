@@ -4,15 +4,21 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 
+[RequireComponent(typeof(AudioSource))]
 public class OptionsMenu : MonoBehaviour
 {
+    [SerializeField] AudioClip _sfxSample;
+
     [Header("Slider range [-80db, 0db]")]
     [SerializeField] Slider _musicVolumeSlider;
     [SerializeField] Slider _sfxVolumeSlider;
-        
+
+    AudioSource _audioSource;
 
     void Start()
     {
+        _audioSource = GetComponent<AudioSource>();
+
         _musicVolumeSlider.value = PlayerSettings.Instance.LoadMusicSetting();
         _sfxVolumeSlider.value = PlayerSettings.Instance.LoadSFXSetting();
     }
@@ -25,7 +31,7 @@ public class OptionsMenu : MonoBehaviour
 
         // mixer
         PlayerSettings.Instance.SetAudioMixerMusicVolume(newVolume);
-
+        
         // persist
         PlayerSettings.Instance.SaveMusicSetting(newVolume);
     }
@@ -40,6 +46,11 @@ public class OptionsMenu : MonoBehaviour
         if (volumeChanged == false)
         {
             return;
+        }
+
+        if (!_audioSource.isPlaying)
+        {
+            _audioSource.PlayOneShot(_sfxSample);
         }
 
         // persist

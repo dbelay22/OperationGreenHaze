@@ -3,19 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
-[RequireComponent(typeof(AudioSource))]
+
 public class PlayerSettings : MonoBehaviour
 {
     [SerializeField] AudioMixer _audioMixer;
-    [SerializeField] AudioClip _sfxSample;
 
     const float DEFAULT_MUSIC_VOLUME = 0;
     const float DEFAULT_SFX_VOLUME = 0f;
 
     const string PERSISTANCE_MUSIC_KEY = "music-volume";
     const string PERSISTANCE_SFX_KEY = "sfx-volume";
-
-    AudioSource _audioSource;
 
     #region Instance
 
@@ -32,8 +29,6 @@ public class PlayerSettings : MonoBehaviour
 
     void Start()
     {
-        _audioSource = GetComponent<AudioSource>();
-
         ApplyPlayerSettingsAudio();
     }
 
@@ -62,11 +57,6 @@ public class PlayerSettings : MonoBehaviour
 
         // SFX on Audio Mixer
         _audioMixer.SetFloat("SFXVolume", volume);
-
-        if (!_audioSource.isPlaying)
-        {
-            _audioSource.PlayOneShot(_sfxSample);
-        }
 
         return true;
     }
