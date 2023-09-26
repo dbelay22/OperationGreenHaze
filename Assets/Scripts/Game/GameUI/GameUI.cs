@@ -242,8 +242,14 @@ public class GameUI : MonoBehaviour
     public void UpdateAmmoAmount(int amount)
     {
         //Debug.Log($"[GameUI] (UpdateAmmoAmount) amount: {amount}");
-
+        if (_ammoPanel == null)
+        {
+            Debug.LogError($"[GameUI] UpdateAmmoAmount) - Error: _ammoPanel is null - amount:{amount}");
+            return;
+        }
+        
         _ammoPanel.SetActive(true);
+        
         _ammoLeftLabel.text = amount.ToString();
     }
 
