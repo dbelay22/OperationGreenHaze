@@ -25,6 +25,8 @@ public class Player : MonoBehaviour
 
     int _flashlightAsWeaponMessageCount = 0;
 
+    Animator _animator;    
+
     #region Instance
 
     private static Player _instance;
@@ -42,6 +44,9 @@ public class Player : MonoBehaviour
     void Start()
     {
         _flashlightAsWeaponMessageCount = 0;
+
+        _animator = GetComponentInChildren<Animator>();
+        _animator.enabled = false;
 
         _ammo = GetComponent<Ammo>();
 
@@ -229,9 +234,8 @@ public class Player : MonoBehaviour
     {
         GameUI.Instance.ShowPlayerDamageVFX();
 
-               
-        //transform.Rotate(new Vector3(0, 90, 0));
-
+        _animator.enabled = true;
+        _animator.SetTrigger("PlayerDeath");
         
         GameplayIsOver();
 
