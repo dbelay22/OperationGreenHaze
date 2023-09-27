@@ -121,6 +121,8 @@ public class Weapon : MonoBehaviour
         }
         else
         {
+            _player.OnWeaponZoomIn();
+
             // Go FOV zoom
             ZoomIn();
         }

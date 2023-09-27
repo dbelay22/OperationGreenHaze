@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Ammo))]
@@ -122,6 +123,14 @@ public class Player : MonoBehaviour
         }
 
         return isFlashlight;
+    }
+
+    public void OnWeaponZoomIn()
+    {
+        if (_flashlight != null && _flashlight.IsPickedUp && _flashlight.IsOn())
+        {
+            _flashlight.TurnOff();
+        }
     }
 
     bool ProcessMedkitPickup(GameObject trigger)

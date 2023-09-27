@@ -23,7 +23,10 @@ public class Flashlight : MonoBehaviour
 
     bool _isOn = false;
     float _minIntensityToBlind;
-    bool _flashlightPickedUp = false;
+    
+    bool _isPickedUp = false;
+
+    public bool IsPickedUp { get { return _isPickedUp; } }
 
     AudioSource _audioSource;
 
@@ -32,7 +35,7 @@ public class Flashlight : MonoBehaviour
         _light = GetComponent<Light>();
         _audioSource = GetComponent<AudioSource>();
 
-        _flashlightPickedUp = false;
+        _isPickedUp = false;
         
         TurnOff();
 
@@ -45,7 +48,7 @@ public class Flashlight : MonoBehaviour
         _light.enabled = _isOn;
         _prefab.SetActive(_isOn);
 
-        if (_flashlightPickedUp == false)
+        if (_isPickedUp == false)
         {
             return;
         }
@@ -70,7 +73,7 @@ public class Flashlight : MonoBehaviour
 
     void ToggleOnOff()
     {
-        if (_flashlightPickedUp == false)
+        if (_isPickedUp == false)
         {
             return;
         }
@@ -131,7 +134,7 @@ public class Flashlight : MonoBehaviour
         // show in-game message
         GameUI.Instance.ShowInGameMessage("Press 'F' to toggle Flashlight", _inGameMessageLifetime);
 
-        _flashlightPickedUp = true;
+        _isPickedUp = true;
         _timeOfPickup = Time.time;
 
         _isOn = true;
