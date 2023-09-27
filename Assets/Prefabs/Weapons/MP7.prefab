@@ -2335,6 +2335,7 @@ GameObject:
   - component: {fileID: 8916549146485933457}
   - component: {fileID: 1434361318}
   - component: {fileID: 1748713565}
+  - component: {fileID: 2345936088747804412}
   m_Layer: 7
   m_Name: MP7
   m_TagString: Untagged
@@ -2531,6 +2532,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!65 &2345936088747804412
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5613363016151971714}
+  m_Material: {fileID: 13400000, guid: 661cf948f0ef2e54d87230b796388bc1, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 6, z: 7.1}
+  m_Center: {x: -0.16, y: -1.03, z: -1.12}
 --- !u!1 &6090122223651337034
 GameObject:
   m_ObjectHideFlags: 0
