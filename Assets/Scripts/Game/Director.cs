@@ -147,6 +147,8 @@ public class Director : MonoBehaviour
 
     public void OnEvent(DirectorEvents directorEvent, object eventValue = null)
     {
+        //Debug.Log($"[Director] OnEvent) [{directorEvent}]");
+
         switch (directorEvent)
         {
             case DirectorEvents.Enemy_Melee_Attack:

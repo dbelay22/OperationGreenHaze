@@ -253,10 +253,18 @@ public class GameUI : MonoBehaviour
         _ammoLeftLabel.text = amount.ToString();
     }
 
-    public void UpdateHealthAmmount(int amount)
+    public void UpdateHealthAmmount(int healthAmount)
     {
         _healthPanel.SetActive(true);
-        _healthLabel.text = amount.ToString();
+
+        string healthAmountString = healthAmount.ToString();
+
+        if (_healthLabel.text.Equals(healthAmountString))
+        {
+            return;
+        }
+
+        _healthLabel.text = healthAmountString;
     }
 
     public void ShowPlayerDamageVFX()
@@ -285,15 +293,20 @@ public class GameUI : MonoBehaviour
         }
     }
 
-    public void ShowInGameMessage(string message, float lifetime)
+    public bool ShowInGameMessage(string message, float lifetime)
     {
-        //Debug.Log($"[GameUI] (ShowInGameMessage) showing message: {message}, lifetime: {lifetime}");
+        if (_inGameMessagesCanvas.activeInHierarchy == true && _textInGameMessage.text.Equals(message))
+        {
+            return false;
+        }
 
         _textInGameMessage.text = message;
 
         _inGameMessagesCanvas.SetActive(true);
 
         _hideMessagesCoroutine = StartCoroutine(HideMessagesDelayed(lifetime));
+
+        return true;
     }
 
     IEnumerator HideMessagesDelayed(float time)

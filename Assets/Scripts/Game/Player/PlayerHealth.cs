@@ -56,7 +56,7 @@ public class PlayerHealth : MonoBehaviour
         if (isToxicZone)
         {
             // take damage
-            HealthChange(0 - _toxicZoneDamage);
+            HealthUpdate(0 - _toxicZoneDamage);
 
             // play TOS
             _audioSource.PlayOneShot(_tosSFX);
@@ -70,14 +70,14 @@ public class PlayerHealth : MonoBehaviour
         if (isFireZone)
         {
             // take damage
-            HealthChange(0 - _fireZoneDamage);
+            HealthUpdate(0 - _fireZoneDamage);
 
             // play sfx
             _audioSource.PlayOneShot(_hit2SFX);
         }
     }
 
-    public void Damage(int amount)
+    protected internal void Damage(int amount)
     {
         if (!Game.Instance.IsGameplayOn())
         {
@@ -85,7 +85,7 @@ public class PlayerHealth : MonoBehaviour
         }
 
         // take damage
-        HealthChange(0 - amount);
+        HealthUpdate(0 - amount);
 
         PlayHitSFX();
 
@@ -102,7 +102,7 @@ public class PlayerHealth : MonoBehaviour
         }
 
         // more health!
-        HealthChange(amount);
+        HealthUpdate(amount);
     }
 
     void PlayHitSFX()
@@ -118,7 +118,7 @@ public class PlayerHealth : MonoBehaviour
         }        
     }
 
-    void HealthChange(int amount)
+    void HealthUpdate(int amount)
     {
         if (Game.Instance.IsGodModeOn)
         {
@@ -134,7 +134,7 @@ public class PlayerHealth : MonoBehaviour
         _currentHealth = clampedHealth;
 
         // update UI
-        GameUI.Instance.UpdateHealthAmmount(clampedHealth);        
+        GameUI.Instance.UpdateHealthAmmount(clampedHealth);
 
         if (_currentHealth <= 0)
         {

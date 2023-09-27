@@ -61,7 +61,6 @@ public class NpcAI : MonoBehaviour
     Animator _animator;
 
     Player _player;
-    PlayerHealth _playerHealth;
 
     AudioSource _audioSource;
 
@@ -87,7 +86,6 @@ public class NpcAI : MonoBehaviour
         _animator = GetComponent<Animator>();
 
         _player = _targetPlayer.GetComponent<Player>();
-        _playerHealth = _targetPlayer.GetComponent<PlayerHealth>();
 
         _audioSource = GetComponent<AudioSource>();
 
@@ -396,9 +394,7 @@ public class NpcAI : MonoBehaviour
             return;
         }
 
-        //Debug.Log("[NPC] I'm eating your brain now jojo");
-        _playerHealth.Damage(EatBrainDamage);
-
+        _player.Damage(EatBrainDamage);
 
         float rndHit = Random.value;
         if (rndHit < 0.3f)

@@ -23,6 +23,8 @@ public class Player : MonoBehaviour
 
     AudioSource _audioSource;
 
+    int _flashlightAsWeaponMessageCount = 0;
+
     #region Instance
 
     private static Player _instance;
@@ -39,6 +41,8 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        _flashlightAsWeaponMessageCount = 0;
+
         _ammo = GetComponent<Ammo>();
 
         _playerHealth = GetComponent<PlayerHealth>();
@@ -224,6 +228,10 @@ public class Player : MonoBehaviour
     void OnPlayerDeath()
     {
         GameUI.Instance.ShowPlayerDamageVFX();
+
+               
+        //transform.Rotate(new Vector3(0, 90, 0));
+
         
         GameplayIsOver();
 
@@ -252,4 +260,23 @@ public class Player : MonoBehaviour
         return _playerHealth.CurrentHealth;
     }
 
+    public void Damage(int amount)
+    {
+        _playerHealth.Damage(amount);
+                
+        if (_flashlightAsWeaponMessageCount < 3)
+        {
+            bool canUseFlashlightToDefend = _flashlight.IsPickedUp && _flashlight.IsOnAndCanBlind() == false;
+
+            if (canUseFlashlightToDefend && _ammo.GetAllAmmoLeftCount() < 1)
+            {
+                bool messageShown = GameUI.Instance.ShowInGameMessage("Use your flashlight to blind enemies! Press 'F' key.", 3);
+
+                if (messageShown)
+                {
+                    _flashlightAsWeaponMessageCount++;
+                }                
+            }
+        }
+    }
 }

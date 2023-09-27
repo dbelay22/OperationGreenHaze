@@ -121,4 +121,16 @@ public class Ammo : MonoBehaviour
         return ammoLeft;
     }
 
+    public int GetAllAmmoLeftCount()
+    {
+        int ammoLeft = 0;
+
+        foreach (AmmoSlot slot in _ammoSlots)
+        {
+            ammoLeft += slot.ammoAmount;
+        }
+
+        return ammoLeft;
+    }
+
 }
