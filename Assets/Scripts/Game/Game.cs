@@ -165,7 +165,7 @@ public class Game : MonoBehaviour
 
     IEnumerator WinDelayed()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(3f);
 
         _stateMachine.TransitionToState(new WinState());
 

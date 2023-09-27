@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7923790646461462490}
   - component: {fileID: 8691229948402817868}
   - component: {fileID: 7343505714286114304}
-  m_Layer: 7
+  m_Layer: 2
   m_Name: ReverbTriggerContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
