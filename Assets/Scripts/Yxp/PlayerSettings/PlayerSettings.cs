@@ -8,8 +8,11 @@ public class PlayerSettings : MonoBehaviour
 {
     [SerializeField] AudioMixer _audioMixer;
 
-    const float DEFAULT_MUSIC_VOLUME = 0;
-    const float DEFAULT_SFX_VOLUME = 0f;
+    const float DEFAULT_MUSIC_VOLUME = -10f;
+    const float DEFAULT_SFX_VOLUME = -10f;
+
+    public const float MIN_VOLUME_DB = -80f;
+    public const float MAX_VOLUME_DB = 0f;
 
     const string PERSISTANCE_MUSIC_KEY = "music-volume";
     const string PERSISTANCE_SFX_KEY = "sfx-volume";
@@ -32,7 +35,7 @@ public class PlayerSettings : MonoBehaviour
         ApplyPlayerSettingsAudio();
     }
 
-    void ApplyPlayerSettingsAudio()
+    public void ApplyPlayerSettingsAudio()
     {
         SetAudioMixerMusicVolume(LoadMusicSetting());
         SetAudioMixerSFXVolume(LoadSFXSetting());

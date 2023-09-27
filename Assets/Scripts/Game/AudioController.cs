@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class AudioController : MonoBehaviour
 {
-    [Header("BG Music AudioSource")]
-    [SerializeField] AudioSource _musicSource;
+    [Header("Ingame Music AudioSource")]
+    [SerializeField] AudioSource _ingameMusicSource;
 
     [Header("Audio Clips")]
     [SerializeField] AudioClip _gameOverMusic;
@@ -31,14 +31,22 @@ public class AudioController : MonoBehaviour
         SetAudioVolume(_audioIsOn);
     }
 
-    public void PlayBackgroundMusic()
+    public void GameplayStart()
     {
-        _musicSource.Play();
+        PlayerSettings.Instance.ApplyPlayerSettingsAudio();
+
+        _ingameMusicSource.Play();
     }
 
-    public void StopBackgroundMusic()
+    public void GameplayPause()
     {
-        _musicSource.Stop();
+        PlayerSettings.Instance.SetAudioMixerMusicVolume(PlayerSettings.MIN_VOLUME_DB);
+        PlayerSettings.Instance.SetAudioMixerSFXVolume(PlayerSettings.MIN_VOLUME_DB);
+    }
+
+    void StopBackgroundMusic()
+    {
+        _ingameMusicSource.Stop();
     }
 
     public void PlayWinMusic()
@@ -47,7 +55,7 @@ public class AudioController : MonoBehaviour
 
         if (_winMusic != null)
         {
-            _musicSource.PlayOneShot(_winMusic);
+            _ingameMusicSource.PlayOneShot(_winMusic);
         }        
     }
 
@@ -57,7 +65,7 @@ public class AudioController : MonoBehaviour
 
         if (_gameOverMusic != null)
         {
-            _musicSource.PlayOneShot(_gameOverMusic);
+            _ingameMusicSource.PlayOneShot(_gameOverMusic);
         }
     }
 

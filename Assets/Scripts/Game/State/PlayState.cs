@@ -18,7 +18,7 @@ public class PlayState : GameState
 
         GameUI.Instance.ShowGameplay();
 
-        AudioController.Instance.PlayBackgroundMusic();
+        AudioController.Instance.GameplayStart();
     }
 
     void LockCursor()
@@ -39,7 +39,7 @@ public class PlayState : GameState
 
         UnlockCursor();
 
-        AudioController.Instance.StopBackgroundMusic();
+        AudioController.Instance.GameplayPause();
     }
 
     public override void Update()

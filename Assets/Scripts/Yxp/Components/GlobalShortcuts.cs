@@ -10,7 +10,14 @@ namespace Yxp.Input
             // [Esc]ape
             if (UnityEngine.Input.GetKeyDown(KeyCode.Escape))
             {
-                Game.Instance.ChangeStateToPaused();
+                if (Game.Instance.IsGamePaused())
+                {
+                    Game.Instance.ResumeGame();
+                }
+                else
+                {
+                    Game.Instance.ChangeStateToPaused();
+                }                
             }
 
             // [M]ute sound
