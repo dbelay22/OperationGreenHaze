@@ -15,6 +15,7 @@ TagManager:
   - FireZone
   - MissionPickup
   - BoomBox
+  - PlayerSettings
   layers:
   - Default
   - TransparentFX

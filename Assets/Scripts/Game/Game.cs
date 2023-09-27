@@ -9,6 +9,9 @@ public class Game : MonoBehaviour
 {
     GameStateMachine _stateMachine = null;
 
+    [Header("PlayerSettings")]
+    [SerializeField] GameObject _playerSettingsPrefab;
+
     [Header("Player")]
     [SerializeField] Player _player;
 
@@ -52,8 +55,21 @@ public class Game : MonoBehaviour
         _allMissionPickupsCompleted = false;
         _exitClear = false;
 
+        CheckPlayerSettings();
+
         _stateMachine = new GameStateMachine();
         _stateMachine.TransitionToState(new PlayState());
+    }
+
+    void CheckPlayerSettings()
+    {
+#if UNITY_EDITOR
+        if (PlayerSettings.Instance == null)
+        {
+            Debug.LogWarning("[Game] Start) No player settings instance, creating one.");
+            Instantiate(_playerSettingsPrefab);
+        }
+#endif
     }
 
     void Update()
