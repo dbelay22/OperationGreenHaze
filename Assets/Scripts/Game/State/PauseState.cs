@@ -10,11 +10,11 @@ public class PauseState : GameState
 
     public override void EnterState()
     {
-        Debug.Log("*** PAUSE ***");
-
         Time.timeScale = 0;
 
-        GameUI.Instance.ShowPause();      
+        GameUI.Instance.ShowPause();
+
+        AudioController.Instance.GameplayPause();
     }      
 
     public override void ExitState()

@@ -10,8 +10,6 @@ public class PlayState : GameState
 
     public override void EnterState()
     {
-        Debug.Log("*** PLAY ***");
-
         Time.timeScale = 1;
         
         LockCursor();
@@ -35,11 +33,7 @@ public class PlayState : GameState
 
     public override void ExitState()
     {
-        Debug.Log("[PlayState] (ExitState) Unlocking cursor & stopping music");
-
-        UnlockCursor();
-
-        AudioController.Instance.GameplayPause();
+        UnlockCursor();        
     }
 
     public override void Update()
