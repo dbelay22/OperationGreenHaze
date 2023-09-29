@@ -234,12 +234,32 @@ public class Player : MonoBehaviour
     {
         GameUI.Instance.ShowPlayerDamageVFX();
 
-        _animator.enabled = true;
-        _animator.SetTrigger("PlayerDeath");
+        PlayDeathAnimation();
         
         GameplayIsOver();
 
         StartCoroutine(Game.Instance.TimeBend(0.2f, 1f));
+    }
+
+    void PlayDeathAnimation()
+    {
+        _animator.enabled = true;
+
+        // random death animation
+        float rndValue = UnityEngine.Random.value;
+
+        string animationTrigger = "PlayerDeathBack";
+        
+        if (rndValue < 0.34f)
+        {
+            animationTrigger = "PlayerDeathBackRight";
+        }
+        else if (rndValue < 0.67f)
+        {
+            animationTrigger = "PlayerDeathBackLeft";
+        }
+        
+        _animator.SetTrigger(animationTrigger);
     }
 
     public void GameplayIsOver()
