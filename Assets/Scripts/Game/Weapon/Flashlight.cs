@@ -7,12 +7,19 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class Flashlight : MonoBehaviour
 {
+    [System.Serializable]
+    private struct FlashlightDecay
+    {
+        public float light;
+        public float angle;
+    }
+
     [Header("Model")]
     [SerializeField] GameObject _prefab;
 
     [Header("Decay")]
-    [SerializeField] float _lightDecay = 0.2f;
-    [SerializeField] float _angleDecay = 0.2f;
+    [SerializeField] FlashlightDecay decayValues;
+
 
     [Header("In-game message")]
     [SerializeField] float _inGameMessageLifetime = 4f;
@@ -91,12 +98,12 @@ public class Flashlight : MonoBehaviour
 
     void DecreaseIntensity()
     {
-        _light.intensity -= Time.deltaTime * _lightDecay;
+        _light.intensity -= Time.deltaTime * decayValues.light;
     }
 
     void DecreaseAngle()
     {
-        float amount = Time.deltaTime * _angleDecay;
+        float amount = Time.deltaTime * decayValues.angle;
         
         if (amount < 0)
         {
