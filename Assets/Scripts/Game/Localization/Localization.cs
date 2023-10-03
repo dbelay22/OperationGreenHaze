@@ -13,7 +13,12 @@ public class Localization : MonoBehaviour
         public GameTextsData _gameTexts;
     }
 
-    [SerializeField] GameTextsByLanguage[] _gameTextsByLanguage;
+    [Header("Game Texts by Language")]
+    [SerializeField] List<GameTextsByLanguage> _gameTextsByLanguage;
+
+    [Header("Force Language")]
+    [SerializeField] bool _shouldForceGameTexts;
+    [SerializeField] GameTextsData _forcedGameTexts;
 
     SystemLanguage _currentSysLang;
 
@@ -39,26 +44,38 @@ public class Localization : MonoBehaviour
         _currentSysLang = Application.systemLanguage;
         Debug.Log($"[Localization] LoadTextsBySystemLanguage) sysLang:{_currentSysLang}");
 
-        _currentGameTexts = GetGameTexts(_currentSysLang);
-
-        if (_currentGameTexts == null)
+        if (_shouldForceGameTexts == true && _forcedGameTexts != null)
         {
-            Debug.LogError($"[Localization] LoadTextsBySystemLanguage) Error getting game texts for language: {_currentSysLang}");
-            return;
-        }
-    }
+            _currentGameTexts = _forcedGameTexts;
 
-    GameTextsData GetGameTexts(SystemLanguage sysLang)
-    {
-        foreach (GameTextsByLanguage gameTexts in _gameTextsByLanguage) 
-        {
-            if (gameTexts._lang.Equals(sysLang))
+            if (_currentGameTexts == null)
             {
-                return gameTexts._gameTexts;
+                Debug.LogError($"[Localization] LoadTextsBySystemLanguage) Error getting forced game texts");
+            }
+        }
+        else
+        {
+            _currentGameTexts = GetGameTextsByLanguage(_currentSysLang);
+            
+            if (_currentGameTexts == null)
+            {
+                Debug.LogError($"[Localization] LoadTextsBySystemLanguage) Error getting game texts for language: {_currentSysLang}");
             }
         }
 
-        return null;
+    }
+
+    GameTextsData GetGameTextsByLanguage(SystemLanguage sysLang)
+    {
+        GameTextsByLanguage gameTexts = _gameTextsByLanguage.Find(t => t._lang.Equals(sysLang));
+
+        if (gameTexts == null)
+        {
+            Debug.LogError($"[Localization] GetGameTexts) Error: text entry not found for lang: {sysLang}");
+            return null;
+        }
+
+        return gameTexts._gameTexts;        
     }
 
     public string GetTextByKey(string localizedTextKey)

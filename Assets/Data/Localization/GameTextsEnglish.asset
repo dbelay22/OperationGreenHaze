@@ -15,3 +15,37 @@ MonoBehaviour:
   _gameTextEntries:
   - _key: a_game_by
     _value: A GAME BY
+  - _key: menu_play
+    _value: PLAY
+  - _key: menu_options
+    _value: OPTIONS
+  - _key: menu_controls
+    _value: CONTROLS
+  - _key: menu_credits
+    _value: CREDITS
+  - _key: menu_quit
+    _value: QUIT
+  - _key: menu_keyboard
+    _value: KEYBOARD
+  - _key: controls_keyboard
+    _value: 'WASD:  WALK<br>SHIFT:  RUN<br>''F'':  TURN FLASHLIGHT ON / OFF'
+  - _key: menu_mouse
+    _value: MOUSE
+  - _key: controls_mouse
+    _value: 'LEFT BUTTON:  SHOOT<br>RIGHT BUTTON:  SMG ZOOM<br>WHEEL:  CHANGE WEAPON'
+  - _key: music_volume
+    _value: Music Volume
+  - _key: sfx_volume
+    _value: SFX Volume
+  - _key: menu_back
+    _value: BACK
+  - _key: mission_briefing
+    _value: 'Agent Roy, urgent mission briefing:<br>Contact confirms biological nightmare
+      in secret cloning facility.<br>Enemies breached, heavy air attack. Ground support
+      en route.<br><br>Mission Objectives:<br> 1 - Eliminate all abominations, no
+      survivors.<br> 2 - Secure ''Green Haze'' project data (2) (purple icons on
+      the live map).<br> 3 - Locate exit and eliminate obstacles by shooting red
+      barrels.<br> <br> Time limit: 7 minutes. Helicopter awaits upon success.<br><br>Speed
+      is crucial. Good luck.'
+  - _key: press_any_key
+    _value: PRESS ANY KEY TO CONTINUE

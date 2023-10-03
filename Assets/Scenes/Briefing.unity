@@ -199,6 +199,75 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 178330863}
   m_CullTransparentMesh: 1
+--- !u!1001 &365999582
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 754151637679408405, guid: 423b02f0bea411d41a4e80763115f1df,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 754151637679408405, guid: 423b02f0bea411d41a4e80763115f1df,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 754151637679408405, guid: 423b02f0bea411d41a4e80763115f1df,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 754151637679408405, guid: 423b02f0bea411d41a4e80763115f1df,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 754151637679408405, guid: 423b02f0bea411d41a4e80763115f1df,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 754151637679408405, guid: 423b02f0bea411d41a4e80763115f1df,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 754151637679408405, guid: 423b02f0bea411d41a4e80763115f1df,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 754151637679408405, guid: 423b02f0bea411d41a4e80763115f1df,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 754151637679408405, guid: 423b02f0bea411d41a4e80763115f1df,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 754151637679408405, guid: 423b02f0bea411d41a4e80763115f1df,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 754151637679408405, guid: 423b02f0bea411d41a4e80763115f1df,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8994485027068230935, guid: 423b02f0bea411d41a4e80763115f1df,
+        type: 3}
+      propertyPath: m_Name
+      value: Localization
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 423b02f0bea411d41a4e80763115f1df, type: 3}
 --- !u!1 &1038338373
 GameObject:
   m_ObjectHideFlags: 0
@@ -259,13 +328,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Agent Roy, urgent mission briefing:\r\r\n\nContact confirms biological
-    nightmare in secret cloning facility.\r\nEnemies breached, heavy air attack.
-    Ground support en route.\r\r\n\nMission Objectives:\r\n1 - Eliminate all abominations,
-    no survivors.\r\n2 - Secure 'Green Haze' project data (2) (purple icons on the
-    live map).\r\r\n3 - Locate exit and eliminate obstacles by shooting red barrels.\n\nTime
-    limit: 7 minutes. Helicopter awaits upon success.\r\r\n\nSpeed is crucial. Good
-    luck."
+  m_text: mission_briefing
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2dc3fdd9dc8158248b1a258b64101281, type: 2}
   m_sharedMaterial: {fileID: -2414874082546053195, guid: 2dc3fdd9dc8158248b1a258b64101281,
@@ -779,6 +842,7 @@ GameObject:
   - component: {fileID: 1831164505}
   - component: {fileID: 1831164508}
   - component: {fileID: 1831164507}
+  - component: {fileID: 1831164509}
   m_Layer: 5
   m_Name: PressAnyKey
   m_TagString: Untagged
@@ -826,7 +890,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: PRESS ANY KEY TO CONTINUE
+  m_text: press_any_key
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2dc3fdd9dc8158248b1a258b64101281, type: 2}
   m_sharedMaterial: {fileID: -2414874082546053195, guid: 2dc3fdd9dc8158248b1a258b64101281,
@@ -944,6 +1008,18 @@ PlayableDirector:
     value: {fileID: 1831164507}
   m_ExposedReferences:
     m_References: []
+--- !u!114 &1831164509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1831164503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdf72244f37bcfe48b33c56cba371e42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1985347504
 GameObject:
   m_ObjectHideFlags: 0

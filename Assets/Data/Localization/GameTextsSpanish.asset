@@ -15,3 +15,39 @@ MonoBehaviour:
   _gameTextEntries:
   - _key: a_game_by
     _value: UN JUEGO DE
+  - _key: menu_play
+    _value: JUGAR
+  - _key: menu_options
+    _value: OPCIONES
+  - _key: menu_controls
+    _value: CONTROLES
+  - _key: menu_credits
+    _value: CREDITOS
+  - _key: menu_quit
+    _value: SALIR
+  - _key: menu_keyboard
+    _value: TECLADO
+  - _key: controls_keyboard
+    _value: 'WASD:  CAMINAR<br>SHIFT:  CORRER<br>''F'':  PRENDER / APAGAR LINTERNA'
+  - _key: menu_mouse
+    _value: MOUSE
+  - _key: controls_mouse
+    _value: 'BOTON IZQ:  DISPARAR<br>BOTON DERECHO: ZOOM SUB-FUSIL<br>RUEDA: CAMBIAR
+      DE ARMA'
+  - _key: music_volume
+    _value: Volumen musica
+  - _key: sfx_volume
+    _value: Efectos de sonido
+  - _key: menu_back
+    _value: VOLVER
+  - _key: mission_briefing
+    _value: "Agente Roy, misi\xF3n urgente:<br><br>Nuestro contacto confirma una
+      pesadilla biol\xF3gica en una instalaci\xF3n secreta de clonaci\xF3n.<br>Los
+      enemigos han iniciado un ataque a\xE9reo y el apoyo en tierra est\xE1 en camino.<br><br>Objetivos
+      de la misi\xF3n:<br>1 - Elimina todas las abominaciones, ninguna puede sobrevivir.<br>2
+      - Protege los datos del proyecto 'Green Haze' (2) (iconos violeta en el mapa).<br>3
+      - Localiza la salida y elimina los obst\xE1culos disparando a los barriles
+      rojos.<br><br>L\xEDmite de tiempo: 7 minutos. El helic\xF3ptero espera a la
+      salida.<br><br>Buena suerte."
+  - _key: press_any_key
+    _value: PRESIONA UNA TECLA PARA CONTINUAR

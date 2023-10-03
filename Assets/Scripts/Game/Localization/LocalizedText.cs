@@ -13,8 +13,8 @@ public class LocalizedText : MonoBehaviour
     void Start()
     {
         _textComponent = GetComponent<TMP_Text>();
-        
-        _localizedTextKey = _textComponent.text;
+
+        _localizedTextKey = _textComponent.text.ToLower();
 
         SetLocalizedText(_localizedTextKey);
     }
@@ -22,10 +22,5 @@ public class LocalizedText : MonoBehaviour
     void SetLocalizedText(string text)
     {
         _textComponent.text = Localization.Instance.GetTextByKey(text);
-    }
-
-    void Update()
-    {
-        
     }
 }

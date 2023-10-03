@@ -25,7 +25,7 @@ public class TypewriterEffect : MonoBehaviour
 
 		_audioSource = GetComponent<AudioSource>();
 
-		_writer = _tmpProText.text;
+		_writer = Localization.Instance.GetTextByKey(_tmpProText.text);
 
 		_tmpProText.text = "";
 
@@ -38,6 +38,8 @@ public class TypewriterEffect : MonoBehaviour
 
 		yield return new WaitForSeconds(_delayBeforeStart);
 
+		_writer.Replace("<br>", "\n");
+
 		foreach (char c in _writer)
 		{
 			if (_tmpProText.text.Length > 0)
@@ -45,16 +47,22 @@ public class TypewriterEffect : MonoBehaviour
 				_tmpProText.text = _tmpProText.text.Substring(0, _tmpProText.text.Length - _leadingChar.Length);
 			}
 
-			_tmpProText.text += c.ToString() + _leadingChar;
-
-			PlayTypeSFX();
+			//Debug.Log($"[TypewritterEffect] TypeWriter) char: {c}, hashcode:{c.GetHashCode()}");
 
 			// hides a glitch when it renders the new line in the text (¿?)
 			bool isEnter = c.GetHashCode() == 851981;
 			if (isEnter == false)
 			{
-				yield return new WaitForSeconds(_timeBtwChars);
-			}			
+				_tmpProText.text += c.ToString() + _leadingChar;
+			}
+			else
+			{
+				_tmpProText.text += _leadingChar;
+			}
+
+			PlayTypeSFX();
+
+			yield return new WaitForSeconds(_timeBtwChars);
 		}
 
 		if (_leadingChar != "")

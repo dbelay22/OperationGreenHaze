@@ -9,8 +9,9 @@ public class Game : MonoBehaviour
 {
     GameStateMachine _stateMachine = null;
 
-    [Header("PlayerSettings")]
+    [Header("DontDestroyOnLoadInstances")]
     [SerializeField] GameObject _playerSettingsPrefab;
+    [SerializeField] GameObject _localizationPrefab;
 
     [Header("Player")]
     [SerializeField] Player _player;
@@ -55,19 +56,32 @@ public class Game : MonoBehaviour
         _allMissionPickupsCompleted = false;
         _exitClear = false;
 
-        CheckPlayerSettings();
+        CheckPlayerSettingsInstance();
+
+        CheckLocalizationInstance();
 
         _stateMachine = new GameStateMachine();
         _stateMachine.TransitionToState(new PlayState());
     }
 
-    void CheckPlayerSettings()
+    void CheckPlayerSettingsInstance()
     {
 #if UNITY_EDITOR
         if (PlayerSettings.Instance == null)
         {
             Debug.LogWarning("[Game] Start) No player settings instance, creating one.");
             Instantiate(_playerSettingsPrefab);
+        }
+#endif
+    }
+
+    void CheckLocalizationInstance()
+    {
+#if UNITY_EDITOR
+        if (Localization.Instance == null)
+        {
+            Debug.LogWarning("[Game] Start) No localization instance, creating one.");
+            Instantiate(_localizationPrefab);
         }
 #endif
     }
