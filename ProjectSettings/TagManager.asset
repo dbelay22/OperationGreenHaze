@@ -16,6 +16,7 @@ TagManager:
   - MissionPickup
   - BoomBox
   - PlayerSettings
+  - Localization
   layers:
   - Default
   - TransparentFX
