@@ -28,11 +28,20 @@ MonoBehaviour:
   - _key: menu_keyboard
     _value: KEYBOARD
   - _key: controls_keyboard
-    _value: 'WASD:  WALK<br>SHIFT:  RUN<br>''F'':  TURN FLASHLIGHT ON / OFF'
+    _value: 'WASD:  WALK
+
+      SHIFT:  RUN
+
+      ''F'':  TURN FLASHLIGHT ON / OFF'
   - _key: menu_mouse
     _value: MOUSE
   - _key: controls_mouse
-    _value: 'LEFT BUTTON:  SHOOT<br>RIGHT BUTTON:  SMG ZOOM<br>WHEEL:  CHANGE WEAPON'
+    _value: 'LEFT BUTTON:  SHOOT
+
+      RIGHT BUTTON:  SMG ZOOM
+
+      WHEEL:  CHANGE
+      WEAPON'
   - _key: music_volume
     _value: Music Volume
   - _key: sfx_volume
@@ -40,12 +49,39 @@ MonoBehaviour:
   - _key: menu_back
     _value: BACK
   - _key: mission_briefing
-    _value: 'Agent Roy, urgent mission briefing:<br>Contact confirms biological nightmare
-      in secret cloning facility.<br>Enemies breached, heavy air attack. Ground support
-      en route.<br><br>Mission Objectives:<br> 1 - Eliminate all abominations, no
-      survivors.<br> 2 - Secure ''Green Haze'' project data (2) (purple icons on
-      the live map).<br> 3 - Locate exit and eliminate obstacles by shooting red
-      barrels.<br> <br> Time limit: 7 minutes. Helicopter awaits upon success.<br><br>Speed
-      is crucial. Good luck.'
+    _value: 'Agent R, urgent mission:
+
+      
+
+      Our contact confirms conflict
+      in secret cloning experiment facility.
+
+      The enemies have started an
+      airstrike and ground support is on the way.
+
+      
+
+      Mission objectives:
+
+      1.
+      Eliminate all abominations (100), none can survive.
+
+      2. Safeguard the
+      2 critical ''Green Haze'' project data items, identified by purple icons on
+      your map.
+
+      3. Locate and clear the exit by shooting the red barrels.
+
+      
+
+      Time
+      limit: 7 minutes.
+
+      Helicopter waits at the exit.
+
+      
+
+      Good
+      luck.'
   - _key: press_any_key
     _value: PRESS ANY KEY TO CONTINUE

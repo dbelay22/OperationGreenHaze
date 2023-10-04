@@ -9,6 +9,8 @@ public class GameTextsData : ScriptableObject
     public class GameTextEntry
     {
         public string _key;
+
+        [TextArea(2,7)]
         public string _value;
     }
 
