@@ -243,14 +243,12 @@ PrefabInstance:
     - target: {fileID: 4268806864084192356, guid: ef8945843775fcd41aea9e95e6ebc283,
         type: 3}
       propertyPath: m_text
-      value: "CONGRATULATIONS!\r\n\n\rMission success confirmed.\r\n\nProject \"GREEN
-        HAZE\" secured.\r\n\nExcellent job, once again.\r\n\nUntil next mission,
-        Agent Roy.\r"
+      value: win_message
       objectReference: {fileID: 0}
     - target: {fileID: 4268806864832699247, guid: ef8945843775fcd41aea9e95e6ebc283,
         type: 3}
       propertyPath: m_text
-      value: PRESS ANY KEY TO CONTINUE
+      value: press_any_key
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7055203435048829409, guid: ef8945843775fcd41aea9e95e6ebc283, type: 3}

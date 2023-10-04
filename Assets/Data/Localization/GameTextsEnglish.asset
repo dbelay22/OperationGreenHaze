@@ -85,3 +85,31 @@ MonoBehaviour:
       luck.'
   - _key: press_any_key
     _value: PRESS ANY KEY TO CONTINUE
+  - _key: lose_message
+    _value: 'Agent R
+
+
+      Your valiant efforts will be remembered.
+
+
+      R.I.P.'
+  - _key: win_message
+    _value: "CONGRATULATIONS !\r!\n\n\rMission success confirmed.\r\n\nProject \"GREEN
+      HAZE\" secured.\r\n\nExcellent job, once again.\r\n\nUntil next mission, Agent
+      R.\r"
+  - _key: mission_failed
+    _value: MISSION FAILED
+  - _key: mission_complete
+    _value: MISSION COMPLETE
+  - _key: pause_resume
+    _value: RESUME
+  - _key: pause_exit
+    _value: EXIT GAME
+  - _key: ig_objectives_title
+    _value: OBJECTIVES
+  - _key: ig_objective_a
+    _value: Kill all abominations
+  - _key: ig_objective_b
+    _value: Pickup project data storages (2)
+  - _key: ig_objective_c
+    _value: Locate and clear exit.

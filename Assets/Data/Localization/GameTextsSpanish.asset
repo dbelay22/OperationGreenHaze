@@ -60,3 +60,24 @@ MonoBehaviour:
       espera a la salida.\r\n\r\nBuena suerte."
   - _key: press_any_key
     _value: PRESIONA UNA TECLA PARA CONTINUAR
+  - _key: lose_message
+    _value: "Agente R\n\nTu valent\xEDa ser\xE1 recordada.\n\nQ.E.P.D."
+  - _key: win_message
+    _value: "FELICITACIONES !!\n\nEl proyecto \"GREEN HAZE\" est\xE1 en buenas manos.\n\nExcelente
+      trabajo, una vez m\xE1s.\n\nHasta la pr\xF3xima misi\xF3n Agente R."
+  - _key: mission_failed
+    _value: MISION FALLIDA
+  - _key: mission_complete
+    _value: MISION COMPLETA
+  - _key: pause_resume
+    _value: REANUDAR
+  - _key: pause_exit
+    _value: SALIR
+  - _key: ig_objectives_title
+    _value: OBJETIVOS
+  - _key: ig_objective_a
+    _value: Elimina todas las abominaciones
+  - _key: ig_objective_b
+    _value: Recoge los items del proyecto Green Haze (2)
+  - _key: ig_objective_c
+    _value: Localiza y despeja la salida
