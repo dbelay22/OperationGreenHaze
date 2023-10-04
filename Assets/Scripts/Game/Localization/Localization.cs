@@ -14,11 +14,13 @@ public class Localization : MonoBehaviour
     }
 
     [Header("Game Texts by Language")]
-    [SerializeField] List<GameTextsByLanguage> _gameTextsByLanguage;
+    [SerializeField] List<GameTextsByLanguage> _gameTextsByLanguage;    
 
     [Header("Force Language")]
     [SerializeField] bool _shouldForceGameTexts;
     [SerializeField] GameTextsData _forcedGameTexts;
+
+    readonly SystemLanguage _defaultLanguage = SystemLanguage.English;
 
     SystemLanguage _currentSysLang;
 
@@ -42,7 +44,12 @@ public class Localization : MonoBehaviour
     void LoadTexts()
     {
         _currentSysLang = Application.systemLanguage;
+        
+        // DEBUG
+        //_currentSysLang = SystemLanguage.Portuguese;
+
         Debug.Log($"[Localization] LoadTextsBySystemLanguage) sysLang:{_currentSysLang}");
+
 
         if (_shouldForceGameTexts == true && _forcedGameTexts != null)
         {
@@ -51,6 +58,8 @@ public class Localization : MonoBehaviour
             if (_currentGameTexts == null)
             {
                 Debug.LogError($"[Localization] LoadTextsBySystemLanguage) Error getting forced game texts");
+
+                LoadDefaultLanguageTexts();
             }
         }
         else
@@ -59,10 +68,17 @@ public class Localization : MonoBehaviour
             
             if (_currentGameTexts == null)
             {
-                Debug.LogError($"[Localization] LoadTextsBySystemLanguage) Error getting game texts for language: {_currentSysLang}");
+                Debug.LogWarning($"[Localization] LoadTextsBySystemLanguage) Error getting game texts for language: {_currentSysLang}, using default {_defaultLanguage}");
+
+                LoadDefaultLanguageTexts();
             }
         }
+    }
 
+    void LoadDefaultLanguageTexts()
+    {
+        // use default language
+        _currentGameTexts = GetGameTextsByLanguage(_defaultLanguage);
     }
 
     GameTextsData GetGameTextsByLanguage(SystemLanguage sysLang)
