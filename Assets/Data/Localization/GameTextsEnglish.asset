@@ -110,6 +110,6 @@ MonoBehaviour:
   - _key: ig_objective_a
     _value: Kill all abominations
   - _key: ig_objective_b
-    _value: Pickup project data storages (2)
+    _value: Pickup project items (2)
   - _key: ig_objective_c
     _value: Locate and clear exit.

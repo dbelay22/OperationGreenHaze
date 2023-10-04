@@ -68,7 +68,7 @@ MonoBehaviour:
   - _key: mission_failed
     _value: MISION FALLIDA
   - _key: mission_complete
-    _value: MISION COMPLETA
+    _value: MISION EXITOSA
   - _key: pause_resume
     _value: REANUDAR
   - _key: pause_exit
@@ -76,8 +76,8 @@ MonoBehaviour:
   - _key: ig_objectives_title
     _value: OBJETIVOS
   - _key: ig_objective_a
-    _value: Elimina todas las abominaciones
+    _value: Elimina las abominaciones
   - _key: ig_objective_b
-    _value: Recoge los items del proyecto Green Haze (2)
+    _value: Recoge items del proyecto (2)
   - _key: ig_objective_c
-    _value: Localiza y despeja la salida
+    _value: Localiza la salida
