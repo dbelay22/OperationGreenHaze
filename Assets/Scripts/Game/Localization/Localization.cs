@@ -48,7 +48,7 @@ public class Localization : MonoBehaviour
         // DEBUG
         //_currentSysLang = SystemLanguage.Portuguese;
 
-        Debug.Log($"[Localization] LoadTextsBySystemLanguage) sysLang:{_currentSysLang}");
+        //Debug.Log($"[Localization] LoadTextsBySystemLanguage) sysLang:{_currentSysLang}");
 
 
         if (_shouldForceGameTexts == true && _forcedGameTexts != null)
@@ -104,7 +104,7 @@ public class Localization : MonoBehaviour
             return localizedTextKey;
         }
 
-        Debug.Log($"[Localization] GetTextByKey) key: {localizedTextKey}, text: {textEntry._value}");
+        //Debug.Log($"[Localization] GetTextByKey) key: {localizedTextKey}, text: {textEntry._value}");
 
         return textEntry._value;
     }
