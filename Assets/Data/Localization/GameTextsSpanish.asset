@@ -51,13 +51,13 @@ MonoBehaviour:
     _value: VOLVER
   - _key: mission_briefing
     _value: "Agente R, misi\xF3n urgente:\r\n\r\nNuestro contacto confirma conflicto
-      en instalaci\xF3n secreta de experimentos de clonaci\xF3n.\r\nLos enemigos
-      han iniciado un ataque a\xE9reo y el apoyo en tierra est\xE1 en camino.\r\n\r\nObjetivos
-      de la misi\xF3n:\r\n1. Elimina todas las abominaciones (100), ninguna puede
-      sobrevivir.\r\n2. Protege los 2 elementos cr\xEDticos del proyecto 'Green Haze'.
-      Iconos violeta en el mapa.\r\n3. Localiza y despeja la salida disparando a
-      los barriles rojos.\r\n\r\nL\xEDmite de tiempo: 7 minutos. \r\nEl helic\xF3ptero
-      espera a la salida.\r\n\r\nBuena suerte."
+      en instalaci\xF3n secreta de experimentos de clonaci\xF3n.\n\rLos enemigos
+      han iniciado un ataque a\xE9reo y el apoyo en tierra est\xE1 en camino.\n\r\n\nObjetivos
+      de la misi\xF3n:\r\n\n1. Elimina todas las abominaciones (100), ninguna puede
+      sobrevivir.\n\n2. Protege los 2 elementos cr\xEDticos del proyecto 'Green Haze'
+      (Iconos violeta en el mapa).\n\n3. Localiza y despeja la salida disparando
+      a los barriles rojos.\n\r\n\nL\xEDmite de tiempo: 7 minutos.\n\nEl helic\xF3ptero
+      espera a la salida.\n\r\nBuena suerte"
   - _key: press_any_key
     _value: PRESIONA UNA TECLA PARA CONTINUAR
   - _key: lose_message
@@ -78,7 +78,7 @@ MonoBehaviour:
   - _key: ig_objective_a
     _value: Elimina las abominaciones
   - _key: ig_objective_b
-    _value: Recoge items del proyecto (2)
+    _value: Recoge items del proyecto
   - _key: ig_objective_c
     _value: Localiza la salida
   - _key: ig_objective_completed

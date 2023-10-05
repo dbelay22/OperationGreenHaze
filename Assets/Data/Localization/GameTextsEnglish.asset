@@ -52,7 +52,6 @@ MonoBehaviour:
     _value: 'Agent R, urgent mission:
 
 
-
       Our contact confirms conflict in secret
       cloning experiment facility.
 
@@ -63,25 +62,28 @@ MonoBehaviour:
 
       Mission objectives:
 
+
       1. Eliminate
       all abominations (100), none can survive.
 
+
       2. Safeguard the 2 critical
-      ''Green Haze'' project data items, identified by purple icons on your map.
-
-      3.
-      Locate and clear the exit by shooting the red barrels.
+      ''Green Haze'' project data items (purple icons on the map).
 
 
-
-      Time limit:
-      7 minutes.
-
-      Helicopter waits at the exit.
+      3. Locate
+      and clear the exit by shooting the red barrels.
 
 
 
-      Good luck.'
+      Time limit: 7 minutes.
+
+
+      Helicopter
+      waits at the exit.
+
+
+      Good luck'
   - _key: press_any_key
     _value: PRESS ANY KEY TO CONTINUE
   - _key: lose_message
@@ -108,7 +110,7 @@ MonoBehaviour:
   - _key: ig_objective_a
     _value: Kill all abominations
   - _key: ig_objective_b
-    _value: Pickup project items (2)
+    _value: Pickup project items
   - _key: ig_objective_c
     _value: Locate and clear exit.
   - _key: ig_objective_completed
