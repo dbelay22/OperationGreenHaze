@@ -93,9 +93,8 @@ MonoBehaviour:
 
       R.I.P.'
   - _key: win_message
-    _value: "CONGRATULATIONS !\r!\n\n\rMission success confirmed.\r\n\nProject \"GREEN
-      HAZE\" secured.\r\n\nExcellent job, once again.\r\n\nUntil next mission, Agent
-      R.\r"
+    _value: "CONGRATULATIONS\n\n\rProject \"GREEN HAZE\" secured\n\nExcellent job,
+      once again\n\nUntil next mission, Agent R"
   - _key: mission_failed
     _value: MISSION FAILED
   - _key: mission_complete

@@ -63,8 +63,8 @@ MonoBehaviour:
   - _key: lose_message
     _value: "Agente R\n\nTu valent\xEDa ser\xE1 recordada.\n\nQ.E.P.D."
   - _key: win_message
-    _value: "FELICITACIONES !!\n\nEl proyecto \"GREEN HAZE\" est\xE1 en buenas manos.\n\nExcelente
-      trabajo, una vez m\xE1s.\n\nHasta la pr\xF3xima misi\xF3n Agente R."
+    _value: "FELICITACIONES\n\nEl proyecto \"GREEN HAZE\" est\xE1 en buenas manos\n\nExcelente
+      trabajo, una vez m\xE1s\n\nHasta la pr\xF3xima misi\xF3n Agente R"
   - _key: mission_failed
     _value: MISION FALLIDA
   - _key: mission_complete
