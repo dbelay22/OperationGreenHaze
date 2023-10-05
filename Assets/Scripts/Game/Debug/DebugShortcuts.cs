@@ -3,18 +3,18 @@ using Yxp.Helpers;
 
 public class DebugShortcuts : MonoBehaviour
 {
-    void Update()
+    void Update()   
     {
         if (Game.Instance.IsDevBuild == false)
         {
             return;
         }
-
         ProcessDebugShortcuts();
     }
 
     void ProcessDebugShortcuts()
     {
+        /*
         // + Volume
         if (Input.GetKeyDown(KeyCode.KeypadPlus))
         {
@@ -30,7 +30,7 @@ public class DebugShortcuts : MonoBehaviour
 
             Debug.Log($"[DebugShortcuts] AudioListerner volume now: {AudioListener.volume}");
         }
-
+        */
 
         // [G] GOD Mode
         if (Input.GetKeyDown(KeyCode.G))
@@ -47,7 +47,6 @@ public class DebugShortcuts : MonoBehaviour
         // [O] Force Game Over
         if (Input.GetKeyDown(KeyCode.O))
         {
-            Debug.Log($"Force Game over");
             Game.Instance.ChangeStateToGameOver();
         }
 
@@ -60,7 +59,6 @@ public class DebugShortcuts : MonoBehaviour
         // [Q]uit
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            Debug.Log($"Quitting from platform {Application.platform}");
             Application.Quit();
         }
 
@@ -69,7 +67,13 @@ public class DebugShortcuts : MonoBehaviour
         {
             SceneHelper.ReloadCurrentScene();
         }
-        
+
+        // [X]Clear exit (final mission objective)
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            Game.Instance.ReportExitClear();
+        }
+
     }
-        
+
 }
