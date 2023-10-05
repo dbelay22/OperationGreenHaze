@@ -38,6 +38,8 @@ public class MissionPickups : MonoBehaviour
         }
         
         _objectivesCompletedCount = 0;
+
+        UpdateObjectivesPanel();
     }
     
     public void OnMissionItemPickup(GameObject pickup)
@@ -58,18 +60,26 @@ public class MissionPickups : MonoBehaviour
                 // mark complete
                 _objectivesCompleted[pickup.name] = true;
 
+                _objectivesCompletedCount++;
+
+                // update UI
+                UpdateObjectivesPanel();
+
                 if (IsMissionDone())
                 {
                     Game.Instance.ReportAllMissionPickupsCollected();
                 }
                 else
                 {
-                    _objectivesCompletedCount++;
-
-                    GameUI.Instance.ShowInGameMessage("ig_objective_partial", 4f);
+                    GameUI.Instance.ShowInGameMessage("ig_objective_partial", 4f);                    
                 }
             }
         }
+    }
+
+    void UpdateObjectivesPanel()
+    {
+        ObjectivesPanel.Instance.SetPickupDataPartialComplete(_objectivesCompletedCount, _objectivesCompleted.Count);
     }
 
     bool IsMissionDone()

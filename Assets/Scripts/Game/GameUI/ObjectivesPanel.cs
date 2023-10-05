@@ -2,12 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ObjectivesPanel : MonoBehaviour
 {
     public readonly int KILL_ENEMIES_IDX = 0;
     public readonly int PICKUP_DATA_IDX = 1;
     public readonly int FIND_EXIT_IDX = 2;
+
+    [SerializeField] TMP_Text _pickupCountText;
 
     [SerializeField] ObjectiveIcons[] _objectiveIcons;
 
@@ -49,6 +52,11 @@ public class ObjectivesPanel : MonoBehaviour
     public void SetKillemAllComplete()
     {
         SetObjectiveComplete(_objectiveIcons[KILL_ENEMIES_IDX]);
+    }
+
+    public void SetPickupDataPartialComplete(int partialCount, int total)
+    {
+        _pickupCountText.text = $"{partialCount}/{total}";
     }
 
     public void SetPickupDataComplete()
