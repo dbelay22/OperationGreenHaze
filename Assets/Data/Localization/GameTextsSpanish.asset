@@ -81,3 +81,13 @@ MonoBehaviour:
     _value: Recoge items del proyecto (2)
   - _key: ig_objective_c
     _value: Localiza la salida
+  - _key: ig_objective_completed
+    _value: Objetivo completo!
+  - _key: ig_objective_partial
+    _value: "Genial! \nUno m\xE1s para cumplir el objetivo."
+  - _key: ig_use_the_flashlight
+    _value: 'Usa la linterna para enceguecerlos!
+
+      Presiona la tecla ''F'''
+  - _key: ig_flashlight_pickup
+    _value: Presiona  'F' para prender y apagar la linterna
