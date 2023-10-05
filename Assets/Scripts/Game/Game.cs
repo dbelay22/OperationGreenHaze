@@ -141,7 +141,7 @@ public class Game : MonoBehaviour
     {
         if (CheckGameWin() == false)
         {
-            GameUI.Instance.ShowInGameMessage("Objective Completed", 4f);
+            GameUI.Instance.ShowInGameMessage("ig_objective_completed", 4f);
         }
     }
 

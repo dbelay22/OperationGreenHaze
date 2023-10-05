@@ -294,7 +294,7 @@ public class Player : MonoBehaviour
 
             if (canUseFlashlightToDefend && _ammo.GetAllAmmoLeftCount() < 1)
             {
-                bool messageShown = GameUI.Instance.ShowInGameMessage("Use your flashlight to blind enemies! Press 'F' key.", 3);
+                bool messageShown = GameUI.Instance.ShowInGameMessage("ig_use_the_flashlight", 3);
 
                 if (messageShown)
                 {

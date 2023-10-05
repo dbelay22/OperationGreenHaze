@@ -293,14 +293,14 @@ public class GameUI : MonoBehaviour
         }
     }
 
-    public bool ShowInGameMessage(string message, float lifetime)
+    public bool ShowInGameMessage(string textKey, float lifetime)
     {
-        if (_inGameMessagesCanvas.activeInHierarchy == true && _textInGameMessage.text.Equals(message))
+        if (_inGameMessagesCanvas.activeInHierarchy == true && _textInGameMessage.text.Equals(textKey))
         {
             return false;
         }
 
-        _textInGameMessage.text = message;
+        _textInGameMessage.text = Localization.Instance.GetTextByKey(textKey);
 
         _inGameMessagesCanvas.SetActive(true);
 

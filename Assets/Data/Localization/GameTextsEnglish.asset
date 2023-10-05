@@ -51,38 +51,37 @@ MonoBehaviour:
   - _key: mission_briefing
     _value: 'Agent R, urgent mission:
 
-      
 
-      Our contact confirms conflict
-      in secret cloning experiment facility.
 
-      The enemies have started an
-      airstrike and ground support is on the way.
+      Our contact confirms conflict in secret
+      cloning experiment facility.
 
-      
+      The enemies have started an airstrike and
+      ground support is on the way.
+
+
 
       Mission objectives:
 
-      1.
-      Eliminate all abominations (100), none can survive.
+      1. Eliminate
+      all abominations (100), none can survive.
 
-      2. Safeguard the
-      2 critical ''Green Haze'' project data items, identified by purple icons on
-      your map.
+      2. Safeguard the 2 critical
+      ''Green Haze'' project data items, identified by purple icons on your map.
 
-      3. Locate and clear the exit by shooting the red barrels.
+      3.
+      Locate and clear the exit by shooting the red barrels.
 
-      
 
-      Time
-      limit: 7 minutes.
+
+      Time limit:
+      7 minutes.
 
       Helicopter waits at the exit.
 
-      
 
-      Good
-      luck.'
+
+      Good luck.'
   - _key: press_any_key
     _value: PRESS ANY KEY TO CONTINUE
   - _key: lose_message
@@ -113,3 +112,13 @@ MonoBehaviour:
     _value: Pickup project items (2)
   - _key: ig_objective_c
     _value: Locate and clear exit.
+  - _key: ig_objective_completed
+    _value: Objective Completed
+  - _key: ig_objective_partial
+    _value: "Great! \nOne more to go."
+  - _key: ig_use_the_flashlight
+    _value: 'Use your flashlight to blind enemies!
+
+      Press ''F'' key'
+  - _key: ig_flashlight_pickup
+    _value: Press 'F' to toggle Flashlight

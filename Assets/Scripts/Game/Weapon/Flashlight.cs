@@ -139,7 +139,7 @@ public class Flashlight : MonoBehaviour
     public void ReportPickUp()
     {
         // show in-game message
-        GameUI.Instance.ShowInGameMessage("Press 'F' to toggle Flashlight", _inGameMessageLifetime);
+        GameUI.Instance.ShowInGameMessage("ig_flashlight_pickup", _inGameMessageLifetime);
 
         _isPickedUp = true;
         _timeOfPickup = Time.time;
