@@ -49,6 +49,7 @@ public class AudioController : MonoBehaviour
         _ingameMusicSource.Stop();
     }
 
+    /*
     public void PlayWinMusic()
     {
         StopBackgroundMusic();
@@ -58,7 +59,9 @@ public class AudioController : MonoBehaviour
             _ingameMusicSource.PlayOneShot(_winMusic);
         }        
     }
+    */
 
+    /*
     public void PlayGameOverMusic()
     {
         StopBackgroundMusic();
@@ -68,6 +71,7 @@ public class AudioController : MonoBehaviour
             _ingameMusicSource.PlayOneShot(_gameOverMusic);
         }
     }
+    */
 
     public void ToggleAudioOnOff()
     {

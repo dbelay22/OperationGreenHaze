@@ -14,7 +14,7 @@ public class GameOverState : GameState
 
         Director.Instance.DumpStats();
 
-        AudioController.Instance.PlayGameOverMusic();
+        //AudioController.Instance.PlayGameOverMusic();
         
         GameUI.Instance.ShowGameOver();
 
