@@ -54,7 +54,7 @@ public class ObjectivesPanel : MonoBehaviour
         SetObjectiveComplete(_objectiveIcons[KILL_ENEMIES_IDX]);
     }
 
-    public void SetPickupDataPartialComplete(int partialCount, int total)
+    public void SetPickupObjectiveProgress(int partialCount, int total)
     {
         _pickupCountText.text = $"{partialCount}/{total}";
     }

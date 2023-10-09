@@ -79,7 +79,7 @@ public class MissionPickups : MonoBehaviour
 
     void UpdateObjectivesPanel()
     {
-        ObjectivesPanel.Instance.SetPickupDataPartialComplete(_objectivesCompletedCount, _objectivesCompleted.Count);
+        ObjectivesPanel.Instance.SetPickupObjectiveProgress(_objectivesCompletedCount, _objectivesCompleted.Count);
     }
 
     bool IsMissionDone()
