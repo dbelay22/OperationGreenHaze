@@ -1813,18 +1813,18 @@ MonoBehaviour:
   _playerGO: {fileID: 0}
   _fpCamera: {fileID: 0}
   _raycastRange: 150
-  _coolDownSeconds: 0.22
-  _damage: 34
+  _coolDownSeconds: 0.44
+  _damage: 50
   _headshotDamage: 100
-  _muzzleFlashPS: {fileID: 0}
+  _muzzleFlashPS: {fileID: 6291001121602188584}
   _hitImpactVFX: {fileID: 1892351807075712, guid: 44be68b4fc4366142a9cd1ae1f761ea4,
     type: 3}
   _ammoType: 0
-  _ammoPerShot: 3
+  _ammoPerShot: 1
   _virtualCamera: {fileID: 0}
   _fovDefault: 60
   _fovZoom: 60
-  _shootSFX: {fileID: 8300000, guid: 2354b443bd1b16a4cb30ab647fc756f5, type: 3}
+  _shootSFX: {fileID: 8300000, guid: bbdd03741a687064db6e1d194b65f78b, type: 3}
   _outOfAmmoSFX: {fileID: 8300000, guid: 0bfed1d16a640924ca709a3bc05126e7, type: 3}
   _reloadSFX: {fileID: 8300000, guid: 73fa5267721e7c54bb46416b44d4c662, type: 3}
   _fpController: {fileID: 0}
@@ -1847,12 +1847,12 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 0
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0.5
-  rolloffMode: 0
+  MaxDistance: 10
+  Pan2D: 0.22
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -1885,7 +1885,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -2074,6 +2074,12 @@ PrefabInstance:
 --- !u!4 &6161243599801549926 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4300533007854612, guid: ad2ab49d0a2a17148bd51c93d977bdbc,
+    type: 3}
+  m_PrefabInstance: {fileID: 6164976157332940914}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &6291001121602188584 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 198234346748616026, guid: ad2ab49d0a2a17148bd51c93d977bdbc,
     type: 3}
   m_PrefabInstance: {fileID: 6164976157332940914}
   m_PrefabAsset: {fileID: 0}

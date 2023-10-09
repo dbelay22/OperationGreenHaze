@@ -2335,7 +2335,6 @@ GameObject:
   - component: {fileID: 8916549146485933457}
   - component: {fileID: 1434361318}
   - component: {fileID: 1748713565}
-  - component: {fileID: 2345936088747804412}
   m_Layer: 7
   m_Name: MP7
   m_TagString: Untagged
@@ -2420,8 +2419,8 @@ MonoBehaviour:
   _playerGO: {fileID: 0}
   _fpCamera: {fileID: 0}
   _raycastRange: 250
-  _coolDownSeconds: 0.33
-  _damage: 50
+  _coolDownSeconds: 0.44
+  _damage: 100
   _headshotDamage: 100
   _muzzleFlashPS: {fileID: 8002341289794680614}
   _hitImpactVFX: {fileID: 1892351807075712, guid: 44be68b4fc4366142a9cd1ae1f761ea4,
@@ -2454,12 +2453,12 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 0
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0.5
-  rolloffMode: 0
+  MaxDistance: 10
+  Pan2D: 0.22
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -2492,7 +2491,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -2532,19 +2531,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!65 &2345936088747804412
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5613363016151971714}
-  m_Material: {fileID: 13400000, guid: 661cf948f0ef2e54d87230b796388bc1, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2, y: 6, z: 7.1}
-  m_Center: {x: -0.16, y: -1.03, z: -1.12}
 --- !u!1 &6090122223651337034
 GameObject:
   m_ObjectHideFlags: 0
