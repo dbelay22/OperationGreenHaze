@@ -84,7 +84,7 @@ MonoBehaviour:
   - _key: ig_objective_completed
     _value: Completaste el objetivo
   - _key: ig_objective_partial
-    _value: "Bien!\nUno m\xE1s para cumplir el objetivo"
+    _value: "Buen trabajo\nUno m\xE1s para cumplir el objetivo"
   - _key: ig_use_the_flashlight
     _value: 'Usa la linterna para enceguecerlos
 

@@ -116,7 +116,9 @@ MonoBehaviour:
   - _key: ig_objective_completed
     _value: Objective Completed
   - _key: ig_objective_partial
-    _value: "Great! \nOne more to go."
+    _value: 'Good job
+
+      One more to go'
   - _key: ig_use_the_flashlight
     _value: 'Use your flashlight to blind enemies!
 
