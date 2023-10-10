@@ -44,35 +44,6 @@ public class AudioController : MonoBehaviour
         PlayerSettings.Instance.SetAudioMixerSFXVolume(PlayerSettings.MIN_VOLUME_DB);
     }
 
-    void StopBackgroundMusic()
-    {
-        _ingameMusicSource.Stop();
-    }
-
-    /*
-    public void PlayWinMusic()
-    {
-        StopBackgroundMusic();
-
-        if (_winMusic != null)
-        {
-            _ingameMusicSource.PlayOneShot(_winMusic);
-        }        
-    }
-    */
-
-    /*
-    public void PlayGameOverMusic()
-    {
-        StopBackgroundMusic();
-
-        if (_gameOverMusic != null)
-        {
-            _ingameMusicSource.PlayOneShot(_gameOverMusic);
-        }
-    }
-    */
-
     public void ToggleAudioOnOff()
     {
         _audioIsOn = !_audioIsOn;
