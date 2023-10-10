@@ -110,7 +110,15 @@ public class NpcAI : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
 
-        SetCurrentStateTo(nextState);
+        if (_currentState.Equals(NpcState.Dead))
+        {
+            // once dead state cannot change
+            yield return null;
+        }
+        else
+        {
+            SetCurrentStateTo(nextState);
+        }
     }
 
     void RandomizeSizeScale()
@@ -459,9 +467,9 @@ public class NpcAI : MonoBehaviour
         }
         else
         {
-            BroadcastMessage("OnHitByBullet", damage, SendMessageOptions.RequireReceiver);
-
             StopMoving();
+
+            BroadcastMessage("OnHitByBullet", damage, SendMessageOptions.RequireReceiver);            
 
             PlayHitByBulletFX(hit, isHeadshot);
         }        
@@ -473,7 +481,7 @@ public class NpcAI : MonoBehaviour
         
         SetCurrentStateTo(NpcState.HitHyBullet);
 
-        StartCoroutine(ChangeStateDelayed(0.77f, _previousState));
+        StartCoroutine(ChangeStateDelayed(0.5f, _previousState));
     }
 
     void PlayHitByBulletFX(RaycastHit hit, bool isHeadshot = false)
