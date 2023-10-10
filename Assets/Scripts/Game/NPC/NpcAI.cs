@@ -9,6 +9,7 @@ public enum NpcState
     IdleWaitingReaction,
     Provoked,
     Blinded,
+    HitHyBullet,
     Dead
 }
 
@@ -55,7 +56,8 @@ public class NpcAI : MonoBehaviour
     float _distanceToTarget;
 
     NavMeshAgent _navMeshAgent;
-
+    
+    NpcState _previousState;
     NpcState _currentState;
 
     Animator _animator;
@@ -89,12 +91,26 @@ public class NpcAI : MonoBehaviour
 
         _audioSource = GetComponent<AudioSource>();
 
+        _previousState = NpcState.Idle;
         _currentState = NpcState.Idle;
 
         _reportedAttack = false;
         _reportedPlayerEscape = false;
 
         _minimapIcon.SetActive(true);
+    }
+
+    void SetCurrentStateTo(NpcState state)
+    {
+        _previousState = _currentState;
+        _currentState = state;
+    }
+
+    IEnumerator ChangeStateDelayed(float time, NpcState nextState)
+    {
+        yield return new WaitForSeconds(time);
+
+        SetCurrentStateTo(nextState);
     }
 
     void RandomizeSizeScale()
@@ -144,6 +160,9 @@ public class NpcAI : MonoBehaviour
             case NpcState.Blinded:
                 BlindedUpdate();
                 break;
+            case NpcState.HitHyBullet:
+                HitByBulletStateUpdate();
+                break;
             case NpcState.Dead:
                 DeadUpdate();
                 break;
@@ -176,6 +195,11 @@ public class NpcAI : MonoBehaviour
         }
     }
 
+    void HitByBulletStateUpdate()
+    {
+        // nothing here
+    }
+
     void DeadUpdate()
     {
         // nothing here
@@ -183,7 +207,7 @@ public class NpcAI : MonoBehaviour
 
     IEnumerator ChangeStateToProvokedDelayed()
     {
-        _currentState = NpcState.IdleWaitingReaction;
+        SetCurrentStateTo(NpcState.IdleWaitingReaction);
 
         yield return null;
 
@@ -201,7 +225,7 @@ public class NpcAI : MonoBehaviour
 
     void ChangeStateToProvokedNow()
     {
-        _currentState = NpcState.Provoked;
+        SetCurrentStateTo(NpcState.Provoked);
     }
 
     void ChangeStateToBlinded()
@@ -217,7 +241,7 @@ public class NpcAI : MonoBehaviour
         }
 
         // set state
-        _currentState = NpcState.Blinded;
+        SetCurrentStateTo(NpcState.Blinded);
 
         StopMoving();
 
@@ -433,17 +457,35 @@ public class NpcAI : MonoBehaviour
         {
             ChangeStateToProvokedNow();
         }
+        else
+        {
+            BroadcastMessage("OnHitByBullet", damage, SendMessageOptions.RequireReceiver);
 
-        BroadcastMessage("OnHitByBullet", damage, SendMessageOptions.RequireReceiver);
+            StopMoving();
 
-        PlayHitByBulletFX(hit, isHeadshot);
+            PlayHitByBulletFX(hit, isHeadshot);
+        }        
+    }
+
+    void ChangeStateToHitByBullet()
+    {
+        PlayHitByBulletAnim();
+        
+        SetCurrentStateTo(NpcState.HitHyBullet);
+
+        StartCoroutine(ChangeStateDelayed(0.77f, _previousState));
     }
 
     void PlayHitByBulletFX(RaycastHit hit, bool isHeadshot = false)
     {
         PlayHitByBulletSFX();
 
-        PlayHitByBulletVFX(hit, isHeadshot);
+        PlayHitByBulletVFX(hit, isHeadshot);        
+    }
+
+    void PlayHitByBulletAnim()
+    {
+        _animator.SetTrigger("BulletHit Trigger");
     }
 
     void PlayHitByBulletSFX()
@@ -466,6 +508,10 @@ public class NpcAI : MonoBehaviour
         {
             ChangeStateToDead();
         }
+        else        
+        {
+            ChangeStateToHitByBullet();
+        }
     }
 
     void SetCollidersActive(bool active)
@@ -477,11 +523,12 @@ public class NpcAI : MonoBehaviour
     void ChangeStateToDead()
     {
         // change state
-        _currentState = NpcState.Dead;
+        SetCurrentStateTo(NpcState.Dead);
 
         _minimapIcon.SetActive(false);
 
-        _animator.SetTrigger("Dead Trigger");
+        string rndDeadTrigger = Random.value < 0.5f ? "Dead Trigger" : "Dead Fwd Trigger";
+        _animator.SetTrigger(rndDeadTrigger);        
 
         PlayDeathSFX();
 
