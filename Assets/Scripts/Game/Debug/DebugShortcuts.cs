@@ -75,17 +75,18 @@ public class DebugShortcuts : MonoBehaviour
         }
 
         /////////////////////////////////////
-        ///// QUALITY
-        ///        
-        if (Input.GetKeyDown(KeyCode.KeypadPlus))
-        {
-            Game.Instance.IncreaseQualityLevel();
-        }
-
-        // - Volume
-        if (Input.GetKeyDown(KeyCode.KeypadMinus))
+        // QUALITY
+        //         
+        // [3] Lower quality
+        if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             Game.Instance.DecreaseQualityLevel();
+        }
+
+        // [4] Better quality
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            Game.Instance.IncreaseQualityLevel();
         }
 
     }
