@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using Yxp.Helpers;
 using Yxp.StateMachine;
 
+[RequireComponent(typeof(Quality))]
 public class Game : MonoBehaviour
 {
     GameStateMachine _stateMachine = null;
@@ -34,6 +35,8 @@ public class Game : MonoBehaviour
     bool _allMissionPickupsCompleted = false;
     bool _exitClear = false;
 
+    Quality _quality;
+
     #region Instance
 
     private static Game _instance;
@@ -60,6 +63,8 @@ public class Game : MonoBehaviour
 
         CheckLocalizationInstance();
 
+        _quality = GetComponent<Quality>();
+
         _stateMachine = new GameStateMachine();
         _stateMachine.TransitionToState(new PlayState());
     }
@@ -84,6 +89,16 @@ public class Game : MonoBehaviour
             Instantiate(_localizationPrefab);
         }
 #endif
+    }
+
+    internal void IncreaseQualityLevel()
+    {
+        _quality.IncreaseLevel();
+    }
+
+    internal void DecreaseQualityLevel()
+    {
+        _quality.DecreaseLevel();
     }
 
     void Update()

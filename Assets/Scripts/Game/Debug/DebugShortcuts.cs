@@ -74,6 +74,20 @@ public class DebugShortcuts : MonoBehaviour
             Game.Instance.ReportExitClear();
         }
 
+        /////////////////////////////////////
+        ///// QUALITY
+        ///        
+        if (Input.GetKeyDown(KeyCode.KeypadPlus))
+        {
+            Game.Instance.IncreaseQualityLevel();
+        }
+
+        // - Volume
+        if (Input.GetKeyDown(KeyCode.KeypadMinus))
+        {
+            Game.Instance.DecreaseQualityLevel();
+        }
+
     }
 
 }
