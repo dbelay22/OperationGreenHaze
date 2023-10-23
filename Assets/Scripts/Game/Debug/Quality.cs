@@ -43,7 +43,7 @@ public class Quality : DebugComponentBase
     {
         _currentQualityLevel = QualitySettings.GetQualityLevel();
 
-        Debug.Log($"[Quality] Current quality level: {_currentQualityLevel}, settings: {QualitySettings.GetQualitySettings()}");
+        Debug.Log($"[Quality] Current quality level: {_currentQualityLevel}");
 
         return _currentQualityLevel;
     }
