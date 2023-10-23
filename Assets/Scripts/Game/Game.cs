@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using Yxp.Helpers;
 using Yxp.StateMachine;
 
-[RequireComponent(typeof(Quality))]
+[RequireComponent(typeof(DevDebug))]
 public class Game : MonoBehaviour
 {
     GameStateMachine _stateMachine = null;
@@ -18,12 +18,7 @@ public class Game : MonoBehaviour
     [SerializeField] Player _player;
 
     [Header("Gameplay")]
-    [SerializeField] int _minutesOfGameplay;
-
-    [Header("Dev")]
-    [SerializeField] bool _isDevBuild;
-
-    public bool IsDevBuild { get { return _isDevBuild; } }
+    [SerializeField] int _minutesOfGameplay;        
 
     public int MinutesOfGameplay { get { return _minutesOfGameplay; } }
 
@@ -34,8 +29,6 @@ public class Game : MonoBehaviour
     bool _allEnemiesKilled = false;
     bool _allMissionPickupsCompleted = false;
     bool _exitClear = false;
-
-    Quality _quality;
 
     #region Instance
 
@@ -63,7 +56,7 @@ public class Game : MonoBehaviour
 
         CheckLocalizationInstance();
 
-        _quality = GetComponent<Quality>();
+        
 
         _stateMachine = new GameStateMachine();
         _stateMachine.TransitionToState(new PlayState());
@@ -89,16 +82,6 @@ public class Game : MonoBehaviour
             Instantiate(_localizationPrefab);
         }
 #endif
-    }
-
-    internal void IncreaseQualityLevel()
-    {
-        _quality.IncreaseLevel();
-    }
-
-    internal void DecreaseQualityLevel()
-    {
-        _quality.DecreaseLevel();
     }
 
     void Update()

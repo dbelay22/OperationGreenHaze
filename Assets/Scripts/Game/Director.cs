@@ -67,7 +67,7 @@ public class Director : MonoBehaviour
         StressLevelUpdate();
 
         // [T] Show Director Stats
-        if (Input.GetKeyDown(KeyCode.T) && Game.Instance.IsDevBuild == true)
+        if (DevDebug.Instance.IsDebugBuild && Input.GetKeyDown(KeyCode.T))
         {
             _statsOnScreen = !_statsOnScreen;
         }

@@ -1,14 +1,10 @@
 using UnityEngine;
 using Yxp.Helpers;
 
-public class DebugShortcuts : MonoBehaviour
+public class DebugShortcuts : DebugComponentBase
 {
-    void Update()   
+    internal override void DebugUpdate()
     {
-        if (Game.Instance.IsDevBuild == false)
-        {
-            return;
-        }
         ProcessDebugShortcuts();
     }
 
@@ -80,13 +76,13 @@ public class DebugShortcuts : MonoBehaviour
         // [3] Lower quality
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            Game.Instance.DecreaseQualityLevel();
+            DevDebug.Instance.Quality.DecreaseLevel();
         }
 
         // [4] Better quality
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            Game.Instance.IncreaseQualityLevel();
+            DevDebug.Instance.Quality.IncreaseLevel();
         }
 
     }
