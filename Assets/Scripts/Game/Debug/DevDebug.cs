@@ -55,6 +55,11 @@ public class DevDebug : MonoBehaviour
 
     void Update()
     {
+        if (!_isDebugBuild)
+        {
+            return;
+        }
+
         Unscaled_Update();
     }
 
@@ -86,6 +91,11 @@ public class DevDebug : MonoBehaviour
 
     void OnGUI()
     {
+        if (!_isDebugBuild)
+        {
+            return;
+        }
+
         int w = Screen.width, h = Screen.height;
 
         GUIStyle style = new GUIStyle();
