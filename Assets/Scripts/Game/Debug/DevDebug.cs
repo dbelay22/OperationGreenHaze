@@ -13,8 +13,10 @@ public class DevDebug : MonoBehaviour
 
     public bool IsDebugBuild { get { return _isDebugBuild; } }
 
-    float _deltaTimeUnscaled = 0.0f;
-    float _unscaledFrameTime = 0.0f;
+    float _deltaTimeUnscaled = 0f;
+    float _unscaledFrameTime = 0f;
+
+    float _maxFrameTime = 0f;
 
     //float _deltaTimeScaled = 0.0f;
 
@@ -71,6 +73,11 @@ public class DevDebug : MonoBehaviour
 
         _unscaledFrameTime = _deltaTimeUnscaled * 1000f;
 
+        if (_unscaledFrameTime > _maxFrameTime)
+        {
+            _maxFrameTime = _unscaledFrameTime;
+        }
+
         //Debug.Log($"[DevDebug] FRAME TIME: _unscaledFrameTime: {_unscaledFrameTime}ms, _deltaTimeUnscaled: {_deltaTimeUnscaled}");
     }
 
@@ -105,11 +112,20 @@ public class DevDebug : MonoBehaviour
         style.fontSize = h * 2 / 100;
         style.normal.textColor = Color.black;
         
-        float msec = _unscaledFrameTime;
         float fps = 1000f / _unscaledFrameTime;
         
-        string text = string.Format("{0:0.0} ms ({1:0.} fps)", msec, fps);
+        string text = string.Format("{0:0.0} ms ({1:0.} fps) . max {2:0.0}", _unscaledFrameTime, fps, _maxFrameTime);
         GUI.Label(rect, text, style);
+
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            ResetMaxFrameTime();
+        }
+    }
+
+    void ResetMaxFrameTime()
+    {
+        _maxFrameTime = 0;
     }
 
     void LogAwake()
