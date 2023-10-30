@@ -93,7 +93,7 @@ MonoBehaviour:
   _synthSFX: {fileID: 8300000, guid: 8969b2df2abcc7d4caea59c404f0978b, type: 3}
   _bulletHitSFX: {fileID: 8300000, guid: a3b060243bb50334aab10cf38fde898f, type: 3}
   _death01SFX: {fileID: 8300000, guid: eccc14a763ee8024fb70db5a8c6108e4, type: 3}
-  _death02SFX: {fileID: 8300000, guid: 40d22a24612dee440be6d7c8e38ff7be, type: 3}
+  _death02SFX: {fileID: 8300000, guid: 2aa2767add7618a4f98f6296918c5e35, type: 3}
   _blindedSFX: {fileID: 8300000, guid: f700a98ef23f9be41b0747313ebd015a, type: 3}
   _minimapIcon: {fileID: 2168988010698024418}
   _showLogs: 0
