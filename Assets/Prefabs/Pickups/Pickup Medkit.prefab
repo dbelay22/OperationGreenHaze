@@ -17,7 +17,7 @@ GameObject:
   m_TagString: MedkitPickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 125
   m_IsActive: 1
 --- !u!4 &1640191611958328385
 Transform:
@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 117ad6f3738dd3e48923005ca5c8deb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _healthAmount: 20
+  _healthAmount: 50
 --- !u!114 &6882676416010547968
 MonoBehaviour:
   m_ObjectHideFlags: 0

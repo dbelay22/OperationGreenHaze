@@ -109,7 +109,7 @@ public class DevDebug : MonoBehaviour
         
         float fps = 1000f / _unscaledFrameTime;
         
-        string text = string.Format("{0:0.0} ms ({1:0.} fps) . max {2:0.0}", _unscaledFrameTime, fps, _maxFrameTime);
+        string text = string.Format("{0:0.0} ms ({1:0.} fps) . max {2:0.0} . Q: {3:0}", _unscaledFrameTime, fps, _maxFrameTime, QualitySettings.GetQualityLevel());
         GUI.Label(rect, text, style);
 
         if (Input.GetKeyDown(KeyCode.Y))

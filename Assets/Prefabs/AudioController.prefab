@@ -44,4 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e83570fb507b804c85f9d6cbc67c669, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _musicSource: {fileID: 0}
+  _ingameMusicSource: {fileID: 0}
+  _gameOverMusic: {fileID: 8300000, guid: 0dbccddfd6174494380e8dd0ed64e0f1, type: 3}
+  _winMusic: {fileID: 0}
