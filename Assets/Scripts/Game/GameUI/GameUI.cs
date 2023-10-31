@@ -127,7 +127,7 @@ public class GameUI : MonoBehaviour
                 _timerAudioSource.PlayOneShot(_timerBeepLong);
             }
         } 
-        else if (timeLeftSeconds <= 59)
+        else if (timeLeftSeconds <= 30)
         {
             if (_timerAudioSource.isPlaying == false) 
             {

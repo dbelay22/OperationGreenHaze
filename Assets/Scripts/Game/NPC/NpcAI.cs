@@ -536,7 +536,7 @@ public class NpcAI : MonoBehaviour
         _minimapIcon.SetActive(false);
 
         string rndDeadTrigger = Random.value < 0.5f ? "Dead Trigger" : "Dead Fwd Trigger";
-        _animator.SetTrigger(rndDeadTrigger);        
+        _animator.SetTrigger(rndDeadTrigger);
 
         PlayDeathSFX();
 
