@@ -287,19 +287,26 @@ public class Player : MonoBehaviour
     public void Damage(int amount)
     {
         _playerHealth.Damage(amount);
-                
-        if (_flashlightAsWeaponMessageCount < 3)
+
+        ProcessUseFlashlightAsWeapon();
+    }
+
+    private void ProcessUseFlashlightAsWeapon()
+    {
+        if (_flashlightAsWeaponMessageCount >= 3)
         {
-            bool canUseFlashlightToDefend = _flashlight.IsPickedUp && _flashlight.IsOnAndCanBlind() == false;
+            return;
+        }
 
-            if (canUseFlashlightToDefend && _ammo.GetAllAmmoLeftCount() < 1)
+        bool canUseFlashlightToDefend = _flashlight.IsPickedUp && _flashlight.IsOnAndCanBlind() == false;
+
+        if (canUseFlashlightToDefend && _ammo.GetAllAmmoLeftCount() < 1)
+        {
+            bool messageShown = GameUI.Instance.ShowInGameMessage("ig_use_the_flashlight", 3);
+
+            if (messageShown)
             {
-                bool messageShown = GameUI.Instance.ShowInGameMessage("ig_use_the_flashlight", 3);
-
-                if (messageShown)
-                {
-                    _flashlightAsWeaponMessageCount++;
-                }                
+                _flashlightAsWeaponMessageCount++;
             }
         }
     }
