@@ -74,6 +74,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 927b14f04648e3f4d8613f8b1dfa5402, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _zombieSteps: {fileID: 5477319814708657277}
   EatBrainDamage: 5
   _minSpeed: 1.5
   _maxSpeed: 3

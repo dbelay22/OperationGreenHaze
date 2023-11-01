@@ -20,6 +20,8 @@ public class NpcAI : MonoBehaviour
     readonly float[] DEFAULT_SIZE_SCALE_RANGE = { 1f, 1f };    
     readonly float[] BIG_SIZE_SCALE_RANGE = { 1.2f, 1.35f };
 
+    [Header("Components")]
+    [SerializeField] ZombieSteps _zombieSteps;
 
     [Header("Attack")]
     [SerializeField] int EatBrainDamage = 10;
@@ -70,7 +72,7 @@ public class NpcAI : MonoBehaviour
 
     Player _player;
 
-    AudioSource _audioSource;    
+    AudioSource _audioSource;   
 
     bool _reportedAttack = false;
     bool _reportedPlayerEscape = false;
@@ -383,17 +385,16 @@ public class NpcAI : MonoBehaviour
 
     void StartMoving()
     {
-        // Go!
         _navMeshAgent.isStopped = false;
 
-        BroadcastMessage("OnNPCStartWalking");
+        _zombieSteps.OnNPCStartWalking();
     }
 
     void StopMoving()
     {
         _navMeshAgent.isStopped = true;
 
-        BroadcastMessage("OnNPCStoppedWalking");
+        _zombieSteps.OnNPCStoppedWalking();
     }
 
     void FaceTarget()
