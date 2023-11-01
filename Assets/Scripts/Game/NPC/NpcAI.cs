@@ -422,7 +422,7 @@ public class NpcAI : MonoBehaviour
 
     public void OnZombieStepAnimEvent()
     {
-        BroadcastMessage("ZombieStepAnimEvent");
+        _zombieSteps.PlayStepSFX();
     }
 
     public void OnAttackHitAnimEvent()

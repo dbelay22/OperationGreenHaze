@@ -6,14 +6,14 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class ZombieSteps : MonoBehaviour
 {
-    [Header("SFX")]
+    [Header("Maximum two (2) audio clips")]
     [SerializeField] AudioClip[] _walkSounds;
 
     AudioSource _audioSource;
 
     bool _isWalking = false;
 
-    int _lastWalkStepIndex = -1;
+    int _lastWalkStepIndex;
     
     void Start()
     {
@@ -22,23 +22,18 @@ public class ZombieSteps : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
     }
 
-    public void ZombieStepAnimEvent()
+    public void PlayStepSFX()
     {
         if (_isWalking == false)
         {
             return;
         }
 
-        int rndIndex;
-        do
-        {
-            rndIndex = GetRandomArrayIndex(_walkSounds);
-        }
-        while (rndIndex == _lastWalkStepIndex);
+        int index = _lastWalkStepIndex == 0 ? 1 : 0;
 
-        if (PlayAudioClip(_walkSounds[rndIndex]))
+        if (PlayAudioClip(_walkSounds[index]))
         {
-            _lastWalkStepIndex = rndIndex;
+            _lastWalkStepIndex = index;
         }
     }
 
@@ -54,11 +49,6 @@ public class ZombieSteps : MonoBehaviour
         _audioSource.Stop();
         
         _lastWalkStepIndex = -1;
-    }
-
-    int GetRandomArrayIndex(AudioClip[] sounds)
-    {
-        return Random.Range(0, sounds.Length);
     }
 
     bool PlayAudioClip(AudioClip clip)
