@@ -15,6 +15,12 @@ public enum NpcState
 
 public class NpcAI : MonoBehaviour
 {
+    const float HEALTH_SCALE_ONE = 100f;
+    
+    readonly float[] DEFAULT_SIZE_SCALE_RANGE = { 1f, 1f };    
+    readonly float[] BIG_SIZE_SCALE_RANGE = { 1.2f, 1.35f };
+
+
     [Header("Attack")]
     [SerializeField] int EatBrainDamage = 10;
 
@@ -64,21 +70,20 @@ public class NpcAI : MonoBehaviour
 
     Player _player;
 
-    AudioSource _audioSource;
+    AudioSource _audioSource;    
 
     bool _reportedAttack = false;
     bool _reportedPlayerEscape = false;
 
-    float _currentSizeScale = 1;
+    float _currentSizeScale = 1;   
 
-    readonly float[] DEFAULT_SIZE_SCALE_RANGE = { 1f, 1f };
-    readonly float[] BIG_SIZE_SCALE_RANGE = { 1.2f, 1.35f };
-
-    public float SizeScale { get { return _currentSizeScale; } }
+    float _currentHealth;
 
     void Awake()
     {
         RandomizeSizeScale();
+
+        _currentHealth = HEALTH_SCALE_ONE * _currentSizeScale;
     }
 
     void Start()
@@ -445,6 +450,7 @@ public class NpcAI : MonoBehaviour
 
     public void HitByExplosion(Transform explosionTransform)
     {
+        // compute explosion force
         Vector3 forceDirection = transform.position - explosionTransform.position;
         
         forceDirection.Normalize();
@@ -457,6 +463,9 @@ public class NpcAI : MonoBehaviour
 
         // vuela, vuela
         rb.AddForceAtPosition(forceVector, transform.position, ForceMode.Impulse);
+
+        // hurt
+        TakeDamage(HEALTH_SCALE_ONE);
     }
 
     public void HitByBullet(float damage, RaycastHit hit, bool isHeadshot = false)
@@ -469,10 +478,23 @@ public class NpcAI : MonoBehaviour
         {
             StopMoving();
 
-            BroadcastMessage("OnHitByBullet", damage, SendMessageOptions.RequireReceiver);            
+            TakeDamage(damage);
 
             PlayHitByBulletFX(hit, isHeadshot);
         }        
+    }
+
+    void TakeDamage(float damage)
+    {
+        if (_currentHealth <= 0)
+        {
+            // dead can't dead again, does it ?
+            return;
+        }
+
+        _currentHealth -= damage;
+
+        BroadcastMessage("OnHealthChange", _currentHealth, SendMessageOptions.RequireReceiver);
     }
 
     void ChangeStateToHitByBullet()

@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 540048798153553766}
   - component: {fileID: 540048798153553767}
   - component: {fileID: 540048798153553760}
-  - component: {fileID: 540048798153553761}
   - component: {fileID: 6624075472386140858}
   - component: {fileID: 8294744825748994963}
   - component: {fileID: 8059479896434547297}
@@ -97,18 +96,6 @@ MonoBehaviour:
   _blindedSFX: {fileID: 8300000, guid: f700a98ef23f9be41b0747313ebd015a, type: 3}
   _minimapIcon: {fileID: 2168988010698024418}
   _showLogs: 0
---- !u!114 &540048798153553761
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 540048798153553764}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 630d21f4a5ca7044c8f410951ae7acce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &6624075472386140858
 Animator:
   serializedVersion: 5

@@ -155,15 +155,10 @@ public class BoomBox: MonoBehaviour
 
     void ProcessEnemyDamage(Collider collider)
     {
-        if (collider.TryGetComponent<NpcHealth>(out NpcHealth npcHealth))
-        {
-            npcHealth.HitByExplosion();
-        }
-        
         if (collider.TryGetComponent<NpcAI>(out NpcAI npc))
         {
             npc.HitByExplosion(transform);
-        }
+        }        
     }
 
     IEnumerator AutoDestroy()
