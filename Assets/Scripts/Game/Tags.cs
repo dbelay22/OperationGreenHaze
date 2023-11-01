@@ -12,4 +12,6 @@ public static class Tags
     public const string FLASHLIGHT_PICKUP_TAG = "FlashlightPickup";
     public const string MISSION_PICKUP_TAG = "MissionPickup";
 
+    public const string EXIT_BLOCKER = "ExitBlocker";
+
 }

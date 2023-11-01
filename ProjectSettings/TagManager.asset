@@ -17,6 +17,7 @@ TagManager:
   - BoomBox
   - PlayerSettings
   - Localization
+  - ExitBlocker
   layers:
   - Default
   - TransparentFX

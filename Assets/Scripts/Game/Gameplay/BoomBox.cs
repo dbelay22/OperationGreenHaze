@@ -82,8 +82,6 @@ public class BoomBox: MonoBehaviour
 
         StartCoroutine(HideTargetDelayed(_timeToDissapear));
 
-        BroadcastMessage("OnBoomBoxExplosion", SendMessageOptions.DontRequireReceiver);
-
         // bye
         StartCoroutine(AutoDestroy());
     }
@@ -101,14 +99,11 @@ public class BoomBox: MonoBehaviour
 
         //Debug.Log($"[BoomBox] (ProcessExplosionDamage) colliders affected by explosion: {colliders.Length}");
 
-        //bool shouldBendTime = false;
-
         foreach (var collider in colliders)
         {
             if (collider.CompareTag(Tags.ENEMY_TAG))
             {
                 ProcessEnemyDamage(collider);
-                //shouldBendTime = true;
             }
             else if (collider.CompareTag(Tags.BOOMBOX_TAG))
             {
@@ -118,14 +113,24 @@ public class BoomBox: MonoBehaviour
             {
                 ProcessPlayerDamage(collider);
             }
+            else if (collider.CompareTag(Tags.EXIT_BLOCKER))
+            {
+                ProcessExitBlocker(collider);
+            }
+        }
+    }
+
+    void ProcessExitBlocker(Collider collider)
+    {
+        if (collider.TryGetComponent<ExitBlocker>(out ExitBlocker exitBlocker))
+        {
+            exitBlocker.OnBoomBoxExplosion();
         }
     }
 
     void ProcessPlayerDamage(Collider collider)
     {
-        collider.TryGetComponent<PlayerHealth> (out PlayerHealth playerHealth);
-
-        if (playerHealth != null)
+        if (collider.TryGetComponent<PlayerHealth>(out PlayerHealth playerHealth))
         {
             playerHealth.HitByExplosion();
         }
@@ -133,9 +138,7 @@ public class BoomBox: MonoBehaviour
 
     void ProcessChainReaction(Collider collider)
     {
-        collider.TryGetComponent<BoomBox>(out BoomBox boombox);
-
-        if (boombox != null)
+        if (collider.TryGetComponent<BoomBox>(out BoomBox boombox))
         {
             StartCoroutine(ChainReactionDelayed(boombox));
         }
@@ -152,16 +155,12 @@ public class BoomBox: MonoBehaviour
 
     void ProcessEnemyDamage(Collider collider)
     {
-        collider.TryGetComponent<NpcHealth>(out NpcHealth npcHealth);
-
-        if (npcHealth != null)
+        if (collider.TryGetComponent<NpcHealth>(out NpcHealth npcHealth))
         {
-            npcHealth.HitByExplosion();            
+            npcHealth.HitByExplosion();
         }
         
-        collider.TryGetComponent<NpcAI>(out NpcAI npc);
-
-        if (npc != null)
+        if (collider.TryGetComponent<NpcAI>(out NpcAI npc))
         {
             npc.HitByExplosion(transform);
         }
