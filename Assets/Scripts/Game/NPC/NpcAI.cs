@@ -494,7 +494,14 @@ public class NpcAI : MonoBehaviour
 
         _currentHealth -= damage;
 
-        BroadcastMessage("OnHealthChange", _currentHealth, SendMessageOptions.RequireReceiver);
+        if (_currentHealth <= 0f)
+        {
+            ChangeStateToDead();
+        }
+        else
+        {
+            ChangeStateToHitByBullet();
+        }
     }
 
     void ChangeStateToHitByBullet()
@@ -530,18 +537,6 @@ public class NpcAI : MonoBehaviour
         GameObject vfx = Instantiate(prefabVfx, hit.point, Quaternion.LookRotation(hit.normal));
                 
         Destroy(vfx, 0.7f);
-    }
-
-    void OnHealthChange(float health)
-    {
-        if (health <= 0f)
-        {
-            ChangeStateToDead();
-        }
-        else        
-        {
-            ChangeStateToHitByBullet();
-        }
     }
 
     void SetCollidersActive(bool active)
