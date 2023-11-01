@@ -17,7 +17,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1000012581530574, guid: 85a8f6f8dca77df4e9c05f21b5e8ed87, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 0
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 4000012177816388, guid: 85a8f6f8dca77df4e9c05f21b5e8ed87, type: 3}
       propertyPath: m_RootOrder
@@ -68,7 +68,8 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: fadf3a73fdffa2d4abf2aa0c3ac3392d, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 64000010761939136, guid: 85a8f6f8dca77df4e9c05f21b5e8ed87, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 85a8f6f8dca77df4e9c05f21b5e8ed87, type: 3}
 --- !u!1 &2314246474156645757 stripped
 GameObject:
@@ -83,6 +84,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 476948590160184712, guid: 990c9378a0e42304e9044112d2c72efb,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 476948590160184712, guid: 990c9378a0e42304e9044112d2c72efb,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 476948590160184712, guid: 990c9378a0e42304e9044112d2c72efb,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 3991991700096660460, guid: 990c9378a0e42304e9044112d2c72efb,
         type: 3}
       propertyPath: m_RootOrder
@@ -151,7 +167,7 @@ PrefabInstance:
     - target: {fileID: 3991991700096660462, guid: 990c9378a0e42304e9044112d2c72efb,
         type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 2147483647
+      value: 125
       objectReference: {fileID: 0}
     - target: {fileID: 3991991700096660463, guid: 990c9378a0e42304e9044112d2c72efb,
         type: 3}
@@ -177,6 +193,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7051220665682199602, guid: 990c9378a0e42304e9044112d2c72efb,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 125
       objectReference: {fileID: 0}
     - target: {fileID: 7195804802140517100, guid: 990c9378a0e42304e9044112d2c72efb,
         type: 3}
