@@ -4,10 +4,22 @@ using UnityEngine;
 
 public class ExitBlocker : MonoBehaviour
 {
-    public void OnBoomBoxExplosion() 
+    bool _reportedExitClear;
+
+    void Awake()
     {
-        Debug.Log("[ExitBlocker] OnBoomBoxExplosion)");
+        _reportedExitClear = false;
+    }
+
+    public void OnBoomBoxExplosion()
+    {
+        if (_reportedExitClear)
+        {
+            return;
+        }
 
         Game.Instance.ReportExitClear();
+
+        _reportedExitClear = true;
     }
 }
