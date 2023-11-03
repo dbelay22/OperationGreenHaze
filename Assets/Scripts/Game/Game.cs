@@ -98,7 +98,9 @@ public class Game : MonoBehaviour
     public void UpdateCameraFOV(float step)
     {
         Camera.main.fieldOfView += step;
+#if UNITY_EDITOR
         Debug.Log($"New [FOV] is: {Camera.main.fieldOfView}");
+#endif
     }
 
     public void SetCameraFov(float value)
@@ -115,7 +117,9 @@ public class Game : MonoBehaviour
 
     public void ReportAllMissionPickupsCollected()
     {
+#if UNITY_EDITOR
         Debug.Log("[Game] (ReportAllMissionPickupsCompleted)");
+#endif
         
         _allMissionPickupsCompleted = true;
 
@@ -126,7 +130,9 @@ public class Game : MonoBehaviour
 
     public void ReportAllEnemiesKilled()
     {
+#if UNITY_EDITOR
         Debug.Log("[Game] (ReportAllEnemiesKilled)");
+#endif
 
         _allEnemiesKilled = true;
 
@@ -145,23 +151,25 @@ public class Game : MonoBehaviour
 
     public void ReportExitClear()
     {
+#if UNITY_EDITOR
         Debug.Log("[Game] (ReportExitClear)");
-
+#endif
+        
         _exitClear = true;
 
-        ObjectivesPanel.Instance.SetFindExitComplete();
-
-        if (CheckGameWin() == false)
+        if (!CheckGameWin())
         {
-            Game.Instance.ChangeStateToGameOver();
-        }
+            ChangeStateToGameOver();
+            return;
+        }        
+
+        ObjectivesPanel.Instance.SetFindExitComplete();
     }
 
     bool CheckGameWin()
     {
         if (_allEnemiesKilled && _allMissionPickupsCompleted && _exitClear)
         {
-            Debug.Log("[Game] ALL MISSIONS COMPLETED !! ");
             ChangeStateToWin();
             return true;
         }
@@ -170,15 +178,6 @@ public class Game : MonoBehaviour
 
     void ChangeStateToWin()
     {
-        Debug.Log($"[Game] WIN in {Time.realtimeSinceStartup:N0} seconds");
-        
-        StartCoroutine(WinDelayed());
-    }
-
-    IEnumerator WinDelayed()
-    {
-        yield return new WaitForSeconds(3f);
-
         _stateMachine.TransitionToState(new WinState());
 
         _player.GameplayIsOver();
@@ -238,8 +237,9 @@ public class Game : MonoBehaviour
     public void ToggleGodMode()
     {
         _isGodModeOn = !_isGodModeOn;
-
+#if UNITY_EDITOR
         Debug.Log($"[Game] GOD MODE ON: {_isGodModeOn}");
+#endif
     }
 
     public IEnumerator TimeBend(float slowTimeScale, float waitTime)

@@ -7,11 +7,11 @@ public class WinState : GameState
 {
     public override void EnterState()
     {
+#if UNITY_EDITOR
         Debug.Log("*** WIN ***");
+#endif
 
         Director.Instance.DumpStats();
-
-        //AudioController.Instance.PlayWinMusic();
 
         GameUI.Instance.ShowWin();
 

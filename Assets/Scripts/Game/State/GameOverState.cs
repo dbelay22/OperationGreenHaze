@@ -4,18 +4,14 @@ using Yxp.StateMachine;
 
 public class GameOverState : GameState
 {
-    public GameOverState()
-    {
-    }
-
     public override void EnterState()
     {
+#if UNITY_EDITOR        
         Debug.Log("*** GAME OVER ***");
+#endif
 
         Director.Instance.DumpStats();
 
-        //AudioController.Instance.PlayGameOverMusic();
-        
         GameUI.Instance.ShowGameOver();
 
         UnlockCursor();

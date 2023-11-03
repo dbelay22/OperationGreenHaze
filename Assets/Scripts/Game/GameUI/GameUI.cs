@@ -217,7 +217,7 @@ public class GameUI : MonoBehaviour
 
     IEnumerator LoadWinSceneDelayed()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(3f);
 
         LevelLoader.Instance.LoadWinScene();
     }
