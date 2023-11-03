@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -20,8 +21,13 @@ public class NpcAI : MonoBehaviour
     readonly float[] DEFAULT_SIZE_SCALE_RANGE = { 1f, 1f };    
     readonly float[] BIG_SIZE_SCALE_RANGE = { 1.2f, 1.35f };
 
+    const string HEAD_GO_NAME = "Z_Head";
+
     [Header("Components")]
     [SerializeField] ZombieSteps _zombieSteps;
+
+    [Header("Body parts")]
+    [SerializeField] GameObject[] _bodyParts;
 
     [Header("Attack")]
     [SerializeField] int EatBrainDamage = 10;
@@ -72,7 +78,10 @@ public class NpcAI : MonoBehaviour
 
     Player _player;
 
-    AudioSource _audioSource;   
+    AudioSource _audioSource;
+
+    BoxCollider _bodyCollider;
+    CapsuleCollider _headCollider;
 
     bool _reportedAttack = false;
     bool _reportedPlayerEscape = false;
@@ -83,9 +92,13 @@ public class NpcAI : MonoBehaviour
 
     void Awake()
     {
+        _headCollider = GetComponent<CapsuleCollider>();
+        
+        _bodyCollider = GetComponent<BoxCollider>();
+
         RandomizeSizeScale();
 
-        _currentHealth = HEALTH_SCALE_ONE * _currentSizeScale;
+        RandomizeMissingBodyParts();
     }
 
     void Start()
@@ -142,7 +155,33 @@ public class NpcAI : MonoBehaviour
         //Debug.Log($"[NPC] (RandomizeScale) _sizeScale: {_currentSizeScale}");
 
         transform.localScale = new Vector3(_currentSizeScale, _currentSizeScale, _currentSizeScale);
+
+        _currentHealth = HEALTH_SCALE_ONE * _currentSizeScale;
     }
+
+    void RandomizeMissingBodyParts()
+    {
+        if (Random.value < 0.3f)
+        {
+            // no missing parts for you
+            return;
+        }
+
+        int partIndex = Random.Range(0, _bodyParts.Length);
+
+        GameObject bodyPart = _bodyParts[partIndex];
+
+        bodyPart.SetActive(false);
+
+        //Debug.Log($"[NPC] Removed body part: {bodyPart.name}");
+
+        if (bodyPart.name.Equals(HEAD_GO_NAME))
+        {
+            Destroy(_headCollider);
+
+            _headCollider = null;
+        }
+    }   
 
     void Update()
     {
@@ -518,7 +557,7 @@ public class NpcAI : MonoBehaviour
     {
         PlayHitByBulletSFX();
 
-        PlayHitByBulletVFX(hit, isHeadshot);        
+        PlayHitByBulletVFX(hit, isHeadshot);
     }
 
     void PlayHitByBulletAnim()
@@ -542,8 +581,11 @@ public class NpcAI : MonoBehaviour
 
     void SetCollidersActive(bool active)
     {
-        GetComponent<CapsuleCollider>().enabled = active;
-        GetComponent<BoxCollider>().enabled = active;
+        if (_headCollider != null) 
+        {
+            _headCollider.enabled = active;
+        }        
+        _bodyCollider.enabled = active;
     }
 
     void ChangeStateToDead()
