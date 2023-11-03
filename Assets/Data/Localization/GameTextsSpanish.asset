@@ -50,14 +50,14 @@ MonoBehaviour:
   - _key: menu_back
     _value: VOLVER
   - _key: mission_briefing
-    _value: "Enero 2025 - Neuqu\xE9n, Argentina\n\nAgente R, misi\xF3n urgente\r\n\r\nNuestro
+    _value: "Septiembre 2019 - Neuqu\xE9n, Argentina\n\nAgente R, misi\xF3n urgente\r\n\r\nNuestro
       contacto reporta situaci\xF3n extrema en instalaci\xF3n secreta de experimentos
       biol\xF3gicos.\n\rLos enemigos han iniciado un ataque a\xE9reo y el apoyo en
       tierra est\xE1 en camino, se acaba el tiempo.\n\r\n\nObjetivos de la misi\xF3n:\r\n\n1.
       Elimina todas las abominaciones, ninguna puede sobrevivir.\n2. Encuentra las
       c\xE1psulas del proyecto 'Green Haze' (Iconos violeta en el mapa).\n3. Localiza
-      y despeja la salida.\n\r\n\nSolo ten\xE9s 9 minutos.\n\nEl helic\xF3ptero espera
-      a la salida, buena suerte."
+      y despeja la salida.\n\r\n\nSolo ten\xE9s 10 minutos.\n\nEl helic\xF3ptero
+      espera a la salida, buena suerte."
   - _key: press_any_key
     _value: PRESIONA UNA TECLA PARA CONTINUAR
   - _key: lose_message
