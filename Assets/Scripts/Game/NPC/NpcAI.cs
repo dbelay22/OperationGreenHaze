@@ -25,9 +25,14 @@ public class NpcAI : MonoBehaviour
 
     [Header("Components")]
     [SerializeField] ZombieSteps _zombieSteps;
+    
 
-    [Header("Body parts")]
+    [Header("Missing parts")]
     [SerializeField] GameObject[] _bodyParts;
+
+    [Header("Material randomization")]
+    [SerializeField] Material[] _materials;
+    [SerializeField] Renderer[] _renderers;
 
     [Header("Attack")]
     [SerializeField] int EatBrainDamage = 10;
@@ -96,9 +101,11 @@ public class NpcAI : MonoBehaviour
         
         _bodyCollider = GetComponent<BoxCollider>();
 
-        RandomizeSizeScale();
+        RandomizeMaterial();
 
-        RandomizeMissingBodyParts();
+        RandomizeSizeScale();
+        
+        RandomizeMissingBodyParts();        
     }
 
     void Start()
@@ -181,7 +188,25 @@ public class NpcAI : MonoBehaviour
 
             _headCollider = null;
         }
-    }   
+    }
+
+    void RandomizeMaterial()
+    {
+        if (Random.value < 0.3f)
+        {
+            // no material change for you
+            return;
+        }
+
+        int index = Random.Range(0, _materials.Length);
+
+        Material material = _materials[index];
+
+        foreach (Renderer r in _renderers)
+        {
+            r.material = material;
+        }
+    }
 
     void Update()
     {
