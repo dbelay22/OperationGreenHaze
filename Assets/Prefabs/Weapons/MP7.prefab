@@ -2421,7 +2421,7 @@ MonoBehaviour:
   _raycastRange: 250
   _coolDownSeconds: 0.44
   _damage: 100
-  _headshotDamage: 100
+  _headshotDamage: 200
   _muzzleFlashPS: {fileID: 8002341289794680614}
   _hitImpactVFX: {fileID: 1892351807075712, guid: 44be68b4fc4366142a9cd1ae1f761ea4,
     type: 3}

@@ -13,7 +13,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] float _raycastRange = 250;
     [SerializeField] float _coolDownSeconds = 1f;
     [SerializeField] float _damage = 25;
-    [SerializeField] float _headshotDamage = 100;
+    [SerializeField] float _headshotDamage = 200;
     [SerializeField] ParticleSystem _muzzleFlashPS;
     [SerializeField] GameObject _hitImpactVFX;
 
