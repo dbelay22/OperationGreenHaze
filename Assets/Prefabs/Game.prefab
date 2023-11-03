@@ -53,7 +53,7 @@ MonoBehaviour:
   _localizationPrefab: {fileID: 8994485027068230935, guid: 423b02f0bea411d41a4e80763115f1df,
     type: 3}
   _player: {fileID: 0}
-  _minutesOfGameplay: 9
+  _minutesOfGameplay: 10
 --- !u!114 &1557213532102548117
 MonoBehaviour:
   m_ObjectHideFlags: 0
