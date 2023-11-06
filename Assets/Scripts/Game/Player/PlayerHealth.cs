@@ -101,8 +101,15 @@ public class PlayerHealth : MonoBehaviour
             return;
         }
 
+        bool wasBadlyHurt = IsBadlyHurt();
+
         // more health!
         HealthUpdate(amount);
+
+        if (wasBadlyHurt && !IsBadlyHurt())
+        {
+            GameUI.Instance.HidePlayerBadlyHurt();
+        }
     }
 
     void PlayHitSFX()
@@ -144,6 +151,15 @@ public class PlayerHealth : MonoBehaviour
 
             Game.Instance.ChangeStateToGameOver();
         }
+        else if (IsBadlyHurt())
+        {
+            GameUI.Instance.ShowPlayerBadlyHurt();
+        }          
+    }
+
+    public bool IsBadlyHurt()
+    {
+        return CurrentHealthPercentage < 0.5;
     }
 
     public void HitByExplosion()

@@ -1293,7 +1293,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f267db727b05c524ead27f35b1458597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _durationSeconds: 2
 --- !u!222 &969398308
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4448,7 +4447,8 @@ MonoBehaviour:
   _timerAudioSource: {fileID: 582758546071034046}
   _timerBeepShort: {fileID: 8300000, guid: 8b83155b1d167674dbdace1388b576b5, type: 3}
   _timerBeepLong: {fileID: 8300000, guid: 0cceb484d28b0b441b959f2b3cf71011, type: 3}
-  _playerDamageCanvas: {fileID: 3440028958954469748}
+  _playerDamage: {fileID: 6267667903528734527}
+  _damageShowTime: 2
   _pauseScreen: {fileID: 4881244988808100429}
   _inGameMessagesCanvas: {fileID: 6576200825323074584}
   _textInGameMessage: {fileID: 5626114569152610411}

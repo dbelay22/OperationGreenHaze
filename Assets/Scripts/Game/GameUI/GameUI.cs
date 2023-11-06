@@ -31,7 +31,8 @@ public class GameUI : MonoBehaviour
     [SerializeField] AudioClip _timerBeepLong;
 
     [Header("In-game/VFX")]
-    [SerializeField] GameObject _playerDamageCanvas;
+    [SerializeField] PlayerDamage _playerDamage;
+    [SerializeField] float _damageShowTime = 2f;
 
     [Header("In-game/Interactive")]
     [SerializeField] GameObject _pauseScreen;
@@ -184,7 +185,7 @@ public class GameUI : MonoBehaviour
         _hudCanvas.SetActive(active);        
         _minimapCanvas.SetActive(active);
 
-        _playerDamageCanvas.SetActive(false);
+        _playerDamage.Hide();
     }
 
     public void ShowGameOver()
@@ -269,7 +270,20 @@ public class GameUI : MonoBehaviour
 
     public void ShowPlayerDamageVFX()
     {
-        _playerDamageCanvas.SetActive(true);
+        if (!_playerDamage.IsActive())
+        {
+            _playerDamage.Show(_damageShowTime);
+        }
+    }
+
+    public void ShowPlayerBadlyHurt()
+    {
+        _playerDamage.Show();
+    }
+
+    public void HidePlayerBadlyHurt()
+    {
+        _playerDamage.Hide();
     }
 
     public void InitKills(int total)
