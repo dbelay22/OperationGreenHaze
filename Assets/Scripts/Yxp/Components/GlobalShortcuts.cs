@@ -19,12 +19,6 @@ namespace Yxp.Input
                     Game.Instance.ChangeStateToPaused();
                 }                
             }
-
-            // [M]ute sound
-            if (UnityEngine.Input.GetKeyDown(KeyCode.M))
-            {
-                AudioController.Instance.ToggleAudioOnOff();
-            }
         }        
     }
 }

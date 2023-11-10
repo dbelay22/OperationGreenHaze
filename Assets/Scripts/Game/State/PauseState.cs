@@ -14,7 +14,7 @@ public class PauseState : GameState
 
         GameUI.Instance.ShowPause();
 
-        AudioController.Instance.GameplayPause();
+        //AudioController.Instance.GameplayPause();
     }      
 
     public override void ExitState()

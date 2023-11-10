@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using StarterAssets;
 using UnityEngine;
+using FMOD.Studio;
+using UnityEngine.Rendering;
 
-[RequireComponent(typeof(AudioSource))]
 public class PlayerSteps : MonoBehaviour
 {
     [Header("Input")]
@@ -12,23 +13,14 @@ public class PlayerSteps : MonoBehaviour
     [Header("Health")]
     [SerializeField] PlayerHealth _playerHealth;
 
-
-    [Header("SFX")]
-    [SerializeField] AudioClip[] _walkHurtSounds;
-    [SerializeField] AudioClip[] _walkSounds;
-    [SerializeField] AudioClip[] _sprintSounds;
-
-    AudioSource _audioSource;
-
-    int _lastWalkStepIndex = -1;
-    int _lastSprintStepIndex = -1;
+    [Header("Player position")]
+    [SerializeField] Transform _playerPosition;
+ 
+    EventInstance _footstepEventInstance;
 
     void Start()
     {
-        _lastWalkStepIndex = -1;
-        _lastSprintStepIndex = 1;
-
-        _audioSource = GetComponent<AudioSource>();
+        _footstepEventInstance = AudioController.Instance.CreateInstance(FMODEvents.Instance.PlayerFootsteps);
     }
 
     void Update()
@@ -49,70 +41,40 @@ public class PlayerSteps : MonoBehaviour
         {
             if (_input.sprint && _isPlayerHurt == false)
             {
-                PlaySprintSound();
+                PlayStepSFX(isRunning: true);
             }
             else
             {
-                PlayWalkSound();
+                PlayStepSFX(isRunning: false);
             }
         }
         else
         {
-            _audioSource.Stop();
-            
-            _lastSprintStepIndex = -1;
-            
-            _lastWalkStepIndex = -1;
+            // stop audio
+            StopStepSFX();
         }
     }
 
-    void PlayWalkSound()
+    void PlayStepSFX(bool isRunning)
     {
-        int rndIndex;
-        AudioClip[] soundsArray = _playerHealth.CurrentHealthPercentage < 0.5 ? _walkHurtSounds : _walkSounds;
-        do
-        {
-            rndIndex = GetRandomArrayIndex(soundsArray);
-        }
-        while (rndIndex == _lastWalkStepIndex);
+        //////////////////////////////
+        // Parameters
+        
+        // position
+        _footstepEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(_playerPosition.position));
 
-        //Debug.Log($"[Player] (Update) moving:{_input.move} sound rndIndex:{rndIndex}, _lastStepIndex:{_lastWalkStepIndex}");
+        // walk / run 
+        _footstepEventInstance.setParameterByName(FMODEvents.Instance.WalkRunParameter, isRunning ? 1 : 0);
+        
+        // floor material
+        _footstepEventInstance.setParameterByName(FMODEvents.Instance.FloorMaterialParameter, FMODEvents.Instance.DefaultFloorMaterialValue);
+        //////////////////////////////
 
-        if (PlayAudioClip(soundsArray[rndIndex]))
-        {
-            _lastWalkStepIndex = rndIndex;
-        }
+        AudioController.Instance.PlayEvent(_footstepEventInstance);
     }
-
-    void PlaySprintSound()
+    
+    void StopStepSFX()
     {
-        int rndIndex;
-        do
-        {
-            rndIndex = GetRandomArrayIndex(_sprintSounds);
-        }
-        while (rndIndex == _lastSprintStepIndex);
-
-        if (PlayAudioClip(_sprintSounds[rndIndex]))
-        {
-            _lastSprintStepIndex = rndIndex;
-        }
-    }
-
-    int GetRandomArrayIndex(AudioClip[] sounds)
-    {
-        return Random.Range(0, sounds.Length);
-    }
-
-    bool PlayAudioClip(AudioClip clip)
-    {
-        if (_audioSource.isPlaying)
-        {
-            return false;
-        }
-
-        _audioSource.PlayOneShot(clip);
-
-        return true;
+        AudioController.Instance.StopEvent(_footstepEventInstance);
     }
 }

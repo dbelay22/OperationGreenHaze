@@ -178,7 +178,7 @@ namespace StarterAssets
 			float moveSpeedHealth = MoveSpeed * speedFactor;
 
 			// set target speed based on move speed, sprint speed and if sprint is pressed
-			float targetSpeed = _input.sprint && _playerHealth.IsBadlyHurt() == true ? moveSpeedHealth : sprintSpeedHealth;
+			float targetSpeed = _input.sprint && _playerHealth.IsBadlyHurt() == false ? sprintSpeedHealth : moveSpeedHealth;
 
 			/*
 			if (speedFactor < 1)
