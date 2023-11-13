@@ -55,6 +55,8 @@ public class PlayerSteps : MonoBehaviour
         }
     }
 
+    bool _stepLeft = true;
+
     void PlayStepSFX(bool isRunning)
     {
         //////////////////////////////
@@ -68,9 +70,13 @@ public class PlayerSteps : MonoBehaviour
         
         // floor material
         _footstepEventInstance.setParameterByName(FMODEvents.Instance.FloorMaterialParameter, FMODEvents.Instance.DefaultFloorMaterialValue);
+
+        _footstepEventInstance.setParameterByName(FMODEvents.Instance.LeftRightParameter, _stepLeft ? 0 : 1);
         //////////////////////////////
 
         AudioController.Instance.PlayEvent(_footstepEventInstance);
+
+        _stepLeft = !_stepLeft;
     }
     
     void StopStepSFX()

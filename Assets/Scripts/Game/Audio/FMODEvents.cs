@@ -13,6 +13,7 @@ public class FMODEvents : MonoBehaviour
     public string FloorMaterialParameter;
     public int DefaultFloorMaterialValue = 0;
 
+    public string LeftRightParameter;
 
     #region Instance
 
