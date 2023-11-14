@@ -33,6 +33,8 @@ public class PlayerSteps : MonoBehaviour
         StepSoundUpdate();
     }
 
+    bool _wasRunning = false;
+
     void StepSoundUpdate()
     {
         bool _isPlayerHurt = _playerHealth.CurrentHealthPercentage < 0.5;
@@ -41,10 +43,20 @@ public class PlayerSteps : MonoBehaviour
         {
             if (_input.sprint && _isPlayerHurt == false)
             {
+                if (!_wasRunning)
+                {
+                    StopStepSFX();
+                    _wasRunning = true;
+                }
                 PlayStepSFX(isRunning: true);
             }
             else
             {
+                if (_wasRunning)
+                {
+                    StopStepSFX();
+                    _wasRunning = false;
+                }
                 PlayStepSFX(isRunning: false);
             }
         }
