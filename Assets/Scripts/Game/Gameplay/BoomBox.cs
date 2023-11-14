@@ -73,11 +73,13 @@ public class BoomBox: MonoBehaviour
         // play sound
         _audioSource.PlayOneShot(_explosionSFX);
 
+        Vector3 fxPos = new Vector3(transform.position.x, 0, transform.position.z);
+
         // spawn explosion
-        Instantiate(_explosionVFX, transform);
+        Instantiate(_explosionVFX, fxPos, Quaternion.identity);
 
         // spawn fire and smoke
-        Instantiate(_fireAndSmokeVFX, transform);
+        Instantiate(_fireAndSmokeVFX, fxPos, Quaternion.identity);
         _fireZoneTrigger.SetActive(true);
 
         StartCoroutine(HideTargetDelayed(_timeToDissapear));
