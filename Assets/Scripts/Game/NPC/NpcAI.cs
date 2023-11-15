@@ -18,14 +18,13 @@ public class NpcAI : MonoBehaviour
 {
     const float HEALTH_SCALE_ONE = 100f;
     
-    readonly float[] DEFAULT_SIZE_SCALE_RANGE = { 1f, 1f };    
+    readonly float[] DEFAULT_SIZE_SCALE_RANGE = { 1f, 1f };
     readonly float[] BIG_SIZE_SCALE_RANGE = { 1.2f, 1.35f };
 
     const string HEAD_GO_NAME = "Z_Head";
 
     [Header("Components")]
-    [SerializeField] ZombieSteps _zombieSteps;
-    
+    [SerializeField] ZombieSteps _zombieSteps;    
 
     [Header("Missing parts")]
     [SerializeField] GameObject[] _bodyParts;
@@ -53,6 +52,7 @@ public class NpcAI : MonoBehaviour
     [SerializeField] float _blindedTimeout = 7f;
 
     [Header("VFX")]
+    [SerializeField] GameObject _shadow;
     [SerializeField] GameObject _hitBulletVFX;
     [SerializeField] GameObject _headshotVFX;
     [SerializeField] GameObject _deadVFX;
@@ -618,14 +618,14 @@ public class NpcAI : MonoBehaviour
         // change state
         SetCurrentStateTo(NpcState.Dead);
 
+        StopMoving();
+
         _minimapIcon.SetActive(false);
 
         string rndDeadTrigger = Random.value < 0.5f ? "Dead Trigger" : "Dead Fwd Trigger";
         _animator.SetTrigger(rndDeadTrigger);
 
-        PlayDeathSFX();
-
-        StopMoving();
+        PlayDeathSFX();        
 
         // Disable colliders so we can't shoot after dead
         SetCollidersActive(false);
@@ -640,7 +640,11 @@ public class NpcAI : MonoBehaviour
 
     IEnumerator HideNPC()
     {
-        yield return new WaitForSeconds(2.2f);
+        yield return new WaitForSeconds(0.7f);
+
+        _shadow.SetActive(false);
+
+        yield return new WaitForSeconds(22f);
 
         Get3DModel().SetActive(false);
 
@@ -671,7 +675,7 @@ public class NpcAI : MonoBehaviour
 
         return true;
     }
-
+    
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;

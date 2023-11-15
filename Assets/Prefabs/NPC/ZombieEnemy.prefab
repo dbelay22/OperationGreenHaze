@@ -105,6 +105,7 @@ MonoBehaviour:
   _faceTargetSpeed: 1
   _maxProvokedReactionTime: 0
   _blindedTimeout: 5
+  _shadow: {fileID: 4549040206825833573}
   _hitBulletVFX: {fileID: 1000012909287652, guid: b99857eca648c07499e2234fede8385c,
     type: 3}
   _headshotVFX: {fileID: 1828176872806910, guid: b3b6d749f90e64b46b804a0ec2fb5192,
@@ -1152,6 +1153,12 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!1 &4549040206825833573 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4062190179041192396, guid: 6dc4cf4496348884d8ee27743ae38562,
+    type: 3}
+  m_PrefabInstance: {fileID: 540048798484164009}
+  m_PrefabAsset: {fileID: 0}
 --- !u!137 &4623712236064362554 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 5139761948278668691, guid: 6dc4cf4496348884d8ee27743ae38562,
