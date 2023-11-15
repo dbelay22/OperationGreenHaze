@@ -7,7 +7,6 @@ using UnityEngine.AI;
 public enum NpcState
 { 
     Idle,
-    IdleWaitingReaction,
     Provoked,
     Blinded,
     HitHyBullet,
@@ -45,9 +44,6 @@ public class NpcAI : MonoBehaviour
     [SerializeField] float _chaseRange = 17;
     [SerializeField] float _faceTargetSpeed = 3f;
 
-    [Header("Provoked")]
-    [SerializeField] [Range(0f, 10f)] float _maxProvokedReactionTime = 0f;
-
     [Header("Blinded")]
     [SerializeField] float _blindedTimeout = 7f;
 
@@ -68,9 +64,6 @@ public class NpcAI : MonoBehaviour
 
     [Header("Minimap")]
     [SerializeField] GameObject _minimapIcon;
-
-    [Header("Debug")]
-    [SerializeField] bool _showLogs = false;
 
     float _distanceToTarget;
 
@@ -159,8 +152,6 @@ public class NpcAI : MonoBehaviour
             _currentSizeScale = Random.Range(BIG_SIZE_SCALE_RANGE[0], BIG_SIZE_SCALE_RANGE[1]);
         }
 
-        //Debug.Log($"[NPC] (RandomizeScale) _sizeScale: {_currentSizeScale}");
-
         transform.localScale = new Vector3(_currentSizeScale, _currentSizeScale, _currentSizeScale);
 
         _currentHealth = HEALTH_SCALE_ONE * _currentSizeScale;
@@ -179,8 +170,6 @@ public class NpcAI : MonoBehaviour
         GameObject bodyPart = _bodyParts[partIndex];
 
         bodyPart.SetActive(false);
-
-        //Debug.Log($"[NPC] Removed body part: {bodyPart.name}");
 
         if (bodyPart.name.Equals(HEAD_GO_NAME))
         {
@@ -220,30 +209,13 @@ public class NpcAI : MonoBehaviour
 
     void StateUpdate()
     {
-        if (_showLogs)
-        {
-            Debug.Log($"[Npc] _currentState={_currentState}");
-        }
-
         switch (_currentState)
         {
             case NpcState.Idle:
                 IdleUpdate();
                 break;
-            case NpcState.IdleWaitingReaction:
-                // nothing, just wait
-                break;
             case NpcState.Provoked:
                 ProvokedUpdate();
-                break;
-            case NpcState.Blinded:
-                BlindedUpdate();
-                break;
-            case NpcState.HitHyBullet:
-                HitByBulletStateUpdate();
-                break;
-            case NpcState.Dead:
-                DeadUpdate();
                 break;
         }
     }
@@ -256,7 +228,7 @@ public class NpcAI : MonoBehaviour
 
         if (_distanceToTarget < _chaseRange)
         {
-            StartCoroutine(ChangeStateToProvokedDelayed());
+            ChangeStateToProvokedNow();
         }
     }
 
@@ -265,41 +237,6 @@ public class NpcAI : MonoBehaviour
         SetCollidersActive(true);
 
         EngageTarget();
-    }
-
-    void BlindedUpdate() {
-        if (_showLogs)
-        {
-            Debug.Log("I can't see shit you asshole");
-        }
-    }
-
-    void HitByBulletStateUpdate()
-    {
-        // nothing here
-    }
-
-    void DeadUpdate()
-    {
-        // nothing here
-    }
-
-    IEnumerator ChangeStateToProvokedDelayed()
-    {
-        SetCurrentStateTo(NpcState.IdleWaitingReaction);
-
-        yield return null;
-
-        if (_maxProvokedReactionTime > 0)
-        {
-            float time = Random.Range(0f, _maxProvokedReactionTime);
-
-            //Debug.Log($"[NPC] (ChangeStateToProvokedDelayed) [{transform.parent.name}/{transform.name}] time: {time}");
-
-            yield return new WaitForSeconds(time);
-        }
-
-        ChangeStateToProvokedNow();
     }
 
     void ChangeStateToProvokedNow()
@@ -312,11 +249,6 @@ public class NpcAI : MonoBehaviour
         if (_currentState == NpcState.Blinded)
         {
             return;
-        }
-
-        if (_showLogs)
-        {
-            Debug.Log("[NPC] (ChangeStateToBlinded)");
         }
 
         // set state
@@ -338,17 +270,7 @@ public class NpcAI : MonoBehaviour
 
     IEnumerator WakeUpFromBlinded()
     {
-        if (_showLogs)
-        {
-            Debug.Log($"[NPC] I'm gonna be blind for {_blindedTimeout} seconds");
-        }
-
         yield return new WaitForSeconds(_blindedTimeout);
-
-        if (_showLogs)
-        {
-            Debug.Log($"[NPC] I CAN SEEEEEEE");
-        }
 
         ChangeStateToProvokedNow();
 
@@ -403,11 +325,7 @@ public class NpcAI : MonoBehaviour
             // Randomize speed
             float rndSpeed = Random.Range(_minSpeed * scaleSpeed, _maxSpeed * scaleSpeed);
 
-            //Debug.Log($"[NPC] rndSpeed: {rndSpeed}, scaleSpeed: {scaleSpeed}, _sizeScale: {_sizeScale}");
-
             _navMeshAgent.speed = rndSpeed;
-
-            //Debug.Log($"[NPC] <{transform.name}> Moving at rndSpeed: {rndSpeed}, _navMeshAgent.speed:{_navMeshAgent.speed}");
 
             StartMoving();
         }
@@ -609,7 +527,7 @@ public class NpcAI : MonoBehaviour
         if (_headCollider != null) 
         {
             _headCollider.enabled = active;
-        }        
+        }
         _bodyCollider.enabled = active;
     }
 
