@@ -143,7 +143,7 @@ public class NpcAI : MonoBehaviour
 
     void RandomizeSizeScale()
     {
-        if (Random.value < 0.7f)
+        if (Random.value < 0.6f)
         {
             _currentSizeScale = Random.Range(DEFAULT_SIZE_SCALE_RANGE[0], DEFAULT_SIZE_SCALE_RANGE[1]);
         }
