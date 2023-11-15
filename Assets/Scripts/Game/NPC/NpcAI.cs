@@ -159,7 +159,7 @@ public class NpcAI : MonoBehaviour
 
     void RandomizeMissingBodyParts()
     {
-        if (Random.value < 0.3f)
+        if (Random.value < 0.5f)
         {
             // no missing parts for you
             return;
