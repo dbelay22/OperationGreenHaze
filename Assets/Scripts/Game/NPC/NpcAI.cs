@@ -20,7 +20,7 @@ public class NpcAI : MonoBehaviour
     const float DEFAULT_ANIM_SPEED = 0.5f;
 
     const float MIN_SPEED = 0.5f;
-    const float MAX_SPEED = 1.25f;
+    const float MAX_SPEED = 1.1f;
 
     readonly float[] DEFAULT_SIZE_SCALE_RANGE = { 1f, 1f };
     readonly float[] BIG_SIZE_SCALE_RANGE = { 1.2f, 1.35f };
