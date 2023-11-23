@@ -325,7 +325,7 @@ public class NpcAI : MonoBehaviour
             // animation speed factor
             float animSpeedFactor = navigationSpeed / DEFAULT_ANIM_SPEED;
 
-            Debug.Log($"Zombie navigationSpeed:{navigationSpeed}, animSpeedFactor:{animSpeedFactor}, scaleSpeed: {scaleSpeed}");
+            //Debug.Log($"Zombie navigationSpeed:{navigationSpeed}, animSpeedFactor:{animSpeedFactor}, scaleSpeed: {scaleSpeed}");
 
             // set animator speed factor
             _animator.SetFloat("SpeedFactor", animSpeedFactor);
