@@ -103,7 +103,6 @@ MonoBehaviour:
   _targetPlayer: {fileID: 0}
   _chaseRange: 50
   _faceTargetSpeed: 1
-  _maxProvokedReactionTime: 0
   _blindedTimeout: 5
   _shadow: {fileID: 4549040206825833573}
   _hitBulletVFX: {fileID: 1000012909287652, guid: b99857eca648c07499e2234fede8385c,
@@ -119,7 +118,6 @@ MonoBehaviour:
   _death02SFX: {fileID: 8300000, guid: 2aa2767add7618a4f98f6296918c5e35, type: 3}
   _blindedSFX: {fileID: 8300000, guid: f700a98ef23f9be41b0747313ebd015a, type: 3}
   _minimapIcon: {fileID: 2168988010698024418}
-  _showLogs: 0
 --- !u!95 &6624075472386140858
 Animator:
   serializedVersion: 5
@@ -493,8 +491,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _walkSounds:
-  - {fileID: 8300000, guid: f6498a616be0023469e006f75d00b263, type: 3}
-  - {fileID: 8300000, guid: 1a2713d73cab3c446a534751affa99c4, type: 3}
+  - {fileID: 8300000, guid: 9b6ee189374410d46814783aa3b41934, type: 3}
+  - {fileID: 8300000, guid: 4a5812e09472e374e8daaeff3d95931a, type: 3}
 --- !u!1001 &540048798484164009
 PrefabInstance:
   m_ObjectHideFlags: 0

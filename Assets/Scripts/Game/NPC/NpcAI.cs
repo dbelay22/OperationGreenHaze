@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
@@ -16,9 +17,10 @@ public enum NpcState
 public class NpcAI : MonoBehaviour
 {
     const float HEALTH_SCALE_ONE = 100f;
-    
+    const float DEFAULT_ANIM_SPEED = 0.5f;
+
     readonly float[] DEFAULT_SIZE_SCALE_RANGE = { 1f, 1f };
-    readonly float[] BIG_SIZE_SCALE_RANGE = { 1.2f, 1.35f };
+    readonly float[] BIG_SIZE_SCALE_RANGE = { 1.2f, 1.35f };    
 
     const string HEAD_GO_NAME = "Z_Head";
 
@@ -122,23 +124,16 @@ public class NpcAI : MonoBehaviour
 
     void SetCurrentStateTo(NpcState state)
     {
-        _previousState = _currentState;
-        _currentState = state;
-    }
-
-    IEnumerator ChangeStateDelayed(float time, NpcState nextState)
-    {
-        yield return new WaitForSeconds(time);
-
         if (_currentState.Equals(NpcState.Dead))
         {
-            // once dead state cannot change
-            yield return null;
-        }
-        else
-        {
-            SetCurrentStateTo(nextState);
-        }
+            return;
+        }       
+
+        _previousState = _currentState;
+
+        _currentState = state;
+
+        Debug.Log($"SetCurrentStateTo) _currentState: {_currentState}, _previousState:{_previousState}");
     }
 
     void RandomizeSizeScale()
@@ -228,7 +223,7 @@ public class NpcAI : MonoBehaviour
 
         if (_distanceToTarget < _chaseRange)
         {
-            ChangeStateToProvokedNow();
+            SetCurrentStateTo(NpcState.Provoked);
         }
     }
 
@@ -237,11 +232,6 @@ public class NpcAI : MonoBehaviour
         SetCollidersActive(true);
 
         EngageTarget();
-    }
-
-    void ChangeStateToProvokedNow()
-    {
-        SetCurrentStateTo(NpcState.Provoked);
     }
 
     void ChangeStateToBlinded()
@@ -272,7 +262,7 @@ public class NpcAI : MonoBehaviour
     {
         yield return new WaitForSeconds(_blindedTimeout);
 
-        ChangeStateToProvokedNow();
+        SetCurrentStateTo(NpcState.Provoked);
 
         SetCollidersActive(true);
     }
@@ -290,7 +280,7 @@ public class NpcAI : MonoBehaviour
 
         if (_distanceToTarget > _navMeshAgent.stoppingDistance)
         {
-            // Report melee attack to Director
+            // Report "player escape" to Director
             if (_reportedPlayerEscape == false && _reportedAttack == true)
             {
                 _reportedAttack = false;
@@ -302,7 +292,7 @@ public class NpcAI : MonoBehaviour
         }
         else if (_distanceToTarget <= _navMeshAgent.stoppingDistance)
         {
-            // Report melee attack to Director
+            // Report "enemy melee attack" to Director
             if (_reportedAttack == false)
             {
                 _reportedAttack = true;
@@ -313,19 +303,28 @@ public class NpcAI : MonoBehaviour
             // ATTACK !!
             AttackTarget();
         }
-    }
+    }    
 
     void ChaseTarget()
     {
-        if (IsMoving() == false)
+        if (!IsMoving())
         {
             // big zombies are a little slower
             float scaleSpeed = _currentSizeScale >= BIG_SIZE_SCALE_RANGE[0] ? 0.9f : 1f;
 
             // Randomize speed
-            float rndSpeed = Random.Range(_minSpeed * scaleSpeed, _maxSpeed * scaleSpeed);
+            float navigationSpeed = Random.Range(_minSpeed * scaleSpeed, _maxSpeed * scaleSpeed);                       
 
-            _navMeshAgent.speed = rndSpeed;
+            // set navigation speed
+            _navMeshAgent.speed = navigationSpeed;
+
+            // animation speed factor
+            float animSpeedFactor = navigationSpeed / DEFAULT_ANIM_SPEED;
+
+            //Debug.Log($"Zombie animSpeedFactor:{animSpeedFactor}, navigationSpeed:{navigationSpeed}, scaleSpeed: {scaleSpeed}.");
+
+            // set animator speed factor
+            _animator.SetFloat("SpeedFactor", animSpeedFactor);
 
             StartMoving();
         }
@@ -455,45 +454,51 @@ public class NpcAI : MonoBehaviour
     {
         if (_currentState == NpcState.Idle)
         {
-            ChangeStateToProvokedNow();
+            SetCurrentStateTo(NpcState.Provoked);
         }
-        else
+        else if (_currentState == NpcState.Dead) 
         {
-            StopMoving();
-
-            TakeDamage(damage);
-
-            PlayHitByBulletFX(hit, isHeadshot);
-        }        
-    }
-
-    void TakeDamage(float damage)
-    {
-        if (_currentHealth <= 0)
-        {
-            // dead can't dead again, does it ?
             return;
-        }
-
-        _currentHealth -= damage;
-
-        if (_currentHealth <= 0f)
-        {
-            ChangeStateToDead();
-        }
+        } 
         else
         {
-            ChangeStateToHitByBullet();
+            ChangeStateToHitByBullet(damage, hit, isHeadshot);
         }
     }
 
-    void ChangeStateToHitByBullet()
-    {
-        PlayHitByBulletAnim();
-        
-        SetCurrentStateTo(NpcState.HitHyBullet);
 
+
+    void ChangeStateToHitByBullet(float damage, RaycastHit hit, bool isHeadshot = false)
+    {
+        StopMoving();
+
+        PlayHitByBulletAnim();
+
+        PlayHitByBulletFX(hit, isHeadshot);
+
+        Debug.Log($"ChangeStateToHitByBullet) change state to HitHyBullet");
+        SetCurrentStateTo(NpcState.HitHyBullet);               
+
+        Debug.Log($"ChangeStateToHitByBullet) change state delayed to: {_previousState}");
         StartCoroutine(ChangeStateDelayed(0.5f, _previousState));
+
+        Debug.Log($"ChangeStateToHitByBullet) Take damage");
+        TakeDamage(damage);
+    }
+
+    IEnumerator ChangeStateDelayed(float time, NpcState nextState)
+    {
+        if (_currentState.Equals(NpcState.Dead))
+        {
+            Debug.Log($"ChangeStateDelayed) ALREADY DEAD, will NOT change to: {nextState}");
+            yield return null;
+        }
+        else
+        {
+            yield return new WaitForSeconds(time);
+            
+            SetCurrentStateTo(nextState);
+        }
     }
 
     void PlayHitByBulletFX(RaycastHit hit, bool isHeadshot = false)
@@ -520,6 +525,22 @@ public class NpcAI : MonoBehaviour
         GameObject vfx = Instantiate(prefabVfx, hit.point, Quaternion.LookRotation(hit.normal));
                 
         Destroy(vfx, 0.7f);
+    }
+
+    void TakeDamage(float damage)
+    {
+        if (_currentHealth <= 0)
+        {
+            // dead can't dead again, does it ?
+            return;
+        }
+
+        _currentHealth -= damage;
+
+        if (_currentHealth <= 0f)
+        {
+            ChangeStateToDead();
+        }
     }
 
     void SetCollidersActive(bool active)
