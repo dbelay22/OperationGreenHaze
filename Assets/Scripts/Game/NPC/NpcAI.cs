@@ -19,8 +19,11 @@ public class NpcAI : MonoBehaviour
     const float HEALTH_SCALE_ONE = 100f;
     const float DEFAULT_ANIM_SPEED = 0.5f;
 
+    const float MIN_SPEED = 0.5f;
+    const float MAX_SPEED = 1.5f;
+
     readonly float[] DEFAULT_SIZE_SCALE_RANGE = { 1f, 1f };
-    readonly float[] BIG_SIZE_SCALE_RANGE = { 1.2f, 1.35f };    
+    readonly float[] BIG_SIZE_SCALE_RANGE = { 1.2f, 1.35f };
 
     const string HEAD_GO_NAME = "Z_Head";
 
@@ -133,7 +136,7 @@ public class NpcAI : MonoBehaviour
 
         _currentState = state;
 
-        Debug.Log($"SetCurrentStateTo) _currentState: {_currentState}, _previousState:{_previousState}");
+        //Debug.Log($"SetCurrentStateTo) _currentState: {_currentState}, _previousState:{_previousState}");
     }
 
     void RandomizeSizeScale()
@@ -312,8 +315,9 @@ public class NpcAI : MonoBehaviour
             // big zombies are a little slower
             float scaleSpeed = _currentSizeScale >= BIG_SIZE_SCALE_RANGE[0] ? 0.9f : 1f;
 
-            // Randomize speed
-            float navigationSpeed = Random.Range(_minSpeed * scaleSpeed, _maxSpeed * scaleSpeed);                       
+            // Randomize speed // IGNORE custom values
+            //float navigationSpeed = Random.Range(_minSpeed * scaleSpeed, _maxSpeed * scaleSpeed);
+            float navigationSpeed = Random.Range(MIN_SPEED * scaleSpeed, MAX_SPEED * scaleSpeed);
 
             // set navigation speed
             _navMeshAgent.speed = navigationSpeed;
@@ -476,28 +480,26 @@ public class NpcAI : MonoBehaviour
 
         PlayHitByBulletFX(hit, isHeadshot);
 
-        Debug.Log($"ChangeStateToHitByBullet) change state to HitHyBullet");
-        SetCurrentStateTo(NpcState.HitHyBullet);               
+        SetCurrentStateTo(NpcState.HitHyBullet);
 
-        Debug.Log($"ChangeStateToHitByBullet) change state delayed to: {_previousState}");
-        StartCoroutine(ChangeStateDelayed(0.5f, _previousState));
-
-        Debug.Log($"ChangeStateToHitByBullet) Take damage");
         TakeDamage(damage);
+
+        StartCoroutine(ChangeStateDelayed(0.5f, NpcState.Provoked));
     }
 
     IEnumerator ChangeStateDelayed(float time, NpcState nextState)
     {
-        if (_currentState.Equals(NpcState.Dead))
+        if (!_currentState.Equals(NpcState.Dead))
         {
-            Debug.Log($"ChangeStateDelayed) ALREADY DEAD, will NOT change to: {nextState}");
-            yield return null;
+            yield return new WaitForSeconds(time);
+
+            SetCurrentStateTo(nextState);
         }
         else
         {
-            yield return new WaitForSeconds(time);
-            
-            SetCurrentStateTo(nextState);
+            //Debug.Log($"ChangeStateDelayed) ALREADY DEAD, will NOT change to: {nextState}");
+
+            yield return null;
         }
     }
 
@@ -564,7 +566,7 @@ public class NpcAI : MonoBehaviour
         string rndDeadTrigger = Random.value < 0.5f ? "Dead Trigger" : "Dead Fwd Trigger";
         _animator.SetTrigger(rndDeadTrigger);
 
-        PlayDeathSFX();        
+        PlayDeathSFX();
 
         // Disable colliders so we can't shoot after dead
         SetCollidersActive(false);
