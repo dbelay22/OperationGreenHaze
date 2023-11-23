@@ -36,6 +36,24 @@ MonoBehaviour:
   - {fileID: 2684208744207772270}
   - {fileID: 9045373958885852461}
   - {fileID: 5881207489123354261}
+  - {fileID: 2072983344015683435}
+  - {fileID: 4985646818781127000}
+--- !u!114 &2072983344015683435
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81180773991d8724ab7f2d216912b564, type: 3}
+  m_Name: ChromaticAberration
+  m_EditorClassIdentifier: 
+  active: 1
+  intensity:
+    m_OverrideState: 1
+    m_Value: 0.25
 --- !u!114 &2684208744207772270
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -48,7 +66,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66f335fb1ffd8684294ad653bf1c7564, type: 3}
   m_Name: ColorAdjustments
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   postExposure:
     m_OverrideState: 0
     m_Value: 0
@@ -64,6 +82,52 @@ MonoBehaviour:
   saturation:
     m_OverrideState: 1
     m_Value: 0
+--- !u!114 &4985646818781127000
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c01700fd266d6914ababb731e09af2eb, type: 3}
+  m_Name: DepthOfField
+  m_EditorClassIdentifier: 
+  active: 1
+  mode:
+    m_OverrideState: 1
+    m_Value: 1
+  gaussianStart:
+    m_OverrideState: 1
+    m_Value: 100
+  gaussianEnd:
+    m_OverrideState: 1
+    m_Value: 160
+  gaussianMaxRadius:
+    m_OverrideState: 1
+    m_Value: 1
+  highQualitySampling:
+    m_OverrideState: 0
+    m_Value: 0
+  focusDistance:
+    m_OverrideState: 1
+    m_Value: 20.96
+  aperture:
+    m_OverrideState: 1
+    m_Value: 18.9
+  focalLength:
+    m_OverrideState: 1
+    m_Value: 235
+  bladeCount:
+    m_OverrideState: 1
+    m_Value: 6
+  bladeCurvature:
+    m_OverrideState: 1
+    m_Value: 0.59
+  bladeRotation:
+    m_OverrideState: 1
+    m_Value: -74
 --- !u!114 &5881207489123354261
 MonoBehaviour:
   m_ObjectHideFlags: 3
