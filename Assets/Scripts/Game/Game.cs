@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 using Yxp.Helpers;
 using Yxp.StateMachine;
@@ -18,13 +20,17 @@ public class Game : MonoBehaviour
     [SerializeField] Player _player;
 
     [Header("Gameplay")]
-    [SerializeField] int _minutesOfGameplay;        
+    [SerializeField] int _minutesOfGameplay;
+
+    [Header("PostProcessingFX")]
+    [SerializeField] Volume _ppVolume;
 
     public int MinutesOfGameplay { get { return _minutesOfGameplay; } }
 
     private bool _isGodModeOn;
-
     public bool IsGodModeOn { get { return _isGodModeOn; } }
+
+    private bool _isPPFxOn;
 
     bool _allEnemiesKilled = false;
     bool _allMissionPickupsCompleted = false;
@@ -47,6 +53,7 @@ public class Game : MonoBehaviour
     void Start()
     {
         _isGodModeOn = false;
+        _isPPFxOn = true;
 
         _allEnemiesKilled = false;
         _allMissionPickupsCompleted = false;
@@ -54,9 +61,7 @@ public class Game : MonoBehaviour
 
         CheckPlayerSettingsInstance();
 
-        CheckLocalizationInstance();
-
-        
+        CheckLocalizationInstance();        
 
         _stateMachine = new GameStateMachine();
         _stateMachine.TransitionToState(new PlayState());
@@ -240,6 +245,22 @@ public class Game : MonoBehaviour
 #if UNITY_EDITOR
         Debug.Log($"[Game] GOD MODE ON: {_isGodModeOn}");
 #endif
+    }
+
+    public void TogglePPFx()
+    {
+        _isPPFxOn = !_isPPFxOn;
+#if UNITY_EDITOR
+        Debug.Log($"[Game] PP-FX MODE ON: {_isPPFxOn}");
+#endif
+
+        _ppVolume.profile.TryGet(out ChromaticAberration chromaticAberration);
+        _ppVolume.profile.TryGet(out DepthOfField depthOfField);
+        _ppVolume.profile.TryGet(out Tonemapping tonemapping);
+
+        chromaticAberration.active = _isPPFxOn;
+        depthOfField.active = _isPPFxOn;
+        tonemapping.active = _isPPFxOn;
     }
 
     public IEnumerator TimeBend(float slowTimeScale, float waitTime)

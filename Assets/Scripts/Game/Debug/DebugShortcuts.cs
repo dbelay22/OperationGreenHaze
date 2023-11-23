@@ -70,6 +70,12 @@ public class DebugShortcuts : DebugComponentBase
             Game.Instance.ReportExitClear();
         }
 
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            // TURN PP FX ON/OFF
+            Game.Instance.TogglePPFx();
+        }
+
         /////////////////////////////////////
         // QUALITY
         //         
