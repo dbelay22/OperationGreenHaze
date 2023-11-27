@@ -103,6 +103,16 @@ public class BoomBox: MonoBehaviour
 
         foreach (var collider in colliders)
         {
+            if (collider.CompareTag(Tags.PLAYER))
+            {
+                Debug.Log($"[BoomBox] (ProcessExplosionDamage) PLAYER affected by explosion");
+                ProcessPlayerDamage(collider);
+                return;
+            }
+        }
+
+        foreach (var collider in colliders)
+        {
             if (collider.CompareTag(Tags.ENEMY))
             {
                 Debug.Log($"[BoomBox] (ProcessExplosionDamage) ENEMY affected by explosion");
@@ -112,11 +122,6 @@ public class BoomBox: MonoBehaviour
             {
                 Debug.Log($"[BoomBox] (ProcessExplosionDamage) BOOMBOX affected by explosion");
                 ProcessChainReaction(collider);
-            }
-            else if (collider.CompareTag(Tags.PLAYER))
-            {
-                Debug.Log($"[BoomBox] (ProcessExplosionDamage) PLAYER affected by explosion");
-                ProcessPlayerDamage(collider);
             }
             else if (collider.CompareTag(Tags.EXIT_BLOCKER))
             {
