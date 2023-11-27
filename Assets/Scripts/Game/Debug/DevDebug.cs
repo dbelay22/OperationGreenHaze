@@ -34,26 +34,33 @@ public class DevDebug : MonoBehaviour
 
         _isDebugBuild = Debug.isDebugBuild;
 
-        /*
         if (!_isDebugBuild)
         {
             return;
         }
-        */
 
         _quality = GetComponent<Quality>();
 
         LogAwake();
     }    
 
-    void Update()
+    void Start()
     {
-        /*
         if (!_isDebugBuild)
         {
             return;
         }
-        */
+
+        _quality = GetComponent<Quality>();
+        
+    }    
+
+    void Update()
+    {
+        if (!_isDebugBuild)
+        {
+            return;
+        }
 
         Unscaled_Update();
     }
@@ -91,12 +98,10 @@ public class DevDebug : MonoBehaviour
 
     void OnGUI()
     {
-        /*
         if (!_isDebugBuild)
         {
             return;
         }
-        */
 
         int w = Screen.width, h = Screen.height;
 
