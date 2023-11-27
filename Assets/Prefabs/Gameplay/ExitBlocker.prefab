@@ -257,7 +257,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5372156943274572450}
-  - component: {fileID: 76021504}
+  - component: {fileID: 3010619763397796707}
   m_Layer: 2
   m_Name: TriggerTooClose
   m_TagString: ExitDanger
@@ -273,15 +273,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4648570525798580977}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.12, y: 0.88, z: 0.04}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2386344373200374008}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
---- !u!136 &76021504
-CapsuleCollider:
+--- !u!135 &3010619763397796707
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -290,9 +290,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 4
-  m_Height: 14
-  m_Direction: 1
+  serializedVersion: 2
+  m_Radius: 8
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6315494392978217322
 GameObject:

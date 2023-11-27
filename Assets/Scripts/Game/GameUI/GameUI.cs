@@ -323,7 +323,7 @@ public class GameUI : MonoBehaviour
         return ShowInGameMessage(igMessage.MessageKey, igMessage.Lifetime);
     }
 
-    public bool ShowInGameMessage(string textKey, float lifetime)
+    public bool ShowInGameMessage(string textKey, float lifetime, bool maxPriority = false)
     {
         Debug.Log($"ShowInGameMessage) key:{textKey}, lifetime: {lifetime}");
 
@@ -334,7 +334,12 @@ public class GameUI : MonoBehaviour
                 Debug.Log($"ShowInGameMessage) already active and same key");
                 return false;
             }
-            else
+            else if (maxPriority)
+            {
+                // clear all queued messages and dont return, show message
+                _queuedMessages.Clear();
+            }
+            else 
             {
                 // enqueue message
                 InGameMessage nextMessage;

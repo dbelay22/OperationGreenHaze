@@ -126,7 +126,7 @@ public class Game : MonoBehaviour
     {
         if (PlayerNeedsToClearExitNow())
         {
-            GameUI.Instance.ShowInGameMessage("ig_exit_danger", GameUI.LIFETIME_INFINITE);
+            GameUI.Instance.ShowInGameMessage("ig_exit_danger", GameUI.LIFETIME_INFINITE, true);
         }
     }
 
