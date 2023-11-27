@@ -231,7 +231,7 @@ public class Weapon : MonoBehaviour
 
     bool ProcessHitBoomBox(RaycastHit hit)
     {
-        bool hitBoomBox = hit.transform.CompareTag(Tags.BOOMBOX_TAG);
+        bool hitBoomBox = hit.transform.CompareTag(Tags.BOOMBOX);
 
         if (hitBoomBox)
         {
@@ -245,7 +245,7 @@ public class Weapon : MonoBehaviour
 
     bool ProcessHitEnemy(RaycastHit hit)
     {
-        bool hitEnemy = hit.transform.CompareTag(Tags.ENEMY_TAG);
+        bool hitEnemy = hit.transform.CompareTag(Tags.ENEMY);
 
         // F*ck you zombie
         if (hitEnemy)
