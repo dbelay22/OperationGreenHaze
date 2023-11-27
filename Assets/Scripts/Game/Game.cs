@@ -122,6 +122,29 @@ public class Game : MonoBehaviour
 
 #region Mission
 
+    public void ReportExitDangerZoneEnter()
+    {
+        if (PlayerNeedsToClearExitNow())
+        {
+            GameUI.Instance.ShowInGameMessage("ig_exit_danger", GameUI.LIFETIME_INFINITE);
+        }
+    }
+
+    public void ReportExitDangerZoneExit()
+    {
+        Debug.Log("Game] ReportExitDangerZoneExit)");
+
+        if (PlayerNeedsToClearExitNow())
+        {
+            GameUI.Instance.HideMessagesNow();
+        }
+    }
+
+    bool PlayerNeedsToClearExitNow()
+    {
+        return _allEnemiesKilled && _allMissionPickupsCompleted;
+    }
+
     public void ReportAllMissionPickupsCollected()
     {
 #if UNITY_EDITOR
@@ -132,7 +155,14 @@ public class Game : MonoBehaviour
 
         ObjectivesPanel.Instance.SetPickupDataComplete();
 
-        ShowObjectiveCompletedMessage();   
+        ShowObjectiveCompletedMessage();
+
+        CheckGameWin();
+    }
+
+    void ShowObjectiveCompletedMessage()
+    {
+        GameUI.Instance.ShowInGameMessage("ig_objective_completed", 3f);
     }
 
     public void ReportAllEnemiesKilled()
@@ -145,15 +175,14 @@ public class Game : MonoBehaviour
 
         ObjectivesPanel.Instance.SetKillemAllComplete();
 
-        ShowObjectiveCompletedMessage();
+        ShowKillsCompletedMessage();
+
+        CheckGameWin();
     }
 
-    void ShowObjectiveCompletedMessage()
+    void ShowKillsCompletedMessage()
     {
-        if (CheckGameWin() == false)
-        {
-            GameUI.Instance.ShowInGameMessage("ig_objective_completed", 4f);
-        }        
+        GameUI.Instance.ShowInGameMessage("ig_kills_completed", 3f);
     }
 
     public void ReportExitClear()
@@ -185,7 +214,11 @@ public class Game : MonoBehaviour
             else
             {
                 _helicopterExitSound.enabled = true;
+                
                 _helicopterExitSound.Play();
+
+                GameUI.Instance.ShowInGameMessage("ig_find_exit", 4f);
+                
                 return false;
             }
         }

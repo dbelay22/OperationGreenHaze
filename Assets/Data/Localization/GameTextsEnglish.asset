@@ -97,3 +97,9 @@ MonoBehaviour:
       Press ''F'' key'
   - _key: ig_flashlight_pickup
     _value: Press 'F' to toggle Flashlight
+  - _key: ig_find_exit
+    _value: Find the exit now!
+  - _key: ig_exit_danger
+    _value: Stay away from barrels before shooting
+  - _key: ig_kills_completed
+    _value: You can relax now

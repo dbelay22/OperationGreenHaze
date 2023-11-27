@@ -99,24 +99,28 @@ public class BoomBox: MonoBehaviour
     {
         Collider[] colliders = Physics.OverlapSphere(center, radius);
 
-        //Debug.Log($"[BoomBox] (ProcessExplosionDamage) colliders affected by explosion: {colliders.Length}");
+        Debug.Log($"[BoomBox] (ProcessExplosionDamage) colliders affected by explosion: {colliders.Length}");
 
         foreach (var collider in colliders)
         {
-            if (collider.CompareTag(Tags.ENEMY_TAG))
+            if (collider.CompareTag(Tags.ENEMY))
             {
+                Debug.Log($"[BoomBox] (ProcessExplosionDamage) ENEMY affected by explosion");
                 ProcessEnemyDamage(collider);
             }
-            else if (collider.CompareTag(Tags.BOOMBOX_TAG))
+            else if (collider.CompareTag(Tags.BOOMBOX))
             {
+                Debug.Log($"[BoomBox] (ProcessExplosionDamage) BOOMBOX affected by explosion");
                 ProcessChainReaction(collider);
             }
-            else if (collider.CompareTag(Tags.PLAYER_TAG))
+            else if (collider.CompareTag(Tags.PLAYER))
             {
+                Debug.Log($"[BoomBox] (ProcessExplosionDamage) PLAYER affected by explosion");
                 ProcessPlayerDamage(collider);
             }
             else if (collider.CompareTag(Tags.EXIT_BLOCKER))
             {
+                Debug.Log($"[BoomBox] (ProcessExplosionDamage) EXIT_BLOCKER affected by explosion");
                 ProcessExitBlocker(collider);
             }
         }
