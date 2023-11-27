@@ -255,6 +255,8 @@ public class Player : MonoBehaviour
     {
         GameUI.Instance.ShowPlayerDamageVFX();
 
+        AudioController.Instance.GameplayDead();
+
         PlayDeathAnimation();
         
         GameplayIsOver();

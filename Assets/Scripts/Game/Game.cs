@@ -140,7 +140,7 @@ public class Game : MonoBehaviour
         }
     }
 
-    bool PlayerNeedsToClearExitNow()
+    public bool PlayerNeedsToClearExitNow()
     {
         return _allEnemiesKilled && _allMissionPickupsCompleted;
     }
@@ -204,7 +204,7 @@ public class Game : MonoBehaviour
 
     bool CheckGameWin()
     {
-        if (_allEnemiesKilled && _allMissionPickupsCompleted)
+        if (PlayerNeedsToClearExitNow())
         {
             if (_exitClear)
             {
@@ -213,11 +213,15 @@ public class Game : MonoBehaviour
             }
             else
             {
+                /*
                 _helicopterExitSound.enabled = true;
                 
                 _helicopterExitSound.Play();
+                */
 
                 GameUI.Instance.ShowInGameMessage("ig_find_exit", 4f);
+
+                AudioController.Instance.GameplayFindExit();
                 
                 return false;
             }

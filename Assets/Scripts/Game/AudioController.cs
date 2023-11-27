@@ -22,13 +22,13 @@ public class AudioController : MonoBehaviour
     #region Instance
 
     private static AudioController _instance;
-    
+
     public static AudioController Instance { get { return _instance; } }
 
     void Awake()
     {
         _instance = this;
-        
+
         _musicEventInstance = CreateInstance(FMODEvents.Instance.GameplayMusicEvent);
     }
 
@@ -47,9 +47,9 @@ public class AudioController : MonoBehaviour
     public EventInstance CreateInstance(EventReference eventReference)
     {
         EventInstance eventInstance = RuntimeManager.CreateInstance(eventReference);
-        
+
         _eventInstances.Add(eventInstance);
-        
+
         return eventInstance;
     }
 
@@ -84,7 +84,7 @@ public class AudioController : MonoBehaviour
     public void StopFadeEvent(EventInstance eventInstance)
     {
         eventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-    }    
+    }
 
     void OnDestroy()
     {
@@ -119,16 +119,29 @@ public class AudioController : MonoBehaviour
         _musicEventInstance.getPlaybackState(out PLAYBACK_STATE playbackState);
         //Debug.Log($"AudioController] GameplayStart) playbackState: {playbackState}");
 
-        if (playbackState.Equals(PLAYBACK_STATE.STOPPED)) 
+        if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
         {
             _musicEventInstance.setParameterByName(FMODEvents.Instance.MusicPartsParam, 0);
-            
+
             _musicEventInstance.setParameterByName(FMODEvents.Instance.TerrorMusicParam, 0);
-            
+
             PlayEvent(_musicEventInstance);
-        }        
+        }
     }
 
+    public void GameplayFindExit()
+    {
+        _musicEventInstance.setParameterByName(FMODEvents.Instance.MusicPartsParam, 1);
+    }
+
+    public void GameplayDead()
+    {
+        int musicPart = Game.Instance.PlayerNeedsToClearExitNow() ? 3 : 2;
+
+        Debug.Log($"[AudioController] GameplayDead) musicPart:{musicPart}");
+
+        _musicEventInstance.setParameterByName(FMODEvents.Instance.MusicPartsParam, musicPart);
+    }
     public void GameplayPause()
     {
         Debug.Log($"AudioController] GameplayPause)...");
@@ -142,6 +155,11 @@ public class AudioController : MonoBehaviour
     public void GameplayResume()
     {
         ResumeEvent(_musicEventInstance);
+    }
+
+    public void GameplayStop()
+    {
+        StopEvent(_musicEventInstance);
     }
 
 }
