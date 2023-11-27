@@ -3,14 +3,7 @@ using Yxp.Helpers;
 
 public class DebugShortcuts : DebugComponentBase
 {
-    /*
     internal override void DebugUpdate()
-    {
-        ProcessDebugShortcuts();
-    }
-    */
-
-    void Update()
     {
         ProcessDebugShortcuts();
     }
@@ -75,6 +68,12 @@ public class DebugShortcuts : DebugComponentBase
         if (Input.GetKeyDown(KeyCode.X))
         {
             Game.Instance.ReportExitClear();
+        }
+
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            // TURN PP FX ON/OFF
+            Game.Instance.TogglePPFx();
         }
 
         /////////////////////////////////////

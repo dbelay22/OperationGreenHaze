@@ -14,7 +14,7 @@ public class PauseState : GameState
 
         GameUI.Instance.ShowPause();
 
-        //AudioController.Instance.GameplayPause();
+        AudioController.Instance.GameplayPause();
     }      
 
     public override void ExitState()
@@ -22,6 +22,8 @@ public class PauseState : GameState
         Debug.Log("[PauseState] (ExitState) time scale back to 1");
 
         Time.timeScale = 1;
+
+        AudioController.Instance.GameplayResume();
     }
 
     public override void Update()

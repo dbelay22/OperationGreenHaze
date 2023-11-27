@@ -15,7 +15,7 @@ public class PlayerSteps : MonoBehaviour
 
     [Header("Player position")]
     [SerializeField] Transform _playerPosition;
- 
+
     EventInstance _footstepEventInstance;
 
     void Start()
@@ -73,13 +73,13 @@ public class PlayerSteps : MonoBehaviour
     {
         //////////////////////////////
         // Parameters
-        
+
         // position
         _footstepEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(_playerPosition.position));
 
         // walk / run 
         _footstepEventInstance.setParameterByName(FMODEvents.Instance.WalkRunParameter, isRunning ? 1 : 0);
-        
+
         // floor material
         _footstepEventInstance.setParameterByName(FMODEvents.Instance.FloorMaterialParameter, FMODEvents.Instance.DefaultFloorMaterialValue);
 
@@ -90,9 +90,16 @@ public class PlayerSteps : MonoBehaviour
 
         _stepLeft = !_stepLeft;
     }
-    
+
     void StopStepSFX()
     {
         AudioController.Instance.StopEvent(_footstepEventInstance);
     }
+
+    void OnPlayerDeath()
+    {
+        Debug.Log("PlayerSteps] OnPlayerDeath) Stopping step sfx");
+        StopStepSFX();
+    }
+
 }

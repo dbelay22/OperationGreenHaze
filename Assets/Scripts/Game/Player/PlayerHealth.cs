@@ -136,7 +136,8 @@ public class PlayerHealth : MonoBehaviour
 
         // clamp
         int clampedHealth = GetCurrentHealthClamped();
-        //Debug.Log($"[PlayerHealth] _currentHealth:{_currentHealth} -> clamped: {clampedHealth}");
+        
+        Debug.Log($"[PlayerHealth] _currentHealth:{_currentHealth} -> clamped: {clampedHealth}");
 
         _currentHealth = clampedHealth;
 
@@ -164,6 +165,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void HitByExplosion()
     {
+        Debug.Log("PlayerHealth] HitByExplosion)...");
         Damage(100);
     }
 

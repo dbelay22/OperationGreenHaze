@@ -25,7 +25,7 @@ public class GameOverState : GameState
 
     public override void ExitState()
     {
-       
+        AudioController.Instance.GameplayStop();
     }
 
     public override void Update()

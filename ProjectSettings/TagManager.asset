@@ -18,6 +18,7 @@ TagManager:
   - PlayerSettings
   - Localization
   - ExitBlocker
+  - ExitDanger
   layers:
   - Default
   - TransparentFX
