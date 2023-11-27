@@ -15,6 +15,11 @@ public class FMODEvents : MonoBehaviour
 
     public string LeftRightParameter;
 
+    [Header("Gameplay Music")]
+    public EventReference GameplayMusicEvent;
+    public string TerrorMusicParam;
+    public string MusicPartsParam;
+
     #region Instance
 
     private static FMODEvents _instance;
