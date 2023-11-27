@@ -12,6 +12,8 @@ public class Game : MonoBehaviour
 {
     GameStateMachine _stateMachine = null;
 
+    [SerializeField] AudioSource _helicopterExitSound;
+
     [Header("DontDestroyOnLoadInstances")]
     [SerializeField] GameObject _playerSettingsPrefab;
     [SerializeField] GameObject _localizationPrefab;
@@ -151,7 +153,7 @@ public class Game : MonoBehaviour
         if (CheckGameWin() == false)
         {
             GameUI.Instance.ShowInGameMessage("ig_objective_completed", 4f);
-        }
+        }        
     }
 
     public void ReportExitClear()
@@ -173,10 +175,19 @@ public class Game : MonoBehaviour
 
     bool CheckGameWin()
     {
-        if (_allEnemiesKilled && _allMissionPickupsCompleted && _exitClear)
+        if (_allEnemiesKilled && _allMissionPickupsCompleted)
         {
-            ChangeStateToWin();
-            return true;
+            if (_exitClear)
+            {
+                ChangeStateToWin();
+                return true;
+            }
+            else
+            {
+                _helicopterExitSound.enabled = true;
+                _helicopterExitSound.Play();
+                return false;
+            }
         }
         return false;
     }
