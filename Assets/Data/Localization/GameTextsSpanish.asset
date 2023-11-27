@@ -92,8 +92,8 @@ MonoBehaviour:
   - _key: ig_flashlight_pickup
     _value: Presiona  'F' para prender y apagar la linterna
   - _key: ig_find_exit
-    _value: Busca la salida ahora
+    _value: "Ahora busc\xE1 la salida"
   - _key: ig_exit_danger
-    _value: Alejate de los barriles antes de disparar
+    _value: "Est\xE1s muy cerca de los barriles"
   - _key: ig_kills_completed
     _value: "Hermosa ma\xF1ana verdad ?"
