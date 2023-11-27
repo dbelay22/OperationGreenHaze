@@ -1,10 +1,13 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class GameUI : MonoBehaviour
 {
+    public static float LIFETIME_INFINITE = -1f;
+
     [Header("In-game")]
     [SerializeField] GameObject _hudCanvas;
     [SerializeField] GameObject _gunReticleCanvas;
@@ -45,6 +48,13 @@ public class GameUI : MonoBehaviour
     [SerializeField] GameObject _gameOverCanvas;
     [SerializeField] GameObject _winCanvas;
 
+    public struct InGameMessage 
+    {
+        public string MessageKey;
+        public float Lifetime;
+    }
+
+    Queue<InGameMessage> _queuedMessages;
 
     int _currentKills;
     int _totalKills;
@@ -65,8 +75,7 @@ public class GameUI : MonoBehaviour
 
     #region Instance
 
-    private static GameUI _instance;
-    
+    private static GameUI _instance;    
 
     public static GameUI Instance { get { return _instance; } }    
 
@@ -82,6 +91,8 @@ public class GameUI : MonoBehaviour
         TimerInit();
 
         _hideMessagesCoroutine = null;
+
+        _queuedMessages = new Queue<InGameMessage>();        
     }
 
     void Update()
@@ -218,7 +229,7 @@ public class GameUI : MonoBehaviour
 
     IEnumerator LoadWinSceneDelayed()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
 
         LevelLoader.Instance.LoadWinScene();
     }
@@ -307,18 +318,53 @@ public class GameUI : MonoBehaviour
         }
     }
 
-    public bool ShowInGameMessage(string textKey, float lifetime)
+    public bool ShowInGameMessage(InGameMessage igMessage)
     {
-        if (_inGameMessagesCanvas.activeInHierarchy == true && _textInGameMessage.text.Equals(textKey))
+        return ShowInGameMessage(igMessage.MessageKey, igMessage.Lifetime);
+    }
+
+    public bool ShowInGameMessage(string textKey, float lifetime, bool maxPriority = false)
+    {
+        Debug.Log($"ShowInGameMessage) key:{textKey}, lifetime: {lifetime}");
+
+        if (_inGameMessagesCanvas.activeInHierarchy == true)
         {
-            return false;
+            if (_textInGameMessage.text.Equals(textKey))
+            {
+                Debug.Log($"ShowInGameMessage) already active and same key");
+                return false;
+            }
+            else if (maxPriority)
+            {
+                // clear all queued messages and dont return, show message
+                _queuedMessages.Clear();
+            }
+            else 
+            {
+                // enqueue message
+                InGameMessage nextMessage;
+                
+                nextMessage.MessageKey = textKey;
+                nextMessage.Lifetime = lifetime;
+
+                _queuedMessages.Enqueue(nextMessage);
+
+                return false;
+            }
         }
 
         _textInGameMessage.text = Localization.Instance.GetTextByKey(textKey);
 
         _inGameMessagesCanvas.SetActive(true);
 
-        _hideMessagesCoroutine = StartCoroutine(HideMessagesDelayed(lifetime));
+        Debug.Log($"ShowInGameMessage) showing text: {_textInGameMessage.text}");
+
+        // negative / zero lifetime = permanent message (will be hidden later)
+        // positive lifetime = temporal message
+        if (lifetime > 0f)
+        {
+            _hideMessagesCoroutine = StartCoroutine(HideMessagesDelayed(lifetime));
+        }
 
         return true;
     }
@@ -334,7 +380,7 @@ public class GameUI : MonoBehaviour
 
     public void HideMessagesNow()
     {
-        //Debug.Log($"[GameUI] (HideMessagesNow)...");
+        Debug.Log($"[GameUI] (HideMessagesNow)...");
 
         if (_hideMessagesCoroutine != null)
         {
@@ -343,7 +389,16 @@ public class GameUI : MonoBehaviour
         }        
 
         _textInGameMessage.text = "";
-        _inGameMessagesCanvas.SetActive(false);        
+        _inGameMessagesCanvas.SetActive(false);
+
+        if (_queuedMessages.Count > 0)
+        {
+            InGameMessage nextMessage = _queuedMessages.Dequeue();
+
+            Debug.Log($"HideMessagesNow) Detected next message, showing next: {nextMessage.MessageKey}");
+
+            ShowInGameMessage(nextMessage);
+        }
     }
 
 

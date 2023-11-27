@@ -91,3 +91,9 @@ MonoBehaviour:
       Presiona la tecla ''F'''
   - _key: ig_flashlight_pickup
     _value: Presiona  'F' para prender y apagar la linterna
+  - _key: ig_find_exit
+    _value: "Ahora busc\xE1 la salida"
+  - _key: ig_exit_danger
+    _value: "Est\xE1s muy cerca de los barriles"
+  - _key: ig_kills_completed
+    _value: "Hermosa ma\xF1ana verdad ?"

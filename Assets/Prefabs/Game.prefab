@@ -54,6 +54,7 @@ MonoBehaviour:
     type: 3}
   _player: {fileID: 0}
   _minutesOfGameplay: 10
+  _ppVolume: {fileID: 0}
 --- !u!114 &1557213532102548117
 MonoBehaviour:
   m_ObjectHideFlags: 0

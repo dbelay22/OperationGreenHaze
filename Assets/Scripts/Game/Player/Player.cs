@@ -95,11 +95,32 @@ public class Player : MonoBehaviour
         {
             Director.Instance.OnEvent(DirectorEvents.Player_Pickup_Mission);
         }
+        else if (ProcessExitDanger(trigger))
+        {
+            Game.Instance.ReportExitDangerZoneEnter();
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        GameObject trigger = other.gameObject;
+
+        if (ProcessExitDanger(trigger))
+        {
+            Game.Instance.ReportExitDangerZoneExit();
+        }
+    }
+
+    bool ProcessExitDanger(GameObject trigger)
+    {
+        bool isExitDanger = trigger.CompareTag(Tags.EXIT_DANGER);
+        
+        return isExitDanger;
     }
 
     bool ProcessMissionPickup(GameObject trigger)
     {
-        bool isMissionPickup = trigger.CompareTag(Tags.MISSION_PICKUP_TAG);
+        bool isMissionPickup = trigger.CompareTag(Tags.MISSION_PICKUP);
 
         if (isMissionPickup)
         {
@@ -118,7 +139,7 @@ public class Player : MonoBehaviour
 
     bool ProcessFlashlightPickup(GameObject trigger)
     {
-        bool isFlashlight = trigger.CompareTag(Tags.FLASHLIGHT_PICKUP_TAG);
+        bool isFlashlight = trigger.CompareTag(Tags.FLASHLIGHT_PICKUP);
 
         if (isFlashlight)
         {
@@ -144,7 +165,7 @@ public class Player : MonoBehaviour
 
     bool ProcessMedkitPickup(GameObject trigger)
     {
-        bool isMedkit = trigger.CompareTag(Tags.MEDKIT_PICKUP_TAG);
+        bool isMedkit = trigger.CompareTag(Tags.MEDKIT_PICKUP);
 
         if (isMedkit)
         {
@@ -175,7 +196,7 @@ public class Player : MonoBehaviour
 
     bool ProcessAmmoPickup(GameObject trigger) 
     {
-        bool isAmmoPickup = trigger.CompareTag(Tags.AMMO_PICKUP_TAG);
+        bool isAmmoPickup = trigger.CompareTag(Tags.AMMO_PICKUP);
 
         if (isAmmoPickup)
         {

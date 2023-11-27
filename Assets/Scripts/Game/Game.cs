@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 using Yxp.Helpers;
 using Yxp.StateMachine;
@@ -10,6 +12,8 @@ public class Game : MonoBehaviour
 {
     GameStateMachine _stateMachine = null;
 
+    [SerializeField] AudioSource _helicopterExitSound;
+
     [Header("DontDestroyOnLoadInstances")]
     [SerializeField] GameObject _playerSettingsPrefab;
     [SerializeField] GameObject _localizationPrefab;
@@ -18,13 +22,17 @@ public class Game : MonoBehaviour
     [SerializeField] Player _player;
 
     [Header("Gameplay")]
-    [SerializeField] int _minutesOfGameplay;        
+    [SerializeField] int _minutesOfGameplay;
+
+    [Header("PostProcessingFX")]
+    [SerializeField] Volume _ppVolume;
 
     public int MinutesOfGameplay { get { return _minutesOfGameplay; } }
 
     private bool _isGodModeOn;
-
     public bool IsGodModeOn { get { return _isGodModeOn; } }
+
+    private bool _isPPFxOn;
 
     bool _allEnemiesKilled = false;
     bool _allMissionPickupsCompleted = false;
@@ -47,6 +55,7 @@ public class Game : MonoBehaviour
     void Start()
     {
         _isGodModeOn = false;
+        _isPPFxOn = true;
 
         _allEnemiesKilled = false;
         _allMissionPickupsCompleted = false;
@@ -54,9 +63,7 @@ public class Game : MonoBehaviour
 
         CheckPlayerSettingsInstance();
 
-        CheckLocalizationInstance();
-
-        
+        CheckLocalizationInstance();        
 
         _stateMachine = new GameStateMachine();
         _stateMachine.TransitionToState(new PlayState());
@@ -115,6 +122,29 @@ public class Game : MonoBehaviour
 
 #region Mission
 
+    public void ReportExitDangerZoneEnter()
+    {
+        if (PlayerNeedsToClearExitNow())
+        {
+            GameUI.Instance.ShowInGameMessage("ig_exit_danger", GameUI.LIFETIME_INFINITE, true);
+        }
+    }
+
+    public void ReportExitDangerZoneExit()
+    {
+        Debug.Log("Game] ReportExitDangerZoneExit)");
+
+        if (PlayerNeedsToClearExitNow())
+        {
+            GameUI.Instance.HideMessagesNow();
+        }
+    }
+
+    bool PlayerNeedsToClearExitNow()
+    {
+        return _allEnemiesKilled && _allMissionPickupsCompleted;
+    }
+
     public void ReportAllMissionPickupsCollected()
     {
 #if UNITY_EDITOR
@@ -125,7 +155,14 @@ public class Game : MonoBehaviour
 
         ObjectivesPanel.Instance.SetPickupDataComplete();
 
-        ShowObjectiveCompletedMessage();   
+        ShowObjectiveCompletedMessage();
+
+        CheckGameWin();
+    }
+
+    void ShowObjectiveCompletedMessage()
+    {
+        GameUI.Instance.ShowInGameMessage("ig_objective_completed", 3f);
     }
 
     public void ReportAllEnemiesKilled()
@@ -138,15 +175,14 @@ public class Game : MonoBehaviour
 
         ObjectivesPanel.Instance.SetKillemAllComplete();
 
-        ShowObjectiveCompletedMessage();
+        ShowKillsCompletedMessage();
+
+        CheckGameWin();
     }
 
-    void ShowObjectiveCompletedMessage()
+    void ShowKillsCompletedMessage()
     {
-        if (CheckGameWin() == false)
-        {
-            GameUI.Instance.ShowInGameMessage("ig_objective_completed", 4f);
-        }
+        GameUI.Instance.ShowInGameMessage("ig_kills_completed", 3f);
     }
 
     public void ReportExitClear()
@@ -168,10 +204,23 @@ public class Game : MonoBehaviour
 
     bool CheckGameWin()
     {
-        if (_allEnemiesKilled && _allMissionPickupsCompleted && _exitClear)
+        if (_allEnemiesKilled && _allMissionPickupsCompleted)
         {
-            ChangeStateToWin();
-            return true;
+            if (_exitClear)
+            {
+                ChangeStateToWin();
+                return true;
+            }
+            else
+            {
+                _helicopterExitSound.enabled = true;
+                
+                _helicopterExitSound.Play();
+
+                GameUI.Instance.ShowInGameMessage("ig_find_exit", 4f);
+                
+                return false;
+            }
         }
         return false;
     }
@@ -240,6 +289,22 @@ public class Game : MonoBehaviour
 #if UNITY_EDITOR
         Debug.Log($"[Game] GOD MODE ON: {_isGodModeOn}");
 #endif
+    }
+
+    public void TogglePPFx()
+    {
+        _isPPFxOn = !_isPPFxOn;
+#if UNITY_EDITOR
+        Debug.Log($"[Game] PP-FX MODE ON: {_isPPFxOn}");
+#endif
+
+        _ppVolume.profile.TryGet(out ChromaticAberration chromaticAberration);
+        _ppVolume.profile.TryGet(out DepthOfField depthOfField);
+        _ppVolume.profile.TryGet(out Tonemapping tonemapping);
+
+        chromaticAberration.active = _isPPFxOn;
+        depthOfField.active = _isPPFxOn;
+        tonemapping.active = _isPPFxOn;
     }
 
     public IEnumerator TimeBend(float slowTimeScale, float waitTime)

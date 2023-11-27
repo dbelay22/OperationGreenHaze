@@ -26,7 +26,7 @@ public class ReverbZoneTrigger : MonoBehaviour
 
     void ProcessReverbZoneEnable(Collider other, bool enableReverb)
     {
-        if (other.transform.CompareTag(Tags.PLAYER_TAG))
+        if (other.transform.CompareTag(Tags.PLAYER))
         {
             _reverbZone.enabled = enableReverb;
         }
