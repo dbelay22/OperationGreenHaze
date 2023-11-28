@@ -59,6 +59,67 @@ public class Player : MonoBehaviour
         _flashlight = GetComponentInChildren<Flashlight>();
     }
 
+    void Update()
+    {
+        if (!Game.Instance.IsGameplayOn())
+        {
+            return;
+        }
+
+        UpdateMusicIntensity();
+    }
+
+    void UpdateMusicIntensity()
+    {
+        int acc = 0;
+
+        Debug.Log($"[Player] UpdateMusicIntensity) ---------");
+
+        int enemyCountTooClose = HowManyEnemiesAtDistance(2f);
+        acc += enemyCountTooClose;
+
+        int enemyCountNear = HowManyEnemiesAtDistance(10f) - acc;
+        acc += enemyCountNear;
+
+        int enemyCountMid = HowManyEnemiesAtDistance(22f) - acc;
+
+        Debug.Log($"[Player] UpdateMusicIntensity) Close: {enemyCountTooClose}");
+        Debug.Log($"[Player] UpdateMusicIntensity) Near: {enemyCountNear}");
+        Debug.Log($"[Player] UpdateMusicIntensity) Mid: {enemyCountMid}");
+
+        float intensity = ((enemyCountTooClose / 3f) * 0.6f) + ((enemyCountNear / 2f) * 0.2f) + ((enemyCountMid / 2f) * 0.2f);
+        
+        float clampIntensity = Math.Clamp(intensity, 0f, 1f);
+        
+        Debug.Log($"[Player] UpdateMusicIntensity) intensity: {intensity}, clamp:{clampIntensity}");
+
+        AudioController.Instance.GameplayIntensityUpdate(clampIntensity);
+    }
+
+    int HowManyEnemiesAtDistance(float radius)
+    {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, radius);
+
+        int amount = 0;
+
+        foreach (var collider in colliders)
+        {
+            if (collider.CompareTag(Tags.ENEMY) && collider.GetType().Equals(typeof(BoxCollider)))
+            {
+                amount++;
+            }
+        }
+
+        return amount;
+    }
+
+    float DistanceToZombie(Transform enemyTransform)
+    {
+        float distance = Vector3.Distance(transform.position, enemyTransform.position);
+        
+        return distance;
+    }
+
     #region Shooting
 
     public void OnBulletShot(AmmoType ammoType, int amount, bool hitEnemy)

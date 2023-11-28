@@ -2,7 +2,6 @@ using FMOD.Studio;
 using System.Collections.Generic;
 using UnityEngine;
 using FMODUnity;
-using FMOD.Studio;
 
 public class AudioController : MonoBehaviour
 {
@@ -25,14 +24,14 @@ public class AudioController : MonoBehaviour
 
     public static AudioController Instance { get { return _instance; } }
 
+    #endregion
+
     void Awake()
     {
         _instance = this;
 
         _musicEventInstance = CreateInstance(FMODEvents.Instance.GameplayMusicEvent);
     }
-
-    #endregion
 
     void Start()
     {
@@ -71,6 +70,11 @@ public class AudioController : MonoBehaviour
         eventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
     }
 
+    public void StopFadeEvent(EventInstance eventInstance)
+    {
+        eventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+    }
+
     public void PauseEvent(EventInstance eventInstance)
     {
         eventInstance.setPaused(true);
@@ -81,9 +85,10 @@ public class AudioController : MonoBehaviour
         eventInstance.setPaused(false);
     }
 
-    public void StopFadeEvent(EventInstance eventInstance)
+    void ReleaseEvent(EventInstance eventInstance)
     {
-        eventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        StopEvent(eventInstance);
+        eventInstance.release();
     }
 
     void OnDestroy()
@@ -96,10 +101,10 @@ public class AudioController : MonoBehaviour
         // stop and release any created instances
         foreach (EventInstance eventInstance in _eventInstances)
         {
-            eventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-
-            eventInstance.release();
+            ReleaseEvent(eventInstance);
         }
+
+        ReleaseEvent(_musicEventInstance);         
 
         // stop all of the event emitters, because if we don't they may hang around in other scenes
         /*
@@ -150,6 +155,11 @@ public class AudioController : MonoBehaviour
         //PlayerSettings.Instance.SetAudioMixerSFXVolume(PlayerSettings.MIN_VOLUME_DB);
 
         PauseEvent(_musicEventInstance);
+    }
+
+    public void GameplayIntensityUpdate(float intensity)
+    {
+        _musicEventInstance.setParameterByName(FMODEvents.Instance.TerrorMusicParam, intensity);
     }
 
     public void GameplayResume()
