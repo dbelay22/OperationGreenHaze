@@ -91,11 +91,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerFootsteps:
     Guid:
-      Data1: -2012033518
-      Data2: 1333166389
-      Data3: 913277627
-      Data4: 2091358420
-    Path: event:/Footsteps
+      Data1: 1639583792
+      Data2: 1328016165
+      Data3: -1285398338
+      Data4: 438845755
+    Path: event:/New Footsteps
   WalkRunParameter: Walk_Run
   FloorMaterialParameter: Floor_Material
-  DefaultFloorMaterialValue: 1
+  DefaultFloorMaterialValue: 0
+  LeftRightParameter: Left_Right
+  GameplayMusicEvent:
+    Guid:
+      Data1: 1449276186
+      Data2: 1170092471
+      Data3: -64256892
+      Data4: 213966462
+    Path: event:/Music/Music
+  TerrorMusicParam: Terror Music
+  MusicPartsParam: Music parts
+  NearZombiesParam: Near_Zombies_music

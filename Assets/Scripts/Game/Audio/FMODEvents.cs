@@ -19,6 +19,8 @@ public class FMODEvents : MonoBehaviour
     public EventReference GameplayMusicEvent;
     public string TerrorMusicParam;
     public string MusicPartsParam;
+    public string NearZombiesParam;
+
 
     #region Instance
 

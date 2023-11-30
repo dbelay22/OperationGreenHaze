@@ -2,6 +2,7 @@ using FMOD.Studio;
 using System.Collections.Generic;
 using UnityEngine;
 using FMODUnity;
+using System;
 
 public class AudioController : MonoBehaviour
 {
@@ -160,6 +161,11 @@ public class AudioController : MonoBehaviour
     public void GameplayIntensityUpdate(float intensity)
     {
         _musicEventInstance.setParameterByName(FMODEvents.Instance.TerrorMusicParam, intensity);
+    }
+
+    public void GameplayNearZombiesUpdate(float intensity)
+    {
+        _musicEventInstance.setParameterByName(FMODEvents.Instance.NearZombiesParam, intensity);
     }
 
     public void GameplayResume()
