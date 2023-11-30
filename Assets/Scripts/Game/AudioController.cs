@@ -15,6 +15,9 @@ public class AudioController : MonoBehaviour
     [SerializeField] AudioClip _winMusic;
     */
 
+    [Header("Mixer")]
+    [SerializeField] bool _musicOn;
+
     List<EventInstance> _eventInstances = new List<EventInstance>();
 
     EventInstance _musicEventInstance;
@@ -131,6 +134,13 @@ public class AudioController : MonoBehaviour
 
             _musicEventInstance.setParameterByName(FMODEvents.Instance.TerrorMusicParam, 0);
 
+#if UNITY_EDITOR
+            if (!_musicOn)
+            {
+                return;                
+            }
+#endif
+
             PlayEvent(_musicEventInstance);
         }
     }
@@ -155,6 +165,13 @@ public class AudioController : MonoBehaviour
         //PlayerSettings.Instance.SetAudioMixerMusicVolume(PlayerSettings.MIN_VOLUME_DB);
         //PlayerSettings.Instance.SetAudioMixerSFXVolume(PlayerSettings.MIN_VOLUME_DB);
 
+#if UNITY_EDITOR
+        if (!_musicOn)
+        {
+            return;
+        }
+#endif
+
         PauseEvent(_musicEventInstance);
     }
 
@@ -170,11 +187,23 @@ public class AudioController : MonoBehaviour
 
     public void GameplayResume()
     {
+#if UNITY_EDITOR
+        if (!_musicOn)
+        {
+            return;
+        }
+#endif
         ResumeEvent(_musicEventInstance);
     }
 
     public void GameplayStop()
     {
+#if UNITY_EDITOR
+        if (!_musicOn)
+        {
+            return;
+        }
+#endif
         StopEvent(_musicEventInstance);
     }
 
