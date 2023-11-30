@@ -5,6 +5,12 @@ using FMODUnity;
 
 public class FMODEvents : MonoBehaviour
 {
+    [Header("Gameplay Music")]
+    public EventReference GameplayMusicEvent;
+    public string TerrorMusicParam;
+    public string MusicPartsParam;
+    public string NearZombiesParam;
+
     [Header("Player Steps")]
     public EventReference PlayerFootsteps;
 
@@ -17,14 +23,7 @@ public class FMODEvents : MonoBehaviour
 
     [Header("Zombie steps")]
     public EventReference ZombieFootsteps;
-    public string ZombieLeftRightParam;
-
-    [Header("Gameplay Music")]
-    public EventReference GameplayMusicEvent;
-    public string TerrorMusicParam;
-    public string MusicPartsParam;
-    public string NearZombiesParam;
-
+    public string ZombieLeftRightParam;       
 
     #region Instance
 

@@ -1,8 +1,10 @@
 using Cinemachine;
+using FMODUnity;
 using StarterAssets;
 using System;
 using System.Collections;
 using UnityEngine;
+using FMOD.Studio;
 
 public class Weapon : MonoBehaviour
 {
@@ -27,9 +29,14 @@ public class Weapon : MonoBehaviour
     [SerializeField] float _fovZoom = 20;
 
     [Header("SFX")]
-    [SerializeField] AudioClip _shootSFX;
-    [SerializeField] AudioClip _outOfAmmoSFX;
-    [SerializeField] AudioClip _reloadSFX;
+    [SerializeField] EventReference _shootEvent;
+    [SerializeField] EventReference _outOfAmmoEvent;
+    [SerializeField] EventReference _loadBulletsEvent;
+
+    EventInstance _shootSFX;
+
+    //[SerializeField] AudioClip _outOfAmmoSFX;
+    //[SerializeField] AudioClip _reloadSFX;
 
     [Space(10)]
     [SerializeField] FirstPersonController _fpController;
@@ -46,6 +53,11 @@ public class Weapon : MonoBehaviour
     Ammo _ammo;
 
     Player _player;
+
+    void Awake()
+    {
+        _shootSFX = AudioController.Instance.CreateInstance(_shootEvent);
+    }
 
     void Start()
     {
@@ -172,12 +184,12 @@ public class Weapon : MonoBehaviour
 
     void PlayShootSFX()
     {
-        _audioSource.PlayOneShot(_shootSFX);
+        AudioController.Instance.PlayEvent(_shootSFX, true);
     }
 
     void PlayOutOfAmmoSFX()
     {
-        _audioSource.PlayOneShot(_outOfAmmoSFX);
+        //_audioSource.PlayOneShot(_outOfAmmoSFX);
     }
 
     void PlayMuzzleFlashVFX()
@@ -303,7 +315,7 @@ public class Weapon : MonoBehaviour
 
     public void PlayPickupAmmoSFX()
     {
-        _audioSource.PlayOneShot(_reloadSFX);
+        //_audioSource.PlayOneShot(_reloadSFX);
     }
 
 }

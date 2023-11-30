@@ -192,6 +192,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _input: {fileID: 5420857361349278248}
   _playerHealth: {fileID: 6609416933996455271}
+  _playerPosition: {fileID: 8997996947095583982}
 --- !u!1 &2634296083351797213
 GameObject:
   m_ObjectHideFlags: 0
@@ -235,9 +236,9 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 552534114314768014, guid: 13d1b11299e98ea41970b6a4efd17cfb,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 57f15d6336a62ff4ab5f5fe4a997b12b, type: 3}
+  m_audioClip: {fileID: 8300000, guid: b032eaa0dab1cc8489562e2188fad659, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.015
+  m_Volume: 0.44
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -334,6 +335,7 @@ GameObject:
   - component: {fileID: 6626385472769745662}
   - component: {fileID: 581398282}
   - component: {fileID: 581398281}
+  - component: {fileID: 1750150197}
   m_Layer: 7
   m_Name: PlayerCameraRoot
   m_TagString: CinemachineTarget
@@ -458,7 +460,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -468,6 +470,14 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!81 &1750150197
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4135013735270702863}
+  m_Enabled: 1
 --- !u!1 &5393215578589016642
 GameObject:
   m_ObjectHideFlags: 0
@@ -674,7 +684,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1088,6 +1098,41 @@ PrefabInstance:
       propertyPath: _fpController
       value: 
       objectReference: {fileID: 8616685848737228371}
+    - target: {fileID: 3788421771384621697, guid: bdc71fe84784acd43b8e3816e10eb765,
+        type: 3}
+      propertyPath: _coolDownSeconds
+      value: 0.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 3788421771384621697, guid: bdc71fe84784acd43b8e3816e10eb765,
+        type: 3}
+      propertyPath: _shootEvent.Path
+      value: event:/Shoots_pistol
+      objectReference: {fileID: 0}
+    - target: {fileID: 3788421771384621697, guid: bdc71fe84784acd43b8e3816e10eb765,
+        type: 3}
+      propertyPath: _shootEvent.Guid.Data1
+      value: -557700115
+      objectReference: {fileID: 0}
+    - target: {fileID: 3788421771384621697, guid: bdc71fe84784acd43b8e3816e10eb765,
+        type: 3}
+      propertyPath: _shootEvent.Guid.Data2
+      value: 1092594660
+      objectReference: {fileID: 0}
+    - target: {fileID: 3788421771384621697, guid: bdc71fe84784acd43b8e3816e10eb765,
+        type: 3}
+      propertyPath: _shootEvent.Guid.Data3
+      value: 180555919
+      objectReference: {fileID: 0}
+    - target: {fileID: 3788421771384621697, guid: bdc71fe84784acd43b8e3816e10eb765,
+        type: 3}
+      propertyPath: _shootEvent.Guid.Data4
+      value: -1248978768
+      objectReference: {fileID: 0}
+    - target: {fileID: 4208746825564624711, guid: bdc71fe84784acd43b8e3816e10eb765,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4235199867765983556, guid: bdc71fe84784acd43b8e3816e10eb765,
         type: 3}
       propertyPath: m_Layer
@@ -1183,9 +1228,41 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8616685848737228372}
     - target: {fileID: 1434361318, guid: a59b0609ea2fa5f44823a30f5c7ce800, type: 3}
+      propertyPath: _ammoPerShot
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1434361318, guid: a59b0609ea2fa5f44823a30f5c7ce800, type: 3}
       propertyPath: _fpController
       value: 
       objectReference: {fileID: 8616685848737228371}
+    - target: {fileID: 1434361318, guid: a59b0609ea2fa5f44823a30f5c7ce800, type: 3}
+      propertyPath: _coolDownSeconds
+      value: 0.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 1434361318, guid: a59b0609ea2fa5f44823a30f5c7ce800, type: 3}
+      propertyPath: _shootEvent.Path
+      value: event:/Shoots_Machinegun
+      objectReference: {fileID: 0}
+    - target: {fileID: 1434361318, guid: a59b0609ea2fa5f44823a30f5c7ce800, type: 3}
+      propertyPath: _shootEvent.Guid.Data1
+      value: 383688057
+      objectReference: {fileID: 0}
+    - target: {fileID: 1434361318, guid: a59b0609ea2fa5f44823a30f5c7ce800, type: 3}
+      propertyPath: _shootEvent.Guid.Data2
+      value: 1222024017
+      objectReference: {fileID: 0}
+    - target: {fileID: 1434361318, guid: a59b0609ea2fa5f44823a30f5c7ce800, type: 3}
+      propertyPath: _shootEvent.Guid.Data3
+      value: 895409291
+      objectReference: {fileID: 0}
+    - target: {fileID: 1434361318, guid: a59b0609ea2fa5f44823a30f5c7ce800, type: 3}
+      propertyPath: _shootEvent.Guid.Data4
+      value: 1146032039
+      objectReference: {fileID: 0}
+    - target: {fileID: 1748713565, guid: a59b0609ea2fa5f44823a30f5c7ce800, type: 3}
+      propertyPath: m_Volume
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 11821406297431948, guid: a59b0609ea2fa5f44823a30f5c7ce800,
         type: 3}
       propertyPath: m_Layer
