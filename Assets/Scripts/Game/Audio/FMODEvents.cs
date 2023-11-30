@@ -15,6 +15,10 @@ public class FMODEvents : MonoBehaviour
 
     public string LeftRightParameter;
 
+    [Header("Zombie steps")]
+    public EventReference ZombieFootsteps;
+    public string ZombieLeftRightParam;
+
     [Header("Gameplay Music")]
     public EventReference GameplayMusicEvent;
     public string TerrorMusicParam;

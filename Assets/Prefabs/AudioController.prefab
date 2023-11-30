@@ -100,6 +100,14 @@ MonoBehaviour:
   FloorMaterialParameter: Floor_Material
   DefaultFloorMaterialValue: 0
   LeftRightParameter: Left_Right
+  ZombieFootsteps:
+    Guid:
+      Data1: 324470742
+      Data2: 1109170326
+      Data3: 1619720337
+      Data4: 1961590381
+    Path: event:/Zombies_footsteps
+  ZombieLeftRightParam: Zombie_left&Right
   GameplayMusicEvent:
     Guid:
       Data1: 1449276186

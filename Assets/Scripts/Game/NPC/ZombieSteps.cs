@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using StarterAssets;
 using UnityEngine;
+using FMOD.Studio;
 
 [RequireComponent(typeof(AudioSource))]
 public class ZombieSteps : MonoBehaviour
@@ -14,13 +15,19 @@ public class ZombieSteps : MonoBehaviour
     bool _isWalking = false;
 
     int _lastWalkStepIndex;
+
+    EventInstance _footstepEventInstance;
     
     void Start()
     {
         _lastWalkStepIndex = -1;
         
         _audioSource = GetComponent<AudioSource>();
+
+        _footstepEventInstance = AudioController.Instance.CreateInstance(FMODEvents.Instance.ZombieFootsteps);
     }
+
+    bool _stepLeft = true;
 
     public void PlayStepSFX()
     {
@@ -29,12 +36,18 @@ public class ZombieSteps : MonoBehaviour
             return;
         }
 
-        int index = _lastWalkStepIndex == 0 ? 1 : 0;
+        //////////////////////////////
+        // Parameters
 
-        if (PlayAudioClip(_walkSounds[index]))
-        {
-            _lastWalkStepIndex = index;
-        }
+        // position
+        _footstepEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform.position));
+
+        _footstepEventInstance.setParameterByName(FMODEvents.Instance.LeftRightParameter, _stepLeft ? 0 : 1);
+        //////////////////////////////
+
+        AudioController.Instance.PlayEvent(_footstepEventInstance);
+
+        _stepLeft = !_stepLeft;
     }
 
     public void OnNPCStartWalking()
