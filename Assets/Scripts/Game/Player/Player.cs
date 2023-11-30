@@ -88,7 +88,7 @@ public class Player : MonoBehaviour
         Debug.Log($"[Player] UpdateMusicIntensity) Mid: {enemyCountMid}");
 
         //----
-        float intensity = ((enemyCountTooClose / 4f) * 0.45f) + ((enemyCountNear / 2f) * 0.20f) + ((enemyCountMid / 2f) * 0.35f);
+        float intensity = ((enemyCountTooClose / 3f) * 0.50f) + ((enemyCountNear / 3f) * 0.25f) + ((enemyCountMid / 3f) * 0.25f);
         float clampIntensity = Math.Clamp(intensity, 0f, 1f);
         
         Debug.Log($"[Player] UpdateMusicIntensity) intensity: {intensity}, clamp:{clampIntensity}");
