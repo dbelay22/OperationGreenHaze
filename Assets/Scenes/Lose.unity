@@ -248,7 +248,7 @@ PrefabInstance:
     - target: {fileID: 4268806862878180134, guid: ef8945843775fcd41aea9e95e6ebc283,
         type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
-      value: 1
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 4268806864084192356, guid: ef8945843775fcd41aea9e95e6ebc283,
         type: 3}
@@ -429,7 +429,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -5194339020240608141, guid: 13d1b11299e98ea41970b6a4efd17cfb,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 0dbccddfd6174494380e8dd0ed64e0f1, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.66
   m_Pitch: 1
   Loop: 1
