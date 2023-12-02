@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{91ca2138-c58f-45fb-93a2-95df8c424353}">
 		<property name="assetPath">
-			<value>OperationGreenHaze-Music_Horror_near-Track.wav</value>
+			<value>Music/OperationGreenHaze-Music_Horror_near-Track.wav</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>
