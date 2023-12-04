@@ -96,7 +96,7 @@ public class NpcAI : MonoBehaviour
 
     EventInstance _zombieDieSFX;
     EventInstance _zombieFallSFX;
-    EventInstance _zombieHitsFX;
+    EventInstance _zombieAttackFX;
 
     void Awake()
     {
@@ -129,14 +129,11 @@ public class NpcAI : MonoBehaviour
 
         _minimapIcon.SetActive(true);
 
-        _zombieFallSFX = AudioController.Instance.CreateInstance(FMODEvents.Instance.ZombieFall);
-        _zombieFallSFX.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform.position));
+        _zombieFallSFX = AudioController.Instance.Create3DInstance(FMODEvents.Instance.ZombieFall, transform.position);
 
-        _zombieDieSFX = AudioController.Instance.CreateInstance(FMODEvents.Instance.ZombieDie);
-        _zombieDieSFX.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform.position));
+        _zombieDieSFX = AudioController.Instance.Create3DInstance(FMODEvents.Instance.ZombieDie, transform.position);
 
-        _zombieHitsFX = AudioController.Instance.CreateInstance(FMODEvents.Instance.ZombieHits);
-        _zombieHitsFX.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform.position));
+        _zombieAttackFX = AudioController.Instance.Create3DInstance(FMODEvents.Instance.ZombieAttack, transform.position);
     }
 
     void SetCurrentStateTo(NpcState state)
@@ -449,9 +446,7 @@ public class NpcAI : MonoBehaviour
         }
         */
 
-        _zombieHitsFX.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform.position));
-        
-        AudioController.Instance.PlayEvent(_zombieHitsFX, true);
+        AudioController.Instance.Play3DEvent(_zombieAttackFX, transform.position, true);
     }
 
     public void HitByExplosion(Transform explosionTransform)
@@ -626,11 +621,9 @@ public class NpcAI : MonoBehaviour
         }
         */
 
-        _zombieFallSFX.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform.position));
-        AudioController.Instance.PlayEvent(_zombieFallSFX);
+        AudioController.Instance.Play3DEvent(_zombieFallSFX, transform.position);
 
-        _zombieDieSFX.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform.position));
-        AudioController.Instance.PlayEvent(_zombieDieSFX, true);
+        AudioController.Instance.Play3DEvent(_zombieDieSFX, transform.position, true);
     }
 
     bool PlayAudioClip(AudioClip clip)
@@ -653,7 +646,7 @@ public class NpcAI : MonoBehaviour
 
     void OnDestroy()
     {
-        AudioController.Instance.ReleaseEvent(_zombieHitsFX);
+        AudioController.Instance.ReleaseEvent(_zombieAttackFX);
         AudioController.Instance.ReleaseEvent(_zombieFallSFX);
         AudioController.Instance.ReleaseEvent(_zombieDieSFX);
     }

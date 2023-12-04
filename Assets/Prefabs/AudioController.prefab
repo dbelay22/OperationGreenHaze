@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e83570fb507b804c85f9d6cbc67c669, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _musicOn: 0
+  _musicOn: 1
 --- !u!1 &6495501288945196645
 GameObject:
   m_ObjectHideFlags: 0
@@ -111,6 +111,13 @@ MonoBehaviour:
   FloorMaterialParameter: Floor_Material
   DefaultFloorMaterialValue: 0
   LeftRightParameter: Left_Right
+  ZombieAppear:
+    Guid:
+      Data1: 415911926
+      Data2: 1233892316
+      Data3: -845921623
+      Data4: -2144276206
+    Path: event:/Zombies_Voices/Zombie_Appear
   ZombieFootsteps:
     Guid:
       Data1: 324470742
@@ -119,13 +126,13 @@ MonoBehaviour:
       Data4: 1961590381
     Path: event:/Zombies_footsteps
   ZombieLeftRightParam: Zombie_left&Right
-  ZombieHits:
+  ZombieAttack:
     Guid:
-      Data1: -253622757
-      Data2: 1284738171
-      Data3: 2123582649
-      Data4: 469911827
-    Path: event:/Zombies_Hits
+      Data1: -470396771
+      Data2: 1104397258
+      Data3: -693101427
+      Data4: -2014876688
+    Path: event:/Zombies_Voices/Zombie_Attack
   ZombieFall:
     Guid:
       Data1: 1437984575
@@ -140,3 +147,17 @@ MonoBehaviour:
       Data3: 1421056640
       Data4: 262638840
     Path: event:/Zombies_Voices/Zombie_Die
+  ZombieDamage:
+    Guid:
+      Data1: 537333366
+      Data2: 1297304908
+      Data3: -1434493807
+      Data4: -1207516450
+    Path: event:/Zombies_Voices/Zombie_get_damage
+  PlayerDamage:
+    Guid:
+      Data1: -253622757
+      Data2: 1284738171
+      Data3: 2123582649
+      Data4: 469911827
+    Path: event:/Zombies_Hits

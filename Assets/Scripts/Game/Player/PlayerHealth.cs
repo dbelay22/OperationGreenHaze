@@ -1,3 +1,4 @@
+using FMOD.Studio;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,30 +10,32 @@ public class PlayerHealth : MonoBehaviour
     const string TOXIC_ZONE_TRIGGER = "ToxicZone";
     const string FIRE_ZONE_TRIGGER = "FireZone";
 
-
     [Header("Health")]
     [SerializeField] int _toxicZoneDamage = 15;
     [SerializeField] int _fireZoneDamage = 15;
     [SerializeField] int _currentHealth;
-
     public float CurrentHealth { get { return _currentHealth; } }
-
     public float CurrentHealthPercentage { get { return _currentHealth / 100f; } }
 
-
     [Header("Sound FX")]
+    /*
     [SerializeField] AudioClip _hit1SFX;
-    [SerializeField] AudioClip _hit2SFX;
+    */
+    [SerializeField] AudioClip _hit2SFX;    
     [SerializeField] AudioClip _tosSFX;
     [SerializeField] AudioClip _dieSFX;
 
     AudioSource _audioSource;
+
+    EventInstance _hitSFX;
 
     void Start()
     {
         _currentHealth = START_HEALTH;
 
         _audioSource = GetComponent<AudioSource>();
+
+        _hitSFX = AudioController.Instance.Create3DInstance(FMODEvents.Instance.PlayerDamage, transform.position);
     }
 
     void Update()
@@ -114,6 +117,7 @@ public class PlayerHealth : MonoBehaviour
 
     void PlayHitSFX()
     {
+        /*
         float randomness = Random.value;
         if (randomness <= 0.33f)
         {
@@ -122,7 +126,9 @@ public class PlayerHealth : MonoBehaviour
         else if (randomness <= 0.55f)
         {
             _audioSource.PlayOneShot(_hit2SFX);
-        }        
+        } */
+        
+        AudioController.Instance.Play3DEvent(_hitSFX, transform.position);
     }
 
     void HealthUpdate(int amount)

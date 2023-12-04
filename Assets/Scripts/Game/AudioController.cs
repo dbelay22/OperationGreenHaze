@@ -21,6 +21,8 @@ public class AudioController : MonoBehaviour
 
     EventInstance _musicEventInstance;
 
+    FMOD.Studio.System _fmodStudioSystem;
+
     #region Instance
 
     private static AudioController _instance;
@@ -32,6 +34,22 @@ public class AudioController : MonoBehaviour
     void Awake()
     {
         _instance = this;
+
+        FMODAwake();        
+    }
+
+    void FMODAwake()
+    {
+        /*
+        FMOD.Studio.System.create(out _fmodStudioSystem);
+
+
+        ADVANCEDSETTINGS settings = new ADVANCEDSETTINGS();
+        settings.commandqueuesize = 131072;
+        _fmodStudioSystem.setAdvancedSettings(settings);
+
+        //_fmodStudioSystem.initialize();
+        */
 
         _musicEventInstance = CreateInstance(FMODEvents.Instance.GameplayMusicEvent);
     }
@@ -55,7 +73,16 @@ public class AudioController : MonoBehaviour
         return eventInstance;
     }
 
-    public void PlayEvent(EventInstance eventInstance, bool forcePlay = false)
+    public EventInstance Create3DInstance(EventReference eventReference, Vector3 position)
+    {
+        EventInstance eventInstance = CreateInstance(eventReference);
+        
+        eventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(position));
+
+        return eventInstance;
+    }
+
+    public bool PlayEvent(EventInstance eventInstance, bool forcePlay = false)
     {
         eventInstance.getPlaybackState(out PLAYBACK_STATE playbackState);
 
@@ -67,7 +94,32 @@ public class AudioController : MonoBehaviour
         {
             //Debug.Log($"AudioController] PlayEvent) starting event: {evtPath}");
             eventInstance.start();
+            
+            return true;
         }
+
+        return false;
+    }
+
+    public bool Play3DEvent(EventInstance eventInstance, Vector3 position, bool forcePlay = false)
+    {
+        eventInstance.getPlaybackState(out PLAYBACK_STATE playbackState);
+
+        //eventInstance.getDescription(out EventDescription desc);
+        //desc.getPath(out string evtPath);
+        //Debug.Log($"AudioController] PlayEvent) eventInstance:{evtPath}, playbackState: {playbackState}");
+
+        if (playbackState.Equals(PLAYBACK_STATE.STOPPED) || forcePlay)
+        {
+            //Debug.Log($"AudioController] PlayEvent) starting event: {evtPath}");
+            eventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(position));
+
+            eventInstance.start();
+            
+            return true;
+        }
+
+        return false;
     }
 
     public void StopEvent(EventInstance eventInstance)
@@ -92,7 +144,14 @@ public class AudioController : MonoBehaviour
 
     public void ReleaseEvent(EventInstance eventInstance)
     {
+        if (!eventInstance.isValid())
+        {            
+            Debug.LogWarning("AudioController] ReleaseEvent) eventInstance NOT VALID");
+            return;
+        }
+        
         StopEvent(eventInstance);
+        
         eventInstance.release();
     }
 

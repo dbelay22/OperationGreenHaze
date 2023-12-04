@@ -20,7 +20,7 @@ public class PlayerSteps : MonoBehaviour
 
     void Start()
     {
-        _footstepEventInstance = AudioController.Instance.CreateInstance(FMODEvents.Instance.PlayerFootsteps);
+        _footstepEventInstance = AudioController.Instance.Create3DInstance(FMODEvents.Instance.PlayerFootsteps, _playerPosition.position);
     }
 
     void Update()
@@ -73,10 +73,6 @@ public class PlayerSteps : MonoBehaviour
     {
         //////////////////////////////
         // Parameters
-
-        // position
-        _footstepEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(_playerPosition.position));
-
         // walk / run 
         _footstepEventInstance.setParameterByName(FMODEvents.Instance.WalkRunParameter, isRunning ? 1 : 0);
 
@@ -86,7 +82,7 @@ public class PlayerSteps : MonoBehaviour
         _footstepEventInstance.setParameterByName(FMODEvents.Instance.LeftRightParameter, _stepLeft ? 0 : 1);
         //////////////////////////////
 
-        AudioController.Instance.PlayEvent(_footstepEventInstance);
+        AudioController.Instance.Play3DEvent(_footstepEventInstance, _playerPosition.position);
 
         _stepLeft = !_stepLeft;
     }

@@ -21,17 +21,23 @@ public class FMODEvents : MonoBehaviour
 
     public string LeftRightParameter;
 
+    [Header("Zombie")]
+    public EventReference ZombieAppear;
+
     [Header("Zombie steps")]
     public EventReference ZombieFootsteps;
     public string ZombieLeftRightParam;
 
-    [Header("Zombie hits")]
-    public EventReference ZombieHits;
+    [Header("Zombie Attack")]
+    public EventReference ZombieAttack;
 
-    [Header("Zombie dead")]
+    [Header("Zombie Damaged")]
     public EventReference ZombieFall;
     public EventReference ZombieDie;
+    public EventReference ZombieDamage;
 
+    [Header("Player")]
+    public EventReference PlayerDamage;
 
     #region Instance
 

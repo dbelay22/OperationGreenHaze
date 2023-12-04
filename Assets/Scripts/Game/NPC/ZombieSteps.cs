@@ -14,18 +14,13 @@ public class ZombieSteps : MonoBehaviour
 
     bool _isWalking = false;
 
-    int _lastWalkStepIndex;
-
     EventInstance _footstepEventInstance;
     
     void Start()
     {
-        _lastWalkStepIndex = -1;
-        
         _audioSource = GetComponent<AudioSource>();
                 
-        _footstepEventInstance = AudioController.Instance.CreateInstance(FMODEvents.Instance.ZombieFootsteps);
-        _footstepEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform.position));
+        _footstepEventInstance = AudioController.Instance.Create3DInstance(FMODEvents.Instance.ZombieFootsteps, transform.position);
     }
 
     bool _stepLeft = true;
@@ -41,12 +36,10 @@ public class ZombieSteps : MonoBehaviour
         // Parameters
 
         // position
-        _footstepEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform.position));
-
         _footstepEventInstance.setParameterByName(FMODEvents.Instance.LeftRightParameter, _stepLeft ? 0 : 1);
         //////////////////////////////
 
-        AudioController.Instance.PlayEvent(_footstepEventInstance);
+        AudioController.Instance.Play3DEvent(_footstepEventInstance, transform.position);
 
         _stepLeft = !_stepLeft;
     }
@@ -60,9 +53,7 @@ public class ZombieSteps : MonoBehaviour
     {
         _isWalking = false;
         
-        _audioSource.Stop();
-        
-        _lastWalkStepIndex = -1;
+        _audioSource.Stop();        
     }
 
     bool PlayAudioClip(AudioClip clip)
@@ -75,5 +66,10 @@ public class ZombieSteps : MonoBehaviour
         _audioSource.PlayOneShot(clip);
 
         return true;
+    }
+
+    void OnDestroy()
+    {
+        AudioController.Instance.ReleaseEvent(_footstepEventInstance);    
     }
 }
