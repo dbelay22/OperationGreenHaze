@@ -1,3 +1,4 @@
+using FMOD.Studio;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -93,6 +94,10 @@ public class NpcAI : MonoBehaviour
 
     float _currentHealth;
 
+    EventInstance _zombieDieSFX;
+    EventInstance _zombieFallSFX;
+    EventInstance _zombieHitsFX;
+
     void Awake()
     {
         _headCollider = GetComponent<CapsuleCollider>();
@@ -103,7 +108,7 @@ public class NpcAI : MonoBehaviour
 
         RandomizeSizeScale();
         
-        RandomizeMissingBodyParts();        
+        RandomizeMissingBodyParts();   
     }
 
     void Start()
@@ -123,6 +128,15 @@ public class NpcAI : MonoBehaviour
         _reportedPlayerEscape = false;
 
         _minimapIcon.SetActive(true);
+
+        _zombieFallSFX = AudioController.Instance.CreateInstance(FMODEvents.Instance.ZombieFall);
+        _zombieFallSFX.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform.position));
+
+        _zombieDieSFX = AudioController.Instance.CreateInstance(FMODEvents.Instance.ZombieDie);
+        _zombieDieSFX.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform.position));
+
+        _zombieHitsFX = AudioController.Instance.CreateInstance(FMODEvents.Instance.ZombieHits);
+        _zombieHitsFX.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform.position));
     }
 
     void SetCurrentStateTo(NpcState state)
@@ -419,6 +433,7 @@ public class NpcAI : MonoBehaviour
 
         _player.Damage(EatBrainDamage);
 
+        /*
         float rndHit = Random.value;
         if (rndHit < 0.3f)
         {
@@ -432,6 +447,11 @@ public class NpcAI : MonoBehaviour
         {
             PlayAudioClip(_growlSFX);
         }
+        */
+
+        _zombieHitsFX.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform.position));
+        
+        AudioController.Instance.PlayEvent(_zombieHitsFX, true);
     }
 
     public void HitByExplosion(Transform explosionTransform)
@@ -599,10 +619,18 @@ public class NpcAI : MonoBehaviour
 
     void PlayDeathSFX()
     {
+        /*
         if (Random.value > 0.3)
         {
             PlayAudioClip(Random.value > 0.5 ? _death01SFX : _death02SFX);
         }
+        */
+
+        _zombieFallSFX.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform.position));
+        AudioController.Instance.PlayEvent(_zombieFallSFX);
+
+        _zombieDieSFX.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform.position));
+        AudioController.Instance.PlayEvent(_zombieDieSFX, true);
     }
 
     bool PlayAudioClip(AudioClip clip)
@@ -621,5 +649,12 @@ public class NpcAI : MonoBehaviour
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, _chaseRange);
+    }
+
+    void OnDestroy()
+    {
+        AudioController.Instance.ReleaseEvent(_zombieHitsFX);
+        AudioController.Instance.ReleaseEvent(_zombieFallSFX);
+        AudioController.Instance.ReleaseEvent(_zombieDieSFX);
     }
 }

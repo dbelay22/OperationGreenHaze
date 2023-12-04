@@ -23,8 +23,9 @@ public class ZombieSteps : MonoBehaviour
         _lastWalkStepIndex = -1;
         
         _audioSource = GetComponent<AudioSource>();
-
+                
         _footstepEventInstance = AudioController.Instance.CreateInstance(FMODEvents.Instance.ZombieFootsteps);
+        _footstepEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform.position));
     }
 
     bool _stepLeft = true;

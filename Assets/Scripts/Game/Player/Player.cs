@@ -73,7 +73,7 @@ public class Player : MonoBehaviour
     {
         int acc = 0;
 
-        Debug.Log($"[Player] UpdateMusicIntensity) ---------");
+        //Debug.Log($"[Player] UpdateMusicIntensity) ---------");
 
         int enemyCountTooClose = HowManyEnemiesAtDistance(2f);
         acc += enemyCountTooClose;
@@ -83,22 +83,22 @@ public class Player : MonoBehaviour
 
         int enemyCountMid = HowManyEnemiesAtDistance(25f) - acc;
 
-        Debug.Log($"[Player] UpdateMusicIntensity) Close: {enemyCountTooClose}");
-        Debug.Log($"[Player] UpdateMusicIntensity) Near: {enemyCountNear}");
-        Debug.Log($"[Player] UpdateMusicIntensity) Mid: {enemyCountMid}");
+        //Debug.Log($"[Player] UpdateMusicIntensity) Close: {enemyCountTooClose}");
+        //Debug.Log($"[Player] UpdateMusicIntensity) Near: {enemyCountNear}");
+        //Debug.Log($"[Player] UpdateMusicIntensity) Mid: {enemyCountMid}");
 
         //----
         float intensity = ((enemyCountTooClose / 3f) * 0.50f) + ((enemyCountNear / 3f) * 0.25f) + ((enemyCountMid / 3f) * 0.25f);
         float clampIntensity = Math.Clamp(intensity, 0f, 1f);
         
-        Debug.Log($"[Player] UpdateMusicIntensity) intensity: {intensity}, clamp:{clampIntensity}");
+        //Debug.Log($"[Player] UpdateMusicIntensity) intensity: {intensity}, clamp:{clampIntensity}");
         
         AudioController.Instance.GameplayIntensityUpdate(clampIntensity);
 
         //----
         float nearZombiesFactor = ((enemyCountTooClose / 2f) * 1f);
         float clampNearZombiesFactor = Math.Clamp(nearZombiesFactor, 0f, 1f);
-        Debug.Log($"[Player] UpdateMusicIntensity) nearZombiesFactor: {nearZombiesFactor}, clampNearZombiesFactor:{clampNearZombiesFactor}");                
+        //Debug.Log($"[Player] UpdateMusicIntensity) nearZombiesFactor: {nearZombiesFactor}, clampNearZombiesFactor:{clampNearZombiesFactor}");                
 
         AudioController.Instance.GameplayNearZombiesUpdate(clampNearZombiesFactor);
     }

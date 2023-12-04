@@ -2,7 +2,6 @@ using FMOD.Studio;
 using System.Collections.Generic;
 using UnityEngine;
 using FMODUnity;
-using System;
 
 public class AudioController : MonoBehaviour
 {
@@ -60,11 +59,13 @@ public class AudioController : MonoBehaviour
     {
         eventInstance.getPlaybackState(out PLAYBACK_STATE playbackState);
 
-        //Debug.Log($"AudioController] PlayEvent) playbackState: {playbackState}");
+        //eventInstance.getDescription(out EventDescription desc);
+        //desc.getPath(out string evtPath);
+        //Debug.Log($"AudioController] PlayEvent) eventInstance:{evtPath}, playbackState: {playbackState}");
 
         if (playbackState.Equals(PLAYBACK_STATE.STOPPED) || forcePlay)
         {
-            //Debug.Log($"AudioController] PlayEvent) starting event");
+            //Debug.Log($"AudioController] PlayEvent) starting event: {evtPath}");
             eventInstance.start();
         }
     }
@@ -89,7 +90,7 @@ public class AudioController : MonoBehaviour
         eventInstance.setPaused(false);
     }
 
-    void ReleaseEvent(EventInstance eventInstance)
+    public void ReleaseEvent(EventInstance eventInstance)
     {
         StopEvent(eventInstance);
         eventInstance.release();

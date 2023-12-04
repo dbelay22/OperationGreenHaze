@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e83570fb507b804c85f9d6cbc67c669, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _musicOn: 0
 --- !u!1 &6495501288945196645
 GameObject:
   m_ObjectHideFlags: 0
@@ -89,6 +90,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acbe80b3f110a7f4191a15476774bfde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GameplayMusicEvent:
+    Guid:
+      Data1: 1449276186
+      Data2: 1170092471
+      Data3: -64256892
+      Data4: 213966462
+    Path: event:/Music/Music
+  TerrorMusicParam: Terror Music
+  MusicPartsParam: Music parts
+  NearZombiesParam: Near_Zombies_music
   PlayerFootsteps:
     Guid:
       Data1: 1639583792
@@ -108,13 +119,24 @@ MonoBehaviour:
       Data4: 1961590381
     Path: event:/Zombies_footsteps
   ZombieLeftRightParam: Zombie_left&Right
-  GameplayMusicEvent:
+  ZombieHits:
     Guid:
-      Data1: 1449276186
-      Data2: 1170092471
-      Data3: -64256892
-      Data4: 213966462
-    Path: event:/Music/Music
-  TerrorMusicParam: Terror Music
-  MusicPartsParam: Music parts
-  NearZombiesParam: Near_Zombies_music
+      Data1: -253622757
+      Data2: 1284738171
+      Data3: 2123582649
+      Data4: 469911827
+    Path: event:/Zombies_Hits
+  ZombieFall:
+    Guid:
+      Data1: 1437984575
+      Data2: 1099295654
+      Data3: 888095379
+      Data4: -545282597
+    Path: event:/Zombies_Falldown
+  ZombieDie:
+    Guid:
+      Data1: -1151168083
+      Data2: 1075351922
+      Data3: 1421056640
+      Data4: 262638840
+    Path: event:/Zombies_Voices/Zombie_Die
