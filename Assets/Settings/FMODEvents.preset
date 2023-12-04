@@ -1,0 +1,120 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!181963792 &2655988077585873504
+Preset:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: FMODEvents
+  m_TargetType:
+    m_NativeTypeID: 114
+    m_ManagedTypePPtr: {fileID: 11500000, guid: acbe80b3f110a7f4191a15476774bfde,
+      type: 3}
+    m_ManagedTypeFallback: 
+  m_Properties:
+  - target: {fileID: 0}
+    propertyPath: m_Enabled
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_EditorHideFlags
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_EditorClassIdentifier
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: GameplayMusicEvent.Guid.Data1
+    value: 1449276186
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: GameplayMusicEvent.Guid.Data2
+    value: 1170092471
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: GameplayMusicEvent.Guid.Data3
+    value: -64256892
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: GameplayMusicEvent.Guid.Data4
+    value: 213966462
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: GameplayMusicEvent.Path
+    value: event:/Music/Music
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: TerrorMusicParam
+    value: Terror Music
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: MusicPartsParam
+    value: Music parts
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: NearZombiesParam
+    value: Near_Zombies_music
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerFootsteps.Guid.Data1
+    value: 1639583792
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerFootsteps.Guid.Data2
+    value: 1328016165
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerFootsteps.Guid.Data3
+    value: -1285398338
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerFootsteps.Guid.Data4
+    value: 438845755
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerFootsteps.Path
+    value: event:/New Footsteps
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: WalkRunParameter
+    value: Walk_Run
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: FloorMaterialParameter
+    value: Floor_Material
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: DefaultFloorMaterialValue
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: LeftRightParameter
+    value: Left_Right
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieFootsteps.Guid.Data1
+    value: 324470742
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieFootsteps.Guid.Data2
+    value: 1109170326
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieFootsteps.Guid.Data3
+    value: 1619720337
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieFootsteps.Guid.Data4
+    value: 1961590381
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieFootsteps.Path
+    value: event:/Zombies_footsteps
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieLeftRightParam
+    value: Zombie_left&Right
+    objectReference: {fileID: 0}
+  m_ExcludedProperties: []
