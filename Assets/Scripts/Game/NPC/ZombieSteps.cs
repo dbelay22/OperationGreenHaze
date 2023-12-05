@@ -7,28 +7,26 @@ using FMOD.Studio;
 [RequireComponent(typeof(AudioSource))]
 public class ZombieSteps : MonoBehaviour
 {
-    [Header("Maximum two (2) audio clips")]
-    [SerializeField] AudioClip[] _walkSounds;
-
-    AudioSource _audioSource;
-
     bool _isWalking = false;
 
-    EventInstance _footstepEventInstance;
-    
-    void Start()
-    {
-        _audioSource = GetComponent<AudioSource>();
-                
-        _footstepEventInstance = AudioController.Instance.Create3DInstance(FMODEvents.Instance.ZombieFootsteps, transform.position);
-    }
-
     bool _stepLeft = true;
+    
+    EventInstance _footstepEventInstance;
+
+
+    void Update()
+    {
+        if (Game.Instance.IsGamePaused())
+        {
+            AudioController.Instance.StopEventIfPlaying(_footstepEventInstance);
+        }
+    }
 
     public void PlayStepSFX()
     {
         if (_isWalking == false)
         {
+            // must be dead
             return;
         }
 
@@ -46,30 +44,30 @@ public class ZombieSteps : MonoBehaviour
 
     public void OnNPCStartWalking()
     {
+        Debug.Log($"ZombieSteps] NPC Started Walking...");
+
         _isWalking = true;
+
+        if (!_footstepEventInstance.isValid())
+        {
+            Debug.Log("[ZombieSteps] OnNPCStartWalking) footstep instance not valid, must be first time");
+
+            _footstepEventInstance = AudioController.Instance.Create3DInstance(FMODEvents.Instance.ZombieFootsteps, transform.position);
+        }
     }
 
     public void OnNPCStoppedWalking()
     {
+        //Debug.Log($"ZombieSteps] NPC Stopped Walking...");
+
         _isWalking = false;
-        
-        _audioSource.Stop();        
-    }
 
-    bool PlayAudioClip(AudioClip clip)
-    {
-        if (_audioSource.isPlaying || Game.Instance.IsGamePlayOver())
-        {
-            return false;
-        }
-
-        _audioSource.PlayOneShot(clip);
-
-        return true;
+        AudioController.Instance.StopEventIfPlaying(_footstepEventInstance);
     }
 
     void OnDestroy()
     {
-        AudioController.Instance.ReleaseEvent(_footstepEventInstance);    
+        Debug.Log($"[ZombieSteps] OnDestroy) Destroying audio instance: footstep");
+        AudioController.Instance.DestroyEvent(_footstepEventInstance);    
     }
 }

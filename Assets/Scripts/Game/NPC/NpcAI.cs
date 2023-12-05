@@ -41,10 +41,6 @@ public class NpcAI : MonoBehaviour
     [Header("Attack")]
     [SerializeField] int EatBrainDamage = 10;
 
-    [Header("Speed")]
-    [SerializeField] [Range(0f, 5f)] float _minSpeed = 0f;
-    [SerializeField] [Range(0f, 5f)] float _maxSpeed = 5f;
-
     [Header("Target")]
     [SerializeField] Transform _targetPlayer;
     [SerializeField] float _chaseRange = 17;
@@ -127,13 +123,7 @@ public class NpcAI : MonoBehaviour
         _reportedAttack = false;
         _reportedPlayerEscape = false;
 
-        _minimapIcon.SetActive(true);
-
-        _zombieFallSFX = AudioController.Instance.Create3DInstance(FMODEvents.Instance.ZombieFall, transform.position);
-
-        _zombieDieSFX = AudioController.Instance.Create3DInstance(FMODEvents.Instance.ZombieDie, transform.position);
-
-        _zombieAttackFX = AudioController.Instance.Create3DInstance(FMODEvents.Instance.ZombieAttack, transform.position);
+        _minimapIcon.SetActive(true);        
     }
 
     void SetCurrentStateTo(NpcState state)
@@ -141,7 +131,7 @@ public class NpcAI : MonoBehaviour
         if (_currentState.Equals(NpcState.Dead))
         {
             return;
-        }       
+        }
 
         _previousState = _currentState;
 
@@ -237,8 +227,24 @@ public class NpcAI : MonoBehaviour
 
         if (_distanceToTarget < _chaseRange)
         {
-            SetCurrentStateTo(NpcState.Provoked);
+            ChangeStateFromIdleToProvoked();
         }
+    }
+
+    void ChangeStateFromIdleToProvoked()
+    {
+        InitializeAudioInstances();
+
+        SetCurrentStateTo(NpcState.Provoked);
+    }
+
+    void InitializeAudioInstances()
+    {
+        _zombieFallSFX = AudioController.Instance.Create3DInstance(FMODEvents.Instance.ZombieFall, transform.position);
+        
+        _zombieDieSFX = AudioController.Instance.Create3DInstance(FMODEvents.Instance.ZombieDie, transform.position);
+        
+        _zombieAttackFX = AudioController.Instance.Create3DInstance(FMODEvents.Instance.ZombieAttack, transform.position);
     }
 
     void ProvokedUpdate()
@@ -473,7 +479,7 @@ public class NpcAI : MonoBehaviour
     {
         if (_currentState == NpcState.Idle)
         {
-            SetCurrentStateTo(NpcState.Provoked);
+            ChangeStateFromIdleToProvoked();
         }
         else if (_currentState == NpcState.Dead) 
         {
@@ -646,8 +652,8 @@ public class NpcAI : MonoBehaviour
 
     void OnDestroy()
     {
-        AudioController.Instance.ReleaseEvent(_zombieAttackFX);
-        AudioController.Instance.ReleaseEvent(_zombieFallSFX);
-        AudioController.Instance.ReleaseEvent(_zombieDieSFX);
+        AudioController.Instance.DestroyEvent(_zombieAttackFX);
+        AudioController.Instance.DestroyEvent(_zombieFallSFX);
+        AudioController.Instance.DestroyEvent(_zombieDieSFX);
     }
 }

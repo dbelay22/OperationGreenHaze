@@ -80,22 +80,25 @@ public class PlayerSteps : MonoBehaviour
         _footstepEventInstance.setParameterByName(FMODEvents.Instance.FloorMaterialParameter, FMODEvents.Instance.DefaultFloorMaterialValue);
 
         _footstepEventInstance.setParameterByName(FMODEvents.Instance.LeftRightParameter, _stepLeft ? 0 : 1);
-        //////////////////////////////
+        //////////////////////////////       
+        
+        bool stepPlayed = AudioController.Instance.Play3DEvent(_footstepEventInstance, _playerPosition.position);
 
-        AudioController.Instance.Play3DEvent(_footstepEventInstance, _playerPosition.position);
+        //Debug.Log($"[PlayerSteps] PlayStepSFX) Playing footstep ? stepPlayed: {stepPlayed} - running: {isRunning}, stepLeft: {_stepLeft}");
 
         _stepLeft = !_stepLeft;
     }
 
-    void StopStepSFX()
-    {
-        AudioController.Instance.StopEvent(_footstepEventInstance);
-    }
+    
 
     void OnPlayerDeath()
     {
         Debug.Log("PlayerSteps] OnPlayerDeath) Stopping step sfx");
         StopStepSFX();
     }
-
+    
+    void StopStepSFX()
+    {
+        AudioController.Instance.StopEventIfPlaying(_footstepEventInstance);
+    }
 }

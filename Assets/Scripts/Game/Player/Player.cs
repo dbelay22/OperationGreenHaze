@@ -8,10 +8,12 @@ public class Player : MonoBehaviour
     [Header("Camera Shake")]
     [SerializeField] CameraShake _cameraShake;
 
+    /*
     [Header("SFX")]
     [SerializeField] AudioClip _pickupSFX;
     [SerializeField] AudioClip _missionPickupSFX;
-    [SerializeField] AudioClip _errorSFX;   
+    [SerializeField] AudioClip _errorSFX;
+    */
 
     Ammo _ammo;
 
@@ -21,7 +23,7 @@ public class Player : MonoBehaviour
 
     PlayerHealth _playerHealth;
 
-    AudioSource _audioSource;
+    //AudioSource _audioSource;
 
     int _flashlightAsWeaponMessageCount = 0;
 
@@ -52,7 +54,7 @@ public class Player : MonoBehaviour
 
         _playerHealth = GetComponent<PlayerHealth>();
 
-        _audioSource = GetComponent<AudioSource>();
+        //_audioSource = GetComponent<AudioSource>();
 
         _weaponSwitcher = GetComponentInChildren<WeaponSwitcher>();
         
@@ -192,8 +194,9 @@ public class Player : MonoBehaviour
 
         if (isMissionPickup)
         {
+            // TODO: Trigger mission pickup SFX
             // sound!
-            PlayAudioClip(_missionPickupSFX, true);
+            //PlayAudioClip(_missionPickupSFX, true);
 
             MissionPickups.Instance.OnMissionItemPickup(trigger);
 
@@ -211,8 +214,9 @@ public class Player : MonoBehaviour
 
         if (isFlashlight)
         {
+            // TODO: Trigger flashlight pickup SFX
             // sound!
-            PlayAudioClip(_pickupSFX);
+            //PlayAudioClip(_pickupSFX);
 
             _flashlight.ReportPickUp();
 
@@ -241,8 +245,9 @@ public class Player : MonoBehaviour
             {
                 MedkitPickup medkit = trigger.GetComponent<MedkitPickup>();
 
+                // TODO: Trigger medkit pickup SFX
                 // sound!
-                PlayAudioClip(_pickupSFX);
+                //PlayAudioClip(_pickupSFX);
 
                 // improve health
                 _playerHealth.ImproveByPickup(medkit.HealthAmount);
@@ -254,7 +259,8 @@ public class Player : MonoBehaviour
             }
             else
             {
-                PlayAudioClip(_errorSFX);
+                // TODO: Trigger medkit cant use pickup SFX
+                //PlayAudioClip(_errorSFX);
                 return false;
             }
         }
@@ -290,6 +296,7 @@ public class Player : MonoBehaviour
 
     #endregion
 
+    /*
     bool PlayAudioClip(AudioClip clip, bool forcePlay = false)
     {
         if (_audioSource.isPlaying)
@@ -308,6 +315,7 @@ public class Player : MonoBehaviour
 
         return true;
     }
+    */
 
     public bool IsFlashlightOnAndCanBlind()
     {
