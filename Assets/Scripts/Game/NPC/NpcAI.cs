@@ -23,6 +23,9 @@ public class NpcAI : MonoBehaviour
     const float MIN_SPEED = 0.5f;
     const float MAX_SPEED = 1.1f;
 
+    const float AUDIO_STEP_MIN_DISTANCE = 12f;
+    const float AUDIO_STEP_STOP_DISTANCE = 2f;
+
     readonly float[] DEFAULT_SIZE_SCALE_RANGE = { 1f, 1f };
     readonly float[] BIG_SIZE_SCALE_RANGE = { 1.2f, 1.35f };
 
@@ -424,7 +427,16 @@ public class NpcAI : MonoBehaviour
 
     public void OnZombieStepAnimEvent()
     {
-        _zombieSteps.PlayStepSFX();
+        if (_distanceToTarget <= AUDIO_STEP_MIN_DISTANCE && _distanceToTarget > AUDIO_STEP_STOP_DISTANCE)
+        {
+            _zombieSteps.PlayStepSFX();
+        }
+        /*
+        else 
+        {
+            Debug.Log($"[NpcAI] WONT PLAY STEP audio because distance ({_distanceToTarget}) is not between {AUDIO_STEP_STOP_DISTANCE} and ({AUDIO_STEP_MIN_DISTANCE})");
+        } 
+        /*
     }
 
     public void OnAttackHitAnimEvent()

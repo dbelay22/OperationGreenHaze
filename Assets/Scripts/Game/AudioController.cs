@@ -21,7 +21,9 @@ public class AudioController : MonoBehaviour
 
     EventInstance _musicEventInstance;
 
-    FMOD.Studio.System _fmodStudioSystem;
+    int _maxInstancesCount = 0;
+
+    //FMOD.Studio.System _fmodStudioSystem;
 
     #region Instance
 
@@ -34,6 +36,7 @@ public class AudioController : MonoBehaviour
     void Awake()
     {
         _instance = this;
+        _maxInstancesCount = 0;
     }
 
     void Start()
@@ -67,11 +70,16 @@ public class AudioController : MonoBehaviour
         RuntimeManager.PlayOneShot(sound, worldPos);
     }
 
-    public EventInstance CreateInstance(EventReference eventReference)    {        
+    public EventInstance CreateInstance(EventReference eventReference) {
 
         EventInstance eventInstance = RuntimeManager.CreateInstance(eventReference);
 
         _eventInstances.Add(eventInstance);
+
+        if (_eventInstances.Count > _maxInstancesCount)
+        {
+            _maxInstancesCount = _eventInstances.Count;
+        }
 
         Debug.Log($"AudioController] CreateInstance) NEW instance of path: {eventReference.Path}, list count so far: [{_eventInstances.Count}]");
 
@@ -174,7 +182,7 @@ public class AudioController : MonoBehaviour
         
         eventInstance.release();
 
-        Debug.Log($"AudioController] ReleaseEvent) Released event path: {path}");
+        //Debug.Log($"AudioController] ReleaseEvent) Released event path: {path}");
 
         return path;
     }
@@ -209,14 +217,10 @@ public class AudioController : MonoBehaviour
         return path;
     }
 
-    void OnDestroy()
-    {
-        CleanUp();
-    }
-
+    
     void CleanUp()
     {
-        Debug.Log($"AudioController] CleanUp)... _eventInstances.count: {_eventInstances.Count}");
+        Debug.Log($"AudioController] CleanUp)... _eventInstances.count: {_eventInstances.Count}, max: {_maxInstancesCount}");
 
         // stop and release any created instances
         foreach (EventInstance eventInstance in _eventInstances)
@@ -317,6 +321,11 @@ public class AudioController : MonoBehaviour
         }
 #endif
         StopEvent(_musicEventInstance);
+    }
+
+    void OnDestroy()
+    {
+        CleanUp();
     }
 
 }

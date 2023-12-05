@@ -30,6 +30,11 @@ public class ZombieSteps : MonoBehaviour
             return;
         }
 
+        if (!_footstepEventInstance.isValid())
+        {
+            return;
+        }
+
         //////////////////////////////
         // Parameters
 
@@ -50,7 +55,7 @@ public class ZombieSteps : MonoBehaviour
 
         if (!_footstepEventInstance.isValid())
         {
-            Debug.Log("[ZombieSteps] OnNPCStartWalking) footstep instance not valid, must be first time");
+            //Debug.Log("[ZombieSteps] OnNPCStartWalking) footstep instance not valid, must be first time");
 
             _footstepEventInstance = AudioController.Instance.Create3DInstance(FMODEvents.Instance.ZombieFootsteps, transform.position);
         }
