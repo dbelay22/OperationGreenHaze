@@ -37,14 +37,11 @@ public class AudioController : MonoBehaviour
     {
         _instance = this;
         _maxInstancesCount = 0;
+
+        FMODAwake();
     }
 
-    void Start()
-    {        
-        FMODStart();
-    }
-
-    void FMODStart()
+    void FMODAwake()
     {
         /*
         FMOD.RESULT createResult = FMOD.Studio.System.create(out _fmodStudioSystem);
@@ -239,12 +236,12 @@ public class AudioController : MonoBehaviour
 
     public void GameplayStart()
     {
-        //Debug.Log($"AudioController] GameplayStart)...");
+        Debug.Log($"AudioController] GameplayStart)...");
 
         //PlayerSettings.Instance.ApplyPlayerSettingsAudio();
 
         _musicEventInstance.getPlaybackState(out PLAYBACK_STATE playbackState);
-        //Debug.Log($"AudioController] GameplayStart) playbackState: {playbackState}");
+        Debug.Log($"AudioController] GameplayStart) playbackState: {playbackState}");
 
         if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
         {
@@ -259,7 +256,7 @@ public class AudioController : MonoBehaviour
             }
 #endif
 
-            PlayEvent(_musicEventInstance);
+            PlayEvent(_musicEventInstance, true);
         }
     }
 

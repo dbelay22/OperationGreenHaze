@@ -25,7 +25,7 @@ public class PlayerSteps : MonoBehaviour
 
     void Update()
     {
-        if (Game.Instance.IsGameplayOn() == false)
+        if (!Game.Instance.IsGameplayOn() || _playerHealth.CurrentHealth <= 0)
         {
             return;
         }

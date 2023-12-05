@@ -436,7 +436,7 @@ public class NpcAI : MonoBehaviour
         {
             Debug.Log($"[NpcAI] WONT PLAY STEP audio because distance ({_distanceToTarget}) is not between {AUDIO_STEP_STOP_DISTANCE} and ({AUDIO_STEP_MIN_DISTANCE})");
         } 
-        /*
+        */
     }
 
     public void OnAttackHitAnimEvent()
@@ -464,7 +464,7 @@ public class NpcAI : MonoBehaviour
         }
         */
 
-        AudioController.Instance.Play3DEvent(_zombieAttackFX, transform.position, true);
+        AudioController.Instance.Play3DEvent(_zombieAttackFX, transform.position);
     }
 
     public void HitByExplosion(Transform explosionTransform)
@@ -550,7 +550,7 @@ public class NpcAI : MonoBehaviour
 
     void PlayHitByBulletSFX()
     {
-        PlayAudioClip(_bulletHitSFX);
+        //PlayAudioClip(_bulletHitSFX);
     }
 
     void PlayHitByBulletVFX(RaycastHit hit, bool isHeadshot = false)
@@ -639,9 +639,12 @@ public class NpcAI : MonoBehaviour
         }
         */
 
-        AudioController.Instance.Play3DEvent(_zombieFallSFX, transform.position);
+        if (_distanceToTarget < AUDIO_STEP_MIN_DISTANCE)
+        {
+            AudioController.Instance.Play3DEvent(_zombieFallSFX, transform.position);
+        }       
 
-        AudioController.Instance.Play3DEvent(_zombieDieSFX, transform.position, true);
+        AudioController.Instance.Play3DEvent(_zombieDieSFX, transform.position);
     }
 
     bool PlayAudioClip(AudioClip clip)
