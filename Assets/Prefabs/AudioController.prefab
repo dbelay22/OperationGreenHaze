@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e83570fb507b804c85f9d6cbc67c669, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _musicOn: 1
+  _musicOn: 0
 --- !u!1 &6495501288945196645
 GameObject:
   m_ObjectHideFlags: 0
@@ -100,6 +100,20 @@ MonoBehaviour:
   TerrorMusicParam: Terror Music
   MusicPartsParam: Music parts
   NearZombiesParam: Near_Zombies_music
+  PlayerDamage:
+    Guid:
+      Data1: -253622757
+      Data2: 1284738171
+      Data3: 2123582649
+      Data4: 469911827
+    Path: event:/Zombies_Hits
+  PlayerDeath:
+    Guid:
+      Data1: -1893088334
+      Data2: 1218201367
+      Data3: 360148920
+      Data4: 1242733549
+    Path: event:/Dead_falldown
   PlayerFootsteps:
     Guid:
       Data1: 1639583792
@@ -111,6 +125,71 @@ MonoBehaviour:
   FloorMaterialParameter: Floor_Material
   DefaultFloorMaterialValue: 0
   LeftRightParameter: Left_Right
+  PickupAmmo:
+    Guid:
+      Data1: 81272768
+      Data2: 1321413262
+      Data3: 1546683027
+      Data4: -1243132344
+    Path: event:/Objets/pickup_Bullets
+  PickupMedkit:
+    Guid:
+      Data1: 1878632116
+      Data2: 1262378671
+      Data3: -2028867437
+      Data4: 1447384714
+    Path: event:/Objets/Medikit
+  PickupMission1:
+    Guid:
+      Data1: -1137537537
+      Data2: 1258898274
+      Data3: 1726586252
+      Data4: 1781253124
+    Path: event:/Objets/objetivo01
+  PickupMission2:
+    Guid:
+      Data1: -1104125060
+      Data2: 1279690304
+      Data3: 1280672165
+      Data4: -1066516734
+    Path: event:/Objets/objetivo02
+  PickupCantUse:
+    Guid:
+      Data1: -1964567147
+      Data2: 1186735308
+      Data3: -600850813
+      Data4: 987116383
+    Path: event:/Objets/pickup_cant_use
+  ChangeWeaponSMG:
+    Guid:
+      Data1: 1504485632
+      Data2: 1138823928
+      Data3: 1279604657
+      Data4: 1674534730
+    Path: event:/Objets/change_weapon_machinegun
+  ChangeWeaponPistol:
+    Guid:
+      Data1: 1308162059
+      Data2: 1280467700
+      Data3: -2099175552
+      Data4: 1498402189
+    Path: event:/Objets/change_weapon_pistol
+  FlashlighToggle:
+    Guid:
+      Data1: -1768503694
+      Data2: 1270644152
+      Data3: -136977474
+      Data4: 1934775809
+    Path: event:/Objets/Flashlight
+  FlashlightOnOffParam: Flashligth_on-off
+  BulletImpact:
+    Guid:
+      Data1: 1204366286
+      Data2: 1246369401
+      Data3: 1171469488
+      Data4: 2063359394
+    Path: event:/Bullet_impact
+  ImpactMaterialParameter: Bullet_impact
   ZombieAppear:
     Guid:
       Data1: 415911926
@@ -154,10 +233,3 @@ MonoBehaviour:
       Data3: -1434493807
       Data4: -1207516450
     Path: event:/Zombies_Voices/Zombie_get_damage
-  PlayerDamage:
-    Guid:
-      Data1: -253622757
-      Data2: 1284738171
-      Data3: 2123582649
-      Data4: 469911827
-    Path: event:/Zombies_Hits

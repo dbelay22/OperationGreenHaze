@@ -10,6 +10,10 @@ public class FMODEvents : MonoBehaviour
     public string TerrorMusicParam;
     public string MusicPartsParam;
     public string NearZombiesParam;
+    
+    [Header("Player")]
+    public EventReference PlayerDamage;
+    public EventReference PlayerDeath;
 
     [Header("Player Steps")]
     public EventReference PlayerFootsteps;
@@ -20,6 +24,25 @@ public class FMODEvents : MonoBehaviour
     public int DefaultFloorMaterialValue = 0;
 
     public string LeftRightParameter;
+
+    [Header("Pickups")]
+    public EventReference PickupAmmo;
+    public EventReference PickupMedkit;
+    public EventReference PickupMission1;
+    public EventReference PickupMission2;
+    public EventReference PickupCantUse;
+
+    [Header("Weapons")]
+    public EventReference ChangeWeaponSMG;
+    public EventReference ChangeWeaponPistol;
+
+    [Header("Flashlight")]
+    public EventReference FlashlighToggle;
+    public string FlashlightOnOffParam;
+
+    [Header("Bullet")]
+    public EventReference BulletImpact;
+    public string ImpactMaterialParameter;
 
     [Header("Zombie")]
     public EventReference ZombieAppear;
@@ -34,10 +57,7 @@ public class FMODEvents : MonoBehaviour
     [Header("Zombie Damaged")]
     public EventReference ZombieFall;
     public EventReference ZombieDie;
-    public EventReference ZombieDamage;
-
-    [Header("Player")]
-    public EventReference PlayerDamage;
+    public EventReference ZombieDamage;    
 
     #region Instance
 

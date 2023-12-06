@@ -96,9 +96,6 @@ public class Game : MonoBehaviour
         _stateMachine.Update();
     }
 
-    //=======================================================    
-    // TODO Refactor, move
-
     //========
     // Cheats/Debug Shortcuts Helpers
 

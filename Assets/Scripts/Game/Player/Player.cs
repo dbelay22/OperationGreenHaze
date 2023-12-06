@@ -1,3 +1,5 @@
+using FMOD.Studio;
+using FMODUnity;
 using System;
 using UnityEngine;
 
@@ -8,12 +10,15 @@ public class Player : MonoBehaviour
     [Header("Camera Shake")]
     [SerializeField] CameraShake _cameraShake;
 
-    /*
     [Header("SFX")]
-    [SerializeField] AudioClip _pickupSFX;
-    [SerializeField] AudioClip _missionPickupSFX;
     [SerializeField] AudioClip _errorSFX;
-    */
+
+    EventInstance _pickupAmmoSFX;
+    EventInstance _pickupMedkitSFX;
+    EventInstance _missionPickup1SFX;
+    EventInstance _missionPickup2SFX;
+    EventInstance _flashlightSFX;
+    EventInstance _cantUseSFX;
 
     Ammo _ammo;
 
@@ -22,9 +27,7 @@ public class Player : MonoBehaviour
     Flashlight _flashlight;
 
     PlayerHealth _playerHealth;
-
-    //AudioSource _audioSource;
-
+    
     int _flashlightAsWeaponMessageCount = 0;
 
     Animator _animator;    
@@ -54,11 +57,21 @@ public class Player : MonoBehaviour
 
         _playerHealth = GetComponent<PlayerHealth>();
 
-        //_audioSource = GetComponent<AudioSource>();
-
         _weaponSwitcher = GetComponentInChildren<WeaponSwitcher>();
         
         _flashlight = GetComponentInChildren<Flashlight>();
+
+        InitializeAudioInstances();
+    }
+
+    void InitializeAudioInstances()
+    {
+        _pickupAmmoSFX = AudioController.Instance.Create3DInstance(FMODEvents.Instance.PickupAmmo, transform.position);
+        _pickupMedkitSFX = AudioController.Instance.Create3DInstance(FMODEvents.Instance.PickupMedkit, transform.position);
+        _missionPickup1SFX = AudioController.Instance.Create3DInstance(FMODEvents.Instance.PickupMission1, transform.position);
+        _missionPickup2SFX = AudioController.Instance.Create3DInstance(FMODEvents.Instance.PickupMission2, transform.position);
+        _flashlightSFX = AudioController.Instance.Create3DInstance(FMODEvents.Instance.FlashlighToggle, transform.position);
+        _cantUseSFX = AudioController.Instance.Create3DInstance(FMODEvents.Instance.PickupCantUse, transform.position);
     }
 
     void Update()
@@ -188,15 +201,18 @@ public class Player : MonoBehaviour
         return isExitDanger;
     }
 
+    bool _firstMissionPickup = true;
+
     bool ProcessMissionPickup(GameObject trigger)
     {
         bool isMissionPickup = trigger.CompareTag(Tags.MISSION_PICKUP);
 
         if (isMissionPickup)
         {
-            // TODO: Trigger mission pickup SFX
             // sound!
-            //PlayAudioClip(_missionPickupSFX, true);
+            AudioController.Instance.Play3DEvent(_firstMissionPickup ? _missionPickup1SFX : _missionPickup2SFX, transform.position, true);
+
+            _firstMissionPickup = false;
 
             MissionPickups.Instance.OnMissionItemPickup(trigger);
 
@@ -214,9 +230,10 @@ public class Player : MonoBehaviour
 
         if (isFlashlight)
         {
-            // TODO: Trigger flashlight pickup SFX
             // sound!
-            //PlayAudioClip(_pickupSFX);
+            const int FLASHLIGHT_ON = 0;            
+            _flashlightSFX.setParameterByName(FMODEvents.Instance.FlashlightOnOffParam, FLASHLIGHT_ON);
+            AudioController.Instance.Play3DEvent(_flashlightSFX, transform.position, true);
 
             _flashlight.ReportPickUp();
 
@@ -243,11 +260,10 @@ public class Player : MonoBehaviour
         {
             if (_playerHealth.CurrentHealthPercentage < 1)
             {
-                MedkitPickup medkit = trigger.GetComponent<MedkitPickup>();
-
-                // TODO: Trigger medkit pickup SFX
                 // sound!
-                //PlayAudioClip(_pickupSFX);
+                AudioController.Instance.Play3DEvent(_pickupMedkitSFX, transform.position, true);
+
+                MedkitPickup medkit = trigger.GetComponent<MedkitPickup>();                
 
                 // improve health
                 _playerHealth.ImproveByPickup(medkit.HealthAmount);
@@ -259,8 +275,7 @@ public class Player : MonoBehaviour
             }
             else
             {
-                // TODO: Trigger medkit cant use pickup SFX
-                //PlayAudioClip(_errorSFX);
+                AudioController.Instance.Play3DEvent(_cantUseSFX, transform.position, true);
                 return false;
             }
         }
@@ -274,6 +289,9 @@ public class Player : MonoBehaviour
 
         if (isAmmoPickup)
         {
+            // sound!
+            AudioController.Instance.Play3DEvent(_pickupAmmoSFX, transform.position, true);
+
             AmmoPickup ammoPickup = trigger.GetComponent<AmmoPickup>();
 
             // add ammo to slot
@@ -295,28 +313,7 @@ public class Player : MonoBehaviour
     }
 
     #endregion
-
-    /*
-    bool PlayAudioClip(AudioClip clip, bool forcePlay = false)
-    {
-        if (_audioSource.isPlaying)
-        {
-            if (forcePlay == false)
-            {
-                return false;
-            }
-            else
-            {
-                _audioSource.Stop();
-            }            
-        }
-
-        _audioSource.PlayOneShot(clip);
-
-        return true;
-    }
-    */
-
+    
     public bool IsFlashlightOnAndCanBlind()
     {
         if (_flashlight == null)

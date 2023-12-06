@@ -18,9 +18,6 @@ public class PlayerHealth : MonoBehaviour
     public float CurrentHealthPercentage { get { return _currentHealth / 100f; } }
 
     [Header("Sound FX")]
-    /*
-    [SerializeField] AudioClip _hit1SFX;
-    */
     [SerializeField] AudioClip _hit2SFX;    
     [SerializeField] AudioClip _tosSFX;
     [SerializeField] AudioClip _dieSFX;

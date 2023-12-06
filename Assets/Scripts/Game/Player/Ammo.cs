@@ -99,7 +99,7 @@ public class Ammo : MonoBehaviour
 
         slot.ammoAmount += increase;
 
-        _audioSource.PlayOneShot(slot.pickupSFX);
+        //_audioSource.PlayOneShot(slot.pickupSFX);
     }
 
     public int GetAmmoLeft(AmmoType ammoType)

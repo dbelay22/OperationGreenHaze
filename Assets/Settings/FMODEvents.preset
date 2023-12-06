@@ -58,6 +58,46 @@ Preset:
     value: Near_Zombies_music
     objectReference: {fileID: 0}
   - target: {fileID: 0}
+    propertyPath: PlayerDamage.Guid.Data1
+    value: -253622757
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerDamage.Guid.Data2
+    value: 1284738171
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerDamage.Guid.Data3
+    value: 2123582649
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerDamage.Guid.Data4
+    value: 469911827
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerDamage.Path
+    value: event:/Zombies_Hits
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerDeath.Guid.Data1
+    value: -1893088334
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerDeath.Guid.Data2
+    value: 1218201367
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerDeath.Guid.Data3
+    value: 360148920
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerDeath.Guid.Data4
+    value: 1242733549
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerDeath.Path
+    value: event:/Dead_falldown
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
     propertyPath: PlayerFootsteps.Guid.Data1
     value: 1639583792
     objectReference: {fileID: 0}
@@ -94,6 +134,190 @@ Preset:
     value: Left_Right
     objectReference: {fileID: 0}
   - target: {fileID: 0}
+    propertyPath: PickupAmmo.Guid.Data1
+    value: 81272768
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PickupAmmo.Guid.Data2
+    value: 1321413262
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PickupAmmo.Guid.Data3
+    value: 1546683027
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PickupAmmo.Guid.Data4
+    value: -1243132344
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PickupAmmo.Path
+    value: event:/Objets/pickup_Bullets
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PickupMedkit.Guid.Data1
+    value: 1878632116
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PickupMedkit.Guid.Data2
+    value: 1262378671
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PickupMedkit.Guid.Data3
+    value: -2028867437
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PickupMedkit.Guid.Data4
+    value: 1447384714
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PickupMedkit.Path
+    value: event:/Objets/Medikit
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PickupMission1.Guid.Data1
+    value: -1137537537
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PickupMission1.Guid.Data2
+    value: 1258898274
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PickupMission1.Guid.Data3
+    value: 1726586252
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PickupMission1.Guid.Data4
+    value: 1781253124
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PickupMission1.Path
+    value: event:/Objets/objetivo01
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PickupMission2.Guid.Data1
+    value: -1104125060
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PickupMission2.Guid.Data2
+    value: 1279690304
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PickupMission2.Guid.Data3
+    value: 1280672165
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PickupMission2.Guid.Data4
+    value: -1066516734
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PickupMission2.Path
+    value: event:/Objets/objetivo02
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ChangeWeaponSMG.Guid.Data1
+    value: 1504485632
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ChangeWeaponSMG.Guid.Data2
+    value: 1138823928
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ChangeWeaponSMG.Guid.Data3
+    value: 1279604657
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ChangeWeaponSMG.Guid.Data4
+    value: 1674534730
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ChangeWeaponSMG.Path
+    value: event:/Objets/change_weapon_machinegun
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ChangeWeaponPistol.Guid.Data1
+    value: 1308162059
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ChangeWeaponPistol.Guid.Data2
+    value: 1280467700
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ChangeWeaponPistol.Guid.Data3
+    value: -2099175552
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ChangeWeaponPistol.Guid.Data4
+    value: 1498402189
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ChangeWeaponPistol.Path
+    value: event:/Objets/change_weapon_pistol
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: FlashlighToggle.Guid.Data1
+    value: -1768503694
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: FlashlighToggle.Guid.Data2
+    value: 1270644152
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: FlashlighToggle.Guid.Data3
+    value: -136977474
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: FlashlighToggle.Guid.Data4
+    value: 1934775809
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: FlashlighToggle.Path
+    value: event:/Objets/Flashlight
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: BulletImpact.Guid.Data1
+    value: 1204366286
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: BulletImpact.Guid.Data2
+    value: 1246369401
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: BulletImpact.Guid.Data3
+    value: 1171469488
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: BulletImpact.Guid.Data4
+    value: 2063359394
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: BulletImpact.Path
+    value: event:/Bullet_impact
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ImpactMaterialParameter
+    value: Bullet_impact
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieAppear.Guid.Data1
+    value: 415911926
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieAppear.Guid.Data2
+    value: 1233892316
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieAppear.Guid.Data3
+    value: -845921623
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieAppear.Guid.Data4
+    value: -2144276206
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieAppear.Path
+    value: event:/Zombies_Voices/Zombie_Appear
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
     propertyPath: ZombieFootsteps.Guid.Data1
     value: 324470742
     objectReference: {fileID: 0}
@@ -116,5 +340,85 @@ Preset:
   - target: {fileID: 0}
     propertyPath: ZombieLeftRightParam
     value: Zombie_left&Right
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieAttack.Guid.Data1
+    value: -470396771
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieAttack.Guid.Data2
+    value: 1104397258
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieAttack.Guid.Data3
+    value: -693101427
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieAttack.Guid.Data4
+    value: -2014876688
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieAttack.Path
+    value: event:/Zombies_Voices/Zombie_Attack
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieFall.Guid.Data1
+    value: 1437984575
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieFall.Guid.Data2
+    value: 1099295654
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieFall.Guid.Data3
+    value: 888095379
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieFall.Guid.Data4
+    value: -545282597
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieFall.Path
+    value: event:/Zombies_Falldown
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieDie.Guid.Data1
+    value: -1151168083
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieDie.Guid.Data2
+    value: 1075351922
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieDie.Guid.Data3
+    value: 1421056640
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieDie.Guid.Data4
+    value: 262638840
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieDie.Path
+    value: event:/Zombies_Voices/Zombie_Die
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieDamage.Guid.Data1
+    value: 537333366
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieDamage.Guid.Data2
+    value: 1297304908
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieDamage.Guid.Data3
+    value: -1434493807
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieDamage.Guid.Data4
+    value: -1207516450
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieDamage.Path
+    value: event:/Zombies_Voices/Zombie_get_damage
     objectReference: {fileID: 0}
   m_ExcludedProperties: []

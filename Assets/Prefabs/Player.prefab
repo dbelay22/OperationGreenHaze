@@ -932,7 +932,6 @@ MonoBehaviour:
   _toxicZoneDamage: 13
   _fireZoneDamage: 7
   _currentHealth: 0
-  _hit1SFX: {fileID: 8300000, guid: 1d4bf049bec4cb9499bc57e54cc8a2dc, type: 3}
   _hit2SFX: {fileID: 8300000, guid: 68df923e0b3e5934197604867f05237a, type: 3}
   _tosSFX: {fileID: 8300000, guid: 125447b41e524434b844b8ca1ee326a5, type: 3}
   _dieSFX: {fileID: 8300000, guid: ec1c60eef9c6fc1439d8842efe168077, type: 3}
@@ -949,8 +948,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameraShake: {fileID: 531321455166961345}
-  _pickupSFX: {fileID: 8300000, guid: 60195966134dee34d9b12a1e7bfb5829, type: 3}
-  _missionPickupSFX: {fileID: 8300000, guid: d1694b51ef45aac4b9f6808db0fb6807, type: 3}
   _errorSFX: {fileID: 8300000, guid: 4d655304a635f57478081732ac3e8b63, type: 3}
 --- !u!114 &3030554342607450753
 MonoBehaviour:
