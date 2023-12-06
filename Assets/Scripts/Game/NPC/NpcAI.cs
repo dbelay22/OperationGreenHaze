@@ -96,6 +96,7 @@ public class NpcAI : MonoBehaviour
     EventInstance _zombieDieSFX;
     EventInstance _zombieFallSFX;
     EventInstance _zombieAttackFX;
+    EventInstance _zombieAppear;
 
     void Awake()
     {
@@ -248,6 +249,8 @@ public class NpcAI : MonoBehaviour
         _zombieDieSFX = AudioController.Instance.Create3DInstance(FMODEvents.Instance.ZombieDie, transform.position);
         
         _zombieAttackFX = AudioController.Instance.Create3DInstance(FMODEvents.Instance.ZombieAttack, transform.position);
+
+        _zombieAppear = AudioController.Instance.Create3DInstance(FMODEvents.Instance.ZombieAppear, transform.position);
     }
 
     void ProvokedUpdate()
@@ -362,7 +365,7 @@ public class NpcAI : MonoBehaviour
 
     float _lastTimeChaseSFX = 0;
     
-    const float CHASE_SFX_INTERVAL = 7f;
+    const float CHASE_SFX_INTERVAL = 5f;
 
     void PlayChaseSFX()
     {
@@ -373,11 +376,9 @@ public class NpcAI : MonoBehaviour
             return;
         }
 
-        if (Random.value > 0.5)
+        if (Random.value > 0.5 && _distanceToTarget <= AUDIO_STEP_MIN_DISTANCE)
         {
-            float rndSound = Random.value;
-
-            PlayAudioClip(rndSound > 0.7 ? _synthSFX : _growlSFX);
+            AudioController.Instance.Play3DEvent(_zombieAppear, transform.position);
             
             _lastTimeChaseSFX = Time.time;
         }

@@ -62,7 +62,6 @@ public class PlayerSteps : MonoBehaviour
         }
         else
         {
-            // stop audio
             StopStepSFX();
         }
     }
@@ -91,13 +90,12 @@ public class PlayerSteps : MonoBehaviour
 
     void OnPlayerDeath()
     {
-        Debug.Log("PlayerSteps] OnPlayerDeath) Stopping step sfx");
-        StopStepSFX();
+        AudioController.Instance.StopEvent(_footstepEventInstance);
     }
 
     void OnPlayerWin()
     {
-        StopStepSFX();
+        AudioController.Instance.StopEvent(_footstepEventInstance);
     }
     
     void StopStepSFX()
