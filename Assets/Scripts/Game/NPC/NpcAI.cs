@@ -1,8 +1,5 @@
 using FMOD.Studio;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -373,6 +370,11 @@ public class NpcAI : MonoBehaviour
 
     void PlayChaseSFX()
     {
+        if (isHeadless())
+        {
+            // no head, no screaming
+            return;
+        }
 
         if (Time.time < _lastTimeChaseSFX + CHASE_SFX_INTERVAL)
         {
@@ -380,7 +382,7 @@ public class NpcAI : MonoBehaviour
             return;
         }
 
-        if (Random.value > 0.5 && _distanceToTarget <= AUDIO_STEP_MIN_DISTANCE)
+        if (_distanceToTarget <= AUDIO_STEP_MIN_DISTANCE && Random.value > 0.5)
         {
             AudioController.Instance.Play3DEvent(_zombieAppear, transform.position);
             
@@ -451,7 +453,10 @@ public class NpcAI : MonoBehaviour
             return;
         }
 
-        AudioController.Instance.Play3DEvent(_zombieAttackFX, transform.position, true);
+        if (!isHeadless())
+        {
+            AudioController.Instance.Play3DEvent(_zombieAttackFX, transform.position, true);
+        }        
     }
 
     public void OnAttackHitAnimEvent()
@@ -547,6 +552,12 @@ public class NpcAI : MonoBehaviour
 
     void PlayHitByBulletSFX()
     {
+        if (isHeadless())
+        {
+            // no head, no screaming
+            return;
+        }
+
         AudioController.Instance.Play3DEvent(_zombieDamage, transform.position);
     }
 
@@ -582,6 +593,11 @@ public class NpcAI : MonoBehaviour
             _headCollider.enabled = active;
         }
         _bodyCollider.enabled = active;
+    }
+
+    bool isHeadless()
+    {
+        return _headCollider == null;
     }
 
     void ChangeStateToDead()
@@ -629,19 +645,15 @@ public class NpcAI : MonoBehaviour
 
     void PlayDeathSFX()
     {
-        /*
-        if (Random.value > 0.3)
-        {
-            PlayAudioClip(Random.value > 0.5 ? _death01SFX : _death02SFX);
-        }
-        */
-
         if (_distanceToTarget < AUDIO_STEP_MIN_DISTANCE)
         {
             AudioController.Instance.Play3DEvent(_zombieFallSFX, transform.position);
-        }       
+        }
 
-        AudioController.Instance.Play3DEvent(_zombieDieSFX, transform.position);
+        if (!isHeadless())
+        {
+            AudioController.Instance.Play3DEvent(_zombieDieSFX, transform.position);
+        }        
     }
 
     bool PlayAudioClip(AudioClip clip)
