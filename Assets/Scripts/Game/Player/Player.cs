@@ -363,6 +363,8 @@ public class Player : MonoBehaviour
 
     public void GameplayIsOver()
     {
+        BroadcastMessage("OnPlayerWin", SendMessageOptions.RequireReceiver);
+        
         // turn of flashlight
         _flashlight.TurnOff();
 

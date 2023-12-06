@@ -87,13 +87,16 @@ public class PlayerSteps : MonoBehaviour
         //Debug.Log($"[PlayerSteps] PlayStepSFX) Playing footstep ? stepPlayed: {stepPlayed} - running: {isRunning}, stepLeft: {_stepLeft}");
 
         _stepLeft = !_stepLeft;
-    }
-
-    
+    }   
 
     void OnPlayerDeath()
     {
         Debug.Log("PlayerSteps] OnPlayerDeath) Stopping step sfx");
+        StopStepSFX();
+    }
+
+    void OnPlayerWin()
+    {
         StopStepSFX();
     }
     

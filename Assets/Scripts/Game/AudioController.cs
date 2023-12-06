@@ -135,7 +135,7 @@ public class AudioController : MonoBehaviour
 
     public void StopEvent(EventInstance eventInstance)
     {
-        Debug.Log($"AudioController] StopEvent) event path: {GetEventInstancePath(eventInstance)}");
+        //Debug.Log($"AudioController] StopEvent) event path: {GetEventInstancePath(eventInstance)}");
 
         eventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
     }

@@ -116,19 +116,8 @@ public class PlayerHealth : MonoBehaviour
     }
 
     void PlayHitSFX()
-    {
-        /*
-        float randomness = Random.value;
-        if (randomness <= 0.33f)
-        {
-            _audioSource.PlayOneShot(_hit1SFX);
-        }
-        else if (randomness <= 0.55f)
-        {
-            _audioSource.PlayOneShot(_hit2SFX);
-        } */
-        
-        AudioController.Instance.Play3DEvent(_hitSFX, transform.position);
+    {        
+        AudioController.Instance.Play3DEvent(_hitSFX, transform.position, true);
     }
 
     void HealthUpdate(int amount)

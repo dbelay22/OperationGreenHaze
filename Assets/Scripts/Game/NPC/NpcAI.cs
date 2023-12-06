@@ -439,6 +439,16 @@ public class NpcAI : MonoBehaviour
         */
     }
 
+    public void OnAttackStartAnimEvent()
+    {
+        if (!Game.Instance.IsGameplayOn())
+        {
+            return;
+        }
+
+        AudioController.Instance.Play3DEvent(_zombieAttackFX, transform.position, true);
+    }
+
     public void OnAttackHitAnimEvent()
     {
         if (!Game.Instance.IsGameplayOn())
@@ -447,24 +457,6 @@ public class NpcAI : MonoBehaviour
         }
 
         _player.Damage(EatBrainDamage);
-
-        /*
-        float rndHit = Random.value;
-        if (rndHit < 0.3f)
-        {
-            PlayAudioClip(_punchSFX);
-        }
-        else if (rndHit < 0.6f)
-        {
-            PlayAudioClip(_synthSFX);
-        } 
-        else if (rndHit < 0.9f)
-        {
-            PlayAudioClip(_growlSFX);
-        }
-        */
-
-        AudioController.Instance.Play3DEvent(_zombieAttackFX, transform.position);
     }
 
     public void HitByExplosion(Transform explosionTransform)
