@@ -12,7 +12,9 @@ public class FMODEvents : MonoBehaviour
     public string NearZombiesParam;
     
     [Header("Player")]
-    public EventReference PlayerDamage;
+    public EventReference PlayerDamageByZombie;
+    public EventReference PlayerDamageByFire;
+    public EventReference PlayerDamageByGas;
     public EventReference PlayerDeath;
 
     [Header("Player Steps")]

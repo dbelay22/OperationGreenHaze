@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(AudioSource))]
 public class PlayerHealth : MonoBehaviour
 {
     const int START_HEALTH = 100;
@@ -17,22 +16,22 @@ public class PlayerHealth : MonoBehaviour
     public float CurrentHealth { get { return _currentHealth; } }
     public float CurrentHealthPercentage { get { return _currentHealth / 100f; } }
 
-    [Header("Sound FX")]
-    [SerializeField] AudioClip _hit2SFX;    
-    [SerializeField] AudioClip _tosSFX;
-    [SerializeField] AudioClip _dieSFX;
-
-    AudioSource _audioSource;
-
-    EventInstance _hitSFX;
+    EventInstance _damageByZombieSFX;
+    EventInstance _damageByFireSFX;
+    EventInstance _damageByGasSFX;
+    EventInstance _deathSFX;
 
     void Start()
     {
         _currentHealth = START_HEALTH;
 
-        _audioSource = GetComponent<AudioSource>();
+        _damageByZombieSFX = AudioController.Instance.Create3DInstance(FMODEvents.Instance.PlayerDamageByZombie, transform.position);
 
-        _hitSFX = AudioController.Instance.Create3DInstance(FMODEvents.Instance.PlayerDamage, transform.position);
+        // TODO: implement
+        //_damageByFireSFX = AudioController.Instance.Create3DInstance(FMODEvents.Instance.PlayerDamageByFire, transform.position);
+        //_damageByGasSFX = AudioController.Instance.Create3DInstance(FMODEvents.Instance.PlayerDamageByGas, transform.position);
+
+        _deathSFX = AudioController.Instance.Create3DInstance(FMODEvents.Instance.PlayerDeath, transform.position);
     }
 
     void Update()
@@ -59,7 +58,8 @@ public class PlayerHealth : MonoBehaviour
             HealthUpdate(0 - _toxicZoneDamage);
 
             // play TOS
-            _audioSource.PlayOneShot(_tosSFX);
+            //TODO: trigger tos SFX on FMOD
+            //AudioController.Instance.Play3DEvent(_damageByGasSFX, transform.position, true);
         }
     }    
     
@@ -73,7 +73,8 @@ public class PlayerHealth : MonoBehaviour
             HealthUpdate(0 - _fireZoneDamage);
 
             // play sfx
-            _audioSource.PlayOneShot(_hit2SFX);
+            // TODO: trigger sound
+            //AudioController.Instance.Play3DEvent(_damageByFireSFX, transform.position, true);
         }
     }
 
@@ -114,7 +115,7 @@ public class PlayerHealth : MonoBehaviour
 
     void PlayHitSFX()
     {        
-        AudioController.Instance.Play3DEvent(_hitSFX, transform.position, true);
+        AudioController.Instance.Play3DEvent(_damageByZombieSFX, transform.position, true);
     }
 
     void HealthUpdate(int amount)
@@ -140,7 +141,8 @@ public class PlayerHealth : MonoBehaviour
         {
             BroadcastMessage("OnPlayerDeath", SendMessageOptions.RequireReceiver);
 
-            _audioSource.PlayOneShot(_dieSFX, 3.3f);
+            // sound!
+            AudioController.Instance.Play3DEvent(_deathSFX, transform.position, true);
 
             Game.Instance.ChangeStateToGameOver();
         }
@@ -157,7 +159,6 @@ public class PlayerHealth : MonoBehaviour
 
     public void HitByExplosion()
     {
-        Debug.Log("PlayerHealth] HitByExplosion)...");
         Damage(100);
     }
 

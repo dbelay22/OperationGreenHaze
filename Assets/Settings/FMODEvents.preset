@@ -58,24 +58,64 @@ Preset:
     value: Near_Zombies_music
     objectReference: {fileID: 0}
   - target: {fileID: 0}
-    propertyPath: PlayerDamage.Guid.Data1
+    propertyPath: PlayerDamageByZombie.Guid.Data1
     value: -253622757
     objectReference: {fileID: 0}
   - target: {fileID: 0}
-    propertyPath: PlayerDamage.Guid.Data2
+    propertyPath: PlayerDamageByZombie.Guid.Data2
     value: 1284738171
     objectReference: {fileID: 0}
   - target: {fileID: 0}
-    propertyPath: PlayerDamage.Guid.Data3
+    propertyPath: PlayerDamageByZombie.Guid.Data3
     value: 2123582649
     objectReference: {fileID: 0}
   - target: {fileID: 0}
-    propertyPath: PlayerDamage.Guid.Data4
+    propertyPath: PlayerDamageByZombie.Guid.Data4
     value: 469911827
     objectReference: {fileID: 0}
   - target: {fileID: 0}
-    propertyPath: PlayerDamage.Path
+    propertyPath: PlayerDamageByZombie.Path
     value: event:/Zombies_Hits
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerDamageByFire.Guid.Data1
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerDamageByFire.Guid.Data2
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerDamageByFire.Guid.Data3
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerDamageByFire.Guid.Data4
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerDamageByFire.Path
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerDamageByGas.Guid.Data1
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerDamageByGas.Guid.Data2
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerDamageByGas.Guid.Data3
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerDamageByGas.Guid.Data4
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerDamageByGas.Path
+    value: 
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: PlayerDeath.Guid.Data1
@@ -214,6 +254,26 @@ Preset:
     value: event:/Objets/objetivo02
     objectReference: {fileID: 0}
   - target: {fileID: 0}
+    propertyPath: PickupCantUse.Guid.Data1
+    value: -1964567147
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PickupCantUse.Guid.Data2
+    value: 1186735308
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PickupCantUse.Guid.Data3
+    value: -600850813
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PickupCantUse.Guid.Data4
+    value: 987116383
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PickupCantUse.Path
+    value: event:/Objets/pickup_cant_use
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
     propertyPath: ChangeWeaponSMG.Guid.Data1
     value: 1504485632
     objectReference: {fileID: 0}
@@ -272,6 +332,10 @@ Preset:
   - target: {fileID: 0}
     propertyPath: FlashlighToggle.Path
     value: event:/Objets/Flashlight
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: FlashlightOnOffParam
+    value: Flashligth_on-off
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: BulletImpact.Guid.Data1

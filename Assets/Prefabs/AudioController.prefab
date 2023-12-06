@@ -100,13 +100,27 @@ MonoBehaviour:
   TerrorMusicParam: Terror Music
   MusicPartsParam: Music parts
   NearZombiesParam: Near_Zombies_music
-  PlayerDamage:
+  PlayerDamageByZombie:
     Guid:
       Data1: -253622757
       Data2: 1284738171
       Data3: 2123582649
       Data4: 469911827
     Path: event:/Zombies_Hits
+  PlayerDamageByFire:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  PlayerDamageByGas:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   PlayerDeath:
     Guid:
       Data1: -1893088334
