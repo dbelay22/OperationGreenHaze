@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6546436}
   m_Layer: 0
   m_Name: Concrete_Block_1E2
-  m_TagString: Untagged
+  m_TagString: MaterialConcrete
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

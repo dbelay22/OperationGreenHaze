@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 64000011484861276}
   m_Layer: 0
   m_Name: Object084
-  m_TagString: Untagged
+  m_TagString: MaterialSteel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 4000011405514568}
   m_Layer: 0
   m_Name: Hangar_v2
-  m_TagString: MaterialSteel
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -145,7 +145,7 @@ GameObject:
   - component: {fileID: 64000013046495254}
   m_Layer: 0
   m_Name: Object085
-  m_TagString: Untagged
+  m_TagString: MaterialSteel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6435040}
   m_Layer: 0
   m_Name: Wall_Broken_1B
-  m_TagString: Untagged
+  m_TagString: MaterialConcrete
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
