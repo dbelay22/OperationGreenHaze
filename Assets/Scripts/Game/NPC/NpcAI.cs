@@ -97,6 +97,8 @@ public class NpcAI : MonoBehaviour
     EventInstance _zombieFallSFX;
     EventInstance _zombieAttackFX;
     EventInstance _zombieAppear;
+    EventInstance _zombieDamage;
+
 
     void Awake()
     {
@@ -251,6 +253,8 @@ public class NpcAI : MonoBehaviour
         _zombieAttackFX = AudioController.Instance.Create3DInstance(FMODEvents.Instance.ZombieAttack, transform.position);
 
         _zombieAppear = AudioController.Instance.Create3DInstance(FMODEvents.Instance.ZombieAppear, transform.position);
+
+        _zombieDamage = AudioController.Instance.Create3DInstance(FMODEvents.Instance.ZombieDamage, transform.position);
     }
 
     void ProvokedUpdate()
@@ -543,7 +547,7 @@ public class NpcAI : MonoBehaviour
 
     void PlayHitByBulletSFX()
     {
-        //PlayAudioClip(_bulletHitSFX);
+        AudioController.Instance.Play3DEvent(_zombieDamage, transform.position);
     }
 
     void PlayHitByBulletVFX(RaycastHit hit, bool isHeadshot = false)
