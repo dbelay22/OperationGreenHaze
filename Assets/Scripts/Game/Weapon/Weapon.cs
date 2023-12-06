@@ -8,6 +8,13 @@ using FMOD.Studio;
 
 public class Weapon : MonoBehaviour
 {
+    private enum BullletImpactTarget
+    {       
+        Concrete = 0,
+        Steel = 1,
+        Zombie = 2
+    }
+
     [SerializeField] GameObject _playerGO;
 
     [Header("Shooting")]
@@ -34,6 +41,8 @@ public class Weapon : MonoBehaviour
     [SerializeField] EventReference _loadBulletsEvent;
 
     EventInstance _shootSFX;
+    
+    EventInstance _bulletImpactSFX;
 
     //[SerializeField] AudioClip _outOfAmmoSFX;
     //[SerializeField] AudioClip _reloadSFX;
@@ -57,6 +66,8 @@ public class Weapon : MonoBehaviour
     void Awake()
     {
         _shootSFX = AudioController.Instance.CreateInstance(_shootEvent);
+        
+        _bulletImpactSFX = AudioController.Instance.Create3DInstance(FMODEvents.Instance.BulletImpact, transform.position);
     }
 
     void Start()
@@ -219,16 +230,22 @@ public class Weapon : MonoBehaviour
         // Did I Hit ?
         if (hitSomething)
         {
-            //Debug.Log($"[Weapon](ShootUpdate) Just hit {hit.transform.name}, tag: {hit.transform.tag}, distance: {hit.distance}");
+            Debug.Log($"[Weapon](ShootUpdate) Just hit {hit.transform.name}, tag: {hit.transform.tag}, distance: {hit.distance}");
 
             hitEnemy = ProcessHitEnemy(hit);
 
-            bool hitBoomBox = ProcessHitBoomBox(hit);
-
-            if (!hitEnemy && !hitBoomBox)
+            if (!hitEnemy)
             {
-                PlayHitImpactVFX(hit);
-            }                        
+                bool hitBoombox = ProcessHitBoomBox(hit);
+
+                if (!hitBoombox) 
+                {
+                    if (!ProcessHitSteel(hit))
+                    {
+                        ProcessHitConcrete(hit);
+                    }
+                }
+            }
         }
 
         // Notify Player
@@ -238,7 +255,7 @@ public class Weapon : MonoBehaviour
         if (gameObject.activeInHierarchy) 
         {
             StartCoroutine(CoolDown());
-        }        
+        }
     }
 
     bool ProcessHitBoomBox(RaycastHit hit)
@@ -250,9 +267,39 @@ public class Weapon : MonoBehaviour
             BoomBox bbox = hit.transform.GetComponent<BoomBox>();
             
             bbox.BoomNow();
+
+            PlayHitImpactSFX(hit, BullletImpactTarget.Steel);
         }
 
         return hitBoomBox;
+    }
+
+    bool ProcessHitConcrete(RaycastHit hit)
+    {
+        bool hitConcrete = hit.transform.CompareTag(Tags.MATERIAL_CONCRETE);
+
+        if (hitConcrete)
+        {
+            PlayHitImpactVFX(hit);
+
+            PlayHitImpactSFX(hit, BullletImpactTarget.Concrete);
+        }
+
+        return hitConcrete;
+    }
+
+    bool ProcessHitSteel(RaycastHit hit)
+    {
+        bool hitSteel = hit.transform.CompareTag(Tags.MATERIAL_STEEL);
+
+        if (hitSteel)
+        {
+            PlayHitImpactVFX(hit);
+
+            PlayHitImpactSFX(hit, BullletImpactTarget.Steel);
+        }
+
+        return hitSteel;
     }
 
     bool ProcessHitEnemy(RaycastHit hit)
@@ -274,6 +321,8 @@ public class Weapon : MonoBehaviour
             {
                 Director.Instance.OnEvent(DirectorEvents.Enemy_Killed_Headshot);
             }
+
+            PlayHitImpactSFX(hit, BullletImpactTarget.Zombie);
         }        
 
         return hitEnemy;
@@ -298,6 +347,15 @@ public class Weapon : MonoBehaviour
         Destroy(hitImpact, 1.5f);
     }
 
+    void PlayHitImpactSFX(RaycastHit hit, BullletImpactTarget impactTarget)
+    {
+        Debug.Log($"[Weapon] PlayHitImpactSFX) impact target: {impactTarget}");
+
+        _bulletImpactSFX.setParameterByName(FMODEvents.Instance.ImpactMaterialParameter, (int) impactTarget);
+
+        AudioController.Instance.Play3DEvent(_bulletImpactSFX, hit.point, true);
+    }
+
     public AmmoType GetAmmoType()
     {
         return _ammoType;
@@ -311,11 +369,6 @@ public class Weapon : MonoBehaviour
         }
 
         return _ammo.GetAmmoLeft(_ammoType);
-    }
-
-    public void PlayPickupAmmoSFX()
-    {
-        //_audioSource.PlayOneShot(_reloadSFX);
     }
 
 }

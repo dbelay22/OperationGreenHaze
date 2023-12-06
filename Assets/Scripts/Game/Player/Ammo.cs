@@ -52,7 +52,7 @@ public class Ammo : MonoBehaviour
 
         Director.Instance.OnEvent(DirectorEvents.Shot_Accuracy_Update, _accuracy);
 
-        //Debug.Log($"[Ammo] Accuracy is now {_accuracy} %");
+        Debug.Log($"[Ammo] Accuracy is now {_accuracy} %");
     }
 
     AmmoSlot GetAmmoSlotOfType(AmmoType ammoType)

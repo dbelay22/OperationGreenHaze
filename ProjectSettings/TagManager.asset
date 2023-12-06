@@ -19,6 +19,8 @@ TagManager:
   - Localization
   - ExitBlocker
   - ExitDanger
+  - MaterialConcrete
+  - MaterialSteel
   layers:
   - Default
   - TransparentFX

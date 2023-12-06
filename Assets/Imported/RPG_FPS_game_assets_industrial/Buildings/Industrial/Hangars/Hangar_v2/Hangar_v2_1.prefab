@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4780650144008980734}
   m_Layer: 0
   m_Name: Hangar_v2_1
-  m_TagString: Untagged
+  m_TagString: MaterialSteel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647

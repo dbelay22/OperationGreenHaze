@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 64000011112988470}
   m_Layer: 0
   m_Name: Road_set_v1_b_floor
-  m_TagString: Untagged
+  m_TagString: MaterialConcrete
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 1
