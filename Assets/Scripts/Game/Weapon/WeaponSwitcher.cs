@@ -1,14 +1,11 @@
+using FMOD.Studio;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(AudioSource))]
-public class WeaponSwitcher : MonoBehaviour
-{
-    [Header("SFX")]
-    [SerializeField] AudioClip _switchSFX;
+public class WeaponSwitcher : MonoBehaviour{    
 
     [Header("Weapon Shake DB")]
     [SerializeField] WeaponShakeData _shakeData;
@@ -17,13 +14,14 @@ public class WeaponSwitcher : MonoBehaviour
 
     List<Weapon> _weapons;
 
-    AudioSource _audioSource;
-
     bool _canScrollToNextWeapon = true;
     
     Weapon _activeWeapon;
 
     int _currentWeaponIdx = 0;
+
+    EventInstance _switchSMGSFX;
+    EventInstance _switchPistolSFX;
 
     void Start()
     {
@@ -31,9 +29,15 @@ public class WeaponSwitcher : MonoBehaviour
 
         InitializeWeapons();
 
-        _audioSource = GetComponent<AudioSource>();
+        InitializeAudioInstances();
 
         StartCoroutine(SetCurrentWeaponActiveDelayed(0.5f));
+    }
+
+    void InitializeAudioInstances()
+    {
+        _switchSMGSFX = AudioController.Instance.CreateInstance(FMODEvents.Instance.ChangeWeaponSMG);
+        _switchPistolSFX = AudioController.Instance.CreateInstance(FMODEvents.Instance.ChangeWeaponPistol);
     }
 
     void InitializeWeapons()
@@ -99,10 +103,7 @@ public class WeaponSwitcher : MonoBehaviour
 
     void SetCurrentWeaponActive()
     {
-        if (_switchSFX != null)
-        {
-            _audioSource.PlayOneShot(_switchSFX);
-        }
+        AudioController.Instance.PlayEvent(_currentWeaponIdx == 0 ? _switchSMGSFX : _switchPistolSFX);
 
         int weaponIndex = 0;
 
@@ -157,7 +158,7 @@ public class WeaponSwitcher : MonoBehaviour
 
     IEnumerator CoolDownScroll()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.25f);
         
         _canScrollToNextWeapon = true;
     }
