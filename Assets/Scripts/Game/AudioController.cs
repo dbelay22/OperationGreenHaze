@@ -78,7 +78,7 @@ public class AudioController : MonoBehaviour
             _maxInstancesCount = _eventInstances.Count;
         }
 
-        Debug.Log($"AudioController] CreateInstance) NEW instance of path: {eventReference.Path}, list count so far: [{_eventInstances.Count}]");
+        //Debug.Log($"AudioController] CreateInstance) NEW instance of path: {eventReference.Path}, list count so far: [{_eventInstances.Count}]");
 
         return eventInstance;
     }
