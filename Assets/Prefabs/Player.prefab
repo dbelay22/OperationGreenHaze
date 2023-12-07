@@ -830,8 +830,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee7ab24179c705540a5c781e0288b0fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _toxicZoneDamage: 13
-  _fireZoneDamage: 7
+  _toxicZoneDamage: 7
+  _fireZoneDamage: 10
   _currentHealth: 0
 --- !u!114 &1313374671374682099
 MonoBehaviour:
@@ -1005,6 +1005,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3788421771384621697, guid: bdc71fe84784acd43b8e3816e10eb765,
         type: 3}
+      propertyPath: _shootEventRef.Path
+      value: event:/Shoots_pistol
+      objectReference: {fileID: 0}
+    - target: {fileID: 3788421771384621697, guid: bdc71fe84784acd43b8e3816e10eb765,
+        type: 3}
       propertyPath: _shootEvent.Guid.Data1
       value: -557700115
       objectReference: {fileID: 0}
@@ -1022,6 +1027,51 @@ PrefabInstance:
         type: 3}
       propertyPath: _shootEvent.Guid.Data4
       value: -1248978768
+      objectReference: {fileID: 0}
+    - target: {fileID: 3788421771384621697, guid: bdc71fe84784acd43b8e3816e10eb765,
+        type: 3}
+      propertyPath: _outOfAmmoEventRef.Path
+      value: event:/OutOfAmmo
+      objectReference: {fileID: 0}
+    - target: {fileID: 3788421771384621697, guid: bdc71fe84784acd43b8e3816e10eb765,
+        type: 3}
+      propertyPath: _shootEventRef.Guid.Data1
+      value: -557700115
+      objectReference: {fileID: 0}
+    - target: {fileID: 3788421771384621697, guid: bdc71fe84784acd43b8e3816e10eb765,
+        type: 3}
+      propertyPath: _shootEventRef.Guid.Data2
+      value: 1092594660
+      objectReference: {fileID: 0}
+    - target: {fileID: 3788421771384621697, guid: bdc71fe84784acd43b8e3816e10eb765,
+        type: 3}
+      propertyPath: _shootEventRef.Guid.Data3
+      value: 180555919
+      objectReference: {fileID: 0}
+    - target: {fileID: 3788421771384621697, guid: bdc71fe84784acd43b8e3816e10eb765,
+        type: 3}
+      propertyPath: _shootEventRef.Guid.Data4
+      value: -1248978768
+      objectReference: {fileID: 0}
+    - target: {fileID: 3788421771384621697, guid: bdc71fe84784acd43b8e3816e10eb765,
+        type: 3}
+      propertyPath: _outOfAmmoEventRef.Guid.Data1
+      value: -2098308528
+      objectReference: {fileID: 0}
+    - target: {fileID: 3788421771384621697, guid: bdc71fe84784acd43b8e3816e10eb765,
+        type: 3}
+      propertyPath: _outOfAmmoEventRef.Guid.Data2
+      value: 1306205613
+      objectReference: {fileID: 0}
+    - target: {fileID: 3788421771384621697, guid: bdc71fe84784acd43b8e3816e10eb765,
+        type: 3}
+      propertyPath: _outOfAmmoEventRef.Guid.Data3
+      value: 1991517077
+      objectReference: {fileID: 0}
+    - target: {fileID: 3788421771384621697, guid: bdc71fe84784acd43b8e3816e10eb765,
+        type: 3}
+      propertyPath: _outOfAmmoEventRef.Guid.Data4
+      value: -965633127
       objectReference: {fileID: 0}
     - target: {fileID: 4208746825564624711, guid: bdc71fe84784acd43b8e3816e10eb765,
         type: 3}
@@ -1139,6 +1189,10 @@ PrefabInstance:
       value: event:/Shoots_Machinegun
       objectReference: {fileID: 0}
     - target: {fileID: 1434361318, guid: a59b0609ea2fa5f44823a30f5c7ce800, type: 3}
+      propertyPath: _shootEventRef.Path
+      value: event:/Shoots_Machinegun
+      objectReference: {fileID: 0}
+    - target: {fileID: 1434361318, guid: a59b0609ea2fa5f44823a30f5c7ce800, type: 3}
       propertyPath: _shootEvent.Guid.Data1
       value: 383688057
       objectReference: {fileID: 0}
@@ -1153,6 +1207,42 @@ PrefabInstance:
     - target: {fileID: 1434361318, guid: a59b0609ea2fa5f44823a30f5c7ce800, type: 3}
       propertyPath: _shootEvent.Guid.Data4
       value: 1146032039
+      objectReference: {fileID: 0}
+    - target: {fileID: 1434361318, guid: a59b0609ea2fa5f44823a30f5c7ce800, type: 3}
+      propertyPath: _outOfAmmoEventRef.Path
+      value: event:/OutOfAmmo
+      objectReference: {fileID: 0}
+    - target: {fileID: 1434361318, guid: a59b0609ea2fa5f44823a30f5c7ce800, type: 3}
+      propertyPath: _shootEventRef.Guid.Data1
+      value: 383688057
+      objectReference: {fileID: 0}
+    - target: {fileID: 1434361318, guid: a59b0609ea2fa5f44823a30f5c7ce800, type: 3}
+      propertyPath: _shootEventRef.Guid.Data2
+      value: 1222024017
+      objectReference: {fileID: 0}
+    - target: {fileID: 1434361318, guid: a59b0609ea2fa5f44823a30f5c7ce800, type: 3}
+      propertyPath: _shootEventRef.Guid.Data3
+      value: 895409291
+      objectReference: {fileID: 0}
+    - target: {fileID: 1434361318, guid: a59b0609ea2fa5f44823a30f5c7ce800, type: 3}
+      propertyPath: _shootEventRef.Guid.Data4
+      value: 1146032039
+      objectReference: {fileID: 0}
+    - target: {fileID: 1434361318, guid: a59b0609ea2fa5f44823a30f5c7ce800, type: 3}
+      propertyPath: _outOfAmmoEventRef.Guid.Data1
+      value: -2098308528
+      objectReference: {fileID: 0}
+    - target: {fileID: 1434361318, guid: a59b0609ea2fa5f44823a30f5c7ce800, type: 3}
+      propertyPath: _outOfAmmoEventRef.Guid.Data2
+      value: 1306205613
+      objectReference: {fileID: 0}
+    - target: {fileID: 1434361318, guid: a59b0609ea2fa5f44823a30f5c7ce800, type: 3}
+      propertyPath: _outOfAmmoEventRef.Guid.Data3
+      value: 1991517077
+      objectReference: {fileID: 0}
+    - target: {fileID: 1434361318, guid: a59b0609ea2fa5f44823a30f5c7ce800, type: 3}
+      propertyPath: _outOfAmmoEventRef.Guid.Data4
+      value: -965633127
       objectReference: {fileID: 0}
     - target: {fileID: 1748713565, guid: a59b0609ea2fa5f44823a30f5c7ce800, type: 3}
       propertyPath: m_Volume

@@ -188,6 +188,13 @@ MonoBehaviour:
       Data3: -2099175552
       Data4: 1498402189
     Path: event:/Objets/change_weapon_pistol
+  OutOfAmmo:
+    Guid:
+      Data1: -2098308528
+      Data2: 1306205613
+      Data3: 1991517077
+      Data4: -965633127
+    Path: event:/OutOfAmmo
   FlashlighToggle:
     Guid:
       Data1: -1768503694

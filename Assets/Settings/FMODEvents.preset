@@ -119,19 +119,19 @@ Preset:
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: PlayerDeath.Guid.Data1
-    value: -1893088334
+    value: 229547357
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: PlayerDeath.Guid.Data2
-    value: 1218201367
+    value: 1229079523
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: PlayerDeath.Guid.Data3
-    value: 360148920
+    value: 381256613
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: PlayerDeath.Guid.Data4
-    value: 1242733549
+    value: -1264587235
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: PlayerDeath.Path
@@ -484,5 +484,25 @@ Preset:
   - target: {fileID: 0}
     propertyPath: ZombieDamage.Path
     value: event:/Zombies_Voices/Zombie_get_damage
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Jet.Guid.Data1
+    value: -120129483
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Jet.Guid.Data2
+    value: 1298300066
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Jet.Guid.Data3
+    value: -1232931198
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Jet.Guid.Data4
+    value: -955159415
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Jet.Path
+    value: event:/Jet
     objectReference: {fileID: 0}
   m_ExcludedProperties: []

@@ -36,16 +36,12 @@ public class Weapon : MonoBehaviour
     [SerializeField] float _fovZoom = 20;
 
     [Header("SFX")]
-    [SerializeField] EventReference _shootEvent;
-    [SerializeField] EventReference _outOfAmmoEvent;
-    [SerializeField] EventReference _loadBulletsEvent;
+    [SerializeField] EventReference _shootEventRef;
+    [SerializeField] EventReference _outOfAmmoEventRef;
 
-    EventInstance _shootSFX;
-    
+    EventInstance _shootSFX;    
     EventInstance _bulletImpactSFX;
-
-    //[SerializeField] AudioClip _outOfAmmoSFX;
-    //[SerializeField] AudioClip _reloadSFX;
+    EventInstance _outOfAmmoSFX;
 
     [Space(10)]
     [SerializeField] FirstPersonController _fpController;
@@ -63,8 +59,10 @@ public class Weapon : MonoBehaviour
 
     void Awake()
     {
-        _shootSFX = AudioController.Instance.CreateInstance(_shootEvent);
-        
+        _shootSFX = AudioController.Instance.CreateInstance(_shootEventRef);
+
+        _outOfAmmoSFX = AudioController.Instance.CreateInstance(_outOfAmmoEventRef);
+                
         _bulletImpactSFX = AudioController.Instance.Create3DInstance(FMODEvents.Instance.BulletImpact, transform.position);
     }
 
@@ -196,8 +194,7 @@ public class Weapon : MonoBehaviour
 
     void PlayOutOfAmmoSFX()
     {
-        // TODO: trigger out of ammo
-        //_audioSource.PlayOneShot(_outOfAmmoSFX);
+        AudioController.Instance.PlayEvent(_outOfAmmoSFX);
     }
 
     void PlayMuzzleFlashVFX()
