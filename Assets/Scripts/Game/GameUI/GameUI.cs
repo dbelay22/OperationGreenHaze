@@ -236,7 +236,7 @@ public class GameUI : MonoBehaviour
 
     IEnumerator LoadLoseSceneDelayed()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
 
         LevelLoader.Instance.LoadLoseScene();
     }

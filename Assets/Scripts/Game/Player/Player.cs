@@ -135,12 +135,14 @@ public class Player : MonoBehaviour
         return amount;
     }
 
+    /*
     float DistanceToZombie(Transform enemyTransform)
     {
         float distance = Vector3.Distance(transform.position, enemyTransform.position);
         
         return distance;
     }
+    */
 
     #region Shooting
 

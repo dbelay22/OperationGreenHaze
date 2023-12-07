@@ -79,43 +79,43 @@ Preset:
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: PlayerDamageByFire.Guid.Data1
-    value: 0
+    value: 568746577
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: PlayerDamageByFire.Guid.Data2
-    value: 0
+    value: 1239619578
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: PlayerDamageByFire.Guid.Data3
-    value: 0
+    value: -117140845
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: PlayerDamageByFire.Guid.Data4
-    value: 0
+    value: 854506788
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: PlayerDamageByFire.Path
-    value: 
+    value: event:/Fire_Damage
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: PlayerDamageByGas.Guid.Data1
-    value: 0
+    value: 1037584596
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: PlayerDamageByGas.Guid.Data2
-    value: 0
+    value: 1180169947
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: PlayerDamageByGas.Guid.Data3
-    value: 0
+    value: 373660047
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: PlayerDamageByGas.Guid.Data4
-    value: 0
+    value: -1862689208
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: PlayerDamageByGas.Path
-    value: 
+    value: event:/Gas_Damage
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: PlayerDeath.Guid.Data1

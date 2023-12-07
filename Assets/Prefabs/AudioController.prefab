@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e83570fb507b804c85f9d6cbc67c669, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _musicOn: 1
+  _musicOn: 0
 --- !u!1 &6495501288945196645
 GameObject:
   m_ObjectHideFlags: 0
@@ -109,18 +109,18 @@ MonoBehaviour:
     Path: event:/Zombies_Hits
   PlayerDamageByFire:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 568746577
+      Data2: 1239619578
+      Data3: -117140845
+      Data4: 854506788
+    Path: event:/Fire_Damage
   PlayerDamageByGas:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 1037584596
+      Data2: 1180169947
+      Data3: 373660047
+      Data4: -1862689208
+    Path: event:/Gas_Damage
   PlayerDeath:
     Guid:
       Data1: -1893088334

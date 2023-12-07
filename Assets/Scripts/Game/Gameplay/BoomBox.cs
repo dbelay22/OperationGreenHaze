@@ -83,6 +83,7 @@ public class BoomBox: MonoBehaviour
 
         // spawn fire and smoke
         _fireAndSmokeInstance = Instantiate(_fireAndSmokeVFX, fxPos, Quaternion.identity);
+        
         _fireZoneTrigger.SetActive(true);
 
         StartCoroutine(HideTargetDelayed(_timeToDissapear));
@@ -178,6 +179,16 @@ public class BoomBox: MonoBehaviour
         yield return new WaitForSeconds(_lifeTime);
 
         StopAllCoroutines();
+
+        Debug.Log("[BoomBox] AutoDestroy) about to move fire zone trigger away");
+
+        // workaround fire trigger exit
+        _fireZoneTrigger.transform.position = new Vector3(0, -1000, 0);
+
+        // wait until the exit is processed
+        yield return new WaitForFixedUpdate();
+
+        Debug.Log("[BoomBox] AutoDestroy) about to disable fire zone trigger");
 
         _fireZoneTrigger.SetActive(false);
 
