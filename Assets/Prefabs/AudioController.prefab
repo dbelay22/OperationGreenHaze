@@ -123,10 +123,10 @@ MonoBehaviour:
     Path: event:/Gas_Damage
   PlayerDeath:
     Guid:
-      Data1: -1893088334
-      Data2: 1218201367
-      Data3: 360148920
-      Data4: 1242733549
+      Data1: 229547357
+      Data2: 1229079523
+      Data3: 381256613
+      Data4: -1264587235
     Path: event:/Dead_falldown
   PlayerFootsteps:
     Guid:
