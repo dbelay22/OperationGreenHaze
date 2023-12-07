@@ -62,7 +62,7 @@
 			<destination>{157625bc-79bd-4b70-9e28-785d34a66296}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{741fccda-1f83-47ea-b9a9-ba123cde5183}</destination>
+			<destination>{bacec44a-1766-471d-ba5f-fb14ce1dcc71}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{1292ed4f-8cde-470a-b2cf-543ca6e4a941}" />
@@ -157,6 +157,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{c274438d-e5d4-4b82-80c2-e421e9b8cb7d}">
+		<relationship name="modulators">
+			<destination>{062e970c-b66d-4e4b-be78-f497ae3c36c3}</destination>
+		</relationship>
 		<relationship name="effectChain">
 			<destination>{5d0a2605-304b-44c9-976c-b47b0a4ae22c}</destination>
 		</relationship>
@@ -484,7 +487,7 @@
 	</object>
 	<object class="EventMixerGroup" id="{90deadc5-5f10-436d-b587-4022458620ae}">
 		<property name="volume">
-			<value>-11</value>
+			<value>-5.5</value>
 		</property>
 		<property name="name">
 			<value>Clothes</value>
@@ -498,6 +501,23 @@
 		<relationship name="output">
 			<destination>{c274438d-e5d4-4b82-80c2-e421e9b8cb7d}</destination>
 		</relationship>
+	</object>
+	<object class="ADSRModulator" id="{062e970c-b66d-4e4b-be78-f497ae3c36c3}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>volume</value>
+		</property>
+		<property name="initialValue">
+			<value>-80</value>
+		</property>
+		<property name="attackTime">
+			<value>0</value>
+		</property>
+		<property name="releaseTime">
+			<value>340</value>
+		</property>
+		<property name="finalValue">
+			<value>-80</value>
+		</property>
 	</object>
 	<object class="MixerBusEffectChain" id="{5d0a2605-304b-44c9-976c-b47b0a4ae22c}">
 		<relationship name="effects">
