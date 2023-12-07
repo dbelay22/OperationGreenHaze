@@ -59,7 +59,10 @@ public class FMODEvents : MonoBehaviour
     [Header("Zombie Damaged")]
     public EventReference ZombieFall;
     public EventReference ZombieDie;
-    public EventReference ZombieDamage;    
+    public EventReference ZombieDamage;
+
+    [Header("Jet waves")]
+    public EventReference Jet;
 
     #region Instance
 

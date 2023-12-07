@@ -56,7 +56,14 @@
 			<destination>{bacec44a-1766-471d-ba5f-fb14ce1dcc71}</destination>
 		</relationship>
 	</object>
-	<object class="EventAutomatableProperties" id="{18ff44ab-78ba-48c9-8f88-222a000de107}" />
+	<object class="EventAutomatableProperties" id="{18ff44ab-78ba-48c9-8f88-222a000de107}">
+		<property name="dopplerEnabled">
+			<value>true</value>
+		</property>
+		<property name="maximumDistance">
+			<value>10000</value>
+		</property>
+	</object>
 	<object class="MarkerTrack" id="{d899fab7-0922-4269-93b0-b6b6a569b33c}" />
 	<object class="GroupTrack" id="{9f4444e4-d7e6-45c6-9198-d04f0b61bec7}">
 		<relationship name="modules">

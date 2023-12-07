@@ -247,3 +247,10 @@ MonoBehaviour:
       Data3: -1434493807
       Data4: -1207516450
     Path: event:/Zombies_Voices/Zombie_get_damage
+  Jet:
+    Guid:
+      Data1: -120129483
+      Data2: 1298300066
+      Data3: -1232931198
+      Data4: -955159415
+    Path: event:/Jet
