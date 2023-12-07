@@ -57,6 +57,11 @@ public class WeaponSwitcher : MonoBehaviour
 
     IEnumerator SetCurrentWeaponActiveDelayed()
     {
+        if (_activeWeapon != null)
+        {
+            _activeWeapon.gameObject.SetActive(false);
+        }
+
         transform.localScale = new Vector3(0,0,0);
 
         AudioController.Instance.PlayEvent(_currentWeaponIdx == 0 ? _switchSMGSFX : _switchPistolSFX);
@@ -65,7 +70,7 @@ public class WeaponSwitcher : MonoBehaviour
 
         //Debug.Log($"WeaponSwitcher] SetCurrentWeaponActiveDelayed) time: {time}, _currentWeaponIdx:{_currentWeaponIdx}");
 
-        yield return new WaitForSeconds(SWITCH_WEAPON_TIMES[_currentWeaponIdx]);
+        yield return new WaitForSeconds(time);
 
         SetCurrentWeaponActive();
 

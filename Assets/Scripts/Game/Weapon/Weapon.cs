@@ -52,8 +52,6 @@ public class Weapon : MonoBehaviour
 
     StarterAssetsInputs _input;
 
-    AudioSource _audioSource;
-
     bool _canShoot = true;
     
     bool _sniperZoomActive = false;
@@ -75,8 +73,6 @@ public class Weapon : MonoBehaviour
         _player = _playerGO.GetComponent<Player>();
         _input = _playerGO.GetComponent<StarterAssetsInputs>();
         _ammo = _playerGO.GetComponent<Ammo>();
-        
-        _audioSource = GetComponent<AudioSource>();
         
         _canShoot = true;
 
@@ -200,6 +196,7 @@ public class Weapon : MonoBehaviour
 
     void PlayOutOfAmmoSFX()
     {
+        // TODO: trigger out of ammo
         //_audioSource.PlayOneShot(_outOfAmmoSFX);
     }
 
