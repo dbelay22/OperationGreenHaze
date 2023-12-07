@@ -21,6 +21,9 @@ public class BoomBox: MonoBehaviour
     AudioSource _audioSource;
     
     GameObject _fireZoneTrigger;
+
+    GameObject _explosionInstance;
+    GameObject _fireAndSmokeInstance;
     
     void Start()
     {
@@ -76,10 +79,10 @@ public class BoomBox: MonoBehaviour
         Vector3 fxPos = new Vector3(transform.position.x, 0, transform.position.z);
 
         // spawn explosion
-        Instantiate(_explosionVFX, fxPos, Quaternion.identity);
+        _explosionInstance = Instantiate(_explosionVFX, fxPos, Quaternion.identity);
 
         // spawn fire and smoke
-        Instantiate(_fireAndSmokeVFX, fxPos, Quaternion.identity);
+        _fireAndSmokeInstance = Instantiate(_fireAndSmokeVFX, fxPos, Quaternion.identity);
         _fireZoneTrigger.SetActive(true);
 
         StartCoroutine(HideTargetDelayed(_timeToDissapear));
@@ -179,6 +182,10 @@ public class BoomBox: MonoBehaviour
         _fireZoneTrigger.SetActive(false);
 
         Destroy(_target);
+
+        Destroy(_explosionInstance);
+
+        Destroy(_fireAndSmokeInstance);
 
         Destroy(gameObject);
     }
