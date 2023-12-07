@@ -179,7 +179,7 @@ public class AudioController : MonoBehaviour
         
         eventInstance.release();
 
-        //Debug.Log($"AudioController] ReleaseEvent) Released event path: {path}");
+        Debug.Log($"AudioController] ReleaseEvent) Released event path: {path}");
 
         return path;
     }
@@ -212,27 +212,7 @@ public class AudioController : MonoBehaviour
         description.getPath(out string path);
 
         return path;
-    }
-
-    
-    void CleanUp()
-    {
-        Debug.Log($"AudioController] CleanUp)... _eventInstances.count: {_eventInstances.Count}, max: {_maxInstancesCount}");
-
-        // stop and release any created instances
-        foreach (EventInstance eventInstance in _eventInstances)
-        {
-            ReleaseEvent(eventInstance);
-        }
-        
-        // clear list        
-        _eventInstances.Clear();
-
-        // release music
-        ReleaseEvent(_musicEventInstance);
-
-        Debug.Log($"AudioController] CleanUp) END OF FUNCTION");        
-    }
+    }    
 
     public void GameplayStart()
     {
@@ -318,6 +298,25 @@ public class AudioController : MonoBehaviour
         }
 #endif
         StopEvent(_musicEventInstance);
+    }
+
+    void CleanUp()
+    {
+        Debug.Log($"AudioController] CleanUp)... _eventInstances.count: {_eventInstances.Count}, max: {_maxInstancesCount}");
+
+        // stop and release any created instances
+        foreach (EventInstance eventInstance in _eventInstances)
+        {
+            ReleaseEvent(eventInstance);
+        }
+
+        // clear list        
+        _eventInstances.Clear();
+
+        // release music
+        ReleaseEvent(_musicEventInstance);
+
+        Debug.Log($"AudioController] CleanUp) END OF FUNCTION");
     }
 
     void OnDestroy()

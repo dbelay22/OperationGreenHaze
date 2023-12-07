@@ -5,7 +5,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class WeaponSwitcher : MonoBehaviour{    
+public class WeaponSwitcher : MonoBehaviour
+{
+    readonly float[] SWITCH_WEAPON_TIMES = { 1.3f, 0.8f };
 
     [Header("Weapon Shake DB")]
     [SerializeField] WeaponShakeData _shakeData;
@@ -31,7 +33,7 @@ public class WeaponSwitcher : MonoBehaviour{
 
         InitializeAudioInstances();
 
-        StartCoroutine(SetCurrentWeaponActiveDelayed(0.5f));
+        StartCoroutine(SetCurrentWeaponActiveDelayed());
     }
 
     void InitializeAudioInstances()
@@ -53,11 +55,45 @@ public class WeaponSwitcher : MonoBehaviour{
         }
     }
 
-    IEnumerator SetCurrentWeaponActiveDelayed(float time)
+    IEnumerator SetCurrentWeaponActiveDelayed()
     {
-        yield return new WaitForSeconds(time);
+        transform.localScale = new Vector3(0,0,0);
+
+        AudioController.Instance.PlayEvent(_currentWeaponIdx == 0 ? _switchSMGSFX : _switchPistolSFX);
+
+        float time = SWITCH_WEAPON_TIMES[_currentWeaponIdx];
+
+        //Debug.Log($"WeaponSwitcher] SetCurrentWeaponActiveDelayed) time: {time}, _currentWeaponIdx:{_currentWeaponIdx}");
+
+        yield return new WaitForSeconds(SWITCH_WEAPON_TIMES[_currentWeaponIdx]);
 
         SetCurrentWeaponActive();
+
+        transform.localScale = new Vector3(1, 1, 1);
+    }
+
+    void SetCurrentWeaponActive()
+    {
+        int weaponIndex = 0;
+
+        foreach (Transform child in transform)
+        {
+            //Debug.Log($"WeaponSwitcher] SetCurrentWeaponActive) child: {child.name}");
+
+            Weapon weapon = child.gameObject.GetComponent<Weapon>();
+
+            bool foundWeapon = weaponIndex == _currentWeaponIdx;
+
+            if (foundWeapon)
+            {
+                _activeWeapon = weapon;
+                UpdateCurrentShakeProperties(weapon);
+            }
+
+            weapon.gameObject.SetActive(foundWeapon);
+
+            weaponIndex++;
+        }
     }
 
     void Update()
@@ -97,32 +133,8 @@ public class WeaponSwitcher : MonoBehaviour{
         }
 
         _currentWeaponIdx = index;
-        
-        SetCurrentWeaponActive();
-    }
 
-    void SetCurrentWeaponActive()
-    {
-        AudioController.Instance.PlayEvent(_currentWeaponIdx == 0 ? _switchSMGSFX : _switchPistolSFX);
-
-        int weaponIndex = 0;
-
-        foreach (Transform child in transform)
-        {
-            Weapon weapon = child.gameObject.GetComponent<Weapon>();
-            
-            bool foundWeapon = weaponIndex == _currentWeaponIdx;
-            
-            if (foundWeapon)
-            {
-                _activeWeapon = weapon;
-                UpdateCurrentShakeProperties(weapon);
-            }            
-
-            weapon.gameObject.SetActive(foundWeapon);
-            
-            weaponIndex++;            
-        }
+        StartCoroutine(SetCurrentWeaponActiveDelayed());
     }
 
     void UpdateCurrentShakeProperties(Weapon weapon)
@@ -149,9 +161,9 @@ public class WeaponSwitcher : MonoBehaviour{
         else
         {
             _currentWeaponIdx = 0;
-        }        
-        
-        SetCurrentWeaponActive();
+        }
+
+        StartCoroutine(SetCurrentWeaponActiveDelayed());
 
         StartCoroutine(CoolDownScroll());
     }
