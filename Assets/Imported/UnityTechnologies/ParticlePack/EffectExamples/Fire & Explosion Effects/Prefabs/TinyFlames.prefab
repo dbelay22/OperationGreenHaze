@@ -4840,11 +4840,11 @@ MonoBehaviour:
   CollisionTag: Player
   EventReference:
     Guid:
-      Data1: 1703581088
-      Data2: 1090236228
-      Data3: -1437933396
-      Data4: -275131209
-    Path: event:/Fire_soundscapes
+      Data1: -350050076
+      Data2: 1146663217
+      Data3: 420457893
+      Data4: 1816878879
+    Path: event:/Fire_small_soundscapes
   Event: 
   PlayEvent: 11
   StopEvent: 12
@@ -4854,5 +4854,5 @@ MonoBehaviour:
   AllowNonRigidbodyDoppler: 0
   Params: []
   OverrideAttenuation: 1
-  OverrideMinDistance: 4
-  OverrideMaxDistance: 7
+  OverrideMinDistance: 3
+  OverrideMaxDistance: 6
