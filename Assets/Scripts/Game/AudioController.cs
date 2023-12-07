@@ -236,12 +236,12 @@ public class AudioController : MonoBehaviour
 
     public void GameplayStart()
     {
-        Debug.Log($"AudioController] GameplayStart)...");
+        //Debug.Log($"AudioController] GameplayStart)...");
 
         //PlayerSettings.Instance.ApplyPlayerSettingsAudio();
 
         _musicEventInstance.getPlaybackState(out PLAYBACK_STATE playbackState);
-        Debug.Log($"AudioController] GameplayStart) playbackState: {playbackState}");
+        //Debug.Log($"AudioController] GameplayStart) playbackState: {playbackState}");
 
         if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
         {

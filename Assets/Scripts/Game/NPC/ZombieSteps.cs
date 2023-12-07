@@ -49,7 +49,7 @@ public class ZombieSteps : MonoBehaviour
 
     public void OnNPCStartWalking()
     {
-        Debug.Log($"ZombieSteps] NPC Started Walking...");
+        //Debug.Log($"ZombieSteps] NPC Started Walking...");
 
         _isWalking = true;
 
@@ -72,7 +72,7 @@ public class ZombieSteps : MonoBehaviour
 
     void OnDestroy()
     {
-        Debug.Log($"[ZombieSteps] OnDestroy) Destroying audio instance: footstep");
+        //Debug.Log($"[ZombieSteps] OnDestroy) Destroying audio instance: footstep");
         AudioController.Instance.DestroyEvent(_footstepEventInstance);    
     }
 }
