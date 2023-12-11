@@ -10,7 +10,13 @@ public class FMODEvents : MonoBehaviour
     public string TerrorMusicParam;
     public string MusicPartsParam;
     public string NearZombiesParam;
-    
+
+    [Header("Other music")]
+    public EventReference MenuMusic;
+    public EventReference BriefingMusic;
+    public EventReference WinMusic;
+    public EventReference LoseMusic;
+
     [Header("Player")]
     public EventReference PlayerDamageByZombie;
     public EventReference PlayerDamageByFire;

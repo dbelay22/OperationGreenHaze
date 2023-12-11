@@ -3,11 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
+using FMOD.Studio;
 
 public class MainMenu : MenuBase 
 {
+    EventInstance _menuMusic;
+
+    void Awake()
+    {
+        AudioController.Instance.PlayInstanceOrCreate(_menuMusic, FMODEvents.Instance.MenuMusic, out _menuMusic, true);
+    }
+
     public void Play()
     {
+        AudioController.Instance.StopFadeEvent(_menuMusic);
+
         LevelLoader.Instance.LoadNextLevel();
     }
 

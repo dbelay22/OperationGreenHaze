@@ -114,6 +114,34 @@ MonoBehaviour:
   TerrorMusicParam: Terror Music
   MusicPartsParam: Music parts
   NearZombiesParam: Near_Zombies_music
+  MenuMusic:
+    Guid:
+      Data1: -270983773
+      Data2: 1107252570
+      Data3: 1459056029
+      Data4: 550585291
+    Path: event:/Music/Music_menu
+  BriefingMusic:
+    Guid:
+      Data1: -2119929625
+      Data2: 1299647486
+      Data3: 592688787
+      Data4: -629468003
+    Path: event:/Music/Music_Carta
+  WinMusic:
+    Guid:
+      Data1: -705023796
+      Data2: 1260509541
+      Data3: -1356111965
+      Data4: 348496687
+    Path: event:/Music/Music_Win
+  LoseMusic:
+    Guid:
+      Data1: -1880182828
+      Data2: 1136492969
+      Data3: 1335201666
+      Data4: 1878953327
+    Path: event:/Music/Music_Game-over
   PlayerDamageByZombie:
     Guid:
       Data1: -253622757

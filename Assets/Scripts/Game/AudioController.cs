@@ -159,7 +159,7 @@ public class AudioController : MonoBehaviour
 
         if (playbackState.Equals(PLAYBACK_STATE.STOPPED) || forcePlay)
         {
-            Debug.Log($"AudioController] PlayEvent) starting event: {path}");   
+            Debug.Log($"AudioController] PlayEvent) starting event: {path}");  
 
             eventInstance.start();
             
