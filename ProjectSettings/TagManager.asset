@@ -21,6 +21,7 @@ TagManager:
   - ExitDanger
   - MaterialConcrete
   - MaterialSteel
+  - AudioController
   layers:
   - Default
   - TransparentFX

@@ -1,3 +1,4 @@
+using FMOD.Studio;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,10 +6,14 @@ using UnityEngine.EventSystems;
 
 public class MenuBase : MonoBehaviour, IPointerEnterHandler
 {
-    [Header("Audio")]
-    [SerializeField] AudioSource _audioSource;
-    [SerializeField] AudioClip _navigateSFX;
-    [SerializeField] AudioClip _optionSelectSFX;
+    EventInstance _menuHover;
+    EventInstance _menuSelect;
+
+    void Awake()
+    {
+        _menuHover = AudioController.Instance.CreateInstance(FMODEvents.Instance.MenuHover);
+        _menuSelect = AudioController.Instance.CreateInstance(FMODEvents.Instance.MenuSelect);
+    }
 
     void Start()
     {
@@ -36,25 +41,12 @@ public class MenuBase : MonoBehaviour, IPointerEnterHandler
 
     public void PlayOptionSelectSFX()
     {
-        if (_audioSource == null)
-        {
-            Debug.LogError("[MainMenu] (PlayOptionSelectSFX) AudioSource is null");
-            return;
-        }
-
-        _audioSource.PlayOneShot(_optionSelectSFX);
+        AudioController.Instance.PlayEvent(_menuSelect);
     }
 
     public void PlayNavigateSFX()
     {
-        if (_audioSource == null)
-        {
-            Debug.LogError("[MainMenu] (OnPointerEnter) AudioSource is null");
-            return;
-        }
-
-        _audioSource.Stop();
-        _audioSource.PlayOneShot(_navigateSFX);
+        AudioController.Instance.PlayEvent(_menuHover, true);
     }
 
 }

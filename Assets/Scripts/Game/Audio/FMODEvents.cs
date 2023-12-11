@@ -64,6 +64,10 @@ public class FMODEvents : MonoBehaviour
     [Header("Jet waves")]
     public EventReference Jet;
 
+    [Header("UI")]
+    public EventReference MenuHover;
+    public EventReference MenuSelect;
+
     #region Instance
 
     private static FMODEvents _instance;

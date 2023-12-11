@@ -313,9 +313,6 @@ public class AudioController : MonoBehaviour
         // clear list        
         _eventInstances.Clear();
 
-        // release music
-        ReleaseEvent(_musicEventInstance);
-
         Debug.Log($"AudioController] CleanUp) END OF FUNCTION");
     }
 

@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 441372601557891447}
   - component: {fileID: 8974531209230176576}
+  - component: {fileID: 6286549390428734130}
   m_Layer: 0
   m_Name: AudioController
-  m_TagString: Untagged
+  m_TagString: AudioController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46,6 +47,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _musicOn: 0
+--- !u!114 &6286549390428734130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2160691158358304244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7eb92136cf5c084e8c2a330485f46cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _instanceTAG: AudioController
 --- !u!1 &6495501288945196645
 GameObject:
   m_ObjectHideFlags: 0
@@ -188,13 +202,6 @@ MonoBehaviour:
       Data3: -2099175552
       Data4: 1498402189
     Path: event:/Objets/change_weapon_pistol
-  OutOfAmmo:
-    Guid:
-      Data1: -2098308528
-      Data2: 1306205613
-      Data3: 1991517077
-      Data4: -965633127
-    Path: event:/OutOfAmmo
   FlashlighToggle:
     Guid:
       Data1: -1768503694
@@ -261,3 +268,17 @@ MonoBehaviour:
       Data3: -1232931198
       Data4: -955159415
     Path: event:/Jet
+  MenuHover:
+    Guid:
+      Data1: 905543055
+      Data2: 1203368654
+      Data3: 47085195
+      Data4: 1795583951
+    Path: event:/UI/Menu_Hover
+  MenuSelect:
+    Guid:
+      Data1: 353172414
+      Data2: 1100476234
+      Data3: -1521314683
+      Data4: 983527115
+    Path: event:/UI/Menu_Select

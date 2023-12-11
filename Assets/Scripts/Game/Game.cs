@@ -17,6 +17,7 @@ public class Game : MonoBehaviour
     [Header("DontDestroyOnLoadInstances")]
     [SerializeField] GameObject _playerSettingsPrefab;
     [SerializeField] GameObject _localizationPrefab;
+    [SerializeField] GameObject _audioControllerPrefab;
 
     [Header("Player")]
     [SerializeField] Player _player;
@@ -61,6 +62,8 @@ public class Game : MonoBehaviour
         _allMissionPickupsCompleted = false;
         _exitClear = false;
 
+        CheckAudioControllerInstance();
+
         CheckPlayerSettingsInstance();
 
         CheckLocalizationInstance();        
@@ -69,12 +72,23 @@ public class Game : MonoBehaviour
         _stateMachine.TransitionToState(new PlayState());
     }
 
+    void CheckAudioControllerInstance()
+    {
+#if UNITY_EDITOR
+        if (AudioController.Instance == null)
+        {
+            Debug.LogWarning("[Game] Start) No AudioController instance found, creating one.");
+            Instantiate(_audioControllerPrefab);
+        }
+#endif    
+    }
+
     void CheckPlayerSettingsInstance()
     {
 #if UNITY_EDITOR
         if (PlayerSettings.Instance == null)
         {
-            Debug.LogWarning("[Game] Start) No player settings instance, creating one.");
+            Debug.LogWarning("[Game] Start) No player settings instance found, creating one.");
             Instantiate(_playerSettingsPrefab);
         }
 #endif
@@ -85,7 +99,7 @@ public class Game : MonoBehaviour
 #if UNITY_EDITOR
         if (Localization.Instance == null)
         {
-            Debug.LogWarning("[Game] Start) No localization instance, creating one.");
+            Debug.LogWarning("[Game] Start) No localization instance found, creating one.");
             Instantiate(_localizationPrefab);
         }
 #endif
