@@ -27,14 +27,15 @@ public class AudioController : MonoBehaviour
     void Awake()
     {
         _instance = this;
+
         _maxInstancesCount = 0;
 
-        FMODAwake();
+        //FMODAwake();
     }
 
+    /*
     void FMODAwake()
     {
-        /*
         FMOD.RESULT createResult = FMOD.Studio.System.create(out _fmodStudioSystem);
 
         Debug.Log($"AudioController] FMODStart) create result: {createResult}");
@@ -48,10 +49,8 @@ public class AudioController : MonoBehaviour
         FMOD.RESULT result = _fmodStudioSystem.setAdvancedSettings(fmodSettings);
 
         Debug.Log($"AudioController] FMODStart) AFTER SET result:{result}, commandqueuesize: {fmodSettings.commandqueuesize}");
-        */
-
-        _musicEventInstance = CreateInstance(FMODEvents.Instance.GameplayMusicEvent);
     }
+    */
 
     public void PlayOneShot(EventReference sound, Vector3 worldPos)
     {
@@ -254,6 +253,8 @@ public class AudioController : MonoBehaviour
 
     public void GameplayStart()
     {
+        _musicEventInstance = CreateInstance(FMODEvents.Instance.GameplayMusicEvent);
+
         //Debug.Log($"AudioController] GameplayStart)...");
 
         //PlayerSettings.Instance.ApplyPlayerSettingsAudio();
