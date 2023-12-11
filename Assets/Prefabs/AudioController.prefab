@@ -310,3 +310,10 @@ MonoBehaviour:
       Data3: -1521314683
       Data4: 983527115
     Path: event:/UI/Menu_Select
+  Typewriter:
+    Guid:
+      Data1: -1799715008
+      Data2: 1190396532
+      Data3: 385800075
+      Data4: 814717346
+    Path: event:/UI/Typewriter

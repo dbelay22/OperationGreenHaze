@@ -3,8 +3,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using FMOD.Studio;
 
-[RequireComponent(typeof(AudioSource))]
 [RequireComponent(typeof(TMP_Text))]
 public class TypewriterEffect : MonoBehaviour
 {
@@ -12,18 +12,20 @@ public class TypewriterEffect : MonoBehaviour
 	[SerializeField] float _timeBtwChars = 0.1f;
 	[SerializeField] string _leadingChar = "";
 	[SerializeField] bool _leadingCharBeforeDelay = false;
-	[SerializeField] AudioClip[] _typewritterClips;
 
 	TMP_Text _tmpProText;
 	string _writer;
 
-	AudioSource _audioSource;
+	EventInstance _typewriterSFX;
 
-	void Start()
+    void Awake()
+    {
+		_typewriterSFX = AudioController.Instance.CreateInstance(FMODEvents.Instance.Typewriter);
+	}
+
+    void Start()
 	{
-		_tmpProText = GetComponent<TMP_Text>();
-
-		_audioSource = GetComponent<AudioSource>();
+		_tmpProText = GetComponent<TMP_Text>();		
 
 		_writer = Localization.Instance.GetTextByKey(_tmpProText.text);
 
@@ -32,8 +34,12 @@ public class TypewriterEffect : MonoBehaviour
 		StartCoroutine(TypeWriter());
 	}
 
+	int _charCount = 0;
+
 	IEnumerator TypeWriter()
 	{
+		_charCount = 0;
+
 		_tmpProText.text = _leadingCharBeforeDelay ? _leadingChar : "";
 
 		yield return new WaitForSeconds(_delayBeforeStart);
@@ -60,7 +66,12 @@ public class TypewriterEffect : MonoBehaviour
 				_tmpProText.text += _leadingChar;
 			}
 
-			PlayTypeSFX();
+			_charCount++;
+
+			if (_charCount % 7 == 0)
+			{
+				PlayTypeWordSFX();
+			}			
 
 			yield return new WaitForSeconds(_timeBtwChars);
 		}
@@ -71,26 +82,18 @@ public class TypewriterEffect : MonoBehaviour
 		}
 	}
 
-    void PlayTypeSFX()
+    void PlayTypeWordSFX()
     {
-		if (_audioSource.isPlaying)
-		{
-			return;
-		}
-
 		StartCoroutine(PlayTypeAWordSFXDelayed());
     }
 
 	IEnumerator PlayTypeAWordSFXDelayed()
 	{
-		int rndCharCount = UnityEngine.Random.Range(1, 10);
+		int rndCharCount = UnityEngine.Random.Range(1, 5);
 
 		for (int i = 0; i < rndCharCount; i++)
 		{
-			// play random press sfx			
-			int rndIdx = UnityEngine.Random.Range(0, _typewritterClips.Length);
-
-			_audioSource.PlayOneShot(_typewritterClips[rndIdx]);
+			AudioController.Instance.PlayEvent(_typewriterSFX, true);
 
 			yield return new WaitForSeconds(UnityEngine.Random.Range(0.05f, 0.09f));
 		}
@@ -105,6 +108,6 @@ public class TypewriterEffect : MonoBehaviour
 
 		_tmpProText.text = _writer;
 
-		_audioSource.Stop();
+		AudioController.Instance.StopEventIfPlaying(_typewriterSFX);
 	}
 }

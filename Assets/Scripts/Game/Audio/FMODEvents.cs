@@ -73,6 +73,7 @@ public class FMODEvents : MonoBehaviour
     [Header("UI")]
     public EventReference MenuHover;
     public EventReference MenuSelect;
+    public EventReference Typewriter;
 
     #region Instance
 
