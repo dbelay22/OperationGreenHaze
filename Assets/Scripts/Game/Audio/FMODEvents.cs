@@ -66,6 +66,7 @@ public class FMODEvents : MonoBehaviour
     public EventReference ZombieFall;
     public EventReference ZombieDie;
     public EventReference ZombieDamage;
+    public EventReference ZombieBlinded;
 
     [Header("Jet waves")]
     public EventReference Jet;
@@ -73,6 +74,7 @@ public class FMODEvents : MonoBehaviour
     [Header("UI")]
     public EventReference MenuHover;
     public EventReference MenuSelect;
+    public EventReference Typewriter;
 
     #region Instance
 

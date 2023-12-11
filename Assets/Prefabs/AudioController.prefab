@@ -289,6 +289,13 @@ MonoBehaviour:
       Data3: -1434493807
       Data4: -1207516450
     Path: event:/Zombies_Voices/Zombie_get_damage
+  ZombieBlinded:
+    Guid:
+      Data1: 872705278
+      Data2: 1233030825
+      Data3: -1801062503
+      Data4: -1045600856
+    Path: event:/Zombies_Voices/Zombie_Blinded
   Jet:
     Guid:
       Data1: -120129483
@@ -310,3 +317,10 @@ MonoBehaviour:
       Data3: -1521314683
       Data4: 983527115
     Path: event:/UI/Menu_Select
+  Typewriter:
+    Guid:
+      Data1: -1799715008
+      Data2: 1190396532
+      Data3: 385800075
+      Data4: 814717346
+    Path: event:/UI/Typewriter

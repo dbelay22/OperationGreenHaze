@@ -56,12 +56,6 @@ public class NpcAI : MonoBehaviour
     [SerializeField] GameObject _deadVFX;
 
     [Header("SFX")]
-    [SerializeField] AudioClip _growlSFX;
-    [SerializeField] AudioClip _punchSFX;
-    [SerializeField] AudioClip _synthSFX;
-    [SerializeField] AudioClip _bulletHitSFX;
-    [SerializeField] AudioClip _death01SFX;
-    [SerializeField] AudioClip _death02SFX;
     [SerializeField] AudioClip _blindedSFX;
 
     [Header("Minimap")]
@@ -78,8 +72,6 @@ public class NpcAI : MonoBehaviour
 
     Player _player;
 
-    AudioSource _audioSource;
-
     BoxCollider _bodyCollider;
     CapsuleCollider _headCollider;
 
@@ -95,6 +87,7 @@ public class NpcAI : MonoBehaviour
     EventInstance _zombieAttackFX;
     EventInstance _zombieAppear;
     EventInstance _zombieDamage;
+    EventInstance _zombieBlinded;
 
 
     void Awake()
@@ -117,8 +110,6 @@ public class NpcAI : MonoBehaviour
         _animator = GetComponent<Animator>();
 
         _player = _targetPlayer.GetComponent<Player>();
-
-        _audioSource = GetComponent<AudioSource>();
 
         _previousState = NpcState.Idle;
         _currentState = NpcState.Idle;
@@ -252,6 +243,8 @@ public class NpcAI : MonoBehaviour
         _zombieAppear = AudioController.Instance.Create3DInstance(FMODEvents.Instance.ZombieAppear, transform.position);
 
         _zombieDamage = AudioController.Instance.Create3DInstance(FMODEvents.Instance.ZombieDamage, transform.position);
+
+        _zombieBlinded = AudioController.Instance.Create3DInstance(FMODEvents.Instance.ZombieBlinded, transform.position);
     }
 
     void ProvokedUpdate()
@@ -274,7 +267,7 @@ public class NpcAI : MonoBehaviour
         StopMoving();
 
         // play sfx
-        PlayAudioClip(_blindedSFX);
+        AudioController.Instance.Play3DEvent(_zombieBlinded, transform.position, true);
 
         // set anim trigger
         _animator.SetTrigger("Blinded Trigger");
@@ -654,18 +647,6 @@ public class NpcAI : MonoBehaviour
         {
             AudioController.Instance.Play3DEvent(_zombieDieSFX, transform.position);
         }        
-    }
-
-    bool PlayAudioClip(AudioClip clip)
-    {
-        if (_audioSource.isPlaying)
-        {
-            return false;
-        }
-
-        _audioSource.PlayOneShot(clip);
-
-        return true;
     }
     
     void OnDrawGizmosSelected()

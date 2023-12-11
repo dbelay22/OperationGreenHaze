@@ -58,6 +58,86 @@ Preset:
     value: Near_Zombies_music
     objectReference: {fileID: 0}
   - target: {fileID: 0}
+    propertyPath: MenuMusic.Guid.Data1
+    value: -270983773
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: MenuMusic.Guid.Data2
+    value: 1107252570
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: MenuMusic.Guid.Data3
+    value: 1459056029
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: MenuMusic.Guid.Data4
+    value: 550585291
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: MenuMusic.Path
+    value: event:/Music/Music_menu
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: BriefingMusic.Guid.Data1
+    value: -2119929625
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: BriefingMusic.Guid.Data2
+    value: 1299647486
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: BriefingMusic.Guid.Data3
+    value: 592688787
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: BriefingMusic.Guid.Data4
+    value: -629468003
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: BriefingMusic.Path
+    value: event:/Music/Music_Carta
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: WinMusic.Guid.Data1
+    value: -705023796
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: WinMusic.Guid.Data2
+    value: 1260509541
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: WinMusic.Guid.Data3
+    value: -1356111965
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: WinMusic.Guid.Data4
+    value: 348496687
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: WinMusic.Path
+    value: event:/Music/Music_Win
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: LoseMusic.Guid.Data1
+    value: -1880182828
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: LoseMusic.Guid.Data2
+    value: 1136492969
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: LoseMusic.Guid.Data3
+    value: 1335201666
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: LoseMusic.Guid.Data4
+    value: 1878953327
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: LoseMusic.Path
+    value: event:/Music/Music_Game-over
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
     propertyPath: PlayerDamageByZombie.Guid.Data1
     value: -253622757
     objectReference: {fileID: 0}
@@ -504,5 +584,65 @@ Preset:
   - target: {fileID: 0}
     propertyPath: Jet.Path
     value: event:/Jet
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: MenuHover.Guid.Data1
+    value: 905543055
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: MenuHover.Guid.Data2
+    value: 1203368654
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: MenuHover.Guid.Data3
+    value: 47085195
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: MenuHover.Guid.Data4
+    value: 1795583951
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: MenuHover.Path
+    value: event:/UI/Menu_Hover
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: MenuSelect.Guid.Data1
+    value: 353172414
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: MenuSelect.Guid.Data2
+    value: 1100476234
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: MenuSelect.Guid.Data3
+    value: -1521314683
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: MenuSelect.Guid.Data4
+    value: 983527115
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: MenuSelect.Path
+    value: event:/UI/Menu_Select
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Typewriter.Guid.Data1
+    value: -1799715008
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Typewriter.Guid.Data2
+    value: 1190396532
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Typewriter.Guid.Data3
+    value: 385800075
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Typewriter.Guid.Data4
+    value: 814717346
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Typewriter.Path
+    value: event:/UI/Typewriter
     objectReference: {fileID: 0}
   m_ExcludedProperties: []
