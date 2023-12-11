@@ -2,17 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using FMODUnity;
+using FMOD.Studio;
 
-[RequireComponent(typeof(AudioSource))]
 public class TelegramMessageCanvas : MonoBehaviour
 {
     [Header("Telegram message")]
     [SerializeField] float _fadeInOutDuration = 3f;
     [SerializeField] TMP_Text _telegramText;
     [SerializeField] TMP_Text _pressKeyText;
-    [SerializeField] AudioClip _bgMusic;
+    
+    [SerializeField] EventReference _bgMusicRef;
 
-    AudioSource _audioSource;
+    EventInstance _bgMusicInstance;
 
     bool _keyWasPressed = false;
 
@@ -25,12 +27,7 @@ public class TelegramMessageCanvas : MonoBehaviour
         _keyWasPressed = false;
 
         // play sfx
-        _audioSource = GetComponent<AudioSource>();
-
-        if (_bgMusic != null)
-        {
-            _audioSource.PlayOneShot(_bgMusic);
-        }
+        AudioController.Instance.PlayInstanceOrCreate(_bgMusicInstance, _bgMusicRef, out _bgMusicInstance, true);
 
         _typewriterEffect = GetComponentInChildren<TypewriterEffect>();
     }
@@ -77,6 +74,9 @@ public class TelegramMessageCanvas : MonoBehaviour
 
     public virtual void OnFadeOutComplete() 
     {
+        //Debug.Log($"TMC] OnFadeOutComplete) stopping music {_bgMusicRef.Path}");
+
+        AudioController.Instance.StopFadeEvent(_bgMusicInstance);
     }
 
 }

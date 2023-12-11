@@ -6,6 +6,8 @@ public class GameOverUI : TelegramMessageCanvas
 {
     public override void OnFadeOutComplete()
     {
+        base.OnFadeOutComplete();
+
         LevelLoader.Instance.LoadMainMenu();
     }
 }

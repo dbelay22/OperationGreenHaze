@@ -66,7 +66,7 @@ public class Game : MonoBehaviour
 
         CheckPlayerSettingsInstance();
 
-        CheckLocalizationInstance();        
+        CheckLocalizationInstance();
 
         _stateMachine = new GameStateMachine();
         _stateMachine.TransitionToState(new PlayState());

@@ -285,7 +285,13 @@ MonoBehaviour:
   _fadeInOutDuration: 3
   _telegramText: {fileID: 51472111}
   _pressKeyText: {fileID: 51472110}
-  _bgMusic: {fileID: 0}
+  _bgMusicRef:
+    Guid:
+      Data1: -1880182828
+      Data2: 1136492969
+      Data3: 1335201666
+      Data4: 1878953327
+    Path: event:/Music/Music_Game-over
 --- !u!114 &51472110 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4268806864832699247, guid: ef8945843775fcd41aea9e95e6ebc283,
@@ -310,6 +316,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &51472112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 51472108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 0}
 --- !u!1 &656796693
 GameObject:
   m_ObjectHideFlags: 0

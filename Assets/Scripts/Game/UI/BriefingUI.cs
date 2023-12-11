@@ -7,6 +7,8 @@ public class BriefingUI : TelegramMessageCanvas
 {
     public override void OnFadeOutComplete()
     {
+        base.OnFadeOutComplete();
+
         LevelLoader.Instance.LoadNextLevel();
     }
 
