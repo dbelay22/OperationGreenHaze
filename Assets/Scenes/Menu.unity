@@ -5717,7 +5717,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e01e315ef45539c40b99a94c0c86ca16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sfxSample: {fileID: 8300000, guid: dc2d5ae4bdfe587419121f011a72d8c6, type: 3}
   _musicVolumeSlider: {fileID: 1127257598}
   _sfxVolumeSlider: {fileID: 878043932}
 --- !u!82 &2121287930

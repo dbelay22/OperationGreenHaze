@@ -3,22 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using FMOD.Studio;
 
-[RequireComponent(typeof(AudioSource))]
 public class OptionsMenu : MonoBehaviour
 {
-    [SerializeField] AudioClip _sfxSample;
-
     [Header("Slider range [-80db, 0db]")]
     [SerializeField] Slider _musicVolumeSlider;
     [SerializeField] Slider _sfxVolumeSlider;
 
-    AudioSource _audioSource;
+    EventInstance _sfxSample;
 
     void Start()
     {
-        _audioSource = GetComponent<AudioSource>();
-
         _musicVolumeSlider.value = PlayerSettings.Instance.LoadMusicSetting();
         _sfxVolumeSlider.value = PlayerSettings.Instance.LoadSFXSetting();
     }
@@ -48,10 +44,7 @@ public class OptionsMenu : MonoBehaviour
             return;
         }
 
-        if (!_audioSource.isPlaying)
-        {
-            _audioSource.PlayOneShot(_sfxSample);
-        }
+        AudioController.Instance.PlayInstanceOrCreate(_sfxSample, FMODEvents.Instance.ChangeWeaponPistol, out _sfxSample, false);        
 
         // persist
         PlayerSettings.Instance.SaveSFXSetting(newVolume);

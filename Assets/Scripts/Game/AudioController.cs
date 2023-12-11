@@ -5,15 +5,6 @@ using FMODUnity;
 
 public class AudioController : MonoBehaviour
 {
-    /*
-    [Header("Ingame Music AudioSource")]
-    [SerializeField] AudioSource _ingameMusicSource;
-
-    [Header("Audio Clips")]
-    [SerializeField] AudioClip _gameOverMusic;
-    [SerializeField] AudioClip _winMusic;
-    */
-
     [Header("Mixer")]
     [SerializeField] bool _musicOn;
 
@@ -92,6 +83,53 @@ public class AudioController : MonoBehaviour
         return eventInstance;
     }
 
+    public EventInstance PlayFromPoolOrCreate(EventReference eventReference, bool forcePlay = false)
+    {
+        string path = "";
+
+        foreach (EventInstance eventInstance in _eventInstances)
+        {
+            eventInstance.getDescription(out EventDescription description);
+            
+            description.getPath(out path);
+            
+            if (path.Equals(eventReference.Path))
+            {
+                Debug.Log($"AudioController] PlayFromPoolOrCreate) found instance in pool path: {path}, using it.");
+
+                PlayEvent(eventInstance, forcePlay);
+
+                return eventInstance;
+            }
+        }
+
+        Debug.Log($"AudioController] PlayFromPoolOrCreate) instance NOT FOUND in pool path: {eventReference.Path}, creating one.");
+
+        EventInstance newInstance = CreateInstance(eventReference);
+        
+        PlayEvent(newInstance, forcePlay);
+
+        return newInstance;
+    }
+
+    public void PlayInstanceOrCreate(EventInstance instance, EventReference reference, out EventInstance outInstance, bool forcePlay = false)
+    {
+        if (instance.isValid())
+{
+            Debug.Log($"AudioController] PlayInstanceOrCreate) instance is valid, playing it.");
+
+            PlayEvent(instance, forcePlay);
+            
+            outInstance = instance;
+        }
+        else
+        {
+            outInstance = PlayFromPoolOrCreate(reference, forcePlay);
+
+            Debug.Log($"AudioController] PlayInstanceOrCreate) instance created/found in pool, playing...");
+        }
+    }
+
     public bool PlayEvent(EventInstance eventInstance, bool forcePlay = false)
     {
         eventInstance.getPlaybackState(out PLAYBACK_STATE playbackState);
@@ -121,7 +159,7 @@ public class AudioController : MonoBehaviour
 
         if (playbackState.Equals(PLAYBACK_STATE.STOPPED) || forcePlay)
         {
-            Debug.Log($"AudioController] PlayEvent) starting event: {path}");            
+            Debug.Log($"AudioController] PlayEvent) starting event: {path}");   
 
             eventInstance.start();
             

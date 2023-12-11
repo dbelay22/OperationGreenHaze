@@ -6,14 +6,8 @@ using UnityEngine.EventSystems;
 
 public class MenuBase : MonoBehaviour, IPointerEnterHandler
 {
-    EventInstance _menuHover;
-    EventInstance _menuSelect;
-
-    void Awake()
-    {
-        _menuHover = AudioController.Instance.CreateInstance(FMODEvents.Instance.MenuHover);
-        _menuSelect = AudioController.Instance.CreateInstance(FMODEvents.Instance.MenuSelect);
-    }
+    EventInstance _menuHoverSFX;
+    EventInstance _menuSelectSFX;
 
     void Start()
     {
@@ -41,12 +35,12 @@ public class MenuBase : MonoBehaviour, IPointerEnterHandler
 
     public void PlayOptionSelectSFX()
     {
-        AudioController.Instance.PlayEvent(_menuSelect);
+        AudioController.Instance.PlayInstanceOrCreate(_menuSelectSFX, FMODEvents.Instance.MenuSelect, out _menuSelectSFX);
     }
 
     public void PlayNavigateSFX()
     {
-        AudioController.Instance.PlayEvent(_menuHover, true);
+        AudioController.Instance.PlayInstanceOrCreate(_menuHoverSFX, FMODEvents.Instance.MenuHover, out _menuHoverSFX);
     }
 
 }
