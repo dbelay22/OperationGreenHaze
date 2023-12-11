@@ -420,7 +420,7 @@ MonoBehaviour:
   sourceProjectPath: Assets/Fmod/OperationGreenHaze fmod2.fspro
   sourceBankPath: Assets/Fmod/Build
   sourceBankPathUnformatted: 
-  BankRefreshCooldown: 5
+  BankRefreshCooldown: 1
   ShowBankRefreshWindow: 1
   AutomaticEventLoading: 1
   BankLoadType: 0
