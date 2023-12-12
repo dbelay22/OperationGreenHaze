@@ -76,6 +76,9 @@ public class FMODEvents : MonoBehaviour
     public EventReference MenuSelect;
     public EventReference Typewriter;
 
+    [Header("Explosions")]
+    public EventReference BarrelExplosion;
+
     #region Instance
 
     private static FMODEvents _instance;

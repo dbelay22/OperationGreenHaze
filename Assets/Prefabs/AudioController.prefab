@@ -324,3 +324,10 @@ MonoBehaviour:
       Data3: 385800075
       Data4: 814717346
     Path: event:/UI/Typewriter
+  BarrelExplosion:
+    Guid:
+      Data1: -501221051
+      Data2: 1161767055
+      Data3: -1653069180
+      Data4: 15275707
+    Path: event:/Objets/Barrel_explosion
