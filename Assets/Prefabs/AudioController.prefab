@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e83570fb507b804c85f9d6cbc67c669, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _musicOn: 0
+  _musicOn: 1
 --- !u!114 &6286549390428734130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,6 +142,13 @@ MonoBehaviour:
       Data3: 1335201666
       Data4: 1878953327
     Path: event:/Music/Music_Game-over
+  AmbienceSoundscape:
+    Guid:
+      Data1: -158169680
+      Data2: 1158894446
+      Data3: 1187794604
+      Data4: -1189200037
+    Path: event:/Soundscape
   PlayerDamageByZombie:
     Guid:
       Data1: -253622757
@@ -324,3 +331,10 @@ MonoBehaviour:
       Data3: 385800075
       Data4: 814717346
     Path: event:/UI/Typewriter
+  BarrelExplosion:
+    Guid:
+      Data1: -501221051
+      Data2: 1161767055
+      Data3: -1653069180
+      Data4: 15275707
+    Path: event:/Objets/Barrel_explosion

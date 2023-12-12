@@ -4,7 +4,6 @@ using StarterAssets;
 using UnityEngine;
 using FMOD.Studio;
 
-[RequireComponent(typeof(AudioSource))]
 public class ZombieSteps : MonoBehaviour
 {
     bool _isWalking = false;

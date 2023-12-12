@@ -15,6 +15,8 @@ public class GameOverState : GameState
         GameUI.Instance.ShowGameOver();
 
         UnlockCursor();
+
+        AudioController.Instance.GameplayStop();
     }
 
     void UnlockCursor()
@@ -25,12 +27,10 @@ public class GameOverState : GameState
 
     public override void ExitState()
     {
-        AudioController.Instance.GameplayStop();
     }
 
     public override void Update()
-    {
-        
+    {        
     }
 
 }

@@ -11,6 +11,7 @@ public class AudioController : MonoBehaviour
     List<EventInstance> _eventInstances = new List<EventInstance>();
 
     EventInstance _musicEventInstance;
+    EventInstance _ambienceSoundscape;
 
     int _maxInstancesCount = 0;
 
@@ -19,7 +20,7 @@ public class AudioController : MonoBehaviour
     #region Instance
 
     private static AudioController _instance;
-
+    
     public static AudioController Instance { get { return _instance; } }
 
     #endregion
@@ -27,14 +28,15 @@ public class AudioController : MonoBehaviour
     void Awake()
     {
         _instance = this;
+
         _maxInstancesCount = 0;
 
-        FMODAwake();
+        //FMODAwake();
     }
 
+    /*
     void FMODAwake()
     {
-        /*
         FMOD.RESULT createResult = FMOD.Studio.System.create(out _fmodStudioSystem);
 
         Debug.Log($"AudioController] FMODStart) create result: {createResult}");
@@ -48,15 +50,8 @@ public class AudioController : MonoBehaviour
         FMOD.RESULT result = _fmodStudioSystem.setAdvancedSettings(fmodSettings);
 
         Debug.Log($"AudioController] FMODStart) AFTER SET result:{result}, commandqueuesize: {fmodSettings.commandqueuesize}");
-        */
-
-        _musicEventInstance = CreateInstance(FMODEvents.Instance.GameplayMusicEvent);
     }
-
-    public void PlayOneShot(EventReference sound, Vector3 worldPos)
-    {
-        RuntimeManager.PlayOneShot(sound, worldPos);
-    }
+    */
 
     public EventInstance CreateInstance(EventReference eventReference) {
 
@@ -69,7 +64,9 @@ public class AudioController : MonoBehaviour
             _maxInstancesCount = _eventInstances.Count;
         }
 
-        //Debug.Log($"AudioController] CreateInstance) NEW instance of path: {eventReference.Path}, list count so far: [{_eventInstances.Count}]");
+        string path = GetEventInstancePath(eventInstance);
+
+        Debug.Log($"AudioController] CreateInstance) NEW instance of path: {path}, list count so far: [{_eventInstances.Count}]");
 
         return eventInstance;
     }
@@ -83,33 +80,44 @@ public class AudioController : MonoBehaviour
         return eventInstance;
     }
 
-    public EventInstance PlayFromPoolOrCreate(EventReference eventReference, bool forcePlay = false)
+    public EventInstance PlayFromListOrCreate(EventReference eventReference, bool forcePlay = false)
     {
-        string path = "";
+        EventInstance instance = getInstanceFromList(eventReference);
 
+        if (!instance.isValid())
+        {
+            Debug.Log($"AudioController] PlayFromListOrCreate) instance NOT FOUND in list path: {eventReference.Guid}, creating one.");
+            instance = CreateInstance(eventReference);
+        }
+        else
+        {
+            Debug.Log($"AudioController] PlayFromListOrCreate) instance FOUND in list path: {eventReference.Guid}, using it.");
+        }
+
+        PlayEvent(instance, forcePlay);
+
+        return instance;
+    }
+
+    EventInstance getInstanceFromList(EventReference eventReference)
+    {
         foreach (EventInstance eventInstance in _eventInstances)
         {
             eventInstance.getDescription(out EventDescription description);
-            
-            description.getPath(out path);
-            
-            if (path.Equals(eventReference.Path))
-            {
-                Debug.Log($"AudioController] PlayFromPoolOrCreate) found instance in pool path: {path}, using it.");
 
-                PlayEvent(eventInstance, forcePlay);
+            description.getID(out FMOD.GUID instanceGuid);
+
+            if (instanceGuid.Equals(eventReference.Guid))
+            {
+                description.getPath(out string path);
+
+                Debug.Log($"AudioController] getInstanceFromList) found instance in list path: {path}, using it.");                
 
                 return eventInstance;
             }
         }
 
-        Debug.Log($"AudioController] PlayFromPoolOrCreate) instance NOT FOUND in pool path: {eventReference.Path}, creating one.");
-
-        EventInstance newInstance = CreateInstance(eventReference);
-        
-        PlayEvent(newInstance, forcePlay);
-
-        return newInstance;
+        return new EventInstance();
     }
 
     public void PlayInstanceOrCreate(EventInstance instance, EventReference reference, out EventInstance outInstance, bool forcePlay = false)
@@ -124,23 +132,20 @@ public class AudioController : MonoBehaviour
         }
         else
         {
-            outInstance = PlayFromPoolOrCreate(reference, forcePlay);
+            outInstance = PlayFromListOrCreate(reference, forcePlay);
 
-            Debug.Log($"AudioController] PlayInstanceOrCreate) instance created/found in pool, playing...");
+            Debug.Log($"AudioController] PlayInstanceOrCreate) instance created/found in list, playing...");
         }
     }
 
     public bool PlayEvent(EventInstance eventInstance, bool forcePlay = false)
     {
-        eventInstance.getPlaybackState(out PLAYBACK_STATE playbackState);
+        Debug.Log($"AudioController] PlayEvent)");
 
-        //eventInstance.getDescription(out EventDescription desc);
-        //desc.getPath(out string evtPath);
-        //Debug.Log($"AudioController] PlayEvent) eventInstance:{evtPath}, playbackState: {playbackState}");
-
-        if (playbackState.Equals(PLAYBACK_STATE.STOPPED) || forcePlay)
+        if (forcePlay || !IsEventPlaying(eventInstance))
         {
-            //Debug.Log($"AudioController] PlayEvent) starting event: {evtPath}");
+            //Debug.Log($"AudioController] PlayEvent) starting event");
+            
             eventInstance.start();
             
             return true;
@@ -151,13 +156,11 @@ public class AudioController : MonoBehaviour
 
     public bool Play3DEvent(EventInstance eventInstance, Vector3 position, bool forcePlay = false)
     {
-        eventInstance.getPlaybackState(out PLAYBACK_STATE playbackState);
+        eventInstance.set3DAttributes(RuntimeUtils.To3DAttributes(position));
 
         string path = GetEventInstancePath(eventInstance);
 
-        eventInstance.set3DAttributes(RuntimeUtils.To3DAttributes(position));
-
-        if (playbackState.Equals(PLAYBACK_STATE.STOPPED) || forcePlay)
+        if (forcePlay || !IsEventPlaying(eventInstance))
         {
             Debug.Log($"AudioController] PlayEvent) starting event: {path}");  
 
@@ -180,9 +183,7 @@ public class AudioController : MonoBehaviour
 
     public void StopEventIfPlaying(EventInstance eventInstance)
     {
-        eventInstance.getPlaybackState(out PLAYBACK_STATE playbackState);
-
-        if (playbackState.Equals(PLAYBACK_STATE.PLAYING))
+        if (eventInstance.isValid() && IsEventPlaying(eventInstance))
         {
             StopEvent(eventInstance);
         }
@@ -250,32 +251,92 @@ public class AudioController : MonoBehaviour
         description.getPath(out string path);
 
         return path;
-    }    
+    }
+
+    PLAYBACK_STATE GetPlaybackState(EventInstance instance)
+    {
+        if (!instance.isValid())
+        {
+            Debug.LogWarning($"AudioController] GetPlaybackState) instance is not valid");
+            return PLAYBACK_STATE.STOPPED;
+        }
+
+        instance.getPlaybackState(out PLAYBACK_STATE playbackState);
+
+        return playbackState;
+    }
+
+    bool IsEventPlaying(EventInstance instance)
+    {
+        PLAYBACK_STATE playbackState = GetPlaybackState(instance);
+
+        return playbackState.Equals(PLAYBACK_STATE.PLAYING);
+    }
+
+    #region GameplayStates
 
     public void GameplayStart()
     {
-        //Debug.Log($"AudioController] GameplayStart)...");
-
-        //PlayerSettings.Instance.ApplyPlayerSettingsAudio();
-
-        _musicEventInstance.getPlaybackState(out PLAYBACK_STATE playbackState);
-        //Debug.Log($"AudioController] GameplayStart) playbackState: {playbackState}");
-
-        if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
-        {
-            _musicEventInstance.setParameterByName(FMODEvents.Instance.MusicPartsParam, 0);
-
-            _musicEventInstance.setParameterByName(FMODEvents.Instance.TerrorMusicParam, 0);
-
 #if UNITY_EDITOR
-            if (!_musicOn)
-            {
-                return;                
-            }
+        if (!_musicOn)
+        {
+            return;
+        }
 #endif
 
-            PlayEvent(_musicEventInstance, true);
+        Debug.Log($"AudioController] GameplayStart)...");
+
+        PlayGameplayMusic();
+
+        PlayAmbience();
+    }
+
+    public void GameplayPause()
+    {
+#if UNITY_EDITOR
+        if (!_musicOn)
+        {
+            return;
         }
+#endif        
+      
+        Debug.Log($"AudioController] GameplayPause)...");
+
+        PauseEvent(_musicEventInstance);
+
+        PauseEvent(_ambienceSoundscape);
+    }    
+
+    public void GameplayResume()
+    {
+#if UNITY_EDITOR
+        if (!_musicOn)
+        {
+            return;
+        }
+#endif
+
+        Debug.Log($"AudioController] GameplayResume)...");
+
+        ResumeEvent(_musicEventInstance);
+
+        ResumeEvent(_ambienceSoundscape);
+    }
+
+    public void GameplayStop()
+    {
+#if UNITY_EDITOR
+        if (!_musicOn)
+        {
+            return;
+        }
+#endif
+
+        Debug.Log($"AudioController] GameplayStop)...");
+
+        StopEvent(_musicEventInstance);
+
+        StopEvent(_ambienceSoundscape);
     }
 
     public void GameplayFindExit()
@@ -285,25 +346,11 @@ public class AudioController : MonoBehaviour
 
     public void GameplayDead()
     {
+        Debug.Log("AudioController] GameplayDead)...");
+
         int musicPart = Game.Instance.PlayerNeedsToClearExitNow() ? 3 : 2;
 
         _musicEventInstance.setParameterByName(FMODEvents.Instance.MusicPartsParam, musicPart);
-    }
-    public void GameplayPause()
-    {
-        Debug.Log($"AudioController] GameplayPause)...");
-
-        //PlayerSettings.Instance.SetAudioMixerMusicVolume(PlayerSettings.MIN_VOLUME_DB);
-        //PlayerSettings.Instance.SetAudioMixerSFXVolume(PlayerSettings.MIN_VOLUME_DB);
-
-#if UNITY_EDITOR
-        if (!_musicOn)
-        {
-            return;
-        }
-#endif
-
-        PauseEvent(_musicEventInstance);
     }
 
     public void GameplayIntensityUpdate(float intensity)
@@ -316,27 +363,35 @@ public class AudioController : MonoBehaviour
         _musicEventInstance.setParameterByName(FMODEvents.Instance.NearZombiesParam, intensity);
     }
 
-    public void GameplayResume()
+    void PlayAmbience()
     {
-#if UNITY_EDITOR
-        if (!_musicOn)
+        if (_ambienceSoundscape.isValid() && IsEventPlaying(_ambienceSoundscape))
         {
+            Debug.LogWarning("AudioController] PlayAmbience) AmbienceSoundscape is already playing...");
             return;
         }
-#endif
-        ResumeEvent(_musicEventInstance);
+
+        _ambienceSoundscape = CreateInstance(FMODEvents.Instance.AmbienceSoundscape);
+
+        PlayEvent(_ambienceSoundscape, true);
     }
 
-    public void GameplayStop()
+    void PlayGameplayMusic()
     {
-#if UNITY_EDITOR
-        if (!_musicOn)
+        if (_musicEventInstance.isValid() && IsEventPlaying(_musicEventInstance))
         {
+            Debug.LogWarning("AudioController] PlayGameplayMusic) music is already playing...");
             return;
         }
-#endif
-        StopEvent(_musicEventInstance);
+
+        PlayInstanceOrCreate(_musicEventInstance, FMODEvents.Instance.GameplayMusicEvent, out _musicEventInstance, true);
+
+        _musicEventInstance.setParameterByName(FMODEvents.Instance.MusicPartsParam, 0);
+
+        _musicEventInstance.setParameterByName(FMODEvents.Instance.TerrorMusicParam, 0);
     }
+
+    #endregion GameplayStates
 
     void CleanUp()
     {

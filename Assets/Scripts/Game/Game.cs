@@ -48,6 +48,12 @@ public class Game : MonoBehaviour
     void Awake()
     {
         _instance = this;
+        
+        CheckAudioControllerInstance();
+
+        CheckPlayerSettingsInstance();
+
+        CheckLocalizationInstance();
     }
 
     #endregion
@@ -60,13 +66,7 @@ public class Game : MonoBehaviour
 
         _allEnemiesKilled = false;
         _allMissionPickupsCompleted = false;
-        _exitClear = false;
-
-        CheckAudioControllerInstance();
-
-        CheckPlayerSettingsInstance();
-
-        CheckLocalizationInstance();
+        _exitClear = false;       
 
         _stateMachine = new GameStateMachine();
         _stateMachine.TransitionToState(new PlayState());
