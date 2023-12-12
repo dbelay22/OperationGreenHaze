@@ -82,33 +82,44 @@ public class AudioController : MonoBehaviour
         return eventInstance;
     }
 
-    public EventInstance PlayFromPoolOrCreate(EventReference eventReference, bool forcePlay = false)
+    public EventInstance PlayFromListOrCreate(EventReference eventReference, bool forcePlay = false)
     {
-        string path = "";
+        EventInstance instance = getInstanceFromList(eventReference);
 
+        if (!instance.isValid())
+        {
+            Debug.Log($"AudioController] PlayFromListOrCreate) instance NOT FOUND in list path: {eventReference.Guid}, creating one.");
+            instance = CreateInstance(eventReference);
+        }
+        else
+        {
+            Debug.Log($"AudioController] PlayFromListOrCreate) instance FOUND in list path: {eventReference.Guid}, using it.");
+        }
+
+        PlayEvent(instance, forcePlay);
+
+        return instance;
+    }
+
+    EventInstance getInstanceFromList(EventReference eventReference)
+    {
         foreach (EventInstance eventInstance in _eventInstances)
         {
             eventInstance.getDescription(out EventDescription description);
-            
-            description.getPath(out path);
-            
-            if (path.Equals(eventReference.Path))
-            {
-                Debug.Log($"AudioController] PlayFromPoolOrCreate) found instance in pool path: {path}, using it.");
 
-                PlayEvent(eventInstance, forcePlay);
+            description.getID(out FMOD.GUID instanceGuid);
+
+            if (instanceGuid.Equals(eventReference.Guid))
+            {
+                description.getPath(out string path);
+
+                Debug.Log($"AudioController] getInstanceFromList) found instance in list path: {path}, using it.");                
 
                 return eventInstance;
             }
         }
 
-        Debug.Log($"AudioController] PlayFromPoolOrCreate) instance NOT FOUND in pool path: {eventReference.Path}, creating one.");
-
-        EventInstance newInstance = CreateInstance(eventReference);
-        
-        PlayEvent(newInstance, forcePlay);
-
-        return newInstance;
+        return new EventInstance();
     }
 
     public void PlayInstanceOrCreate(EventInstance instance, EventReference reference, out EventInstance outInstance, bool forcePlay = false)
@@ -123,9 +134,9 @@ public class AudioController : MonoBehaviour
         }
         else
         {
-            outInstance = PlayFromPoolOrCreate(reference, forcePlay);
+            outInstance = PlayFromListOrCreate(reference, forcePlay);
 
-            Debug.Log($"AudioController] PlayInstanceOrCreate) instance created/found in pool, playing...");
+            Debug.Log($"AudioController] PlayInstanceOrCreate) instance created/found in list, playing...");
         }
     }
 

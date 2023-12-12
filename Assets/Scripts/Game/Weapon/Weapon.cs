@@ -224,7 +224,7 @@ public class Weapon : MonoBehaviour
         // Did I Hit ?
         if (hitSomething)
         {
-            Debug.Log($"[Weapon](ShootUpdate) Just hit {hit.transform.name}, tag: {hit.transform.tag}, distance: {hit.distance}");
+            //Debug.Log($"[Weapon](ShootUpdate) Just hit {hit.transform.name}, tag: {hit.transform.tag}, distance: {hit.distance}");
 
             hitEnemy = ProcessHitEnemy(hit);
 
@@ -343,7 +343,7 @@ public class Weapon : MonoBehaviour
 
     void PlayHitImpactSFX(RaycastHit hit, BullletImpactTarget impactTarget)
     {
-        Debug.Log($"[Weapon] PlayHitImpactSFX) impact target: {impactTarget}");
+        //Debug.Log($"[Weapon] PlayHitImpactSFX) impact target: {impactTarget}");
 
         _bulletImpactSFX.setParameterByName(FMODEvents.Instance.ImpactMaterialParameter, (int) impactTarget);
 
