@@ -275,9 +275,9 @@ public class PlayerHealth : MonoBehaviour
 
     void OnPlayerDeath()
     {
-        AudioController.Instance.StopEventIfPlaying(_damageByFireSFX);
+        AudioController.Instance.StopEvent(_damageByFireSFX);
         
-        AudioController.Instance.StopEventIfPlaying(_damageByGasSFX);
+        AudioController.Instance.StopEvent(_damageByGasSFX);
     }
 
 }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using FMODUnity;
 
@@ -16,6 +14,9 @@ public class FMODEvents : MonoBehaviour
     public EventReference BriefingMusic;
     public EventReference WinMusic;
     public EventReference LoseMusic;
+
+    [Header("Ambience")]
+    public EventReference AmbienceSoundscape;
 
     [Header("Player")]
     public EventReference PlayerDamageByZombie;
