@@ -580,7 +580,7 @@ public class NpcAI : MonoBehaviour
 
         if (_currentHealth <= 0f)
         {
-            _deadByHeadshot = true;
+            _deadByHeadshot = isHeadshot;
 
             Debug.Log("DEAD BY HEADSHOT");
 
@@ -613,8 +613,7 @@ public class NpcAI : MonoBehaviour
 
         if (_deadByHeadshot)
         {
-            GameObject head = _bodyParts[0];
-            
+            GameObject head = _bodyParts[0];            
             head.SetActive(false);
         }
 
