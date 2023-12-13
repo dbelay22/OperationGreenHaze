@@ -177,6 +177,14 @@ MonoBehaviour:
       Data3: 381256613
       Data4: -1264587235
     Path: event:/Dead_falldown
+  PlayerHealth:
+    Guid:
+      Data1: -1536465125
+      Data2: 1221181170
+      Data3: 2137454005
+      Data4: 1764210994
+    Path: event:/Healt
+  HealthParamName: Health_Medium-Low
   PlayerFootsteps:
     Guid:
       Data1: 1639583792

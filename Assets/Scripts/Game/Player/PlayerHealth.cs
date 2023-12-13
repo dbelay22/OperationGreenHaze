@@ -24,6 +24,7 @@ public class PlayerHealth : MonoBehaviour
     EventInstance _damageByFireSFX;
     EventInstance _damageByGasSFX;
     EventInstance _deathSFX;
+    EventInstance _healthSFX;    
 
     float _timeSinceLastDamage = 0f;
 
@@ -33,11 +34,13 @@ public class PlayerHealth : MonoBehaviour
 
         _damageByZombieSFX = AudioController.Instance.Create3DInstance(FMODEvents.Instance.PlayerDamageByZombie, transform.position);
 
-        _damageByFireSFX = AudioController.Instance.Create3DInstance(FMODEvents.Instance.PlayerDamageByFire, transform.position);
+        _damageByFireSFX = AudioController.Instance.CreateInstance(FMODEvents.Instance.PlayerDamageByFire);
         
-        _damageByGasSFX = AudioController.Instance.Create3DInstance(FMODEvents.Instance.PlayerDamageByGas, transform.position);
+        _damageByGasSFX = AudioController.Instance.CreateInstance(FMODEvents.Instance.PlayerDamageByGas);
 
-        _deathSFX = AudioController.Instance.Create3DInstance(FMODEvents.Instance.PlayerDeath, transform.position);
+        _deathSFX = AudioController.Instance.CreateInstance(FMODEvents.Instance.PlayerDeath);
+
+        _healthSFX = AudioController.Instance.CreateInstance(FMODEvents.Instance.PlayerHealth);
     }
 
     void Update()
@@ -87,9 +90,6 @@ public class PlayerHealth : MonoBehaviour
         // take damage
         HealthUpdate(0 - _toxicZoneDamage);
 
-        // play TOS
-        AudioController.Instance.Play3DEvent(_damageByGasSFX, transform.position, true);
-
         _timeSinceLastDamage = 0f;
 
         return true;
@@ -100,6 +100,11 @@ public class PlayerHealth : MonoBehaviour
         if (!trigger.CompareTag(TOXIC_ZONE_TRIGGER))
         {
             return false;
+        }
+
+        if (GetCurrentHealthClamped() > 0 && !AudioController.Instance.IsEventPlaying(_damageByGasSFX))
+        {
+            AudioController.Instance.PlayEvent(_damageByGasSFX, true);
         }
 
         _timeSinceLastDamage += Time.deltaTime;
@@ -122,9 +127,16 @@ public class PlayerHealth : MonoBehaviour
             return false;           
         }
 
-        AudioController.Instance.StopEvent(_damageByGasSFX);
+        StartCoroutine(StopFadeDamageByGasSFX(3f));
 
         return true;
+    }
+
+    IEnumerator StopFadeDamageByGasSFX(float time)
+    {
+        yield return new WaitForSeconds(time);
+
+        AudioController.Instance.StopEvent(_damageByGasSFX);
     }
 
     #endregion ToxicZone
@@ -140,10 +152,7 @@ public class PlayerHealth : MonoBehaviour
         }
 
         // take damage
-        HealthUpdate(0 - _fireZoneDamage);
-
-        // play sfx
-        AudioController.Instance.Play3DEvent(_damageByFireSFX, transform.position, true);
+        HealthUpdate(0 - _fireZoneDamage);        
 
         _timeSinceLastDamage = 0f;
 
@@ -155,6 +164,12 @@ public class PlayerHealth : MonoBehaviour
         if (!trigger.CompareTag(FIRE_ZONE_TRIGGER))
         {
             return false;
+        }
+
+        // play sfx
+        if (GetCurrentHealthClamped() > 0 && !AudioController.Instance.IsEventPlaying(_damageByFireSFX))
+        {
+            AudioController.Instance.PlayEvent(_damageByFireSFX);
         }
 
         _timeSinceLastDamage += Time.deltaTime;
@@ -177,9 +192,16 @@ public class PlayerHealth : MonoBehaviour
             return false;            
         }
 
-        AudioController.Instance.StopEvent(_damageByFireSFX);
+        StartCoroutine(StopFadeDamageByFireSFX(3f));
 
         return true;
+    }
+
+    IEnumerator StopFadeDamageByFireSFX(float time)
+    {
+        yield return new WaitForSeconds(time);
+
+        AudioController.Instance.StopFadeEvent(_damageByFireSFX);
     }
 
     #endregion FireZone
@@ -247,15 +269,26 @@ public class PlayerHealth : MonoBehaviour
         {
             BroadcastMessage("OnPlayerDeath", SendMessageOptions.RequireReceiver);
 
-            // sound!
-            AudioController.Instance.Play3DEvent(_deathSFX, transform.position, true);
-
             Game.Instance.ChangeStateToGameOver();
         }
         else if (IsBadlyHurt())
         {
             GameUI.Instance.ShowPlayerBadlyHurt();
-        }          
+            
+            _healthSFX.setParameterByName(FMODEvents.Instance.HealthParamName, _currentHealth);
+
+            Debug.Log($"PlayerHealth] HealthUpdate) Sent health param value: {_currentHealth}");
+
+            if (!AudioController.Instance.IsEventPlaying(_healthSFX))
+            {
+                AudioController.Instance.PlayEvent(_healthSFX);
+            }
+        }
+        else
+        {
+            // healthy player
+            AudioController.Instance.StopEventIfPlaying(_healthSFX);
+        }
     }
 
     public bool IsBadlyHurt()
@@ -275,9 +308,15 @@ public class PlayerHealth : MonoBehaviour
 
     void OnPlayerDeath()
     {
+        Debug.Log("PlayerHealth] OnPlayerDeath)...");
+
+        AudioController.Instance.StopEvent(_healthSFX);
+
         AudioController.Instance.StopEvent(_damageByFireSFX);
-        
+
         AudioController.Instance.StopEvent(_damageByGasSFX);
+
+        AudioController.Instance.Play3DEvent(_deathSFX, transform.position, true);
     }
 
 }

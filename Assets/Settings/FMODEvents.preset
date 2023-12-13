@@ -138,6 +138,26 @@ Preset:
     value: event:/Music/Music_Game-over
     objectReference: {fileID: 0}
   - target: {fileID: 0}
+    propertyPath: AmbienceSoundscape.Guid.Data1
+    value: -158169680
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: AmbienceSoundscape.Guid.Data2
+    value: 1158894446
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: AmbienceSoundscape.Guid.Data3
+    value: 1187794604
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: AmbienceSoundscape.Guid.Data4
+    value: -1189200037
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: AmbienceSoundscape.Path
+    value: event:/Soundscape
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
     propertyPath: PlayerDamageByZombie.Guid.Data1
     value: -253622757
     objectReference: {fileID: 0}
@@ -216,6 +236,30 @@ Preset:
   - target: {fileID: 0}
     propertyPath: PlayerDeath.Path
     value: event:/Dead_falldown
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerHealth.Guid.Data1
+    value: -1536465125
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerHealth.Guid.Data2
+    value: 1221181170
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerHealth.Guid.Data3
+    value: 2137454005
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerHealth.Guid.Data4
+    value: 1764210994
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerHealth.Path
+    value: event:/Healt
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: HealthParamName
+    value: Health_Medium-Low
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: PlayerFootsteps.Guid.Data1
@@ -566,6 +610,26 @@ Preset:
     value: event:/Zombies_Voices/Zombie_get_damage
     objectReference: {fileID: 0}
   - target: {fileID: 0}
+    propertyPath: ZombieBlinded.Guid.Data1
+    value: 872705278
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieBlinded.Guid.Data2
+    value: 1233030825
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieBlinded.Guid.Data3
+    value: -1801062503
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieBlinded.Guid.Data4
+    value: -1045600856
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieBlinded.Path
+    value: event:/Zombies_Voices/Zombie_Blinded
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
     propertyPath: Jet.Guid.Data1
     value: -120129483
     objectReference: {fileID: 0}
@@ -644,5 +708,25 @@ Preset:
   - target: {fileID: 0}
     propertyPath: Typewriter.Path
     value: event:/UI/Typewriter
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: BarrelExplosion.Guid.Data1
+    value: -501221051
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: BarrelExplosion.Guid.Data2
+    value: 1161767055
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: BarrelExplosion.Guid.Data3
+    value: -1653069180
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: BarrelExplosion.Guid.Data4
+    value: 15275707
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: BarrelExplosion.Path
+    value: event:/Objets/Barrel_explosion
     objectReference: {fileID: 0}
   m_ExcludedProperties: []

@@ -144,8 +144,10 @@ public class AudioController : MonoBehaviour
 
         if (forcePlay || !IsEventPlaying(eventInstance))
         {
-            //Debug.Log($"AudioController] PlayEvent) starting event");
-            
+            string path = GetEventInstancePath(eventInstance);
+
+            Debug.Log($"AudioController] PlayEvent) starting event: {path}");
+
             eventInstance.start();
             
             return true;
@@ -266,7 +268,7 @@ public class AudioController : MonoBehaviour
         return playbackState;
     }
 
-    bool IsEventPlaying(EventInstance instance)
+    public bool IsEventPlaying(EventInstance instance)
     {
         PLAYBACK_STATE playbackState = GetPlaybackState(instance);
 

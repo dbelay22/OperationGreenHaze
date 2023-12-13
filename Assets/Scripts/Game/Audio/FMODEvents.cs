@@ -24,6 +24,10 @@ public class FMODEvents : MonoBehaviour
     public EventReference PlayerDamageByGas;
     public EventReference PlayerDeath;
 
+    [Header("PlayerHealth")]
+    public EventReference PlayerHealth;
+    public string HealthParamName = "Health_Medium-Low";
+
     [Header("Player Steps")]
     public EventReference PlayerFootsteps;
 
