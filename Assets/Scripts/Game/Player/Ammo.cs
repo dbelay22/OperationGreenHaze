@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(AudioSource))]
 public class Ammo : MonoBehaviour
 {
     [SerializeField] AmmoSlot[] _ammoSlots;
@@ -13,10 +12,7 @@ public class Ammo : MonoBehaviour
     {
         public AmmoType _ammoType;
         public int ammoAmount;
-        public AudioClip pickupSFX;
     }
-
-    AudioSource _audioSource;
 
     // Accuracy
     float _ammoShooted;
@@ -27,8 +23,6 @@ public class Ammo : MonoBehaviour
 
     private void Start()
     {
-        _audioSource = GetComponent<AudioSource>();
-
         InitAccuracy();
     }
 
@@ -98,8 +92,6 @@ public class Ammo : MonoBehaviour
         AmmoSlot slot = GetAmmoSlotOfType(ammoType);
 
         slot.ammoAmount += increase;
-
-        //_audioSource.PlayOneShot(slot.pickupSFX);
     }
 
     public int GetAmmoLeft(AmmoType ammoType)

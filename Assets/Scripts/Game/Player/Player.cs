@@ -10,9 +10,6 @@ public class Player : MonoBehaviour
     [Header("Camera Shake")]
     [SerializeField] CameraShake _cameraShake;
 
-    [Header("SFX")]
-    [SerializeField] AudioClip _errorSFX;
-
     EventInstance _pickupAmmoSFX;
     EventInstance _pickupMedkitSFX;
     EventInstance _missionPickup1SFX;
