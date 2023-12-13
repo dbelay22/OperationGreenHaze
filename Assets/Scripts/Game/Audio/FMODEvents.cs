@@ -48,6 +48,8 @@ public class FMODEvents : MonoBehaviour
     [Header("Weapons")]
     public EventReference ChangeWeaponSMG;
     public EventReference ChangeWeaponPistol;
+    public EventReference WeaponZoomIn;
+    public EventReference WeaponZoomOut;
 
     [Header("Flashlight")]
     public EventReference FlashlighToggle;

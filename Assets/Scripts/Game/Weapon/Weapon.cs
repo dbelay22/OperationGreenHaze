@@ -42,6 +42,8 @@ public class Weapon : MonoBehaviour
     EventInstance _shootSFX;    
     EventInstance _bulletImpactSFX;
     EventInstance _outOfAmmoSFX;
+    EventInstance _zoomInSFX;
+    EventInstance _zoomOutSFX;
 
     [Space(10)]
     [SerializeField] FirstPersonController _fpController;
@@ -57,6 +59,8 @@ public class Weapon : MonoBehaviour
 
     Player _player;
 
+    GameObject _model3D;
+
     void Awake()
     {
         _shootSFX = AudioController.Instance.CreateInstance(_shootEventRef);
@@ -64,6 +68,12 @@ public class Weapon : MonoBehaviour
         _outOfAmmoSFX = AudioController.Instance.CreateInstance(_outOfAmmoEventRef);
                 
         _bulletImpactSFX = AudioController.Instance.Create3DInstance(FMODEvents.Instance.BulletImpact, transform.position);
+
+        _zoomInSFX = AudioController.Instance.CreateInstance(FMODEvents.Instance.WeaponZoomIn);
+        
+        _zoomOutSFX = AudioController.Instance.CreateInstance(FMODEvents.Instance.WeaponZoomOut);
+
+        _model3D = transform.Find("Model").gameObject;
     }
 
     void Start()
@@ -124,7 +134,6 @@ public class Weapon : MonoBehaviour
         {
             SniperZoomToggle();
         }
-        
     }
 
     void SniperZoomToggle()
@@ -147,15 +156,23 @@ public class Weapon : MonoBehaviour
 
     void ZoomOut()
     {
+        AudioController.Instance.PlayEvent(_zoomOutSFX);
+
         StartCoroutine(ChangeFOV(_virtualCamera, _fovDefault, .4f));
+        
         _sniperZoomActive = false;
     }
 
     void ZoomIn()
     {
+        _model3D.SetActive(false);
+
+        AudioController.Instance.PlayEvent(_zoomInSFX);
+
         StartCoroutine(ChangeFOV(_virtualCamera, _fovZoom, .5f));
+
         _sniperZoomActive = true;
-    }
+    }    
 
     IEnumerator ChangeFOV(CinemachineVirtualCamera cam, float endFOV, float duration)
     {
@@ -172,7 +189,14 @@ public class Weapon : MonoBehaviour
         }
         _zooming = false;
 
-        ChangeMouseSensitivity(endFOV == _fovZoom);
+        bool zoomedIn = endFOV == _fovZoom;
+
+        if (!zoomedIn)
+        {
+            _model3D.SetActive(true);
+        }
+
+        ChangeMouseSensitivity(zoomedIn);
     }
 
     void ChangeMouseSensitivity(bool zoomed)

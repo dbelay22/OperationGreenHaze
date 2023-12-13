@@ -245,6 +245,20 @@ MonoBehaviour:
       Data3: -2099175552
       Data4: 1498402189
     Path: event:/Objets/change_weapon_pistol
+  WeaponZoomIn:
+    Guid:
+      Data1: 1216285877
+      Data2: 1149776161
+      Data3: 376832442
+      Data4: 2021872554
+    Path: event:/Machinegun_zoomin
+  WeaponZoomOut:
+    Guid:
+      Data1: -1134775525
+      Data2: 1183935262
+      Data3: 2037518502
+      Data4: -1240728848
+    Path: event:/Machinegun_zoomout
   FlashlighToggle:
     Guid:
       Data1: -1768503694

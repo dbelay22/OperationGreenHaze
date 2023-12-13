@@ -438,6 +438,46 @@ Preset:
     value: event:/Objets/change_weapon_pistol
     objectReference: {fileID: 0}
   - target: {fileID: 0}
+    propertyPath: WeaponZoomIn.Guid.Data1
+    value: 1216285877
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: WeaponZoomIn.Guid.Data2
+    value: 1149776161
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: WeaponZoomIn.Guid.Data3
+    value: 376832442
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: WeaponZoomIn.Guid.Data4
+    value: 2021872554
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: WeaponZoomIn.Path
+    value: event:/Machinegun_zoomin
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: WeaponZoomOut.Guid.Data1
+    value: -1134775525
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: WeaponZoomOut.Guid.Data2
+    value: 1183935262
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: WeaponZoomOut.Guid.Data3
+    value: 2037518502
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: WeaponZoomOut.Guid.Data4
+    value: -1240728848
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: WeaponZoomOut.Path
+    value: event:/Machinegun_zoomout
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
     propertyPath: FlashlighToggle.Guid.Data1
     value: -1768503694
     objectReference: {fileID: 0}
@@ -628,6 +668,26 @@ Preset:
   - target: {fileID: 0}
     propertyPath: ZombieBlinded.Path
     value: event:/Zombies_Voices/Zombie_Blinded
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieHeadshot.Guid.Data1
+    value: 70932204
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieHeadshot.Guid.Data2
+    value: 1304061760
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieHeadshot.Guid.Data3
+    value: 1123581323
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieHeadshot.Guid.Data4
+    value: -786582419
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieHeadshot.Path
+    value: event:/Zombies_Headshots
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: Jet.Guid.Data1

@@ -89,6 +89,7 @@ public class NpcAI : MonoBehaviour
 
     bool _deadByHeadshot = false;
 
+    GameObject _model3D;
 
     void Awake()    
     {
@@ -115,7 +116,9 @@ public class NpcAI : MonoBehaviour
 
         RandomizeSizeScale();
         
-        RandomizeMissingBodyParts();   
+        RandomizeMissingBodyParts();
+
+        _model3D = transform.Find("Model").gameObject;
     }
 
     void Start()
@@ -472,7 +475,7 @@ public class NpcAI : MonoBehaviour
 
         Vector3 forceVector = forceDirection * EXPLOSION_FORCE;
 
-        Rigidbody rb = Get3DModel().GetComponent<Rigidbody>();
+        Rigidbody rb = _model3D.GetComponent<Rigidbody>();
 
         // vuela, vuela
         rb.AddForceAtPosition(forceVector, transform.position, ForceMode.Impulse);
@@ -635,14 +638,9 @@ public class NpcAI : MonoBehaviour
 
         yield return new WaitForSeconds(22f);
 
-        Get3DModel().SetActive(false);
+        _model3D.SetActive(false);
 
         Destroy(gameObject, 3f);
-    }
-
-    GameObject Get3DModel() 
-    {
-        return transform.Find("Model").gameObject;
     }
 
     void PlayDeathSFX()
