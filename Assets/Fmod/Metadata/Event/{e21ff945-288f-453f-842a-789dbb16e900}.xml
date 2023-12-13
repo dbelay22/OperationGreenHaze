@@ -57,8 +57,17 @@
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{059d820b-4d11-459e-9cf6-84272955fb48}">
+		<property name="isPersistent">
+			<value>true</value>
+		</property>
+		<property name="dopplerEnabled">
+			<value>true</value>
+		</property>
+		<property name="dopplerScale">
+			<value>86</value>
+		</property>
 		<property name="maximumDistance">
-			<value>100</value>
+			<value>10000</value>
 		</property>
 	</object>
 	<object class="MarkerTrack" id="{7323df41-94dc-451e-b4d3-d00ae736b538}" />
@@ -172,6 +181,10 @@
 	</object>
 	<object class="MixerBusPanner" id="{da961154-8be5-486c-829a-9cb8f09e0543}" />
 	<object class="MixerBusFader" id="{4b576e0e-1dfb-451b-9ca5-8c2bcc14d29e}" />
-	<object class="SpatialiserEffect" id="{8964f4b4-fd46-412a-8609-dc494ec8a5a3}" />
+	<object class="SpatialiserEffect" id="{8964f4b4-fd46-412a-8609-dc494ec8a5a3}">
+		<property name="distanceRolloffType">
+			<value>1</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{68629cbf-a674-40d4-af7d-49f90b7a875c}" />
 </objects>
