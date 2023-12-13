@@ -532,7 +532,7 @@ public class NpcAI : MonoBehaviour
 
     void PlayHitByBulletFX(RaycastHit hit, bool isHeadshot = false)
     {
-        PlayHitByBulletSFX();
+        PlayHitByBulletSFX(isHeadshot);
 
         PlayHitByBulletVFX(hit, isHeadshot);
     }
@@ -542,9 +542,9 @@ public class NpcAI : MonoBehaviour
         _animator.SetTrigger("BulletHit Trigger");
     }
 
-    void PlayHitByBulletSFX()
+    void PlayHitByBulletSFX(bool isHeadshot)
     {
-        if (isHeadless())
+        if (isHeadless() || isHeadshot)
         {
             // no head, no screaming
             return;
