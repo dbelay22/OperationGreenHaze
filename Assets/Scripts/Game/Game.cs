@@ -12,7 +12,7 @@ public class Game : MonoBehaviour
 {
     GameStateMachine _stateMachine = null;
 
-    [SerializeField] AudioSource _helicopterExitSound;
+    [SerializeField] GameObject _helicopterExitSound;
 
     [Header("DontDestroyOnLoadInstances")]
     [SerializeField] GameObject _playerSettingsPrefab;
@@ -224,12 +224,8 @@ public class Game : MonoBehaviour
             }
             else
             {
-                /*
-                _helicopterExitSound.enabled = true;
+                _helicopterExitSound.SetActive(true);
                 
-                _helicopterExitSound.Play();
-                */
-
                 GameUI.Instance.ShowInGameMessage("ig_find_exit", 4f);
 
                 AudioController.Instance.GameplayFindExit();
