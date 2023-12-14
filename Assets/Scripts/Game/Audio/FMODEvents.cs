@@ -78,6 +78,8 @@ public class FMODEvents : MonoBehaviour
 
     [Header("Jet waves")]
     public EventReference Jet;
+    public EventReference RaidSiren;
+    public EventReference JetBombExplosions;
 
     [Header("UI")]
     public EventReference MenuHover;

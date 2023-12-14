@@ -339,6 +339,20 @@ MonoBehaviour:
       Data3: -1232931198
       Data4: -955159415
     Path: event:/Jet
+  RaidSiren:
+    Guid:
+      Data1: -1019487629
+      Data2: 1088700174
+      Data3: -750216306
+      Data4: -518428216
+    Path: event:/Jet_Waves/Air_Raid_Siren
+  JetBombExplosions:
+    Guid:
+      Data1: -161740661
+      Data2: 1078334068
+      Data3: -1182494018
+      Data4: 1906145351
+    Path: event:/Jet_Waves/Jet_Bombo_Explosions
   MenuHover:
     Guid:
       Data1: 905543055
