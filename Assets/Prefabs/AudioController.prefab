@@ -353,6 +353,27 @@ MonoBehaviour:
       Data3: -1182494018
       Data4: 1906145351
     Path: event:/Jet_Waves/Jet_Bombo_Explosions
+  TimerBeepShort:
+    Guid:
+      Data1: 379770103
+      Data2: 1313466579
+      Data3: 343361176
+      Data4: -1591205161
+    Path: event:/Gameplay_UI/Timer_beep_short
+  TimerBeepLong:
+    Guid:
+      Data1: -1428172525
+      Data2: 1252441038
+      Data3: -104768845
+      Data4: -685796162
+    Path: event:/Gameplay_UI/Timer_beep_long
+  BarrelExplosion:
+    Guid:
+      Data1: -501221051
+      Data2: 1161767055
+      Data3: -1653069180
+      Data4: 15275707
+    Path: event:/Objets/Barrel_explosion
   MenuHover:
     Guid:
       Data1: 905543055
@@ -374,10 +395,3 @@ MonoBehaviour:
       Data3: 385800075
       Data4: 814717346
     Path: event:/UI/Typewriter
-  BarrelExplosion:
-    Guid:
-      Data1: -501221051
-      Data2: 1161767055
-      Data3: -1653069180
-      Data4: 15275707
-    Path: event:/Objets/Barrel_explosion

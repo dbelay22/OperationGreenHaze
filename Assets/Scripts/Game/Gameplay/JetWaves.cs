@@ -5,14 +5,6 @@ using UnityEngine;
 
 public class JetWaves : MonoBehaviour
 {
-    /*
-    [Header("SFX")]
-    [SerializeField] AudioClip _raidSirenSFX;
-    [SerializeField] AudioClip[] _explosions;
-
-    AudioSource _audioSource;
-    */
-
     EventInstance _explosionsSFX;
     EventInstance _raidSirenSFX;
 

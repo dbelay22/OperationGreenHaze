@@ -1,3 +1,4 @@
+using FMOD.Studio;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -29,9 +30,6 @@ public class GameUI : MonoBehaviour
 
     [Header("In-game/HUD/Timer")]
     [SerializeField] TMP_Text _timerLabel;
-    [SerializeField] AudioSource _timerAudioSource;
-    [SerializeField] AudioClip _timerBeepShort;
-    [SerializeField] AudioClip _timerBeepLong;
 
     [Header("In-game/VFX")]
     [SerializeField] PlayerDamage _playerDamage;
@@ -73,6 +71,10 @@ public class GameUI : MonoBehaviour
 
     bool _timeIsUp = false;
 
+    EventInstance _timerBeepShort;
+    EventInstance _timerBeepLong;
+
+
     #region Instance
 
     private static GameUI _instance;    
@@ -92,7 +94,10 @@ public class GameUI : MonoBehaviour
 
         _hideMessagesCoroutine = null;
 
-        _queuedMessages = new Queue<InGameMessage>();        
+        _queuedMessages = new Queue<InGameMessage>();
+
+        _timerBeepShort = AudioController.Instance.CreateInstance(FMODEvents.Instance.TimerBeepShort);
+        _timerBeepLong = AudioController.Instance.CreateInstance(FMODEvents.Instance.TimerBeepLong);
     }
 
     void Update()
@@ -131,26 +136,20 @@ public class GameUI : MonoBehaviour
         }       
 
         // SFX
-        if (timeLeftSeconds <= 10 && _timerAudioSource.isPlaying == false)
+        if (timeLeftSeconds <= 10)
         {
-            if (_timerAudioSource.isPlaying == false)
-            {
-                // last 10 seconds
-                _timerAudioSource.PlayOneShot(_timerBeepLong);
-            }
+            // last 10 seconds
+            AudioController.Instance.PlayEvent(_timerBeepLong, true);            
         } 
         else if (timeLeftSeconds <= 30)
         {
-            if (_timerAudioSource.isPlaying == false) 
-            {
-                // last minute
-                _timerAudioSource.PlayOneShot(_timerBeepShort);
-            }
+            // last minute
+            AudioController.Instance.PlayEvent(_timerBeepShort, true);
         } 
         else if (timerMinutes != _lastMinuteUpdate && timerMinutes < _minutesOfGameplay-1)
         {
             // every past minute
-            _timerAudioSource.PlayOneShot(_timerBeepLong);
+            AudioController.Instance.PlayEvent(_timerBeepLong, true);
         }
 
         // Check timeout

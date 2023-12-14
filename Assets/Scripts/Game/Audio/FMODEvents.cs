@@ -81,13 +81,18 @@ public class FMODEvents : MonoBehaviour
     public EventReference RaidSiren;
     public EventReference JetBombExplosions;
 
+    [Header("Timer")]
+    public EventReference TimerBeepShort;
+    public EventReference TimerBeepLong;
+
+    [Header("Explosions")]
+    public EventReference BarrelExplosion;
+
     [Header("UI")]
     public EventReference MenuHover;
     public EventReference MenuSelect;
     public EventReference Typewriter;
 
-    [Header("Explosions")]
-    public EventReference BarrelExplosion;
 
     #region Instance
 
