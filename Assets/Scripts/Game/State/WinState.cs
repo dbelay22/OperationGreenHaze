@@ -11,17 +11,7 @@ public class WinState : GameState
         Debug.Log("*** WIN ***");
 #endif
 
-        Director.Instance.DumpStats();
-
         GameUI.Instance.ShowWin();
-
-        UnlockCursor();       
-    }
-
-    void UnlockCursor()
-    {
-        Cursor.lockState = CursorLockMode.Confined;
-        Cursor.visible = true;
     }
 
     public override void ExitState()

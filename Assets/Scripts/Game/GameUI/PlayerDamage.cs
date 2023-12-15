@@ -36,6 +36,6 @@ public class PlayerDamage : MonoBehaviour
 
     public bool IsActive()
     {
-        return gameObject.activeInHierarchy;
+        return gameObject.activeSelf;
     }
 }

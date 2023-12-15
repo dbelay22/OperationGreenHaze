@@ -10,19 +10,7 @@ public class GameOverState : GameState
         Debug.Log("*** GAME OVER ***");
 #endif
 
-        Director.Instance.DumpStats();
-
         GameUI.Instance.ShowGameOver();
-
-        UnlockCursor();
-
-        AudioController.Instance.GameplayStop();
-    }
-
-    void UnlockCursor()
-    {
-        Cursor.lockState = CursorLockMode.Confined;
-        Cursor.visible = true;
     }
 
     public override void ExitState()

@@ -66,7 +66,7 @@ public class AudioController : MonoBehaviour
 
         string path = GetEventInstancePath(eventInstance);
 
-        Debug.Log($"AudioController] CreateInstance) NEW instance of path: {path}, list count so far: [{_eventInstances.Count}]");
+        //Debug.Log($"AudioController] CreateInstance) NEW instance of path: {path}, list count so far: [{_eventInstances.Count}]");
 
         return eventInstance;
     }
@@ -220,7 +220,7 @@ public class AudioController : MonoBehaviour
         
         eventInstance.release();
 
-        Debug.Log($"AudioController] ReleaseEvent) Released event path: {path}");
+        //Debug.Log($"AudioController] ReleaseEvent) Released event path: {path}");
 
         return path;
     }
@@ -238,7 +238,7 @@ public class AudioController : MonoBehaviour
         {
             _eventInstances.Remove(eventInstance);
 
-            Debug.Log($"AudioController] DestroyEvent) removing instance from list. path: [{path}], _eventInstances.count: {_eventInstances.Count}");
+            //Debug.Log($"AudioController] DestroyEvent) removing instance from list. path: [{path}], _eventInstances.count: {_eventInstances.Count}");
         }
         else
         {
@@ -336,9 +336,13 @@ public class AudioController : MonoBehaviour
 
         Debug.Log($"AudioController] GameplayStop)...");
 
-        StopEvent(_musicEventInstance);
-
         StopEvent(_ambienceSoundscape);
+    }
+
+    public void GameplaySceneUnloaded()
+    {
+        Debug.Log("AudioController] GameplaySceneUnloaded) ... stop fading music");
+        StopFadeEvent(_musicEventInstance);
     }
 
     public void GameplayFindExit()

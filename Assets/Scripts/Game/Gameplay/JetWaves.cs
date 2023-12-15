@@ -14,6 +14,15 @@ public class JetWaves : MonoBehaviour
         _raidSirenSFX = AudioController.Instance.CreateInstance(FMODEvents.Instance.RaidSiren);
     }
 
+    void Update()
+    {
+        if (Game.Instance.IsGamePlayOver())
+        {
+            AudioController.Instance.StopEventIfPlaying(_explosionsSFX);
+            AudioController.Instance.StopEventIfPlaying(_raidSirenSFX);
+        }
+    }
+
     public void PlayExplosionSFX()
     {
         AudioController.Instance.PlayEvent(_explosionsSFX);

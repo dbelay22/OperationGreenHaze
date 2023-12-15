@@ -40,12 +40,6 @@ public class DebugShortcuts : DebugComponentBase
             Game.Instance.ReportAllEnemiesKilled();
         }
 
-        // [O] Force Game Over
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            Game.Instance.ChangeStateToGameOver();
-        }
-
         // [P]ickup mission items collected
         if (Input.GetKeyDown(KeyCode.P))
         {

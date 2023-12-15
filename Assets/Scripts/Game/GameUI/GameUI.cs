@@ -174,6 +174,9 @@ public class GameUI : MonoBehaviour
     {
         _timeIsUp = true;
 
+        // Change music
+        AudioController.Instance.GameplayDead();
+
         yield return new WaitForSeconds(1f);
 
         Game.Instance.ChangeStateToGameOver();
@@ -228,7 +231,7 @@ public class GameUI : MonoBehaviour
 
     IEnumerator LoadWinSceneDelayed()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
 
         LevelLoader.Instance.LoadWinScene();
     }

@@ -17,4 +17,12 @@ public class JetFighter : MonoBehaviour
         AudioController.Instance.Play3DEvent(_jetSFX, transform.position, true);
     }
 
+    void Update()
+    {
+        if (Game.Instance.IsGamePlayOver())
+        {
+            AudioController.Instance.StopEventIfPlaying(_jetSFX);
+        }
+    }
+
 }

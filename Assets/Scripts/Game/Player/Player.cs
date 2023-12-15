@@ -325,6 +325,8 @@ public class Player : MonoBehaviour
 
     void OnPlayerDeath()
     {
+        Debug.Log("Player] OnPlayerDeath)...");
+
         GameUI.Instance.ShowPlayerDamageVFX();
 
         AudioController.Instance.GameplayDead();
@@ -359,7 +361,9 @@ public class Player : MonoBehaviour
 
     public void GameplayIsOver()
     {
-        BroadcastMessage("OnPlayerWin", SendMessageOptions.RequireReceiver);
+        Debug.Log("Player] GameplayIsOver)...");
+
+        BroadcastMessage("OnGameplayOver", SendMessageOptions.RequireReceiver);
         
         // turn of flashlight
         _flashlight.TurnOff();
