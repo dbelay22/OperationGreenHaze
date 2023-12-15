@@ -59,6 +59,7 @@ public class WeaponSwitcher : MonoBehaviour
     {
         if (_activeWeapon != null)
         {
+            _activeWeapon.WillBeDisabled();
             _activeWeapon.gameObject.SetActive(false);
         }
 
