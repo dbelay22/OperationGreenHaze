@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="MixerGroup" id="{10d881db-c20e-4eb1-bebe-5f17b7927548}">
+		<property name="name">
+			<value>ZoominBreath</value>
+		</property>
+		<relationship name="effectChain">
+			<destination>{53510783-ba0f-4566-96ca-c3162334c630}</destination>
+		</relationship>
+		<relationship name="panner">
+			<destination>{6f77ed2c-1522-4dbb-8e2e-01179026421d}</destination>
+		</relationship>
+		<relationship name="output">
+			<destination>{bacec44a-1766-471d-ba5f-fb14ce1dcc71}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusEffectChain" id="{53510783-ba0f-4566-96ca-c3162334c630}">
+		<relationship name="effects">
+			<destination>{0a39c7f5-84ae-485d-8d09-0321105a5258}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusPanner" id="{6f77ed2c-1522-4dbb-8e2e-01179026421d}" />
+	<object class="MixerBusFader" id="{0a39c7f5-84ae-485d-8d09-0321105a5258}" />
+</objects>
