@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e83570fb507b804c85f9d6cbc67c669, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _musicOn: 1
+  _musicOn: 0
 --- !u!114 &6286549390428734130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,6 +177,13 @@ MonoBehaviour:
       Data3: 381256613
       Data4: -1264587235
     Path: event:/Dead_falldown
+  PlayerZoomInBreath:
+    Guid:
+      Data1: 1435301174
+      Data2: 1275167389
+      Data3: 762669745
+      Data4: 1902912595
+    Path: event:/Zoomin_Breath
   PlayerHealth:
     Guid:
       Data1: -1536465125

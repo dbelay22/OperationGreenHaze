@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     EventInstance _missionPickup2SFX;
     EventInstance _flashlightSFX;
     EventInstance _cantUseSFX;
+    EventInstance _weaponZoomIBreathSFX;
 
     Ammo _ammo;
 
@@ -69,6 +70,8 @@ public class Player : MonoBehaviour
         _missionPickup2SFX = AudioController.Instance.Create3DInstance(FMODEvents.Instance.PickupMission2, transform.position);
         _flashlightSFX = AudioController.Instance.Create3DInstance(FMODEvents.Instance.FlashlighToggle, transform.position);
         _cantUseSFX = AudioController.Instance.Create3DInstance(FMODEvents.Instance.PickupCantUse, transform.position);
+        _weaponZoomIBreathSFX = AudioController.Instance.CreateInstance(FMODEvents.Instance.PlayerZoomInBreath);
+
     }
 
     void Update()
@@ -249,6 +252,13 @@ public class Player : MonoBehaviour
         {
             _flashlight.TurnOff();
         }
+
+        AudioController.Instance.PlayEvent(_weaponZoomIBreathSFX);
+    }
+
+    public void OnWeaponZoomOut()
+    {
+        AudioController.Instance.StopEvent(_weaponZoomIBreathSFX);
     }
 
     bool ProcessMedkitPickup(GameObject trigger)
@@ -364,7 +374,9 @@ public class Player : MonoBehaviour
         Debug.Log("Player] GameplayIsOver)...");
 
         BroadcastMessage("OnGameplayOver", SendMessageOptions.RequireReceiver);
-        
+
+        OnWeaponZoomOut();
+
         // turn of flashlight
         _flashlight.TurnOff();
 

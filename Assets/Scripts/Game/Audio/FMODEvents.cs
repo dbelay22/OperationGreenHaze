@@ -23,6 +23,7 @@ public class FMODEvents : MonoBehaviour
     public EventReference PlayerDamageByFire;
     public EventReference PlayerDamageByGas;
     public EventReference PlayerDeath;
+    public EventReference PlayerZoomInBreath;
 
     [Header("PlayerHealth")]
     public EventReference PlayerHealth;

@@ -194,6 +194,7 @@ public class Weapon : MonoBehaviour
         if (!zoomedIn)
         {
             _model3D.SetActive(true);
+            _player.OnWeaponZoomOut();
         }
 
         ChangeMouseSensitivity(zoomedIn);
