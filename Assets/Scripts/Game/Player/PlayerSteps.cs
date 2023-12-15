@@ -90,12 +90,12 @@ public class PlayerSteps : MonoBehaviour
 
     void OnPlayerDeath()
     {
-        AudioController.Instance.StopEvent(_footstepEventInstance);
+        OnGameplayOver();
     }
 
-    void OnPlayerWin()
+    void OnGameplayOver()
     {
-        AudioController.Instance.StopEvent(_footstepEventInstance);
+        StopStepSFX();
     }
     
     void StopStepSFX()

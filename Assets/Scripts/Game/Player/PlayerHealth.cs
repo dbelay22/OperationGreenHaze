@@ -41,11 +41,24 @@ public class PlayerHealth : MonoBehaviour
         _deathSFX = AudioController.Instance.CreateInstance(FMODEvents.Instance.PlayerDeath);
 
         _healthSFX = AudioController.Instance.CreateInstance(FMODEvents.Instance.PlayerHealth);
+        
+        _healthSFX.setParameterByName(FMODEvents.Instance.HealthParamName, _currentHealth);
+
+        AudioController.Instance.PlayEvent(_healthSFX);
     }
 
     void Update()
     {
         GameUI.Instance.UpdateHealthAmmount(GetCurrentHealthClamped());
+
+#if UNITY_EDITOR
+        // [O] Force Player Kill
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            HealthUpdate(-999);
+        }
+#endif
+
     }
 
     void OnTriggerEnter(Collider other)
@@ -60,6 +73,11 @@ public class PlayerHealth : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     {
+        if (Game.Instance.IsGamePlayOver())
+        {
+            return;
+        }
+
         GameObject trigger = other.gameObject;
 
         if (!ProcessToxicZoneStay(trigger))
@@ -248,7 +266,7 @@ public class PlayerHealth : MonoBehaviour
 
     void HealthUpdate(int amount)
     {
-        if (Game.Instance.IsGodModeOn)
+        if (Game.Instance.IsGodModeOn || _currentHealth <= 0)
         {
             return;
         }
@@ -265,6 +283,10 @@ public class PlayerHealth : MonoBehaviour
         // update UI
         GameUI.Instance.UpdateHealthAmmount(clampedHealth);
 
+        // update SFX
+        Debug.Log($"PlayerHealth] HealthUpdate) Sent health param value: {_currentHealth}");
+        _healthSFX.setParameterByName(FMODEvents.Instance.HealthParamName, _currentHealth);
+
         if (_currentHealth <= 0)
         {
             BroadcastMessage("OnPlayerDeath", SendMessageOptions.RequireReceiver);
@@ -274,26 +296,12 @@ public class PlayerHealth : MonoBehaviour
         else if (IsBadlyHurt())
         {
             GameUI.Instance.ShowPlayerBadlyHurt();
-            
-            _healthSFX.setParameterByName(FMODEvents.Instance.HealthParamName, _currentHealth);
-
-            Debug.Log($"PlayerHealth] HealthUpdate) Sent health param value: {_currentHealth}");
-
-            if (!AudioController.Instance.IsEventPlaying(_healthSFX))
-            {
-                AudioController.Instance.PlayEvent(_healthSFX);
-            }
-        }
-        else
-        {
-            // healthy player
-            AudioController.Instance.StopEventIfPlaying(_healthSFX);
         }
     }
 
     public bool IsBadlyHurt()
     {
-        return CurrentHealthPercentage < 0.5;
+        return CurrentHealthPercentage <= 0.5;
     }
 
     public void HitByExplosion()
@@ -306,17 +314,31 @@ public class PlayerHealth : MonoBehaviour
         return Mathf.Clamp(_currentHealth, 0, 100);
     }
 
+    void OnGameplayOver()
+    {
+        Debug.Log("PlayerHealth] OnGameplayOver)...");
+
+        StopAllHealthSFX();
+    }
+
     void OnPlayerDeath()
     {
         Debug.Log("PlayerHealth] OnPlayerDeath)...");
+
+        StopAllHealthSFX();
+
+        AudioController.Instance.PlayEvent(_deathSFX, true);
+    }
+
+    void StopAllHealthSFX()
+    {
+        Debug.Log("PlayerHealth] StopAllHealthSFX)...");
 
         AudioController.Instance.StopEvent(_healthSFX);
 
         AudioController.Instance.StopEvent(_damageByFireSFX);
 
         AudioController.Instance.StopEvent(_damageByGasSFX);
-
-        AudioController.Instance.Play3DEvent(_deathSFX, transform.position, true);
     }
 
 }

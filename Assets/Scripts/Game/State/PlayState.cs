@@ -33,7 +33,11 @@ public class PlayState : GameState
 
     public override void ExitState()
     {
-        UnlockCursor();        
+        AudioController.Instance.GameplayStop();
+
+        Director.Instance.DumpStats();
+
+        UnlockCursor();
     }
 
     public override void Update()

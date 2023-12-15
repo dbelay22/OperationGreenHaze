@@ -15,7 +15,7 @@ public class ZombieSteps : MonoBehaviour
 
     void Update()
     {
-        if (Game.Instance.IsGamePaused())
+        if (Game.Instance.IsGamePaused() || Game.Instance.IsGamePlayOver())
         {
             AudioController.Instance.StopEventIfPlaying(_footstepEventInstance);
         }

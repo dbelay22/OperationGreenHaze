@@ -124,14 +124,9 @@ public class Game : MonoBehaviour
     public void SetCameraFov(float value)
     {
         Camera.main.fieldOfView = value;
-    }
+    }   
 
-    public void ChangeStateToGameOver()
-    {
-        _stateMachine.TransitionToState(new GameOverState());
-    }
-
-#region Mission
+    #region Mission
 
     public void ReportExitDangerZoneEnter()
     {
@@ -143,8 +138,6 @@ public class Game : MonoBehaviour
 
     public void ReportExitDangerZoneExit()
     {
-        Debug.Log("Game] ReportExitDangerZoneExit)");
-
         if (PlayerNeedsToClearExitNow())
         {
             GameUI.Instance.HideMessagesNow();
@@ -213,6 +206,8 @@ public class Game : MonoBehaviour
         ObjectivesPanel.Instance.SetFindExitComplete();
     }
 
+    #endregion Mission
+
     bool CheckGameWin()
     {
         if (PlayerNeedsToClearExitNow())
@@ -225,25 +220,44 @@ public class Game : MonoBehaviour
             else
             {
                 _helicopterExitSound.SetActive(true);
-                
+
                 GameUI.Instance.ShowInGameMessage("ig_find_exit", 4f);
 
                 AudioController.Instance.GameplayFindExit();
-                
+
                 return false;
             }
         }
         return false;
     }
 
-    void ChangeStateToWin()
+    void GameplayIsOver()
     {
-        _stateMachine.TransitionToState(new WinState());
+        Debug.Log("Game] GameplayIsOver)...");
+
+        GameUI.Instance.HideMessagesNow();
+
+        if (_helicopterExitSound.activeInHierarchy)
+        {
+            _helicopterExitSound.SetActive(false);
+        }
 
         _player.GameplayIsOver();
     }
 
-#endregion Mission
+    void ChangeStateToWin()
+    {
+        _stateMachine.TransitionToState(new WinState());
+        
+        GameplayIsOver();
+    }
+
+    public void ChangeStateToGameOver()
+    {
+        _stateMachine.TransitionToState(new GameOverState());
+
+        GameplayIsOver();
+    }
 
     public void ChangeStateToPaused()
     {
@@ -279,9 +293,11 @@ public class Game : MonoBehaviour
 
     public bool IsGamePlayOver()
     {
-        bool isGameOver = GetCurrentState() is GameOverState;
-        bool isWin = GetCurrentState() is WinState;
-        return isGameOver || isWin;
+        GameState currentState = GetCurrentState();
+
+        bool gameplayOver = currentState is GameOverState || currentState is WinState;
+
+        return gameplayOver;
     }
 
     public bool IsGamePaused()
