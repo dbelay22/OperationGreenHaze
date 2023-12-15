@@ -61,6 +61,7 @@
 	<object class="GroupTrack" id="{3f8cc2e7-4c0d-457e-b209-0894681e3e0a}">
 		<relationship name="modules">
 			<destination>{f1780dd5-6ddb-4ffe-a085-6bce99a3c9c8}</destination>
+			<destination>{dbef941d-d1c1-4e0d-84f2-1897206d5037}</destination>
 		</relationship>
 		<relationship name="mixerGroup">
 			<destination>{33f5d695-cea2-4a96-a6dc-da81448a9a49}</destination>
@@ -69,6 +70,7 @@
 	<object class="Timeline" id="{78073889-9884-48b0-aebe-4a041f9c567c}">
 		<relationship name="modules">
 			<destination>{f1780dd5-6ddb-4ffe-a085-6bce99a3c9c8}</destination>
+			<destination>{dbef941d-d1c1-4e0d-84f2-1897206d5037}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{c9296d96-d434-4f20-8e0d-9183a75c2d83}">
@@ -99,6 +101,17 @@
 			<destination>{c931fb29-3efb-4aef-bf1a-3e43cbb8e160}</destination>
 		</relationship>
 	</object>
+	<object class="SnapshotModule" id="{dbef941d-d1c1-4e0d-84f2-1897206d5037}">
+		<property name="length">
+			<value>18.019666666666666</value>
+		</property>
+		<relationship name="modulators">
+			<destination>{93de0205-8ca8-4ac4-90bf-a070f8c6b6eb}</destination>
+		</relationship>
+		<relationship name="event">
+			<destination>{b643ca82-2913-409b-9ce0-e87e4b326047}</destination>
+		</relationship>
+	</object>
 	<object class="EventMixerGroup" id="{33f5d695-cea2-4a96-a6dc-da81448a9a49}">
 		<property name="name">
 			<value>Audio 1</value>
@@ -120,6 +133,20 @@
 	</object>
 	<object class="MixerBusPanner" id="{29bdf996-dc1e-4cc0-a4a2-b7272fdc5ad8}" />
 	<object class="MixerBusFader" id="{373c03a0-e539-4d58-a03c-166c4faa1e35}" />
+	<object class="ADSRModulator" id="{93de0205-8ca8-4ac4-90bf-a070f8c6b6eb}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>intensity</value>
+		</property>
+		<property name="peakValue">
+			<value>100</value>
+		</property>
+		<property name="sustainValue">
+			<value>100</value>
+		</property>
+		<property name="releaseTime">
+			<value>2000</value>
+		</property>
+	</object>
 	<object class="MixerBusEffectChain" id="{21fa98ce-aff5-47a7-ab86-9fe68ac68f33}">
 		<relationship name="effects">
 			<destination>{4aab6fec-ed25-4857-9016-afcd70bd1f3c}</destination>
