@@ -417,7 +417,7 @@ MonoBehaviour:
   switchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: FMOD/OperationGreenHaze fmod2.fspro
+  sourceProjectPath: FMOD/OperationGreenHaze.fspro
   sourceBankPath: FMOD/Build
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
