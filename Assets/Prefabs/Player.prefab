@@ -92,6 +92,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _input: {fileID: 5420857361349278248}
+  _fpController: {fileID: 8616685848737228371}
   _playerHealth: {fileID: 6609416933996455271}
   _playerPosition: {fileID: 8997996947095583982}
 --- !u!1 &4135013735270702863
@@ -466,7 +467,7 @@ MonoBehaviour:
   GroundedRadius: 0.5
   GroundLayers:
     serializedVersion: 2
-    m_Bits: 576
+    m_Bits: 64
   CinemachineCameraTarget: {fileID: 4135013735270702863}
   TopClamp: 50
   BottomClamp: -50

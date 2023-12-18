@@ -9,6 +9,7 @@ public class PlayerSteps : MonoBehaviour
 {
     [Header("Input")]
     [SerializeField] StarterAssetsInputs _input;
+    [SerializeField] FirstPersonController _fpController;
 
     [Header("Health")]
     [SerializeField] PlayerHealth _playerHealth;
@@ -16,11 +17,15 @@ public class PlayerSteps : MonoBehaviour
     [Header("Player position")]
     [SerializeField] Transform _playerPosition;
 
-    EventInstance _footstepEventInstance;
+    EventInstance _footstepSFX;
+    EventInstance _jumpSFX;
+    EventInstance _landSFX;
 
     void Start()
     {
-        _footstepEventInstance = AudioController.Instance.Create3DInstance(FMODEvents.Instance.PlayerFootsteps, _playerPosition.position);
+        _footstepSFX = AudioController.Instance.Create3DInstance(FMODEvents.Instance.PlayerFootsteps, _playerPosition.position);
+        _jumpSFX = AudioController.Instance.CreateInstance(FMODEvents.Instance.PlayerJump);
+        _landSFX = AudioController.Instance.CreateInstance(FMODEvents.Instance.PlayerLand);
     }
 
     void Update()
@@ -31,6 +36,13 @@ public class PlayerSteps : MonoBehaviour
         }
 
         StepSoundUpdate();
+
+        JumpSoundUpdate();
+    }
+
+    bool IsMoving()
+    {
+        return _input.move != Vector2.zero;
     }
 
     bool _wasRunning = false;
@@ -39,7 +51,7 @@ public class PlayerSteps : MonoBehaviour
     {
         bool _isPlayerHurt = _playerHealth.CurrentHealthPercentage < 0.5;
 
-        if (_input.move != Vector2.zero)
+        if (IsMoving() && _fpController.Grounded)
         {
             if (_input.sprint && _isPlayerHurt == false)
             {
@@ -66,6 +78,34 @@ public class PlayerSteps : MonoBehaviour
         }
     }
 
+    bool _isJumping = false;
+
+    void JumpSoundUpdate()
+    {
+        bool justJumped = _input.jump == true && _fpController.Grounded == false;
+        
+        bool justGrounded = _input.jump == false && _fpController.Grounded == true;
+
+        if (justJumped)
+        {
+            StopStepSFX();
+
+            AudioController.Instance.PlayEvent(_jumpSFX, true);
+
+            _isJumping = true;
+        }
+        else if (justGrounded && _isJumping)
+        {
+            _isJumping = false;
+
+            int landStillMoving = IsMoving() ? 1 : 0;
+
+            _landSFX.setParameterByName(FMODEvents.Instance.LandMovementParam, landStillMoving);
+
+            AudioController.Instance.PlayEvent(_landSFX, true);            
+        }
+    }
+
     bool _stepLeft = true;
 
     void PlayStepSFX(bool isRunning)
@@ -73,15 +113,15 @@ public class PlayerSteps : MonoBehaviour
         //////////////////////////////
         // Parameters
         // walk / run 
-        _footstepEventInstance.setParameterByName(FMODEvents.Instance.WalkRunParameter, isRunning ? 1 : 0);
+        _footstepSFX.setParameterByName(FMODEvents.Instance.WalkRunParameter, isRunning ? 1 : 0);
 
         // floor material
-        _footstepEventInstance.setParameterByName(FMODEvents.Instance.FloorMaterialParameter, FMODEvents.Instance.DefaultFloorMaterialValue);
+        _footstepSFX.setParameterByName(FMODEvents.Instance.FloorMaterialParameter, FMODEvents.Instance.DefaultFloorMaterialValue);
 
-        _footstepEventInstance.setParameterByName(FMODEvents.Instance.LeftRightParameter, _stepLeft ? 0 : 1);
+        _footstepSFX.setParameterByName(FMODEvents.Instance.LeftRightParameter, _stepLeft ? 0 : 1);
         //////////////////////////////       
         
-        bool stepPlayed = AudioController.Instance.Play3DEvent(_footstepEventInstance, _playerPosition.position);
+        bool stepPlayed = AudioController.Instance.Play3DEvent(_footstepSFX, _playerPosition.position);
 
         //Debug.Log($"[PlayerSteps] PlayStepSFX) Playing footstep ? stepPlayed: {stepPlayed} - running: {isRunning}, stepLeft: {_stepLeft}");
 
@@ -100,6 +140,6 @@ public class PlayerSteps : MonoBehaviour
     
     void StopStepSFX()
     {
-        AudioController.Instance.StopEventIfPlaying(_footstepEventInstance);
+        AudioController.Instance.StopEventIfPlaying(_footstepSFX);
     }
 }
