@@ -10,6 +10,8 @@ public class PauseState : GameState
 
     public override void EnterState()
     {
+        Debug.Log("[PauseState] (EnterState)...");
+
         Time.timeScale = 0;
 
         GameUI.Instance.ShowPause();
@@ -19,7 +21,7 @@ public class PauseState : GameState
 
     public override void ExitState()
     {
-        Debug.Log("[PauseState] (ExitState) time scale back to 1");
+        Debug.Log("[PauseState] (ExitState)...");
 
         Time.timeScale = 1;
 
