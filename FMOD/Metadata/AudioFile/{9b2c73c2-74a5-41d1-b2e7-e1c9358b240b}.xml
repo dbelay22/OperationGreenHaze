@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{9b2c73c2-74a5-41d1-b2e7-e1c9358b240b}">
+		<property name="assetPath">
+			<value>Dx/Dx_PlayVGood.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>4.1087708333333337</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{34fd9964-678f-4e09-a1e0-faa596b6228f}</destination>
+		</relationship>
+	</object>
+</objects>
