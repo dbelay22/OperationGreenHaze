@@ -338,7 +338,7 @@ public class PlayerHealth : MonoBehaviour
 
     void StopAllHealthSFX()
     {
-        Debug.Log("PlayerHealth] StopAllHealthSFX)...");
+        //Debug.Log("PlayerHealth] StopAllHealthSFX)...");
 
         AudioController.Instance.StopEvent(_healthSFX);
 
