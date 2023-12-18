@@ -2392,11 +2392,11 @@ MonoBehaviour:
     Path: 
   _outOfAmmoEventRef:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 1303540147
+      Data2: 1327972548
+      Data3: 475915660
+      Data4: -1486523701
+    Path: event:/OutOfAmmo_machinegun
   _fpController: {fileID: 0}
 --- !u!1 &6090122223651337034
 GameObject:
