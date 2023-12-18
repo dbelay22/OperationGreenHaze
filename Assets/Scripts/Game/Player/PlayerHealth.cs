@@ -49,6 +49,12 @@ public class PlayerHealth : MonoBehaviour
 
     void Update()
     {
+        if (!Game.Instance.IsGameplayOn())        
+        {
+            StopAllHealthSFX();
+            return;
+        }
+
         GameUI.Instance.UpdateHealthAmmount(GetCurrentHealthClamped());
 
 #if UNITY_EDITOR

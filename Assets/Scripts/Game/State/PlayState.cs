@@ -10,6 +10,8 @@ public class PlayState : GameState
 
     public override void EnterState()
     {
+        Debug.Log("[PlayState] (EnterState)...");
+
         Time.timeScale = 1;
         
         LockCursor();
@@ -33,6 +35,8 @@ public class PlayState : GameState
 
     public override void ExitState()
     {
+        Debug.Log("[PlayState] (ExitState)...");
+
         AudioController.Instance.GameplayStop();
 
         Director.Instance.DumpStats();

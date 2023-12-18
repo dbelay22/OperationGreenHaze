@@ -5,6 +5,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using FMOD.Studio;
+using System.Collections.Generic;
 
 public class Weapon : MonoBehaviour
 {
@@ -39,7 +40,10 @@ public class Weapon : MonoBehaviour
     [SerializeField] EventReference _shootEventRef;
     [SerializeField] EventReference _outOfAmmoEventRef;
 
-    EventInstance _shootSFX;    
+    // pool of shoots
+    readonly int ShootPoolCount = 15;
+    List<EventInstance> _shootSFXList;
+
     EventInstance _bulletImpactSFX;
     EventInstance _outOfAmmoSFX;
     EventInstance _zoomInSFX;
@@ -63,7 +67,14 @@ public class Weapon : MonoBehaviour
 
     void Awake()
     {
-        _shootSFX = AudioController.Instance.CreateInstance(_shootEventRef);
+        _shootSFXList = new List<EventInstance>();
+
+        for (int i = 0; i < ShootPoolCount; i++)
+        {
+            EventInstance shootInstance = AudioController.Instance.CreateInstance(_shootEventRef);
+            
+            _shootSFXList.Add(shootInstance);
+        }    
 
         _outOfAmmoSFX = AudioController.Instance.CreateInstance(_outOfAmmoEventRef);
                 
@@ -254,7 +265,35 @@ public class Weapon : MonoBehaviour
 
     void PlayShootSFX()
     {
-        AudioController.Instance.PlayEvent(_shootSFX, true);
+        //Debug.Log("Weapon] PlayShootSFX)...");
+
+        int playingShoots = 0;
+
+        foreach (EventInstance shootInstance in _shootSFXList)
+        {
+            if (AudioController.Instance.IsEventPlaying(shootInstance))            
+            {
+                playingShoots++;
+                continue;
+            }
+            else
+            {
+                //Debug.Log($"Weapon] PlayShootSFX) Found available instance, playing NOW.");
+
+                AudioController.Instance.PlayEvent(shootInstance, true);
+
+                playingShoots++;
+                
+                break;
+            }
+        }
+        
+        //Debug.Log($"Weapon] PlayShootSFX) There are {playingShoots} playing shoots right now.");
+
+        if (playingShoots >= ShootPoolCount)
+        {
+            Debug.LogWarning($"Weapon] PlayShootSFX) Increase the ShootPoolCount!");
+        }
     }
 
     void PlayOutOfAmmoSFX()

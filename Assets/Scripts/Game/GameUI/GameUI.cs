@@ -184,6 +184,8 @@ public class GameUI : MonoBehaviour
 
     public void ShowGameplay()
     {
+        Debug.Log("[GameUI] ShowGameplay)...");
+
         // hide states
         _gameOverCanvas.SetActive(false);
         _winCanvas.SetActive(false);
@@ -197,8 +199,6 @@ public class GameUI : MonoBehaviour
         _gunReticleCanvas.SetActive(active);
         _hudCanvas.SetActive(active);        
         _minimapCanvas.SetActive(active);
-
-        _playerDamage.Hide();
     }
 
     public void ShowGameOver()
@@ -246,11 +246,13 @@ public class GameUI : MonoBehaviour
 
     public void ShowPause()
     {
+        Debug.Log("[GameUI] ShowPause)...");
+
         // hide in-game canvases
         ShowHUD(false);
 
         // show pause
-        _pauseScreen.SetActive(true);       
+        _pauseScreen.SetActive(true);
     }
 
     public void UpdateAmmoAmount(int amount)
