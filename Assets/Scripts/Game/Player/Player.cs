@@ -111,8 +111,9 @@ public class Player : MonoBehaviour
         AudioController.Instance.GameplayIntensityUpdate(clampIntensity);
 
         //----
-        float nearZombiesFactor = ((enemyCountTooClose / 2f) * 1f);
+        float nearZombiesFactor = ((enemyCountTooClose / 2f) * 0.5f) + ((enemyCountNear / 2f) * 0.5f);
         float clampNearZombiesFactor = Math.Clamp(nearZombiesFactor, 0f, 1f);
+        
         //Debug.Log($"[Player] UpdateMusicIntensity) nearZombiesFactor: {nearZombiesFactor}, clampNearZombiesFactor:{clampNearZombiesFactor}");                
 
         AudioController.Instance.GameplayNearZombiesUpdate(clampNearZombiesFactor);
