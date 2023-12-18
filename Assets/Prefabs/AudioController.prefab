@@ -184,6 +184,21 @@ MonoBehaviour:
       Data3: 762669745
       Data4: 1902912595
     Path: event:/Zoomin_Breath
+  PlayerJump:
+    Guid:
+      Data1: 1433912525
+      Data2: 1271086685
+      Data3: -2063305848
+      Data4: -628108433
+    Path: event:/Jump
+  PlayerLand:
+    Guid:
+      Data1: -203514912
+      Data2: 1091224900
+      Data3: -2053790286
+      Data4: 1437163456
+    Path: event:/Land
+  LandMovementParam: Staying_moving
   PlayerHealth:
     Guid:
       Data1: -1536465125
