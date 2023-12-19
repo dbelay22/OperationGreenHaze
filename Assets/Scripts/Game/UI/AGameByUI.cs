@@ -11,6 +11,8 @@ public class AGameByUI : MonoBehaviour
     void Awake()
     {
         HideTextCanvasGroup();
+
+        UICore.LockCursor();
     }
 
     void HideTextCanvasGroup()

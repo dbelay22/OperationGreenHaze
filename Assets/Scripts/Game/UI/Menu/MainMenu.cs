@@ -11,6 +11,8 @@ public class MainMenu : MenuBase
 
     void Awake()
     {
+        UICore.UnlockCursor();
+
         AudioController.Instance.PlayInstanceOrCreate(_menuMusic, FMODEvents.Instance.MenuMusic, out _menuMusic, true);
     }
 

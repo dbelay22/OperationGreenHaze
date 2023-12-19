@@ -20,6 +20,11 @@ public class TelegramMessageCanvas : MonoBehaviour
 
     TypewriterEffect _typewriterEffect;
 
+    void Awake()
+    {
+        UICore.LockCursor();
+    }
+
     void Start()
     {
         _pressKeyText.enabled = true;

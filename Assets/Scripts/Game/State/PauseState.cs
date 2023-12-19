@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-using UnityEngine;
-using Yxp.Helpers;
+﻿using UnityEngine;
 using Yxp.StateMachine;
 
 public class PauseState : GameState
@@ -15,7 +13,7 @@ public class PauseState : GameState
 
         AudioController.Instance.GameplayPause();
 
-        UnlockCursor();
+        UICore.UnlockCursor();
     }      
 
     public override void ExitState(bool isShuttingDown)
@@ -32,12 +30,6 @@ public class PauseState : GameState
         {
             AudioController.Instance.GameplayResume();
         }
-    }
-
-    void UnlockCursor()
-    {
-        Cursor.lockState = CursorLockMode.Confined;
-        Cursor.visible = true;
     }
 
     public override void Update()

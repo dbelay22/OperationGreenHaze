@@ -12,13 +12,7 @@ public class MenuBase : MonoBehaviour, IPointerEnterHandler
     void Start()
     {
         //Debug.Log($"[MenuBase] I'm {this.name}");
-        UnlockCursor();
-    }
-
-    void UnlockCursor()
-    {
-        Cursor.lockState = CursorLockMode.Confined;
-        Cursor.visible = true;
+        UICore.UnlockCursor();
     }
     
     // When mouse enters the menu

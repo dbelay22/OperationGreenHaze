@@ -14,13 +14,7 @@ public class UnplayStateBase : GameState
     {
         AudioController.Instance.GameplayStop();
 
-        UnlockCursor();
-    }
-
-    void UnlockCursor()
-    {
-        Cursor.lockState = CursorLockMode.Confined;
-        Cursor.visible = true;
+        UICore.UnlockCursor();
     }
 
     public override void Update()
