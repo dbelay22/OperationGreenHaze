@@ -9,7 +9,7 @@ public class ZombieSteps : MonoBehaviour
     bool _isWalking = false;
 
     bool _stepLeft = true;
-    
+
     EventInstance _footstepEventInstance;
 
 
@@ -44,6 +44,11 @@ public class ZombieSteps : MonoBehaviour
         AudioController.Instance.Play3DEvent(_footstepEventInstance, transform.position);
 
         _stepLeft = !_stepLeft;
+    }
+
+    public void StopStepSFX()
+    {
+        AudioController.Instance.StopEvent(_footstepEventInstance);
     }
 
     public void OnNPCStartWalking()

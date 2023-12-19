@@ -7,7 +7,6 @@ using UnityEngine.Rendering;
 public class AudioController : MonoBehaviour
 {
     [Header("Mixer")]
-    [SerializeField] bool _musicOn;
     [SerializeField] string _musicBusPath;
     [SerializeField] string _sfxBusPath;
 
@@ -299,13 +298,6 @@ public class AudioController : MonoBehaviour
 
     public void GameplayStart()
     {
-#if UNITY_EDITOR
-        if (!_musicOn)
-        {
-            return;
-        }
-#endif
-
         Debug.Log($"AudioController] GameplayStart)...");
 
         PlayGameplayMusic();
@@ -315,13 +307,6 @@ public class AudioController : MonoBehaviour
 
     public void GameplayPause()
     {
-#if UNITY_EDITOR
-        if (!_musicOn)
-        {
-            return;
-        }
-#endif        
-      
         Debug.Log($"AudioController] GameplayPause)...");
 
         _musicBus.setPaused(true);
@@ -331,13 +316,6 @@ public class AudioController : MonoBehaviour
 
     public void GameplayResume()
     {
-#if UNITY_EDITOR
-        if (!_musicOn)
-        {
-            return;
-        }
-#endif
-
         Debug.Log($"AudioController] GameplayResume)...");
 
         _musicBus.setPaused(false);
@@ -347,13 +325,6 @@ public class AudioController : MonoBehaviour
 
     public void GameplayStop()
     {
-#if UNITY_EDITOR
-        if (!_musicOn)
-        {
-            return;
-        }
-#endif
-
         Debug.Log($"AudioController] GameplayStop)...");
 
         _musicBus.stopAllEvents(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);

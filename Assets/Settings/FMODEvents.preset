@@ -238,6 +238,70 @@ Preset:
     value: event:/Dead_falldown
     objectReference: {fileID: 0}
   - target: {fileID: 0}
+    propertyPath: PlayerZoomInBreath.Guid.Data1
+    value: 1435301174
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerZoomInBreath.Guid.Data2
+    value: 1275167389
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerZoomInBreath.Guid.Data3
+    value: 762669745
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerZoomInBreath.Guid.Data4
+    value: 1902912595
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerZoomInBreath.Path
+    value: event:/Zoomin_Breath
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerJump.Guid.Data1
+    value: 1433912525
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerJump.Guid.Data2
+    value: 1271086685
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerJump.Guid.Data3
+    value: -2063305848
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerJump.Guid.Data4
+    value: -628108433
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerJump.Path
+    value: event:/Jump
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerLand.Guid.Data1
+    value: -203514912
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerLand.Guid.Data2
+    value: 1091224900
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerLand.Guid.Data3
+    value: -2053790286
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerLand.Guid.Data4
+    value: 1437163456
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerLand.Path
+    value: event:/Land
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: LandMovementParam
+    value: Staying_moving
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
     propertyPath: PlayerHealth.Guid.Data1
     value: -1536465125
     objectReference: {fileID: 0}
@@ -710,6 +774,106 @@ Preset:
     value: event:/Jet
     objectReference: {fileID: 0}
   - target: {fileID: 0}
+    propertyPath: RaidSiren.Guid.Data1
+    value: -1019487629
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: RaidSiren.Guid.Data2
+    value: 1088700174
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: RaidSiren.Guid.Data3
+    value: -750216306
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: RaidSiren.Guid.Data4
+    value: -518428216
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: RaidSiren.Path
+    value: event:/Jet_Waves/Air_Raid_Siren
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: JetBombExplosions.Guid.Data1
+    value: -161740661
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: JetBombExplosions.Guid.Data2
+    value: 1078334068
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: JetBombExplosions.Guid.Data3
+    value: -1182494018
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: JetBombExplosions.Guid.Data4
+    value: 1906145351
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: JetBombExplosions.Path
+    value: event:/Jet_Waves/Jet_Bombo_Explosions
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: TimerBeepShort.Guid.Data1
+    value: 379770103
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: TimerBeepShort.Guid.Data2
+    value: 1313466579
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: TimerBeepShort.Guid.Data3
+    value: 343361176
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: TimerBeepShort.Guid.Data4
+    value: -1591205161
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: TimerBeepShort.Path
+    value: event:/Gameplay_UI/Timer_beep_short
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: TimerBeepLong.Guid.Data1
+    value: -1428172525
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: TimerBeepLong.Guid.Data2
+    value: 1252441038
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: TimerBeepLong.Guid.Data3
+    value: -104768845
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: TimerBeepLong.Guid.Data4
+    value: -685796162
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: TimerBeepLong.Path
+    value: event:/Gameplay_UI/Timer_beep_long
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: BarrelExplosion.Guid.Data1
+    value: -501221051
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: BarrelExplosion.Guid.Data2
+    value: 1161767055
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: BarrelExplosion.Guid.Data3
+    value: -1653069180
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: BarrelExplosion.Guid.Data4
+    value: 15275707
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: BarrelExplosion.Path
+    value: event:/Objets/Barrel_explosion
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
     propertyPath: MenuHover.Guid.Data1
     value: 905543055
     objectReference: {fileID: 0}
@@ -768,25 +932,5 @@ Preset:
   - target: {fileID: 0}
     propertyPath: Typewriter.Path
     value: event:/UI/Typewriter
-    objectReference: {fileID: 0}
-  - target: {fileID: 0}
-    propertyPath: BarrelExplosion.Guid.Data1
-    value: -501221051
-    objectReference: {fileID: 0}
-  - target: {fileID: 0}
-    propertyPath: BarrelExplosion.Guid.Data2
-    value: 1161767055
-    objectReference: {fileID: 0}
-  - target: {fileID: 0}
-    propertyPath: BarrelExplosion.Guid.Data3
-    value: -1653069180
-    objectReference: {fileID: 0}
-  - target: {fileID: 0}
-    propertyPath: BarrelExplosion.Guid.Data4
-    value: 15275707
-    objectReference: {fileID: 0}
-  - target: {fileID: 0}
-    propertyPath: BarrelExplosion.Path
-    value: event:/Objets/Barrel_explosion
     objectReference: {fileID: 0}
   m_ExcludedProperties: []

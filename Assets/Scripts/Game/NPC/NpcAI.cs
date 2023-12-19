@@ -433,12 +433,19 @@ public class NpcAI : MonoBehaviour
         {
             _zombieSteps.PlayStepSFX();
         }
-        /*
         else 
         {
             Debug.Log($"[NpcAI] WONT PLAY STEP audio because distance ({_distanceToTarget}) is not between {AUDIO_STEP_STOP_DISTANCE} and ({AUDIO_STEP_MIN_DISTANCE})");
-        } 
-        */
+            _zombieSteps.StopStepSFX();
+        }
+    }
+
+    public void OnZombieFallAnimEvent()
+    {
+        if (_distanceToTarget < AUDIO_STEP_MIN_DISTANCE)
+        {
+            AudioController.Instance.Play3DEvent(_zombieFallSFX, transform.position, true);
+        }
     }
 
     public void OnAttackStartAnimEvent()
@@ -648,18 +655,13 @@ public class NpcAI : MonoBehaviour
         if (_deadByHeadshot)
         {
             // headshot
-            AudioController.Instance.Play3DEvent(_zombieHeadshotSFX, transform.position);
+            AudioController.Instance.Play3DEvent(_zombieHeadshotSFX, transform.position, true);
         }
         else if (!isHeadless())
         {
             // a regular zombie with a head
-            AudioController.Instance.Play3DEvent(_zombieDieSFX, transform.position);
-        }
-
-        if (_distanceToTarget < AUDIO_STEP_MIN_DISTANCE)
-        {
-            AudioController.Instance.Play3DEvent(_zombieFallSFX, transform.position);
-        }
+            AudioController.Instance.Play3DEvent(_zombieDieSFX, transform.position, true);
+        }        
     }
 
     void OnDrawGizmosSelected()
