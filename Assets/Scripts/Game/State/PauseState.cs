@@ -18,13 +18,20 @@ public class PauseState : GameState
         UnlockCursor();
     }      
 
-    public override void ExitState()
+    public override void ExitState(bool isShuttingDown)
     {
         Debug.Log("[PauseState] (ExitState)...");
 
         Time.timeScale = 1;
 
-        AudioController.Instance.GameplayResume();
+        if (isShuttingDown)
+        {
+            AudioController.Instance.GameplayStop();
+        }
+        else
+        {
+            AudioController.Instance.GameplayResume();
+        }
     }
 
     void UnlockCursor()

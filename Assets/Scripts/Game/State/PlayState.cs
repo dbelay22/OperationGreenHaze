@@ -27,7 +27,7 @@ public class PlayState : GameState
         Cursor.visible = false;
     }
 
-    public override void ExitState()
+    public override void ExitState(bool isShuttingDown)
     {
     }
 

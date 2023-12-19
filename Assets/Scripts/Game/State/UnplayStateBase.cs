@@ -10,7 +10,7 @@ public class UnplayStateBase : GameState
         Director.Instance.DumpStats();        
     }
 
-    public override void ExitState()
+    public override void ExitState(bool isShuttingDown)
     {
         AudioController.Instance.GameplayStop();
 
