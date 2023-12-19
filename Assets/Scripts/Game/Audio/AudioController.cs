@@ -2,7 +2,7 @@ using FMOD.Studio;
 using System.Collections.Generic;
 using UnityEngine;
 using FMODUnity;
-using UnityEngine.Rendering;
+using System.Collections;
 
 public class AudioController : MonoBehaviour
 {
@@ -327,9 +327,25 @@ public class AudioController : MonoBehaviour
     {
         Debug.Log($"AudioController] GameplayStop)...");
 
-        _musicBus.stopAllEvents(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        _sfxBus.stopAllEvents(FMOD.Studio.STOP_MODE.IMMEDIATE);
 
-        _sfxBus.stopAllEvents(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        _musicBus.stopAllEvents(FMOD.Studio.STOP_MODE.IMMEDIATE);       
+    }
+
+    public void GameplayExitFromPauseScreen()
+    {
+        Debug.Log($"AudioController] GameplayExitFromPauseScreen)...");
+
+        _sfxBus.setPaused(false);
+        _sfxBus.setMute(true);
+
+        _musicBus.setPaused(false);
+        _musicBus.setMute(true);
+
+        GameplayStop();
+
+        _sfxBus.setMute(false);
+        _musicBus.setMute(false);
     }
 
     public void GameplayFindExit()

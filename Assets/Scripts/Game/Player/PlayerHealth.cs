@@ -80,7 +80,7 @@ public class PlayerHealth : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     {
-        if (Game.Instance.IsGamePlayOver())
+        if (!Game.Instance.IsGameplayOn())
         {
             return;
         }

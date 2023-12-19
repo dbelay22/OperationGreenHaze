@@ -19,7 +19,7 @@ public class JetFighter : MonoBehaviour
 
     void Update()
     {
-        if (Game.Instance.IsGamePlayOver())
+        if (!Game.Instance.IsGameplayOn())
         {
             AudioController.Instance.StopEventIfPlaying(_jetSFX);
         }

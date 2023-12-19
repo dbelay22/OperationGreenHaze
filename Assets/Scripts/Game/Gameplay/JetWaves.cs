@@ -16,7 +16,7 @@ public class JetWaves : MonoBehaviour
 
     void Update()
     {
-        if (Game.Instance.IsGamePlayOver())
+        if (!Game.Instance.IsGameplayOn())
         {
             AudioController.Instance.StopEventIfPlaying(_explosionsSFX);
             AudioController.Instance.StopEventIfPlaying(_raidSirenSFX);

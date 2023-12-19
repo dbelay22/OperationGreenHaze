@@ -24,7 +24,7 @@ public class PauseState : GameState
 
         if (isShuttingDown)
         {
-            AudioController.Instance.GameplayStop();
+            AudioController.Instance.GameplayExitFromPauseScreen();
         }
         else
         {

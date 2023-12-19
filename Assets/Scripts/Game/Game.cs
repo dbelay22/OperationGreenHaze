@@ -291,15 +291,6 @@ public class Game : MonoBehaviour
         return isGameOver;
     }
 
-    public bool IsGamePlayOver()
-    {
-        GameState currentState = GetCurrentState();
-
-        bool gameplayOver = currentState is GameOverState || currentState is WinState;
-
-        return gameplayOver;
-    }
-
     public bool IsGamePaused()
     { 
         return GetCurrentState() is PauseState;
@@ -348,7 +339,14 @@ public class Game : MonoBehaviour
         _stateMachine.Shutdown();
 
         LevelLoader.Instance.LoadMainMenu();
-    }    
+    }
+
+    void OnDestroy()
+    {
+        Debug.Log("Game ON DESTROY !!!!!!!!!!!!!!!!!!!!!!");
+
+        AudioController.Instance.GameplayStop();
+    }
 
     //=======================================================
 }
