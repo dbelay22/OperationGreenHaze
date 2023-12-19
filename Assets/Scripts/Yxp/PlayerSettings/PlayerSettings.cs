@@ -1,21 +1,24 @@
+using FMOD.Studio;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.Rendering;
 
 
 public class PlayerSettings : MonoBehaviour
 {
-    [SerializeField] AudioMixer _audioMixer;
-
-    const float DEFAULT_MUSIC_VOLUME = -10f;
-    const float DEFAULT_SFX_VOLUME = -10f;
+    const float DEFAULT_MUSIC_VOLUME = 0f;
+    const float DEFAULT_SFX_VOLUME = 0f;
 
     public const float MIN_VOLUME_DB = -80f;
     public const float MAX_VOLUME_DB = 0f;
 
     const string PERSISTANCE_MUSIC_KEY = "music-volume";
     const string PERSISTANCE_SFX_KEY = "sfx-volume";
+
+    Bus _musicBus;
+    Bus _sfxBus;
 
     #region Instance
 
@@ -25,14 +28,28 @@ public class PlayerSettings : MonoBehaviour
 
     void Awake()
     {
+        Debug.Log("PlayerSettings] Awake)...");
+
         _instance = this;
     }
 
     #endregion
 
+
+
     void Start()
     {
+        Debug.Log("PlayerSettings] Start)...");
+
+        InitBuses();
+
         ApplyPlayerSettingsAudio();
+    }
+
+    void InitBuses()
+    {
+        _musicBus = AudioController.Instance.MusicBus;
+        _sfxBus = AudioController.Instance.SFXBus;
     }
 
     public void ApplyPlayerSettingsAudio()
@@ -45,22 +62,32 @@ public class PlayerSettings : MonoBehaviour
 
     public void SetAudioMixerMusicVolume(float volume)
     {
-        // Music on Audio Mixer
-        _audioMixer.SetFloat("MusicVolume", volume);
+        Debug.Log($"SetAudioMixerMusicVolume) busVolume:{volume}");
+
+        var result = _musicBus.setVolume(volume);
+        Debug.Log($"musicBus set volume result: {result}");
+
+        _musicBus.getVolume(out float vol);
+        Debug.Log($"musicBus get volume: {vol}");
+
     }
 
     public bool SetAudioMixerSFXVolume(float volume)
     {
-        _audioMixer.GetFloat("SFXVolume", out float currentVolume);
+        _sfxBus.getVolume(out float currentVolume);
 
         if (currentVolume == volume)
         {
             return false;
         }
 
-        // SFX on Audio Mixer
-        _audioMixer.SetFloat("SFXVolume", volume);
+        // set SFX buses volume
+        var result = _sfxBus.setVolume(volume);
+        Debug.Log($"sfxBus set volume result: {result}");
 
+        _sfxBus.getVolume(out float vol);
+        Debug.Log($"sfxBus get volume: {vol}");
+        
         return true;
     }
 

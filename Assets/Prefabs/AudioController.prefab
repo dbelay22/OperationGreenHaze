@@ -47,6 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _musicOn: 1
+  _musicBusPath: bus:/Music_group
+  _sfxBusPath: bus:/SFX
 --- !u!114 &6286549390428734130
 MonoBehaviour:
   m_ObjectHideFlags: 0

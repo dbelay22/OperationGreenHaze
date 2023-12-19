@@ -44,7 +44,7 @@ public class OptionsMenu : MonoBehaviour
             return;
         }
 
-        AudioController.Instance.PlayInstanceOrCreate(_sfxSample, FMODEvents.Instance.ChangeWeaponPistol, out _sfxSample, false);        
+        AudioController.Instance.PlayInstanceOrCreate(_sfxSample, FMODEvents.Instance.Typewriter, out _sfxSample, false);        
 
         // persist
         PlayerSettings.Instance.SaveSFXSetting(newVolume);

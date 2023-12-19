@@ -7,6 +7,16 @@ public class AudioController : MonoBehaviour
 {
     [Header("Mixer")]
     [SerializeField] bool _musicOn;
+    
+    [SerializeField] string _musicBusPath;
+
+    Bus _musicBus;
+    public Bus MusicBus { get { return _musicBus; } }
+
+    [SerializeField] string _sfxBusPath;
+
+    Bus _sfxBus;
+    public Bus SFXBus { get { return _sfxBus; } }
 
     List<EventInstance> _eventInstances = new List<EventInstance>();
 
@@ -14,8 +24,6 @@ public class AudioController : MonoBehaviour
     EventInstance _ambienceSoundscape;
 
     int _maxInstancesCount = 0;
-
-    //FMOD.Studio.System _fmodStudioSystem;
 
     #region Instance
 
@@ -31,27 +39,15 @@ public class AudioController : MonoBehaviour
 
         _maxInstancesCount = 0;
 
-        //FMODAwake();
+        FMODAwake();
     }
 
-    /*
     void FMODAwake()
     {
-        FMOD.RESULT createResult = FMOD.Studio.System.create(out _fmodStudioSystem);
+        _musicBus = RuntimeManager.GetBus(_musicBusPath);
 
-        Debug.Log($"AudioController] FMODStart) create result: {createResult}");
-
-        _fmodStudioSystem.getAdvancedSettings(out ADVANCEDSETTINGS fmodSettings);
-
-        Debug.Log($"AudioController] FMODStart) commandqueuesize: {fmodSettings.commandqueuesize}, cbsize:{fmodSettings.cbsize}");
-
-        fmodSettings.commandqueuesize = 131072;        
-
-        FMOD.RESULT result = _fmodStudioSystem.setAdvancedSettings(fmodSettings);
-
-        Debug.Log($"AudioController] FMODStart) AFTER SET result:{result}, commandqueuesize: {fmodSettings.commandqueuesize}");
+        _sfxBus = RuntimeManager.GetBus(_sfxBusPath);
     }
-    */
 
     public EventInstance CreateInstance(EventReference eventReference) {
 
