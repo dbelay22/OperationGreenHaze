@@ -51,9 +51,10 @@ public class PlayerHealth : MonoBehaviour
     {
         if (!Game.Instance.IsGameplayOn())        
         {
-            StopAllHealthSFX();
             return;
         }
+
+        AudioController.Instance.PlayEvent(_healthSFX);
 
         GameUI.Instance.UpdateHealthAmmount(GetCurrentHealthClamped());
 
@@ -338,7 +339,7 @@ public class PlayerHealth : MonoBehaviour
 
     void StopAllHealthSFX()
     {
-        //Debug.Log("PlayerHealth] StopAllHealthSFX)...");
+        Debug.Log("PlayerHealth] StopAllHealthSFX)...");
 
         AudioController.Instance.StopEvent(_healthSFX);
 

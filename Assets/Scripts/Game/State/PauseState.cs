@@ -5,9 +5,6 @@ using Yxp.StateMachine;
 
 public class PauseState : GameState
 {
-    public PauseState() {
-    }
-
     public override void EnterState()
     {
         Debug.Log("[PauseState] (EnterState)...");
@@ -17,6 +14,8 @@ public class PauseState : GameState
         GameUI.Instance.ShowPause();
 
         AudioController.Instance.GameplayPause();
+
+        UnlockCursor();
     }      
 
     public override void ExitState()
@@ -26,6 +25,12 @@ public class PauseState : GameState
         Time.timeScale = 1;
 
         AudioController.Instance.GameplayResume();
+    }
+
+    void UnlockCursor()
+    {
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
     }
 
     public override void Update()
