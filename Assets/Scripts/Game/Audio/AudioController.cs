@@ -2,21 +2,17 @@ using FMOD.Studio;
 using System.Collections.Generic;
 using UnityEngine;
 using FMODUnity;
+using UnityEngine.Rendering;
 
 public class AudioController : MonoBehaviour
 {
     [Header("Mixer")]
     [SerializeField] bool _musicOn;
-    
     [SerializeField] string _musicBusPath;
-
-    Bus _musicBus;
-    public Bus MusicBus { get { return _musicBus; } }
-
     [SerializeField] string _sfxBusPath;
 
+    Bus _musicBus;
     Bus _sfxBus;
-    public Bus SFXBus { get { return _sfxBus; } }
 
     List<EventInstance> _eventInstances = new List<EventInstance>();
 
@@ -44,10 +40,36 @@ public class AudioController : MonoBehaviour
 
     void FMODAwake()
     {
-        _musicBus = RuntimeManager.GetBus(_musicBusPath);
-
+        // get buses
+        _musicBus = RuntimeManager.GetBus(_musicBusPath);        
         _sfxBus = RuntimeManager.GetBus(_sfxBusPath);
     }
+
+    public bool SetMusicBusVolume(float volume)
+    {
+        return SetBusVolume(_musicBus, volume);
+    }
+
+    public bool SetSFXBusVolume(float volume)
+    {
+        return SetBusVolume(_sfxBus, volume);
+    }
+
+    private bool SetBusVolume(Bus bus, float volume)
+    {
+        FMOD.RESULT result = bus.setVolume(volume);
+
+        if (!result.Equals(FMOD.RESULT.OK))
+        {
+            Debug.LogWarning($"AudioController] SetMusicBusVolume) result is NOT OK: {result}");
+            return false;
+        }
+
+        return true;
+    }
+
+
+    #region FMOD_Events
 
     public EventInstance CreateInstance(EventReference eventReference) {
 
@@ -82,12 +104,12 @@ public class AudioController : MonoBehaviour
 
         if (!instance.isValid())
         {
-            Debug.Log($"AudioController] PlayFromListOrCreate) instance NOT FOUND in list path: {eventReference.Guid}, creating one.");
+            //Debug.Log($"AudioController] PlayFromListOrCreate) instance NOT FOUND in list path: {eventReference.Guid}, creating one.");
             instance = CreateInstance(eventReference);
         }
         else
         {
-            Debug.Log($"AudioController] PlayFromListOrCreate) instance FOUND in list path: {eventReference.Guid}, using it.");
+            //Debug.Log($"AudioController] PlayFromListOrCreate) instance FOUND in list path: {eventReference.Guid}, using it.");
         }
 
         PlayEvent(instance, forcePlay);
@@ -107,7 +129,7 @@ public class AudioController : MonoBehaviour
             {
                 description.getPath(out string path);
 
-                Debug.Log($"AudioController] getInstanceFromList) found instance in list path: {path}, using it.");                
+                //Debug.Log($"AudioController] getInstanceFromList) found instance in list path: {path}, using it.");                
 
                 return eventInstance;
             }
@@ -120,7 +142,7 @@ public class AudioController : MonoBehaviour
     {
         if (instance.isValid())
 {
-            Debug.Log($"AudioController] PlayInstanceOrCreate) instance is valid, playing it.");
+            //Debug.Log($"AudioController] PlayInstanceOrCreate) instance is valid, playing it.");
 
             PlayEvent(instance, forcePlay);
             
@@ -130,13 +152,13 @@ public class AudioController : MonoBehaviour
         {
             outInstance = PlayFromListOrCreate(reference, forcePlay);
 
-            Debug.Log($"AudioController] PlayInstanceOrCreate) instance created/found in list, playing...");
+            //Debug.Log($"AudioController] PlayInstanceOrCreate) instance created/found in list, playing...");
         }
     }
 
     public bool PlayEvent(EventInstance eventInstance, bool forcePlay = false)
     {
-        Debug.Log($"AudioController] PlayEvent)");
+        //Debug.Log($"AudioController] PlayEvent)");
 
         if (forcePlay || !IsEventPlaying(eventInstance))
         {
@@ -160,7 +182,7 @@ public class AudioController : MonoBehaviour
 
         if (forcePlay || !IsEventPlaying(eventInstance))
         {
-            Debug.Log($"AudioController] PlayEvent) starting event: {path}");  
+            Debug.Log($"AudioController] Play3DEvent) starting event: {path}");  
 
             eventInstance.start();
             
@@ -271,6 +293,8 @@ public class AudioController : MonoBehaviour
         return playbackState.Equals(PLAYBACK_STATE.PLAYING);
     }
 
+    #endregion
+
     #region GameplayStates
 
     public void GameplayStart()
@@ -337,7 +361,7 @@ public class AudioController : MonoBehaviour
 
     public void GameplaySceneUnloaded()
     {
-        Debug.Log("AudioController] GameplaySceneUnloaded) ... stop fading music");
+        Debug.Log("AudioController] GameplaySceneUnloaded) ... stop music");
         StopFadeEvent(_musicEventInstance);
     }
 

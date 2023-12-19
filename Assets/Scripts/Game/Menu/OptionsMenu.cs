@@ -7,7 +7,7 @@ using FMOD.Studio;
 
 public class OptionsMenu : MonoBehaviour
 {
-    [Header("Slider range [-80db, 0db]")]
+    [Header("Slider range [0, 1]")]
     [SerializeField] Slider _musicVolumeSlider;
     [SerializeField] Slider _sfxVolumeSlider;
 
@@ -26,7 +26,7 @@ public class OptionsMenu : MonoBehaviour
         float newVolume = _musicVolumeSlider.value;
 
         // mixer
-        PlayerSettings.Instance.SetAudioMixerMusicVolume(newVolume);
+        AudioController.Instance.SetMusicBusVolume(newVolume);
         
         // persist
         PlayerSettings.Instance.SaveMusicSetting(newVolume);
@@ -37,14 +37,10 @@ public class OptionsMenu : MonoBehaviour
         float newVolume = _sfxVolumeSlider.value;
 
         // mixer
-        bool volumeChanged = PlayerSettings.Instance.SetAudioMixerSFXVolume(newVolume);
+        AudioController.Instance.SetSFXBusVolume(newVolume);
 
-        if (volumeChanged == false)
-        {
-            return;
-        }
-
-        AudioController.Instance.PlayInstanceOrCreate(_sfxSample, FMODEvents.Instance.MenuSelect, out _sfxSample, false);        
+        // play sample
+        AudioController.Instance.PlayInstanceOrCreate(_sfxSample, FMODEvents.Instance.MenuSelect, out _sfxSample, false);
 
         // persist
         PlayerSettings.Instance.SaveSFXSetting(newVolume);

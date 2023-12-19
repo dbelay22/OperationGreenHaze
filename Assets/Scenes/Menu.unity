@@ -1867,7 +1867,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: -3
+  m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -2641,7 +2641,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: -3
+  m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -4391,7 +4391,7 @@ PrefabInstance:
     - target: {fileID: 4384535363247511546, guid: 8d5527c5e4f98894e92bac85cc80ebda,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4384535363247511546, guid: 8d5527c5e4f98894e92bac85cc80ebda,
         type: 3}
@@ -5143,7 +5143,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1731675995
 MonoBehaviour:
@@ -5359,7 +5359,7 @@ PrefabInstance:
     - target: {fileID: 4752564014682183389, guid: 03f55d419b18a8444a23b5f3267eb01f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4752564014682183389, guid: 03f55d419b18a8444a23b5f3267eb01f,
         type: 3}
@@ -5552,7 +5552,7 @@ RectTransform:
   - {fileID: 653098962}
   - {fileID: 1070089366}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

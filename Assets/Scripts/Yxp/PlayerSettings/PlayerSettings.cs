@@ -35,60 +35,18 @@ public class PlayerSettings : MonoBehaviour
 
     #endregion
 
-
-
     void Start()
     {
-        Debug.Log("PlayerSettings] Start)...");
-
-        InitBuses();
-
         ApplyPlayerSettingsAudio();
-    }
-
-    void InitBuses()
-    {
-        _musicBus = AudioController.Instance.MusicBus;
-        _sfxBus = AudioController.Instance.SFXBus;
     }
 
     public void ApplyPlayerSettingsAudio()
     {
-        SetAudioMixerMusicVolume(LoadMusicSetting());
-        SetAudioMixerSFXVolume(LoadSFXSetting());
-    }
+        Debug.Log("PlayerSettings] ApplyPlayerSettingsAudio)...");
 
-    #region Audio
-
-    public void SetAudioMixerMusicVolume(float volume)
-    {
-        Debug.Log($"SetAudioMixerMusicVolume) busVolume:{volume}");
-
-        var result = _musicBus.setVolume(volume);
-        Debug.Log($"musicBus set volume result: {result}");
-
-        _musicBus.getVolume(out float vol);
-        Debug.Log($"musicBus get volume: {vol}");
-
-    }
-
-    public bool SetAudioMixerSFXVolume(float volume)
-    {
-        _sfxBus.getVolume(out float currentVolume);
-
-        if (currentVolume == volume)
-        {
-            return false;
-        }
-
-        // set SFX buses volume
-        var result = _sfxBus.setVolume(volume);
-        Debug.Log($"sfxBus set volume result: {result}");
-
-        _sfxBus.getVolume(out float vol);
-        Debug.Log($"sfxBus get volume: {vol}");
+        AudioController.Instance.SetMusicBusVolume(LoadMusicSetting());
         
-        return true;
+        AudioController.Instance.SetSFXBusVolume(LoadSFXSetting());
     }
 
     #region Persistance
@@ -128,8 +86,6 @@ public class PlayerSettings : MonoBehaviour
 
         return PlayerPrefs.GetFloat(PERSISTANCE_SFX_KEY);
     }
-
-    #endregion
 
     #endregion
 }
