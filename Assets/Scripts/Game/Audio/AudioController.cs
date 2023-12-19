@@ -324,9 +324,9 @@ public class AudioController : MonoBehaviour
       
         Debug.Log($"AudioController] GameplayPause)...");
 
-        PauseEvent(_musicEventInstance);
-
-        PauseEvent(_ambienceSoundscape);
+        _musicBus.setPaused(true);
+        
+        _sfxBus.setPaused(true);
     }    
 
     public void GameplayResume()
@@ -340,9 +340,9 @@ public class AudioController : MonoBehaviour
 
         Debug.Log($"AudioController] GameplayResume)...");
 
-        ResumeEvent(_musicEventInstance);
+        _musicBus.setPaused(false);
 
-        ResumeEvent(_ambienceSoundscape);
+        _sfxBus.setPaused(false);
     }
 
     public void GameplayStop()
@@ -356,13 +356,9 @@ public class AudioController : MonoBehaviour
 
         Debug.Log($"AudioController] GameplayStop)...");
 
-        StopEvent(_ambienceSoundscape);
-    }
+        _musicBus.stopAllEvents(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
 
-    public void GameplaySceneUnloaded()
-    {
-        Debug.Log("AudioController] GameplaySceneUnloaded) ... stop music");
-        StopFadeEvent(_musicEventInstance);
+        _sfxBus.stopAllEvents(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     }
 
     public void GameplayFindExit()

@@ -12,13 +12,13 @@ public class PlayState : GameState
     {
         Debug.Log("[PlayState] (EnterState)...");
 
-        Time.timeScale = 1;
-        
         LockCursor();
 
-        GameUI.Instance.ShowGameplay();
+        Time.timeScale = 1;
 
         AudioController.Instance.GameplayStart();
+
+        GameUI.Instance.ShowGameplay();        
     }
 
     void LockCursor()
@@ -27,21 +27,8 @@ public class PlayState : GameState
         Cursor.visible = false;
     }
 
-    void UnlockCursor()
-    {
-        Cursor.lockState = CursorLockMode.Confined;
-        Cursor.visible = true;
-    }
-
     public override void ExitState()
     {
-        Debug.Log("[PlayState] (ExitState)...");
-
-        AudioController.Instance.GameplayStop();
-
-        Director.Instance.DumpStats();
-
-        UnlockCursor();
     }
 
     public override void Update()
