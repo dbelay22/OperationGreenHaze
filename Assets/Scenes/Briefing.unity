@@ -353,9 +353,6 @@ MonoBehaviour:
   _timeBtwChars: 0.03
   _leadingChar: '|'
   _leadingCharBeforeDelay: 1
-  _typewritterClips:
-  - {fileID: 8300000, guid: e763998931c95164891c639ac8124e6e, type: 3}
-  - {fileID: 8300000, guid: bea8dbec0f7061a4d9fc50c19edb7412, type: 3}
 --- !u!82 &1038338378
 AudioSource:
   m_ObjectHideFlags: 0
