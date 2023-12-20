@@ -8,11 +8,8 @@ using UnityEngine.Rendering;
 
 public class PlayerSettings : MonoBehaviour
 {
-    const float DEFAULT_MUSIC_VOLUME = 0f;
-    const float DEFAULT_SFX_VOLUME = 0f;
-
-    public const float MIN_VOLUME_DB = -80f;
-    public const float MAX_VOLUME_DB = 0f;
+    const float DEFAULT_MUSIC_VOLUME = 0.5f;
+    const float DEFAULT_SFX_VOLUME = 0.5f;
 
     const string PERSISTANCE_MUSIC_KEY = "music-volume";
     const string PERSISTANCE_SFX_KEY = "sfx-volume";
