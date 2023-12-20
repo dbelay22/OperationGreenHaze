@@ -329,7 +329,9 @@ public class AudioController : MonoBehaviour
 
         _sfxBus.stopAllEvents(FMOD.Studio.STOP_MODE.IMMEDIATE);
 
-        _musicBus.stopAllEvents(FMOD.Studio.STOP_MODE.IMMEDIATE);       
+        _musicBus.stopAllEvents(FMOD.Studio.STOP_MODE.IMMEDIATE);
+
+        CleanUp();
     }
 
     public void GameplayExitFromPauseScreen()
@@ -414,6 +416,8 @@ public class AudioController : MonoBehaviour
 
         // clear list        
         _eventInstances.Clear();
+
+        _maxInstancesCount = 0;
 
         Debug.Log($"AudioController] CleanUp) END OF FUNCTION");
     }

@@ -420,7 +420,7 @@ MonoBehaviour:
   sourceProjectPath: FMOD/OperationGreenHaze.fspro
   sourceBankPath: FMOD/Build
   sourceBankPathUnformatted: 
-  BankRefreshCooldown: 5
+  BankRefreshCooldown: -1
   ShowBankRefreshWindow: 1
   AutomaticEventLoading: 0
   BankLoadType: 1
@@ -448,11 +448,11 @@ MonoBehaviour:
   - Master.strings
   - Gameplay
   LiveUpdatePort: 9264
-  EnableMemoryTracking: 0
+  EnableMemoryTracking: 1
   AndroidUseOBB: 0
   AndroidPatchBuild: 0
   MeterChannelOrdering: 0
-  StopEventsOutsideMaxDistance: 0
+  StopEventsOutsideMaxDistance: 1
   BoltUnitOptionsBuildPending: 0
   EnableErrorCallback: 0
   SharedLibraryUpdateStage: 0
