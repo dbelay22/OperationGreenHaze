@@ -72,6 +72,13 @@ public class Game : MonoBehaviour
         _stateMachine.TransitionToState(new PlayState());
 
         AudioController.Instance.PlayInstanceOrCreate(_helicopterGoneSFX, FMODEvents.Instance.Helicopter_Gone, out _helicopterGoneSFX, true);
+
+        Invoke(nameof(PlayRadioWelcome), 1.5f);
+    }
+
+    void PlayRadioWelcome()
+    {
+        RadioTalking.Instance.PlayMessage(RadioTalking.Instance.Start);
     }
 
     void CheckAudioControllerInstance()

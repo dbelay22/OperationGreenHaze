@@ -1,0 +1,151 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3055450191548986245
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6972387674976547473}
+  - component: {fileID: 2909527118095540593}
+  m_Layer: 0
+  m_Name: RadioTalking
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6972387674976547473
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3055450191548986245}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2909527118095540593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3055450191548986245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 453abeed4a62e4344857530bd0945540, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Start:
+    Guid:
+      Data1: 1030413982
+      Data2: 1329183541
+      Data3: -602297719
+      Data4: -657350733
+    Path: event:/Dx/Dx_Start
+  PlayVGood:
+    Guid:
+      Data1: -968579265
+      Data2: 1301088212
+      Data3: 627924355
+      Data4: -646625796
+    Path: event:/Dx/Dx_Dx_PlayVGood
+  PlayGood:
+    Guid:
+      Data1: -1946711664
+      Data2: 1220687008
+      Data3: -366516095
+      Data4: -353427896
+    Path: event:/Dx/Dx_PlayGood
+  PlayBad:
+    Guid:
+      Data1: -1610616569
+      Data2: 1277966762
+      Data3: 1489879941
+      Data4: -1074780195
+    Path: event:/Dx/Dx_PlayBad
+  Damage:
+    Guid:
+      Data1: -1324343394
+      Data2: 1207967845
+      Data3: -2088665199
+      Data4: 1895379768
+    Path: event:/Dx/Dx_Damage
+  UseFlashlight:
+    Guid:
+      Data1: -504530702
+      Data2: 1326425977
+      Data3: 1198443932
+      Data4: -18442044
+    Path: event:/Dx/Dx_UseFlashlight
+  OutOfAmmo:
+    Guid:
+      Data1: 765253765
+      Data2: 1123415323
+      Data3: -60416083
+      Data4: -186096476
+    Path: event:/Dx/Dx_OutOfAmmo
+  MissionObj1:
+    Guid:
+      Data1: 110624995
+      Data2: 1257677058
+      Data3: -1776752721
+      Data4: -59534962
+    Path: event:/Dx/Dx_MissionObj1
+  MissionObj2:
+    Guid:
+      Data1: -1314531814
+      Data2: 1223335826
+      Data3: -135738188
+      Data4: 94685017
+    Path: event:/Dx/Dx_MissionObj2
+  KillComplete:
+    Guid:
+      Data1: 2037711757
+      Data2: 1118425463
+      Data3: 1570980748
+      Data4: 822817123
+    Path: event:/Dx/Dx_KillComplete
+  FindExit:
+    Guid:
+      Data1: -1548622937
+      Data2: 1300284218
+      Data3: -422795847
+      Data4: -724785652
+    Path: event:/Dx/Dx_FindExit
+  TooClose:
+    Guid:
+      Data1: -1634579830
+      Data2: 1231552169
+      Data3: 1814941317
+      Data4: -885760449
+    Path: event:/Dx/Dx_TooClose
+  Time1:
+    Guid:
+      Data1: 971221409
+      Data2: 1241698651
+      Data3: -667077735
+      Data4: 884784244
+    Path: event:/Dx/Dx_Time1
+  Time2:
+    Guid:
+      Data1: -327261467
+      Data2: 1290067663
+      Data3: 1090211727
+      Data4: -124828177
+    Path: event:/Dx/Dx_Time2
+  Time3:
+    Guid:
+      Data1: 1306275542
+      Data2: 1174568038
+      Data3: -353573460
+      Data4: 270919588
+    Path: event:/Dx/Dx_Time3
