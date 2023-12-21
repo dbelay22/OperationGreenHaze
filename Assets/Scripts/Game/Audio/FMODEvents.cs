@@ -15,6 +15,10 @@ public class FMODEvents : MonoBehaviour
     public EventReference WinMusic;
     public EventReference LoseMusic;
 
+    [Header("Helicopter")]
+    public EventReference Helicopter_Briefing;
+    public EventReference Helicopter_Gone;
+
     [Header("Ambience")]
     public EventReference AmbienceSoundscape;
 

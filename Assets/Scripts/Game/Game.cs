@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections;
+﻿using FMOD.Studio;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
-using UnityEngine.SceneManagement;
 using Yxp.Helpers;
 using Yxp.StateMachine;
 
@@ -39,25 +37,26 @@ public class Game : MonoBehaviour
     bool _allMissionPickupsCompleted = false;
     bool _exitClear = false;
 
+    EventInstance _helicopterGoneSFX;
+
     #region Instance
 
     private static Game _instance;
 
     public static Game Instance { get { return _instance; } }
 
+    #endregion
+
     void Awake()
     {
         _instance = this;
-        
+
         CheckAudioControllerInstance();
 
         CheckPlayerSettingsInstance();
 
         CheckLocalizationInstance();
     }
-
-    #endregion
-
 
     void Start()
     {
@@ -70,6 +69,8 @@ public class Game : MonoBehaviour
 
         _stateMachine = new GameStateMachine();
         _stateMachine.TransitionToState(new PlayState());
+
+        AudioController.Instance.PlayInstanceOrCreate(_helicopterGoneSFX, FMODEvents.Instance.Helicopter_Gone, out _helicopterGoneSFX, true);
     }
 
     void CheckAudioControllerInstance()

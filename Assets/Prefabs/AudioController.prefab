@@ -143,6 +143,20 @@ MonoBehaviour:
       Data3: 1335201666
       Data4: 1878953327
     Path: event:/Music/Music_Game-over
+  Helicopter_Briefing:
+    Guid:
+      Data1: -102195960
+      Data2: 1148908492
+      Data3: 608358847
+      Data4: 1790094156
+    Path: event:/Helicopter/Helicopter_Briefing
+  Helicopter_Gone:
+    Guid:
+      Data1: -1436865879
+      Data2: 1111934431
+      Data3: -1488154240
+      Data4: -103824364
+    Path: event:/Helicopter/Helicopter_Gone
   AmbienceSoundscape:
     Guid:
       Data1: -158169680

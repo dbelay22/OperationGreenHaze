@@ -121,11 +121,11 @@ public class LevelLoader : MonoBehaviour
     {
         while (!_canStartNextLevel)
         {
-            Debug.Log("Waiting signal to start next level...");
+            //Debug.Log("Waiting signal to start next level...");
             yield return null;
         }
 
-        Debug.Log("allowSceneActivation NOW");
+        //Debug.Log("allowSceneActivation NOW");
         
         _currentLoading.allowSceneActivation = true;
 
