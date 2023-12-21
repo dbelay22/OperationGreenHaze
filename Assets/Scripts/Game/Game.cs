@@ -338,7 +338,7 @@ public class Game : MonoBehaviour
     {
         _stateMachine.Shutdown();
 
-        LevelLoader.Instance.LoadMainMenu();
+        LevelLoader.Instance.LoadMainMenuAsync(true);
     }
 
     void OnDestroy()

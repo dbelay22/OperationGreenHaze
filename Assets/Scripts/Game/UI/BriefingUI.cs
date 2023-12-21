@@ -5,11 +5,9 @@ using TMPro;
 
 public class BriefingUI : TelegramMessageCanvas
 {
-    public override void OnFadeOutComplete()
+    protected override void AfterStart()
     {
-        base.OnFadeOutComplete();
-
-        LevelLoader.Instance.LoadNextLevel();
+        LevelLoader.Instance.LoadNextLevelAsync();
     }
 
 }

@@ -18,21 +18,23 @@ public class MainMenu : MenuBase
 
     public void Play()
     {
+        LevelLoader.Instance.LoadNextLevelAsync();
+
         AudioController.Instance.StopFadeEvent(_menuMusic);
 
-        LevelLoader.Instance.LoadNextLevel();
+        LevelLoader.Instance.ReadyToStartNextLevel();
     }
 
     public void Quit()
     {
-        LevelLoader.Instance.StartCrossfade();
-        
-        StartCoroutine(QuitDelayed());
+        StartCoroutine(LevelLoader.Instance.StartCrossfade());
+
+        StartCoroutine(QuitDelayed(LevelLoader.Instance._transitionTime));            
     }
 
-    IEnumerator QuitDelayed()
+    IEnumerator QuitDelayed(float time)
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(time);
 
         Application.Quit();
     }

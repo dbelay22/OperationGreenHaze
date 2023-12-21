@@ -879,7 +879,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ee8355e639e2e5418222811d2c3e31e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fadeInOutDuration: 2.2
+  _fadeInOutDuration: 1.5
   _telegramText: {fileID: 1038338375}
   _pressKeyText: {fileID: 1831164505}
   _bgMusicRef:
