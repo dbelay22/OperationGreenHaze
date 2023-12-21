@@ -231,16 +231,20 @@ public class GameUI : MonoBehaviour
 
     IEnumerator LoadWinSceneDelayed()
     {
-        yield return new WaitForSeconds(2f);
+        LevelLoader.Instance.LoadWinSceneAsync();
 
-        LevelLoader.Instance.LoadWinScene();
+        yield return new WaitForSeconds(2.2f);
+
+        StartCoroutine(LevelLoader.Instance.StartCrossfade());
     }
 
     IEnumerator LoadLoseSceneDelayed()
     {
-        yield return new WaitForSeconds(2f);
+        LevelLoader.Instance.LoadLoseSceneAsync();
+        
+        yield return new WaitForSeconds(2.2f);
 
-        LevelLoader.Instance.LoadLoseScene();
+        StartCoroutine(LevelLoader.Instance.StartCrossfade());
     }
 
 

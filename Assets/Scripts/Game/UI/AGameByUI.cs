@@ -22,6 +22,8 @@ public class AGameByUI : MonoBehaviour
 
     void Start()
     {
+        LevelLoader.Instance.LoadNextLevelAsync();
+
         StartCoroutine(FadeInText());
     }
 
@@ -33,7 +35,7 @@ public class AGameByUI : MonoBehaviour
         {
             _textCanvasGroup.alpha = Mathf.Lerp(0, 1, time / _fadeInDuration);
 
-            yield return null;
+            yield return new WaitForEndOfFrame();
 
             time += Time.deltaTime;
         }
@@ -43,7 +45,7 @@ public class AGameByUI : MonoBehaviour
 
     void OnFadeInEnd() 
     {
-        LevelLoader.Instance.LoadNextLevel();
+        LevelLoader.Instance.ReadyToStartNextLevel();
     }
 
 }

@@ -27,7 +27,7 @@ public class TelegramMessageCanvas : MonoBehaviour
 
     void Start()
     {
-        _pressKeyText.enabled = true;
+        _pressKeyText.enabled = false;
 
         _keyWasPressed = false;
 
@@ -35,13 +35,27 @@ public class TelegramMessageCanvas : MonoBehaviour
         AudioController.Instance.PlayInstanceOrCreate(_bgMusicInstance, _bgMusicRef, out _bgMusicInstance, true);
 
         _typewriterEffect = GetComponentInChildren<TypewriterEffect>();
+
+        AfterStart();
     }
+
+    protected virtual void AfterStart()
+    { }
 
     void Update()
     {
-        if (_keyWasPressed == false && Input.anyKeyDown)
+        if (_pressKeyText.enabled = true && _keyWasPressed == false && Input.anyKeyDown)
         {
             OnAnyKeyPressed();
+        }
+
+        if (LevelLoader.Instance.IsNextLevelReady())
+        {
+            if (!_pressKeyText.enabled)
+            {
+                // Show "PRESS ANY KEY"
+                _pressKeyText.enabled = true;
+            }            
         }
     }
 
@@ -51,11 +65,6 @@ public class TelegramMessageCanvas : MonoBehaviour
 
         _typewriterEffect.Flush();
 
-        StartFadeOut();
-    }
-
-    void StartFadeOut()
-    {
         _pressKeyText.enabled = false;
 
         StartCoroutine(FadeOut());
@@ -69,7 +78,7 @@ public class TelegramMessageCanvas : MonoBehaviour
         {
             _telegramText.alpha = Mathf.Lerp(1, 0, time / _fadeInOutDuration);
 
-            yield return null;
+            yield return new WaitForEndOfFrame();
 
             time += Time.deltaTime;
         }
@@ -77,9 +86,11 @@ public class TelegramMessageCanvas : MonoBehaviour
         OnFadeOutComplete();
     }
 
-    public virtual void OnFadeOutComplete() 
+    protected virtual void OnFadeOutComplete() 
     {
-        //Debug.Log($"TMC] OnFadeOutComplete) stopping music {_bgMusicRef.Path}");
+        Debug.Log($"TMC] OnFadeOutComplete) Ready to start next level / stopping music");        
+
+        LevelLoader.Instance.ReadyToStartNextLevel();
 
         AudioController.Instance.StopFadeEvent(_bgMusicInstance);
     }
