@@ -79,6 +79,7 @@ public class FMODEvents : MonoBehaviour
     public EventReference ZombieDamage;
     public EventReference ZombieBlinded;
     public EventReference ZombieHeadshot;
+    public EventReference ZombieBlindedLoop;
 
     [Header("Jet waves")]
     public EventReference Jet;

@@ -355,6 +355,13 @@ MonoBehaviour:
       Data3: 1123581323
       Data4: -786582419
     Path: event:/Zombies_Headshots
+  ZombieBlindedLoop:
+    Guid:
+      Data1: -1431955290
+      Data2: 1319297354
+      Data3: 1073463988
+      Data4: 836726666
+    Path: event:/Zombies_Voices/Zombie_flashlight
   Jet:
     Guid:
       Data1: -120129483

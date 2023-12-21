@@ -82,6 +82,7 @@ public class NpcAI : MonoBehaviour
     EventInstance _zombieAppearSFX;
     EventInstance _zombieAttackSFX;
     EventInstance _zombieBlindedSFX;
+    EventInstance _zombieBlindedLoopSFX;
     EventInstance _zombieDamageSFX;
     EventInstance _zombieDieSFX;
     EventInstance _zombieFallSFX;
@@ -243,6 +244,7 @@ public class NpcAI : MonoBehaviour
         _zombieAppearSFX = AudioController.Instance.Create3DInstance(FMODEvents.Instance.ZombieAppear, transform.position);
         _zombieAttackSFX = AudioController.Instance.Create3DInstance(FMODEvents.Instance.ZombieAttack, transform.position);
         _zombieBlindedSFX = AudioController.Instance.Create3DInstance(FMODEvents.Instance.ZombieBlinded, transform.position);
+        _zombieBlindedLoopSFX = AudioController.Instance.Create3DInstance(FMODEvents.Instance.ZombieBlindedLoop, transform.position);
         _zombieDamageSFX = AudioController.Instance.Create3DInstance(FMODEvents.Instance.ZombieDamage, transform.position);
         _zombieDieSFX = AudioController.Instance.Create3DInstance(FMODEvents.Instance.ZombieDie, transform.position);
         _zombieFallSFX = AudioController.Instance.Create3DInstance(FMODEvents.Instance.ZombieFall, transform.position);
@@ -283,6 +285,8 @@ public class NpcAI : MonoBehaviour
     IEnumerator WakeUpFromBlinded()
     {
         yield return new WaitForSeconds(_blindedTimeout);
+
+        AudioController.Instance.StopEventIfPlaying(_zombieBlindedLoopSFX);
 
         SetCurrentStateTo(NpcState.Provoked);
 
@@ -445,6 +449,11 @@ public class NpcAI : MonoBehaviour
         if (_distanceToTarget < AUDIO_STEP_MIN_DISTANCE)
         {
             AudioController.Instance.Play3DEvent(_zombieFallSFX, transform.position, true);
+
+            if (_currentState.Equals(NpcState.Blinded))
+            {
+                AudioController.Instance.Play3DEvent(_zombieBlindedLoopSFX, transform.position, true);
+            }
         }
     }
 
