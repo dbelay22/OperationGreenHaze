@@ -260,6 +260,11 @@ PrefabInstance:
       propertyPath: m_text
       value: press_any_key
       objectReference: {fileID: 0}
+    - target: {fileID: 4268806864832699247, guid: ef8945843775fcd41aea9e95e6ebc283,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7055203435048829409, guid: ef8945843775fcd41aea9e95e6ebc283, type: 3}
     - {fileID: 582563047228045653, guid: ef8945843775fcd41aea9e95e6ebc283, type: 3}

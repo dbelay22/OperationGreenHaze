@@ -341,12 +341,5 @@ public class Game : MonoBehaviour
         LevelLoader.Instance.LoadMainMenuAsync(true);
     }
 
-    void OnDestroy()
-    {
-        Debug.Log("Game ON DESTROY !!!!!!!!!!!!!!!!!!!!!!");
-
-        AudioController.Instance.GameplayStop();
-    }
-
     //=======================================================
 }

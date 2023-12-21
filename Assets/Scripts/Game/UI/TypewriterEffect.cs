@@ -18,6 +18,8 @@ public class TypewriterEffect : MonoBehaviour
 
 	EventInstance _typewriterSFX;
 
+	Coroutine _typeWriterCoroutine;
+
     void Awake()
     {
 		_typewriterSFX = AudioController.Instance.CreateInstance(FMODEvents.Instance.Typewriter);
@@ -31,7 +33,7 @@ public class TypewriterEffect : MonoBehaviour
 
 		_tmpProText.text = "";
 
-		StartCoroutine(TypeWriter());
+		_typeWriterCoroutine = StartCoroutine(TypeWriter());
 	}
 
 	int _charCount = 0;
@@ -104,7 +106,7 @@ public class TypewriterEffect : MonoBehaviour
 
     public void Flush()
 	{
-		StopAllCoroutines();
+		StopCoroutine(_typeWriterCoroutine);
 
 		_tmpProText.text = _writer;
 

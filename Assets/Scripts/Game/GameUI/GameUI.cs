@@ -177,7 +177,7 @@ public class GameUI : MonoBehaviour
         // Change music
         AudioController.Instance.GameplayDead();
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2.2f);
 
         Game.Instance.ChangeStateToGameOver();
     }

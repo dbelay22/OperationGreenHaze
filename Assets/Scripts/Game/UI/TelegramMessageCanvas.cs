@@ -27,7 +27,7 @@ public class TelegramMessageCanvas : MonoBehaviour
 
     void Start()
     {
-        _pressKeyText.enabled = false;
+        _pressKeyText.gameObject.SetActive(false);
 
         _keyWasPressed = false;
 
@@ -44,28 +44,36 @@ public class TelegramMessageCanvas : MonoBehaviour
 
     void Update()
     {
-        if (_pressKeyText.enabled = true && _keyWasPressed == false && Input.anyKeyDown)
+        if (_pressKeyText.gameObject.activeSelf && _keyWasPressed == false && Input.anyKeyDown)
         {
-            OnAnyKeyPressed();
+            StartCoroutine(OnAnyKeyPressed());
         }
 
         if (LevelLoader.Instance.IsNextLevelReady())
         {
-            if (!_pressKeyText.enabled)
+            if (!_pressKeyText.gameObject.activeSelf)
             {
                 // Show "PRESS ANY KEY"
-                _pressKeyText.enabled = true;
+                _pressKeyText.gameObject.SetActive(true);
             }            
         }
     }
 
-    void OnAnyKeyPressed()
+    IEnumerator OnAnyKeyPressed()
     {
+        Debug.Log("OnAnyKeyPressed");
+
         _keyWasPressed = true;
 
-        _typewriterEffect.Flush();
-
         _pressKeyText.enabled = false;
+        _pressKeyText.StopAllCoroutines();
+        _pressKeyText.gameObject.SetActive(false);
+
+        yield return new WaitForSeconds(0.1f);
+
+        Debug.Log("press any key should not be visible");
+
+        _typewriterEffect.Flush();
 
         StartCoroutine(FadeOut());
     }

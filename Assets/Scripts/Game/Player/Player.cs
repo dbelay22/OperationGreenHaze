@@ -383,9 +383,6 @@ public class Player : MonoBehaviour
 
         // hide weapons
         _weaponSwitcher.HideCurrentWeapon();
-
-        // bye player ?
-        Destroy(gameObject, 3f);
     }
 
     public string GetUnusedAmmo()
