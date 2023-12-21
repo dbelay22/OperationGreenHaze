@@ -13,36 +13,35 @@ public enum DirectorEvents
     Player_Pickup_Ammo,
     Player_Pickup_Flashlight,
     Shot_Accuracy_Update,
-    Player_Pickup_Mission,
+    Player_Pickup_Mission
 }
 
 public class Director : MonoBehaviour
-{
+{    
     // zombie attack
-    int _meleeAttackCount = 0;
-    int _playerEscapeCount = 0;
-    int _playerDamageCount = 0;
+    public int _meleeAttackCount = 0;
+    public int _playerEscapeCount = 0;
+    public int _playerDamageCount = 0;
 
     // pickups
-    int _playerPickupMedkitCount = 0;
-    int _playerPickupAmmoCount = 0;
-    int _playerPickupFlashlightCount = 0;
+    public int _playerPickupMedkitCount = 0;
+    public int _playerPickupAmmoCount = 0;
+    public int _playerPickupFlashlightCount = 0;
 
     // kills
-    int _enemyKillCount = 0;
-    int _enemyKillByHeadshotCount = 0;
+    public int _enemyKillCount = 0;
+    public int _enemyKillByHeadshotCount = 0;
 
     // shot accuracy
-    float _shotAccuracy = 0f;
+    public float _shotAccuracy = 0f;
 
     bool _statsOnScreen = false;
 
     #region Instance
 
-    private static Director _instance;
-    
+    private static Director _instance;    
 
-    public static Director Instance { get { return _instance; } }    
+    public static Director Instance { get { return _instance; } }
 
     void Awake()
     {
@@ -148,7 +147,7 @@ public class Director : MonoBehaviour
             case DirectorEvents.Shot_Accuracy_Update:
                 _shotAccuracy = (float) eventValue;
                 break;
-        }
+        }        
     }
 
 }

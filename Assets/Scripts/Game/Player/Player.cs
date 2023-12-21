@@ -154,6 +154,9 @@ public class Player : MonoBehaviour
 
         // Notify Ammo-slots manager
         _ammo.OnBulletShot(ammoType, amount, hitEnemy);
+
+        // Maybe evaluate playing
+        RadioTalking.Instance.ProcessRatePlaying();
     }
 
     #endregion
