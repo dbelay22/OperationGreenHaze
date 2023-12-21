@@ -18,10 +18,6 @@ public enum DirectorEvents
 
 public class Director : MonoBehaviour
 {
-    // stress
-    float _playerStress = 0;
-    float _maxStress = 0;
-
     // zombie attack
     int _meleeAttackCount = 0;
     int _playerEscapeCount = 0;
@@ -58,14 +54,10 @@ public class Director : MonoBehaviour
     void Start()
     {
         _statsOnScreen = false;
-        
-        StressStart();
     }
 
     void Update()
     {
-        StressLevelUpdate();
-
         // [T] Show Director Stats
         if (DevDebug.Instance.IsDebugBuild && Input.GetKeyDown(KeyCode.T))
         {
@@ -75,9 +67,6 @@ public class Director : MonoBehaviour
 
     void OnGUI()
     {
-        // Make a background box
-        //GUI.Box(new Rect(10, 300, 300, 550), "Director Stats");
-
         if (_statsOnScreen == false)
         {
             return;
@@ -100,9 +89,6 @@ public class Director : MonoBehaviour
             $"[Director] Enemy Kill HEADSHOT Count: {_enemyKillByHeadshotCount}\n" +
             
             $"[Director] ..........................\n" +
-            $"[Director] Stress Level: {_playerStress}\n" +
-            
-            $"[Director] ..........................\n" +
             $"[Director] Melee Attack Count: {_meleeAttackCount}\n" +
             $"[Director] Player Escape Count: {_playerEscapeCount}\n" +
             $"[Director] Player Damage Count: {_playerDamageCount}\n" +
@@ -119,30 +105,6 @@ public class Director : MonoBehaviour
         Debug.Log(stats);
 
         return stats;
-    }
-
-    void StressStart()
-    {
-        _playerStress = 0f;
-        _maxStress = 0f;
-    }
-
-    float StressLevelUpdate()
-    {
-        _playerStress = Mathf.Round(
-            _meleeAttackCount + _playerDamageCount
-            - (_playerEscapeCount * 0.2f) - (_enemyKillByHeadshotCount * 0.1f) - (_playerPickupAmmoCount * 0.2f) - (_playerPickupFlashlightCount * 0.2f)
-         );
-
-        //Debug.Log($"[DirectorAI] (OnEvent) Stress Level Update - Stress Brute: {_playerStress} - _lastReportedStressLevel: {_lastReportedStressLevel}");
-
-        _playerStress = Mathf.Clamp(_playerStress, 0, 100);
-
-        _maxStress = Mathf.Max(_playerStress, _maxStress);
-
-        //Debug.Log($"[DirectorAI] (OnEvent) Stress Level Update - Stress Clamp: {_playerStress} - _lastReportedStressLevel: {_lastReportedStressLevel}");
-
-        return _playerStress;
     }
 
     public void OnEvent(DirectorEvents directorEvent, object eventValue = null)
