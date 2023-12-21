@@ -16,7 +16,7 @@ public class TelegramMessageCanvas : MonoBehaviour
 
     EventInstance _bgMusicInstance;
 
-    bool _keyWasPressed = false;
+    protected bool _keyWasPressed = false;
 
     TypewriterEffect _typewriterEffect;
 
@@ -25,7 +25,7 @@ public class TelegramMessageCanvas : MonoBehaviour
         UICore.LockCursor();
     }
 
-    void Start()
+    protected virtual void Start()
     {
         _pressKeyText.gameObject.SetActive(false);
 
@@ -35,14 +35,9 @@ public class TelegramMessageCanvas : MonoBehaviour
         AudioController.Instance.PlayInstanceOrCreate(_bgMusicInstance, _bgMusicRef, out _bgMusicInstance, true);
 
         _typewriterEffect = GetComponentInChildren<TypewriterEffect>();
-
-        AfterStart();
     }
 
-    protected virtual void AfterStart()
-    { }
-
-    void Update()
+    protected virtual void Update()
     {
         if (_pressKeyText.gameObject.activeSelf && _keyWasPressed == false && Input.anyKeyDown)
         {
@@ -59,7 +54,7 @@ public class TelegramMessageCanvas : MonoBehaviour
         }
     }
 
-    IEnumerator OnAnyKeyPressed()
+    protected IEnumerator OnAnyKeyPressed()
     {
         Debug.Log("OnAnyKeyPressed");
 
@@ -70,8 +65,6 @@ public class TelegramMessageCanvas : MonoBehaviour
         _pressKeyText.gameObject.SetActive(false);
 
         yield return new WaitForSeconds(0.1f);
-
-        Debug.Log("press any key should not be visible");
 
         _typewriterEffect.Flush();
 

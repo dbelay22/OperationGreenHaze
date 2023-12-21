@@ -236,7 +236,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 147}
+  m_AnchoredPosition: {x: 0, y: -153}
   m_SizeDelta: {x: 0, y: 551.238}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1038338375
@@ -259,7 +259,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: mission_briefing
+  m_text: after_briefing
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2dc3fdd9dc8158248b1a258b64101281, type: 2}
   m_sharedMaterial: {fileID: -2414874082546053195, guid: 2dc3fdd9dc8158248b1a258b64101281,
@@ -323,7 +323,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 46.627426, z: 0, w: -261.29938}
+  m_margin: {x: 0, y: -27.505188, z: 0, w: 277.84726}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -349,7 +349,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7419abe059acb1e4d9b5252a83d74eb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _delayBeforeStart: 1.1
+  _delayBeforeStart: 0
   _timeBtwChars: 0.03
   _leadingChar: '|'
   _leadingCharBeforeDelay: 1
@@ -520,7 +520,7 @@ PrefabInstance:
     - target: {fileID: 8590017504149797435, guid: 8d5527c5e4f98894e92bac85cc80ebda,
         type: 3}
       propertyPath: _transitionTime
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d5527c5e4f98894e92bac85cc80ebda, type: 3}
@@ -774,10 +774,10 @@ GameObject:
   - component: {fileID: 1995176521}
   - component: {fileID: 1995176520}
   - component: {fileID: 1995176519}
-  - component: {fileID: 1995176523}
   - component: {fileID: 1995176524}
+  - component: {fileID: 1995176525}
   m_Layer: 5
-  m_Name: BriefingUI
+  m_Name: AfterBriefingUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -867,28 +867,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1995176523
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1995176518}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ee8355e639e2e5418222811d2c3e31e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _fadeInOutDuration: 0.5
-  _telegramText: {fileID: 1038338375}
-  _pressKeyText: {fileID: 1831164505}
-  _bgMusicRef:
-    Guid:
-      Data1: -2119929625
-      Data2: 1299647486
-      Data3: 592688787
-      Data4: -629468003
-    Path: event:/Music/Music_Carta
 --- !u!114 &1995176524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -902,3 +880,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attenuationObject: {fileID: 0}
+--- !u!114 &1995176525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1995176518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8c47b5cb8be57d4e912208d225032e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _fadeInOutDuration: 1
+  _telegramText: {fileID: 1038338375}
+  _pressKeyText: {fileID: 1831164505}
+  _bgMusicRef:
+    Guid:
+      Data1: -102195960
+      Data2: 1148908492
+      Data3: 608358847
+      Data4: 1790094156
+    Path: event:/Helicopter/Helicopter_Briefing
