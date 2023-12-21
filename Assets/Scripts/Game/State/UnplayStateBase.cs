@@ -7,14 +7,16 @@ public class UnplayStateBase : GameState
 {
     public override void EnterState()
     {
+        //Debug.Log("UnplayStateBase] EnterState)...");
+
         Director.Instance.DumpStats();        
     }
 
     public override void ExitState(bool isShuttingDown)
     {
-        AudioController.Instance.GameplayStop();
+        //Debug.Log("UnplayStateBase] ExitState)...");
 
-        UICore.UnlockCursor();
+        AudioController.Instance.GameplayStop();
     }
 
     public override void Update()

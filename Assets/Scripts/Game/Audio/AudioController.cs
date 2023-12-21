@@ -163,7 +163,7 @@ public class AudioController : MonoBehaviour
         {
             string path = GetEventInstancePath(eventInstance);
 
-            Debug.Log($"AudioController] PlayEvent) starting event: {path}");
+            //Debug.Log($"AudioController] PlayEvent) starting event: {path}");
 
             eventInstance.start();
             
@@ -181,7 +181,7 @@ public class AudioController : MonoBehaviour
 
         if (forcePlay || !IsEventPlaying(eventInstance))
         {
-            Debug.Log($"AudioController] Play3DEvent) starting event: {path}");  
+            //Debug.Log($"AudioController] Play3DEvent) starting event: {path}");  
 
             eventInstance.start();
             

@@ -343,5 +343,10 @@ public class Game : MonoBehaviour
         LevelLoader.Instance.LoadMainMenuAsync(true);
     }
 
+    public void ShutDown()
+    {
+        _stateMachine.Shutdown();
+    }
+
     //=======================================================
 }

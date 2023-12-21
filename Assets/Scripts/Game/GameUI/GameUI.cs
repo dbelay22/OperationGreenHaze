@@ -235,6 +235,8 @@ public class GameUI : MonoBehaviour
 
         yield return new WaitForSeconds(2.2f);
 
+        Game.Instance.ShutDown();
+
         StartCoroutine(LevelLoader.Instance.StartCrossfade());
     }
 
@@ -243,6 +245,8 @@ public class GameUI : MonoBehaviour
         LevelLoader.Instance.LoadLoseSceneAsync();
         
         yield return new WaitForSeconds(2.2f);
+
+        Game.Instance.ShutDown();
 
         StartCoroutine(LevelLoader.Instance.StartCrossfade());
     }
