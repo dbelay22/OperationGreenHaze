@@ -107,13 +107,6 @@ public class Weapon : MonoBehaviour
         GameUI.Instance.UpdateAmmoAmount(GetAmmoLeft());
     }
 
-    /*
-    void OnDisable()
-    {
-        StopAllCoroutines();
-    }
-    */
-
     public void WillBeDisabled()
     {
         //Debug.Log("Weapon] WillBeDisabled)...");
@@ -248,6 +241,10 @@ public class Weapon : MonoBehaviour
 
     void ShowWeapon()
     {
+        if (!Game.Instance.IsGameplayOn()) {
+            return;
+        }
+
         _model3D.SetActive(true);
     }
 
