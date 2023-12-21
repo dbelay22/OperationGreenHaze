@@ -61,6 +61,7 @@
 	<object class="GroupTrack" id="{595c4e92-d527-4f9c-adc6-ec88814a1df4}">
 		<relationship name="modules">
 			<destination>{4dfa755e-39f4-4257-a6e4-497cb2d63a1c}</destination>
+			<destination>{e5162d18-53f4-4ebf-8005-80efdfdc950b}</destination>
 		</relationship>
 		<relationship name="mixerGroup">
 			<destination>{60955657-120c-4552-8ea4-fbbf2e6ed604}</destination>
@@ -69,6 +70,7 @@
 	<object class="Timeline" id="{26f51f03-ba0b-47de-830d-15f160cd9bf4}">
 		<relationship name="modules">
 			<destination>{4dfa755e-39f4-4257-a6e4-497cb2d63a1c}</destination>
+			<destination>{e5162d18-53f4-4ebf-8005-80efdfdc950b}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{da6b0c51-c319-4588-bdf6-02c5144d44fa}">
@@ -96,6 +98,14 @@
 			<destination>{ca4cb4c5-2f61-4c0d-a474-caa20591ff37}</destination>
 		</relationship>
 	</object>
+	<object class="SnapshotModule" id="{e5162d18-53f4-4ebf-8005-80efdfdc950b}">
+		<property name="length">
+			<value>2.875</value>
+		</property>
+		<relationship name="event">
+			<destination>{25801f53-113e-44c6-b52d-caa83575d4ce}</destination>
+		</relationship>
+	</object>
 	<object class="EventMixerGroup" id="{60955657-120c-4552-8ea4-fbbf2e6ed604}">
 		<property name="name">
 			<value>Audio 1</value>
@@ -120,9 +130,18 @@
 	<object class="MixerBusEffectChain" id="{54171b08-620a-49bb-89b8-cec9394c3d70}">
 		<relationship name="effects">
 			<destination>{29f9b760-9760-47f2-84c9-964156158db6}</destination>
+			<destination>{99b04458-f7a3-4d7f-af5c-029e1c333749}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{388eec8a-a50c-46f5-93d0-451abfd4a1d8}" />
 	<object class="MixerBusFader" id="{e7a100c1-6f62-4d39-815b-58f1dfb10987}" />
 	<object class="MixerBusFader" id="{29f9b760-9760-47f2-84c9-964156158db6}" />
+	<object class="CompressorEffect" id="{99b04458-f7a3-4d7f-af5c-029e1c333749}">
+		<property name="threshold">
+			<value>-20</value>
+		</property>
+		<property name="gain">
+			<value>2.5</value>
+		</property>
+	</object>
 </objects>

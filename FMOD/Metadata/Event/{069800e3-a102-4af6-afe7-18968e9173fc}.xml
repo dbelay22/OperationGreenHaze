@@ -61,6 +61,7 @@
 	<object class="GroupTrack" id="{a8424ae9-ff3f-4720-aaed-f5189346b5fc}">
 		<relationship name="modules">
 			<destination>{cf83aa7c-727f-49a0-a143-451240611b4b}</destination>
+			<destination>{b1c496be-a8b6-4d2c-b901-f811135acbb7}</destination>
 		</relationship>
 		<relationship name="mixerGroup">
 			<destination>{78e596b1-676c-4e77-8a02-48b23ff65f95}</destination>
@@ -69,6 +70,7 @@
 	<object class="Timeline" id="{94919685-a6cf-4c83-9030-210f65d95c34}">
 		<relationship name="modules">
 			<destination>{cf83aa7c-727f-49a0-a143-451240611b4b}</destination>
+			<destination>{b1c496be-a8b6-4d2c-b901-f811135acbb7}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{b86fd835-8e93-467e-8009-768dd8462fd4}">
@@ -96,6 +98,14 @@
 			<destination>{7af140e8-67c6-4b0f-9fad-5e72d447cb13}</destination>
 		</relationship>
 	</object>
+	<object class="SnapshotModule" id="{b1c496be-a8b6-4d2c-b901-f811135acbb7}">
+		<property name="length">
+			<value>4.550604166666667</value>
+		</property>
+		<relationship name="event">
+			<destination>{25801f53-113e-44c6-b52d-caa83575d4ce}</destination>
+		</relationship>
+	</object>
 	<object class="EventMixerGroup" id="{78e596b1-676c-4e77-8a02-48b23ff65f95}">
 		<property name="name">
 			<value>Audio 1</value>
@@ -120,9 +130,18 @@
 	<object class="MixerBusEffectChain" id="{8ae068ba-dd9d-401a-89cc-f12f66ff409f}">
 		<relationship name="effects">
 			<destination>{76041801-9007-417e-b292-abed3259caba}</destination>
+			<destination>{a36779f0-9b89-42e6-8359-a1bdf4835feb}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{57da3673-6d98-4b1e-a4d4-d43d4e09994a}" />
 	<object class="MixerBusFader" id="{04c33130-5390-4617-a9ae-57b75e2cb2b8}" />
 	<object class="MixerBusFader" id="{76041801-9007-417e-b292-abed3259caba}" />
+	<object class="CompressorEffect" id="{a36779f0-9b89-42e6-8359-a1bdf4835feb}">
+		<property name="threshold">
+			<value>-13</value>
+		</property>
+		<property name="gain">
+			<value>1.5</value>
+		</property>
+	</object>
 </objects>

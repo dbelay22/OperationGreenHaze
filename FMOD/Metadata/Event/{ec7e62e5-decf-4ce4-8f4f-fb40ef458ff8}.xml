@@ -61,6 +61,7 @@
 	<object class="GroupTrack" id="{c1c56dfb-1f05-4366-b074-fd569b1fd65a}">
 		<relationship name="modules">
 			<destination>{73dfa4ea-4b48-44c9-9ba1-e13244c0c591}</destination>
+			<destination>{2eb0802a-0c66-4fa6-8593-49bc0cb359a0}</destination>
 		</relationship>
 		<relationship name="mixerGroup">
 			<destination>{3a9e85ac-a442-4523-90bb-539d8b794397}</destination>
@@ -69,6 +70,7 @@
 	<object class="Timeline" id="{68b03897-9963-49de-bc87-5c39d050ba41}">
 		<relationship name="modules">
 			<destination>{73dfa4ea-4b48-44c9-9ba1-e13244c0c591}</destination>
+			<destination>{2eb0802a-0c66-4fa6-8593-49bc0cb359a0}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{330e47d6-9992-4502-926c-32e412acb6ac}">
@@ -95,6 +97,14 @@
 		<relationship name="sounds">
 			<destination>{8bcb1798-2ccf-492d-ac75-a29437af40f7}</destination>
 			<destination>{79da9e99-1889-4b8a-af2d-6a447055e1ef}</destination>
+		</relationship>
+	</object>
+	<object class="SnapshotModule" id="{2eb0802a-0c66-4fa6-8593-49bc0cb359a0}">
+		<property name="length">
+			<value>3.125</value>
+		</property>
+		<relationship name="event">
+			<destination>{25801f53-113e-44c6-b52d-caa83575d4ce}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{3a9e85ac-a442-4523-90bb-539d8b794397}">

@@ -61,6 +61,7 @@
 	<object class="GroupTrack" id="{2016907f-c307-454e-b542-bb001696c734}">
 		<relationship name="modules">
 			<destination>{11c3cf20-337e-4e7e-8f06-3ffdd3aa9ef1}</destination>
+			<destination>{59ced38f-1194-47a2-ba8b-c3c7d57f8721}</destination>
 		</relationship>
 		<relationship name="mixerGroup">
 			<destination>{1715b892-5c3c-404d-9d30-480dd2386d7f}</destination>
@@ -69,6 +70,7 @@
 	<object class="Timeline" id="{04c46bbf-81e1-4a91-bd9d-7f88e9674c66}">
 		<relationship name="modules">
 			<destination>{11c3cf20-337e-4e7e-8f06-3ffdd3aa9ef1}</destination>
+			<destination>{59ced38f-1194-47a2-ba8b-c3c7d57f8721}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{962b1c69-6030-40aa-a1c2-f3228a37ba40}">
@@ -96,6 +98,14 @@
 			<destination>{9b2c73c2-74a5-41d1-b2e7-e1c9358b240b}</destination>
 		</relationship>
 	</object>
+	<object class="SnapshotModule" id="{59ced38f-1194-47a2-ba8b-c3c7d57f8721}">
+		<property name="length">
+			<value>4.1087708333333337</value>
+		</property>
+		<relationship name="event">
+			<destination>{25801f53-113e-44c6-b52d-caa83575d4ce}</destination>
+		</relationship>
+	</object>
 	<object class="EventMixerGroup" id="{1715b892-5c3c-404d-9d30-480dd2386d7f}">
 		<property name="name">
 			<value>Audio 1</value>
@@ -113,6 +123,7 @@
 	<object class="MixerBusEffectChain" id="{f95c1f1e-f423-403d-9672-f11b2fb1276d}">
 		<relationship name="effects">
 			<destination>{0aeefe1b-d072-45cd-b526-545c09eda4f3}</destination>
+			<destination>{1f1fada0-cef1-4018-bf26-242959e5270c}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{b5ec8ad0-aa2a-4a53-ad0a-59b4d47415e9}" />
@@ -124,5 +135,13 @@
 	</object>
 	<object class="MixerBusPanner" id="{01ecb855-b64a-4460-a0c1-55d76271dd98}" />
 	<object class="MixerBusFader" id="{0aeefe1b-d072-45cd-b526-545c09eda4f3}" />
+	<object class="CompressorEffect" id="{1f1fada0-cef1-4018-bf26-242959e5270c}">
+		<property name="threshold">
+			<value>-15</value>
+		</property>
+		<property name="gain">
+			<value>3</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{d879444a-d909-400b-ae96-6225972711f7}" />
 </objects>

@@ -61,6 +61,7 @@
 	<object class="GroupTrack" id="{ef7ed0ff-7506-4035-bd25-c14e0b23c66b}">
 		<relationship name="modules">
 			<destination>{90ed838d-6cde-4405-9bd0-7a2c3c1658c4}</destination>
+			<destination>{c11a4769-badf-4ba9-9abc-43e86e138e1c}</destination>
 		</relationship>
 		<relationship name="mixerGroup">
 			<destination>{8c42aa75-d2e4-42c4-ab21-8d4dfbf593ba}</destination>
@@ -69,6 +70,7 @@
 	<object class="Timeline" id="{22e022ce-4b1c-404c-92d5-85cfd583c834}">
 		<relationship name="modules">
 			<destination>{90ed838d-6cde-4405-9bd0-7a2c3c1658c4}</destination>
+			<destination>{c11a4769-badf-4ba9-9abc-43e86e138e1c}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{ad006f56-862b-4b9e-a620-0c10ff62b284}">
@@ -96,6 +98,14 @@
 			<destination>{54220eb5-b72b-43cd-9a0e-0a0a9f26c10c}</destination>
 		</relationship>
 	</object>
+	<object class="SnapshotModule" id="{c11a4769-badf-4ba9-9abc-43e86e138e1c}">
+		<property name="length">
+			<value>4.9131666666666662</value>
+		</property>
+		<relationship name="event">
+			<destination>{25801f53-113e-44c6-b52d-caa83575d4ce}</destination>
+		</relationship>
+	</object>
 	<object class="EventMixerGroup" id="{8c42aa75-d2e4-42c4-ab21-8d4dfbf593ba}">
 		<property name="name">
 			<value>Audio 1</value>
@@ -120,9 +130,18 @@
 	<object class="MixerBusEffectChain" id="{eadbd218-c2ac-4ff0-805b-a95cf4018769}">
 		<relationship name="effects">
 			<destination>{5470270c-48c6-4b59-a441-b39276a63fc1}</destination>
+			<destination>{2ceb3fbd-6e71-40a0-a64c-4fa355630a5e}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{8b710633-7c3e-45ad-becd-4340625a0695}" />
 	<object class="MixerBusFader" id="{7e3af16d-948c-4fab-b217-dd678e7173a2}" />
 	<object class="MixerBusFader" id="{5470270c-48c6-4b59-a441-b39276a63fc1}" />
+	<object class="CompressorEffect" id="{2ceb3fbd-6e71-40a0-a64c-4fa355630a5e}">
+		<property name="threshold">
+			<value>-11.5</value>
+		</property>
+		<property name="gain">
+			<value>2.5</value>
+		</property>
+	</object>
 </objects>

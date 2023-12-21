@@ -61,6 +61,7 @@
 	<object class="GroupTrack" id="{39af1493-7246-44e8-9b2c-ed2e560dad37}">
 		<relationship name="modules">
 			<destination>{174bdafb-a92e-4d2b-9781-75c98da5056e}</destination>
+			<destination>{955d5e4a-259e-4f28-84ba-23b1fadcdde2}</destination>
 		</relationship>
 		<relationship name="mixerGroup">
 			<destination>{d3b20f8c-9d04-47a1-a91a-31f5dd1438e4}</destination>
@@ -69,6 +70,7 @@
 	<object class="Timeline" id="{56f723ba-d475-4e62-8f40-c64eea1043bb}">
 		<relationship name="modules">
 			<destination>{174bdafb-a92e-4d2b-9781-75c98da5056e}</destination>
+			<destination>{955d5e4a-259e-4f28-84ba-23b1fadcdde2}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{380e24fd-9c43-4f12-9713-426809c71ce6}">
@@ -96,6 +98,14 @@
 			<destination>{a1ec974f-d3d0-415a-a29a-c37aa48a3da6}</destination>
 		</relationship>
 	</object>
+	<object class="SnapshotModule" id="{955d5e4a-259e-4f28-84ba-23b1fadcdde2}">
+		<property name="length">
+			<value>5.0638958333333335</value>
+		</property>
+		<relationship name="event">
+			<destination>{25801f53-113e-44c6-b52d-caa83575d4ce}</destination>
+		</relationship>
+	</object>
 	<object class="EventMixerGroup" id="{d3b20f8c-9d04-47a1-a91a-31f5dd1438e4}">
 		<property name="name">
 			<value>Audio 1</value>
@@ -113,6 +123,7 @@
 	<object class="MixerBusEffectChain" id="{2de1b360-6bab-48a9-8cdd-b95acccd7518}">
 		<relationship name="effects">
 			<destination>{542844ed-c234-44f0-b538-2e2342661684}</destination>
+			<destination>{87ea15d8-191b-4659-85f3-8ed48949449c}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{d7bb442d-f923-4c54-8883-53d4956ce8db}" />
@@ -124,5 +135,13 @@
 	</object>
 	<object class="MixerBusPanner" id="{df5848f8-6f48-472e-ab5e-f5142bccec6b}" />
 	<object class="MixerBusFader" id="{542844ed-c234-44f0-b538-2e2342661684}" />
+	<object class="CompressorEffect" id="{87ea15d8-191b-4659-85f3-8ed48949449c}">
+		<property name="threshold">
+			<value>-11.5</value>
+		</property>
+		<property name="gain">
+			<value>2.5</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{8480368e-230e-4653-8a70-3321cb89b438}" />
 </objects>
