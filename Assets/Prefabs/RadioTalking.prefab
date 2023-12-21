@@ -72,7 +72,7 @@ MonoBehaviour:
       Data3: 1489879941
       Data4: -1074780195
     Path: event:/Dx/Dx_PlayBad
-  Damage:
+  UseMedkit:
     Guid:
       Data1: -1324343394
       Data2: 1207967845
@@ -149,3 +149,5 @@ MonoBehaviour:
       Data3: -353573460
       Data4: 270919588
     Path: event:/Dx/Dx_Time3
+  _ratePlayingElapsedSeconds: 60
+  _minTimeBetweenMessageSeconds: 22

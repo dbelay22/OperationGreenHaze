@@ -303,6 +303,8 @@ public class PlayerHealth : MonoBehaviour
         else if (IsBadlyHurt())
         {
             GameUI.Instance.ShowPlayerBadlyHurt();
+
+            RadioTalking.Instance.PlayUseMedkit();
         }
     }
 
