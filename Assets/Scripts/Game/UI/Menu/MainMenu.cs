@@ -29,7 +29,7 @@ public class MainMenu : MenuBase
     {
         StartCoroutine(LevelLoader.Instance.StartCrossfade());
 
-        StartCoroutine(QuitDelayed(LevelLoader.Instance._transitionTime));            
+        StartCoroutine(QuitDelayed(LevelLoader.Instance.TransitionTime));            
     }
 
     IEnumerator QuitDelayed(float time)

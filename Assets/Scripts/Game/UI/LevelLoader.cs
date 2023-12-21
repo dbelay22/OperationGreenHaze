@@ -8,19 +8,21 @@ public class LevelLoader : MonoBehaviour
 {
     [SerializeField] Animator _transitionAnimator;
 
-    [SerializeField] public float _transitionTime = 1f;
+    [SerializeField] float _transitionTime = 1f;
 
-    public AsyncOperation _currentLoading;
+    public float TransitionTime { get { return _transitionTime; } }
 
-    public bool _loadingAsync = false;
+    AsyncOperation _currentLoading;
 
-    public bool _nextLevelReady = false;
+    bool _loadingAsync = false;
 
-    public bool _canStartNextLevel = false;
+    bool _nextLevelReady = false;
 
-    public Scene _previousScene;
+    bool _canStartNextLevel = false;
 
-    public float _currentProgress;
+    Scene _previousScene;
+
+    float _currentProgress;
 
     #region Instance
 
@@ -28,18 +30,13 @@ public class LevelLoader : MonoBehaviour
 
     public static LevelLoader Instance { get { return _instance; } }
 
+    #endregion
+
     void Awake()
     {
         _instance = this;
 
-        ResetLoader();        
-    }
-
-    #endregion
-
-    void Start()
-    {
-        HideProgressBar();
+        ResetLoader();
     }
 
     public void ResetLoader()
@@ -57,8 +54,6 @@ public class LevelLoader : MonoBehaviour
     {
         _previousScene = SceneManager.GetActiveScene();
 
-        Debug.Log($"LevelLoader] PreloadLevelAsync)... _previousScene: {_previousScene.name}");
-
         _loadingAsync = true;
 
         _nextLevelReady = false;
@@ -70,8 +65,6 @@ public class LevelLoader : MonoBehaviour
 
     public void LoadNextLevelAsync()
     {
-        Debug.Log($"LevelLoader] LoadNextLevelAsync)...");
-
         PreloadLevelAsync();
 
         int nextSceneIndex = GetNextLevelIndex();
@@ -105,13 +98,7 @@ public class LevelLoader : MonoBehaviour
     {
         if (_loadingAsync && _currentLoading != null && !_currentLoading.isDone)
         {
-            Debug.Log($"LevelLoader] Update) _nextLevelReady:{_nextLevelReady}, _canStartNextLevel:{_canStartNextLevel}");
-
-            _currentProgress = _currentLoading.progress;
-
-            ShowProgressBar(_currentProgress);
-
-            _nextLevelReady = _currentProgress >= 0.9f;
+            _nextLevelReady = _currentLoading.progress >= 0.9f;
 
             if (_nextLevelReady)
             {
@@ -134,25 +121,15 @@ public class LevelLoader : MonoBehaviour
     {
         while (!_canStartNextLevel)
         {
-            //Debug.Log("Waiting signal to start next level...");
-            yield return new WaitForEndOfFrame();
+            Debug.Log("Waiting signal to start next level...");
+            yield return null;
         }
 
         Debug.Log("allowSceneActivation NOW");
+        
         _currentLoading.allowSceneActivation = true;
 
         ResetLoader();
-
-        ShowProgressBar(1f);
-    }
-
-    void ShowProgressBar(float progress)
-    {
-        Debug.Log($"LevelLoader] ShowProgressBar value:{progress}...");
-    }
-
-    void HideProgressBar()
-    { 
     }
 
     public void LoadMainMenuAsync(bool crossFadeAndStartMenu = false)
@@ -177,7 +154,7 @@ public class LevelLoader : MonoBehaviour
 
     public IEnumerator StartCrossfade()
     {
-        Debug.Log($"[LevelLoader] Crossfade)");
+        //Debug.Log($"[LevelLoader] Crossfade)");
 
         _transitionAnimator.SetTrigger("StartCrossfade");
 
