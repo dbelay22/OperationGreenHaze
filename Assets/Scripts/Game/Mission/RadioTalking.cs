@@ -227,28 +227,22 @@ public class RadioTalking : MonoBehaviour
 
     public void PlayUseMedkit(bool maxPriority = false)
     {
-        bool shouldPlayMessage;
+        bool firstBadlyHurt = _lastUseMedkitTime < 1f;
 
-        if (maxPriority)
-        {
-            shouldPlayMessage = true;
-        }
-        else
-        {
-            float elapsedSecondsFromLast = Time.time - _lastUseMedkitTime;
+        bool noMedkitPickedUP = Director.Instance._playerPickupMedkitCount < 1;
 
-            bool noMedkitPickedUP = Director.Instance._playerPickupMedkitCount < 1;
+        float elapsedSecondsFromLast = Time.time - _lastUseMedkitTime;
 
-            bool firstBadlyHurt = _lastUseMedkitTime < 1f;
+        bool isTimeOfAnotherWarning = elapsedSecondsFromLast > _minTimeBetweenMessageSeconds;
+                
+        bool needAnotherWarning = maxPriority || (noMedkitPickedUP && !firstBadlyHurt);
 
-            bool needAnotherWarning = !firstBadlyHurt && noMedkitPickedUP;
+        bool shouldPlayMessage = firstBadlyHurt || (needAnotherWarning && isTimeOfAnotherWarning);
 
-            bool isTimeOfAnotherWarning = needAnotherWarning && elapsedSecondsFromLast > _minTimeBetweenMessageSeconds;
-
-            shouldPlayMessage = firstBadlyHurt || isTimeOfAnotherWarning;
-
-            Debug.Log($"RadioTalking] PlayUseMedkit) elapsedSecondsFromLast: {elapsedSecondsFromLast}, noMedkitPickedUP: {noMedkitPickedUP}, firstBadlyHurt:{firstBadlyHurt}, needAnotherWarning: {needAnotherWarning}, isTimeOfAnotherWarning:{isTimeOfAnotherWarning}, shouldPlayMessage:{shouldPlayMessage}");
-        }
+        Debug.Log($"RadioTalking] PlayUseMedkit)----------------------------------------------------------------------------------------------------------------");
+        Debug.Log($"RadioTalking] PlayUseMedkit) firstBadlyHurt: {firstBadlyHurt}, noMedkitPickedUP:{noMedkitPickedUP}, isTimeOfAnotherWarning:{isTimeOfAnotherWarning}, elapsedSecondsFromLast:{elapsedSecondsFromLast}, needAnotherWarning: {needAnotherWarning}");
+        Debug.Log($"RadioTalking] PlayUseMedkit) isTimeOfAnotherWarning:{isTimeOfAnotherWarning}, elapsedSecondsFromLast:{elapsedSecondsFromLast}");
+        Debug.Log($"RadioTalking] PlayUseMedkit) needAnotherWarning: {needAnotherWarning}, shouldPlayMessage:{shouldPlayMessage}, maxPriority:{maxPriority}");
 
         if (shouldPlayMessage)
         {
@@ -265,17 +259,6 @@ public class RadioTalking : MonoBehaviour
 
     public void PlayMessage(EventReference eventRef, bool maxPriority = false)
     {
-        FMOD.GUID instanceGUID = AudioController.Instance.GetEventInstanceGUID(_currentMessage);
-
-        bool alreadyPlayingSameMessage = instanceGUID.Equals(eventRef.Guid);
-
-        Debug.Log($"RadioTalking] PlayMessage) alreadyPlayingSameMessage: {alreadyPlayingSameMessage}, instanceGUID:{instanceGUID}, eventRef.Guid:{eventRef.Guid}");
-
-        if (alreadyPlayingSameMessage)
-        {
-            return;
-        }
-
         if (maxPriority)
         {
             StopAllMessagesNow();

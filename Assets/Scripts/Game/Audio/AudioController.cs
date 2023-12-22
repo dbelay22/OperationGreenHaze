@@ -123,7 +123,7 @@ public class AudioController : MonoBehaviour
 
             description.getID(out FMOD.GUID instanceGuid);
 
-            Debug.Log($"AudioController] getInstanceFromList) instanceGuid: {instanceGuid}");
+            //Debug.Log($"AudioController] getInstanceFromList) instanceGuid: {instanceGuid}");
 
             if (instanceGuid.Equals(eventReference.Guid))
             {
