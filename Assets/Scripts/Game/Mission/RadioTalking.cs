@@ -225,11 +225,6 @@ public class RadioTalking : MonoBehaviour
         }
     }
 
-    public void StopAllMessagesNow()
-    {
-        AudioController.Instance.StopEventIfPlaying(_currentMessage);
-    }
-
     public void PlayUseMedkit()
     {
         float elapsedSecondsFromLast = Time.time - _lastUseMedkitTime;
@@ -252,15 +247,12 @@ public class RadioTalking : MonoBehaviour
 
             _lastUseMedkitTime = Time.time;
         }
-    }
-
-    
+    }   
 
     public void PlayMissionMessage(EventReference eventReference)
     {
         PlayMessage(eventReference, maxPriority: true);
     }
-
 
     public void PlayMessage(EventReference eventRef, bool maxPriority = false)
     {
@@ -315,5 +307,19 @@ public class RadioTalking : MonoBehaviour
 
         GameUI.Instance.ShowInGameMessage(igMessage.MessageKey, igMessage.Duration, maxPriority);
     }
+
+    public void StopAllMessagesNow()
+    {
+        AudioController.Instance.StopEventIfPlaying(_currentMessage);
+    }
+
+    public void ShutDown()
+    {
+        StopAllMessagesNow();
+
+        // deactivate
+        gameObject.SetActive(false);
+    }
+
 
 }

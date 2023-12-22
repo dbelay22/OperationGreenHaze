@@ -246,7 +246,7 @@ public class Game : MonoBehaviour
 
         GameUI.Instance.HideMessagesNow();
 
-        RadioTalking.Instance.StopAllMessagesNow();
+        RadioTalking.Instance.ShutDown();
 
         if (_helicopterExitSound.activeInHierarchy)
         {
