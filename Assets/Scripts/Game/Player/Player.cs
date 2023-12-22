@@ -418,12 +418,10 @@ public class Player : MonoBehaviour
         {
             bool canUseFlashlightToDefend = _flashlight.IsPickedUp && _flashlight.IsOnAndCanBlind() == false;
 
-            if (canUseFlashlightToDefend &&  UnityEngine.Random.value <= 0.6f)
+            if (canUseFlashlightToDefend && UnityEngine.Random.value <= 0.6f)
             {
                 // USE FLASHLIGHT
                 RadioTalking.Instance.PlayMessage(RadioTalking.Instance.UseFlashlight);
-
-                GameUI.Instance.ShowInGameMessage("ig_use_the_flashlight", 3);
             }
             else
             {

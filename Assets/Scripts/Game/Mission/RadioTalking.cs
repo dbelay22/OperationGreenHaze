@@ -107,7 +107,17 @@ public class RadioTalking : MonoBehaviour
             { Instance.PlayVGood, new IngameMessageDuration("ig_radio_playvgood", 5f) },
             { Instance.PlayGood, new IngameMessageDuration("ig_radio_playgood", 5f) },
             { Instance.PlayBad, new IngameMessageDuration("ig_radio_playbad", 5f) },
-            { Instance.TooClose, new IngameMessageDuration("ig_radio_tooclose", GameUI.LIFETIME_INFINITE) }
+            { Instance.UseMedkit, new IngameMessageDuration("ig_radio_medkit", 4f) },
+            { Instance.UseFlashlight, new IngameMessageDuration("ig_radio_flashlight", 4f) },
+            { Instance.OutOfAmmo, new IngameMessageDuration("ig_radio_outofammo", 4f) },
+            { Instance.MissionObj1, new IngameMessageDuration("ig_radio_missionobj1", 5f) },
+            { Instance.MissionObj2, new IngameMessageDuration("ig_radio_missionobj2", 5f) },
+            { Instance.KillComplete, new IngameMessageDuration("ig_radio_killcomplete", 5f) },
+            { Instance.FindExit, new IngameMessageDuration("ig_radio_findexit", 5f) },
+            { Instance.TooClose, new IngameMessageDuration("ig_radio_tooclose", GameUI.LIFETIME_INFINITE) },
+            { Instance.Time1, new IngameMessageDuration("ig_radio_time1", 5f) },
+            { Instance.Time2, new IngameMessageDuration("ig_radio_time2", 5f) },
+            { Instance.Time3, new IngameMessageDuration("ig_radio_time3", 5f) }
         };
 
         _ratePlayingCount = 0;
@@ -127,10 +137,10 @@ public class RadioTalking : MonoBehaviour
 
     void Update()
     {
-        CurrentMessagePlayingUpdate();
+        CheckCurrentMessageState();
     }
 
-    void CurrentMessagePlayingUpdate()
+    void CheckCurrentMessageState()
     {
         if (_isPlayingMessage && _currentMessage.isValid())
         {
@@ -143,14 +153,13 @@ public class RadioTalking : MonoBehaviour
             }
         }
     }
-
     
     public void ProcessRatePlaying()
     {
         if (_ratePlayingCount > _ratePlayingMaxCount)
         {
             // max count reached
-            Debug.Log($"RadioTalkin] ProcessRatePlaying) Max rate playing count reached:{_ratePlayingMaxCount}");
+            Debug.Log($"RadioTalking] ProcessRatePlaying) Max rate playing count reached:{_ratePlayingMaxCount}");
             return;
         }
 
@@ -172,7 +181,11 @@ public class RadioTalking : MonoBehaviour
             return;
         }
 
-        Debug.Log($"RadioTalkin] ProcessRatePlaying) _ratePlayingCount:{_ratePlayingCount} auditing now...");
+        Debug.Log($"RadioTalking] ProcessRatePlaying) _ratePlayingCount:{_ratePlayingCount} auditing now...");
+        
+        Debug.LogWarning($"RadioTalking] ProcessRatePlaying) accuracy:{Director.Instance._shotAccuracy}");
+        Debug.LogWarning($"RadioTalking] ProcessRatePlaying) _enemyKillCount:{Director.Instance._enemyKillCount}");
+        Debug.LogWarning($"RadioTalking] ProcessRatePlaying) _enemyKillByHeadshotCount:{Director.Instance._enemyKillByHeadshotCount}");
 
         foreach (PlayingSkillValues skillValues in SkillMessages)
         {
@@ -210,7 +223,12 @@ public class RadioTalking : MonoBehaviour
                 break;
             }
         }
-    } 
+    }
+
+    public void StopAllMessagesNow()
+    {
+        AudioController.Instance.StopEventIfPlaying(_currentMessage);
+    }
 
     public void PlayUseMedkit()
     {
@@ -226,7 +244,7 @@ public class RadioTalking : MonoBehaviour
 
         bool shouldPlayMessage = firstBadlyHurt || isTimeOfAnotherWarning;
 
-        Debug.Log($"PlayUseMedkit) elapsedSecondsFromLast: {elapsedSecondsFromLast}, noMedkitPickedUP: {noMedkitPickedUP}, firstBadlyHurt:{firstBadlyHurt}, needAnotherWarning: {needAnotherWarning}, isTimeOfAnotherWarning:{isTimeOfAnotherWarning}, shouldPlayMessage:{shouldPlayMessage}");
+        Debug.Log($"RadioTalking] PlayUseMedkit) elapsedSecondsFromLast: {elapsedSecondsFromLast}, noMedkitPickedUP: {noMedkitPickedUP}, firstBadlyHurt:{firstBadlyHurt}, needAnotherWarning: {needAnotherWarning}, isTimeOfAnotherWarning:{isTimeOfAnotherWarning}, shouldPlayMessage:{shouldPlayMessage}");
 
         if (shouldPlayMessage)
         {
@@ -248,7 +266,7 @@ public class RadioTalking : MonoBehaviour
     {
         if (maxPriority)
         {
-            AudioController.Instance.StopEventIfPlaying(_currentMessage);
+            StopAllMessagesNow();
         }
         else
         {
@@ -256,7 +274,7 @@ public class RadioTalking : MonoBehaviour
 
             if (_lastMessageTimeSeconds > 0 && elapsed < _minFrequencyBetweenMessagesSeconds)
             {
-                Debug.LogWarning($"RadioTalking] Sorry, another message played soon: {elapsed} seconds. Max: {_minFrequencyBetweenMessagesSeconds}");
+                Debug.LogWarning($"RadioTalking] Sorry, another message played soon: {elapsed} seconds. Min frequency is: {_minFrequencyBetweenMessagesSeconds}");
                 return;
             }
 
@@ -271,7 +289,7 @@ public class RadioTalking : MonoBehaviour
 
         AudioController.Instance.PlayInstanceOrCreate(_currentMessage, eventRef, out _currentMessage, true);
 
-        Debug.LogWarning($"RadioTalking] PlayMessage) _currentMessage: {AudioController.Instance.GetEventInstancePath(_currentMessage)}");
+        Debug.Log($"RadioTalking] PlayMessage) _currentMessage: {AudioController.Instance.GetEventInstancePath(_currentMessage)}");
 
         _lastMessageTimeSeconds = Time.time;
 
@@ -291,7 +309,7 @@ public class RadioTalking : MonoBehaviour
 
         if (igMessage.MessageKey == null || igMessage.MessageKey.Length < 1)
         {
-            Debug.LogError($"There's no in-game-message text key for event path: {eventRef.Path}");
+            Debug.LogError($"RadioTalking] ShowInGameText) There's no in-game-message text key for event path: {eventRef.Path}");
             return;
         }
 

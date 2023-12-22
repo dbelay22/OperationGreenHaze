@@ -73,8 +73,6 @@ public class MissionPickups : MonoBehaviour
                 }
                 else
                 {
-                    GameUI.Instance.ShowInGameMessage("ig_objective_partial", 4f);
-
                     RadioTalking.Instance.PlayMissionMessage(RadioTalking.Instance.MissionObj1);                    
                 }
             }

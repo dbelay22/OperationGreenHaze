@@ -175,7 +175,7 @@ public class Game : MonoBehaviour
 
     void ShowObjectiveCompletedMessage()
     {
-        GameUI.Instance.ShowInGameMessage("ig_objective_completed", 3f);
+        RadioTalking.Instance.PlayMessage(RadioTalking.Instance.MissionObj2);
     }
 
     public void ReportAllEnemiesKilled()
@@ -195,8 +195,6 @@ public class Game : MonoBehaviour
 
     void ShowKillsCompletedMessage()
     {
-        GameUI.Instance.ShowInGameMessage("ig_kills_completed", 3f);
-
         RadioTalking.Instance.PlayMessage(RadioTalking.Instance.KillComplete, maxPriority: true);
     }
 
@@ -232,8 +230,6 @@ public class Game : MonoBehaviour
             {
                 _helicopterExitSound.SetActive(true);
 
-                GameUI.Instance.ShowInGameMessage("ig_find_exit", 4f);
-
                 RadioTalking.Instance.PlayMessage(RadioTalking.Instance.FindExit, maxPriority: true);
 
                 AudioController.Instance.GameplayFindExit();
@@ -249,6 +245,8 @@ public class Game : MonoBehaviour
         Debug.Log("Game] GameplayIsOver)...");
 
         GameUI.Instance.HideMessagesNow();
+
+        RadioTalking.Instance.StopAllMessagesNow();
 
         if (_helicopterExitSound.activeInHierarchy)
         {
