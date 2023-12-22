@@ -73,9 +73,9 @@ public class RadioTalking : MonoBehaviour
 
         SkillMessages = new List<PlayingSkillValues>()
         {
-            { new PlayingSkillValues(Instance.PlayVGood, 60, 10, 3) },
-            { new PlayingSkillValues(Instance.PlayGood, 40, 5, 0) },
-            { new PlayingSkillValues(Instance.PlayBad, 0, 0, 0) },
+            { new PlayingSkillValues(Instance.PlayVGood, 0.6f, 10, 3) },
+            { new PlayingSkillValues(Instance.PlayGood, 0.4f, 5, 0) },
+            { new PlayingSkillValues(Instance.PlayBad, 0f, 0, 0) },
         };
 
         _ratePlayingCount = 0;
@@ -83,6 +83,8 @@ public class RadioTalking : MonoBehaviour
         _lastRatedTimeSeconds = 0f;
 
         _isPlayingMessage = false;
+
+        _alreadyRateVGood = false;
     }
 
     float _lastMessageTimeSeconds = -1f;
@@ -103,7 +105,9 @@ public class RadioTalking : MonoBehaviour
                 }
             }
         }
-    }    
+    }
+
+    bool _alreadyRateVGood = false;
 
     public void ProcessRatePlaying()
     {
@@ -145,7 +149,24 @@ public class RadioTalking : MonoBehaviour
 
             if (gotSKill)
             {
-                PlayMessage(skillValues.EventRef);
+                EventReference ratingMessage = skillValues.EventRef;
+
+                if (ratingMessage.Equals(Instance.PlayVGood))
+                {
+                    // NATURAL TALENT!
+
+                    if (_alreadyRateVGood)
+                    {
+                        // don't be so cheesy
+                        ratingMessage = Instance.PlayGood;
+                    }
+                    else
+                    {
+                        _alreadyRateVGood = true;
+                    }                    
+                }
+
+                PlayMessage(ratingMessage);
                 
                 _ratePlayingCount++;
 

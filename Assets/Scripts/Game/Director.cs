@@ -101,7 +101,7 @@ public class Director : MonoBehaviour
             $"[Director] Player Health: {Player.Instance.GetCurrentHealth()}\n" +
             $"[Director] END OF DUMP...............";
 
-        Debug.Log(stats);
+        //Debug.Log(stats);
 
         return stats;
     }

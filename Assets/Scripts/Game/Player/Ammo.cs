@@ -49,11 +49,11 @@ public class Ammo : MonoBehaviour
             _ammoHitBoombox++;
         }
 
-        _accuracy = _ammoHitEnemy + _ammoHitBoombox / _ammoShooted * 100;
+        _accuracy = (_ammoHitEnemy + _ammoHitBoombox) / _ammoShooted;
 
         Director.Instance.OnEvent(DirectorEvents.Shot_Accuracy_Update, _accuracy);
 
-        Debug.Log($"[Ammo] Accuracy is now {_accuracy} %");
+        //Debug.Log($"[Ammo] Accuracy is now {_accuracy * 100f} % - _ammoShooted:{_ammoShooted}, _ammoHitEnemy:{_ammoHitEnemy}, _ammoHitBoombox:{_ammoHitBoombox} -> BOTH: {_ammoHitBoombox+_ammoHitEnemy}");
     }
 
     AmmoSlot GetAmmoSlotOfType(AmmoType ammoType)
