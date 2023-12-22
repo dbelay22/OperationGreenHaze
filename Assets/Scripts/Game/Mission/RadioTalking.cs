@@ -264,6 +264,8 @@ public class RadioTalking : MonoBehaviour
     {
         if (maxPriority)
         {
+            Debug.Log($"RadioTalking] PlayMessage) maxPriority!");
+
             StopAllMessagesNow();
         }
         else
@@ -287,7 +289,7 @@ public class RadioTalking : MonoBehaviour
 
         AudioController.Instance.PlayInstanceOrCreate(_currentMessage, eventRef, out _currentMessage, true);
 
-        //Debug.Log($"RadioTalking] PlayMessage) _currentMessage: {AudioController.Instance.GetEventInstancePath(_currentMessage)}");
+        Debug.Log($"RadioTalking] PlayMessage) _currentMessage: {AudioController.Instance.GetEventInstancePath(_currentMessage)}");
 
         _lastMessageTimeSeconds = Time.time;
 

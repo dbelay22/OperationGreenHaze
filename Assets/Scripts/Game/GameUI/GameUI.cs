@@ -161,7 +161,7 @@ public class GameUI : MonoBehaviour
         }
         else if (intTimeLeftSeconds == 1 * 60)
         {
-            RadioTalking.Instance.PlayMessage(RadioTalking.Instance.Time3);
+            RadioTalking.Instance.PlayMessage(RadioTalking.Instance.Time3, maxPriority: true);
         }
         else if (timerMinutes != _lastMinuteUpdate && timerMinutes < _minutesOfGameplay - 1)
         {

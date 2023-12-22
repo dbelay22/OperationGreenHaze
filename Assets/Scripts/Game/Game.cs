@@ -175,7 +175,7 @@ public class Game : MonoBehaviour
 
     void ShowObjectiveCompletedMessage()
     {
-        RadioTalking.Instance.PlayMessage(RadioTalking.Instance.MissionObj2);
+        RadioTalking.Instance.PlayMessage(RadioTalking.Instance.MissionObj2, maxPriority: true);
     }
 
     public void ReportAllEnemiesKilled()
