@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="Event" id="{c644a73f-07d4-4d8d-835d-6d25fc4575d9}">
 		<property name="name">
-			<value>Dx_Dx_PlayVGood</value>
+			<value>Dx_PlayVGood</value>
 		</property>
 		<property name="outputFormat">
 			<value>1</value>
