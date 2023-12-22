@@ -124,6 +124,8 @@ public class GameUI : MonoBehaviour
         _elapsedSeconds += Time.deltaTime;
 
         float timeLeftSeconds = (_minutesOfGameplay * 60) - _elapsedSeconds;
+
+        int intTimeLeftSeconds = (int)Math.Floor(timeLeftSeconds);
         
         int timerMinutes = Mathf.FloorToInt(timeLeftSeconds / 60);
         
@@ -133,20 +135,37 @@ public class GameUI : MonoBehaviour
         {
             // no need to update until next second
             return;
-        }       
+        }
+
+        //Debug.Log($"intTimeLeftSeconds: {intTimeLeftSeconds}");
 
         // SFX
         if (timeLeftSeconds <= 10)
         {
             // last 10 seconds
-            AudioController.Instance.PlayEvent(_timerBeepLong, true);            
-        } 
+            AudioController.Instance.PlayEvent(_timerBeepLong, true);
+        }
         else if (timeLeftSeconds <= 30)
         {
             // last minute
             AudioController.Instance.PlayEvent(_timerBeepShort, true);
-        } 
-        else if (timerMinutes != _lastMinuteUpdate && timerMinutes < _minutesOfGameplay-1)
+        }
+        else if (intTimeLeftSeconds == 5 * 60)
+        {
+            Debug.Log($"5 minutoooos");
+            RadioTalking.Instance.PlayMessage(RadioTalking.Instance.Time1);
+        }
+        else if (intTimeLeftSeconds == 3 * 60)
+        {
+            Debug.Log($"3 minutoooos");
+            RadioTalking.Instance.PlayMessage(RadioTalking.Instance.Time2);
+        }
+        else if (intTimeLeftSeconds == 1 * 60)
+        {
+            Debug.Log($"1 minutoooos");
+            RadioTalking.Instance.PlayMessage(RadioTalking.Instance.Time3);
+        }
+        else if (timerMinutes != _lastMinuteUpdate && timerMinutes < _minutesOfGameplay - 1)
         {
             // every past minute
             AudioController.Instance.PlayEvent(_timerBeepLong, true);

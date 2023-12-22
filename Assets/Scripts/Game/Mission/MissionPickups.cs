@@ -68,10 +68,14 @@ public class MissionPickups : MonoBehaviour
                 if (IsMissionDone())
                 {
                     Game.Instance.ReportAllMissionPickupsCollected();
+
+                    RadioTalking.Instance.PlayMessage(RadioTalking.Instance.MissionObj2);
                 }
                 else
                 {
-                    GameUI.Instance.ShowInGameMessage("ig_objective_partial", 4f);                    
+                    GameUI.Instance.ShowInGameMessage("ig_objective_partial", 4f);
+
+                    RadioTalking.Instance.PlayMessage(RadioTalking.Instance.MissionObj1);                    
                 }
             }
         }

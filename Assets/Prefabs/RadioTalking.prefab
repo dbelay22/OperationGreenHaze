@@ -150,4 +150,6 @@ MonoBehaviour:
       Data4: 270919588
     Path: event:/Dx/Dx_Time3
   _ratePlayingElapsedSeconds: 60
+  _ratePlayingMaxCount: 5
+  _ratePlayingFrequencySeconds: 60
   _minTimeBetweenMessageSeconds: 22

@@ -1,3 +1,4 @@
+using FMOD.Studio;
 using FMODUnity;
 using System;
 using System.Collections;
@@ -50,7 +51,10 @@ public class RadioTalking : MonoBehaviour
     List<PlayingSkillValues> SkillMessages;
 
     int _ratePlayingCount = 0;
+    
     float _lastRatedTimeSeconds = 0f;
+
+    bool _isPlayingMessage = false;
 
     #region Instance
 
@@ -72,12 +76,30 @@ public class RadioTalking : MonoBehaviour
         };
 
         _ratePlayingCount = 0;
+        
         _lastRatedTimeSeconds = 0f;
+
+        _isPlayingMessage = false;
     }
 
-    void Update()
-    {        
+    float _lastMessageTimeSeconds = 0f;
 
+    void Update()
+    {
+        if (_isPlayingMessage)
+        {
+            if (_currentMessage.isValid())
+            {
+                _isPlayingMessage = AudioController.Instance.IsEventPlaying(_currentMessage);
+
+                bool justStopped = !_isPlayingMessage;
+
+                if (justStopped)
+                {
+                    _currentMessage = new EventInstance();
+                }
+            }
+        }
     }    
 
     public void ProcessRatePlaying()
@@ -92,7 +114,7 @@ public class RadioTalking : MonoBehaviour
 
         int elapsed = (int) Math.Floor(GameUI.Instance.ElapsedSeconds);
 
-        Debug.Log($"ProcessRatePlaying) elapsed:{elapsed}, _ratePlayingElapsedSeconds:{_ratePlayingElapsedSeconds}");
+        //Debug.Log($"ProcessRatePlaying) elapsed:{elapsed}, _ratePlayingElapsedSeconds:{_ratePlayingElapsedSeconds}");
 
         if (elapsed < _ratePlayingElapsedSeconds)
         {
@@ -158,9 +180,29 @@ public class RadioTalking : MonoBehaviour
         }
     }
 
+    EventInstance _currentMessage;
+
     public void PlayMessage(EventReference eventRef)
     {
-        AudioController.Instance.PlayFromListOrCreate(eventRef, true);
+        float elapsed = Time.time - _lastMessageTimeSeconds;
+
+        if (elapsed < 22)
+        {
+            Debug.LogWarning($"RadioTalking] Sorry, another message played soon: {elapsed} seconds");
+            return;
+        }
+
+        if (_isPlayingMessage)
+        {
+            Debug.LogWarning($"RadioTalking] Already playing, missed message: {eventRef}");
+            return;
+        }
+
+        _isPlayingMessage = true;
+
+        AudioController.Instance.PlayInstanceOrCreate(_currentMessage, eventRef, out _currentMessage, true);
+
+        _lastMessageTimeSeconds = Time.time;
     }
 
 }

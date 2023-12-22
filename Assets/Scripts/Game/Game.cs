@@ -142,6 +142,8 @@ public class Game : MonoBehaviour
         if (PlayerNeedsToClearExitNow())
         {
             GameUI.Instance.ShowInGameMessage("ig_exit_danger", GameUI.LIFETIME_INFINITE, true);
+
+            RadioTalking.Instance.PlayMessage(RadioTalking.Instance.TooClose);
         }
     }
 
@@ -196,6 +198,8 @@ public class Game : MonoBehaviour
     void ShowKillsCompletedMessage()
     {
         GameUI.Instance.ShowInGameMessage("ig_kills_completed", 3f);
+
+        RadioTalking.Instance.PlayMessage(RadioTalking.Instance.KillComplete);
     }
 
     public void ReportExitClear()
@@ -231,6 +235,8 @@ public class Game : MonoBehaviour
                 _helicopterExitSound.SetActive(true);
 
                 GameUI.Instance.ShowInGameMessage("ig_find_exit", 4f);
+
+                RadioTalking.Instance.PlayMessage(RadioTalking.Instance.FindExit);
 
                 AudioController.Instance.GameplayFindExit();
 
