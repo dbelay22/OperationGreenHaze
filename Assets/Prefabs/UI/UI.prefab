@@ -3948,7 +3948,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 28.55
+  m_fontSize: 28.6
   m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3960,7 +3960,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: 25
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
@@ -4383,6 +4383,7 @@ MonoBehaviour:
   _minimapCanvas: {fileID: 4128120649702529848}
   _timerLabel: {fileID: 3332038489269213823}
   _playerDamage: {fileID: 6267667903528734527}
+  _bloodyScarVFX: {fileID: 7291627355440019673}
   _damageShowTime: 2
   _pauseScreen: {fileID: 4881244988808100429}
   _inGameMessagesCanvas: {fileID: 6576200825323074584}

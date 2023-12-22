@@ -33,6 +33,7 @@ public class GameUI : MonoBehaviour
 
     [Header("In-game/VFX")]
     [SerializeField] PlayerDamage _playerDamage;
+    [SerializeField] GameObject _bloodyScarVFX;
     [SerializeField] float _damageShowTime = 2f;
 
     [Header("In-game/Interactive")]
@@ -284,6 +285,9 @@ public class GameUI : MonoBehaviour
         // hide in-game canvases
         ShowHUD(false);
 
+        // hide in game messages
+        HideMessagesNow();
+
         // show pause
         _pauseScreen.SetActive(true);
     }
@@ -326,12 +330,29 @@ public class GameUI : MonoBehaviour
 
     public void ShowPlayerBadlyHurt()
     {
-        _playerDamage.Show();
+        if (!_playerDamage.IsActive())
+        {
+            HidePlayerVeryBadlyHurt();
+            
+            _playerDamage.Show();
+        }
+    }
+
+    public void ShowPlayerVeryBadlyHurt()
+    {
+        ShowPlayerBadlyHurt();
+
+        _bloodyScarVFX.SetActive(true);
     }
 
     public void HidePlayerBadlyHurt()
     {
         _playerDamage.Hide();
+    }
+
+    public void HidePlayerVeryBadlyHurt()
+    {
+        _bloodyScarVFX.SetActive(false);
     }
 
     public void InitKills(int total)

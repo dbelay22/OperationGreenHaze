@@ -418,7 +418,7 @@ public class Player : MonoBehaviour
         {
             bool canUseFlashlightToDefend = _flashlight.IsPickedUp && _flashlight.IsOnAndCanBlind() == false;
 
-            if (canUseFlashlightToDefend && UnityEngine.Random.value <= 0.6f)
+            if (canUseFlashlightToDefend && UnityEngine.Random.value <= 0.8f)
             {
                 // USE FLASHLIGHT
                 RadioTalking.Instance.PlayMessage(RadioTalking.Instance.UseFlashlight);

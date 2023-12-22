@@ -2,6 +2,7 @@ using FMOD.Studio;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Mail;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
@@ -300,6 +301,12 @@ public class PlayerHealth : MonoBehaviour
 
             Game.Instance.ChangeStateToGameOver();
         }
+        else if (IsVeryBadlyHurt())
+        {
+            GameUI.Instance.ShowPlayerVeryBadlyHurt();
+
+            RadioTalking.Instance.PlayUseMedkit(maxPriority: true);
+        }
         else if (IsBadlyHurt())
         {
             GameUI.Instance.ShowPlayerBadlyHurt();
@@ -311,6 +318,11 @@ public class PlayerHealth : MonoBehaviour
     public bool IsBadlyHurt()
     {
         return CurrentHealthPercentage <= 0.5;
+    }
+
+    public bool IsVeryBadlyHurt()
+    {
+        return CurrentHealthPercentage <= 0.25;
     }
 
     public void HitByExplosion()

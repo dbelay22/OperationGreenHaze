@@ -225,25 +225,34 @@ public class RadioTalking : MonoBehaviour
         }
     }
 
-    public void PlayUseMedkit()
+    public void PlayUseMedkit(bool maxPriority = false)
     {
-        float elapsedSecondsFromLast = Time.time - _lastUseMedkitTime;
+        bool shouldPlayMessage = false;
 
-        bool noMedkitPickedUP = Director.Instance._playerPickupMedkitCount < 1;
+        if (maxPriority)
+        {
+            shouldPlayMessage = true;
+        }
+        else
+        {
+            float elapsedSecondsFromLast = Time.time - _lastUseMedkitTime;
 
-        bool firstBadlyHurt = _lastUseMedkitTime < 1f;
+            bool noMedkitPickedUP = Director.Instance._playerPickupMedkitCount < 1;
 
-        bool needAnotherWarning = !firstBadlyHurt && noMedkitPickedUP;
+            bool firstBadlyHurt = _lastUseMedkitTime < 1f;
 
-        bool isTimeOfAnotherWarning = needAnotherWarning && elapsedSecondsFromLast > _minTimeBetweenMessageSeconds;        
+            bool needAnotherWarning = !firstBadlyHurt && noMedkitPickedUP;
 
-        bool shouldPlayMessage = firstBadlyHurt || isTimeOfAnotherWarning;
+            bool isTimeOfAnotherWarning = needAnotherWarning && elapsedSecondsFromLast > _minTimeBetweenMessageSeconds;
 
-        Debug.Log($"RadioTalking] PlayUseMedkit) elapsedSecondsFromLast: {elapsedSecondsFromLast}, noMedkitPickedUP: {noMedkitPickedUP}, firstBadlyHurt:{firstBadlyHurt}, needAnotherWarning: {needAnotherWarning}, isTimeOfAnotherWarning:{isTimeOfAnotherWarning}, shouldPlayMessage:{shouldPlayMessage}");
+            shouldPlayMessage = firstBadlyHurt || isTimeOfAnotherWarning;
+
+            Debug.Log($"RadioTalking] PlayUseMedkit) elapsedSecondsFromLast: {elapsedSecondsFromLast}, noMedkitPickedUP: {noMedkitPickedUP}, firstBadlyHurt:{firstBadlyHurt}, needAnotherWarning: {needAnotherWarning}, isTimeOfAnotherWarning:{isTimeOfAnotherWarning}, shouldPlayMessage:{shouldPlayMessage}");
+        }
 
         if (shouldPlayMessage)
         {
-            PlayMessage(Instance.UseMedkit);
+            PlayMessage(Instance.UseMedkit, maxPriority);
 
             _lastUseMedkitTime = Time.time;
         }
@@ -310,11 +319,15 @@ public class RadioTalking : MonoBehaviour
 
     public void StopAllMessagesNow()
     {
-        AudioController.Instance.StopEventIfPlaying(_currentMessage);
+        Debug.Log($"RadioTalking] StopAllMessagesNow)...");
+
+        AudioController.Instance.StopEvent(_currentMessage);
     }
 
     public void ShutDown()
     {
+        Debug.Log($"RadioTalking] Shutdown)...");
+
         StopAllMessagesNow();
 
         // deactivate
