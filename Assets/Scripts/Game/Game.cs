@@ -143,7 +143,7 @@ public class Game : MonoBehaviour
         {
             GameUI.Instance.ShowInGameMessage("ig_exit_danger", GameUI.LIFETIME_INFINITE, true);
 
-            RadioTalking.Instance.PlayMessage(RadioTalking.Instance.TooClose);
+            RadioTalking.Instance.PlayMessage(RadioTalking.Instance.TooClose, maxPriority: true);
         }
     }
 
@@ -199,7 +199,7 @@ public class Game : MonoBehaviour
     {
         GameUI.Instance.ShowInGameMessage("ig_kills_completed", 3f);
 
-        RadioTalking.Instance.PlayMessage(RadioTalking.Instance.KillComplete);
+        RadioTalking.Instance.PlayMessage(RadioTalking.Instance.KillComplete, maxPriority: true);
     }
 
     public void ReportExitClear()
@@ -236,7 +236,7 @@ public class Game : MonoBehaviour
 
                 GameUI.Instance.ShowInGameMessage("ig_find_exit", 4f);
 
-                RadioTalking.Instance.PlayMessage(RadioTalking.Instance.FindExit);
+                RadioTalking.Instance.PlayMessage(RadioTalking.Instance.FindExit, maxPriority: true);
 
                 AudioController.Instance.GameplayFindExit();
 

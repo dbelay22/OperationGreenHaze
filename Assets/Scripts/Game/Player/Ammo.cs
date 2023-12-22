@@ -17,6 +17,7 @@ public class Ammo : MonoBehaviour
     // Accuracy
     float _ammoShooted;
     float _ammoHitEnemy;
+    float _ammoHitBoombox;
     float _accuracy;
 
     public float Accuracy { get { return _accuracy; } }
@@ -30,10 +31,11 @@ public class Ammo : MonoBehaviour
     {
         _ammoShooted = 0;
         _ammoHitEnemy = 0;
+        _ammoHitBoombox = 0;
         _accuracy = 0;
     }
 
-    void UpdateAccuracy(bool hitEnemy)
+    void UpdateAccuracy(bool hitEnemy, bool hitBoombox)
     {
         _ammoShooted++;
         
@@ -42,7 +44,12 @@ public class Ammo : MonoBehaviour
             _ammoHitEnemy++;
         }
 
-        _accuracy = _ammoHitEnemy / _ammoShooted * 100;
+        if (hitBoombox)
+        {
+            _ammoHitBoombox++;
+        }
+
+        _accuracy = _ammoHitEnemy + _ammoHitBoombox / _ammoShooted * 100;
 
         Director.Instance.OnEvent(DirectorEvents.Shot_Accuracy_Update, _accuracy);
 
@@ -62,10 +69,10 @@ public class Ammo : MonoBehaviour
         return null;
     }
 
-    public void OnBulletShot(AmmoType ammoType, int amount, bool hitEnemy)
+    public void OnBulletShot(AmmoType ammoType, int amount, bool hitEnemy, bool hitBoombox)
     {
         // track accuracy
-        UpdateAccuracy(hitEnemy);
+        UpdateAccuracy(hitEnemy, hitBoombox);
 
         // get slot
         AmmoSlot slot = GetAmmoSlotOfType(ammoType);

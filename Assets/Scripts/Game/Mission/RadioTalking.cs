@@ -5,22 +5,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public struct PlayingSkillValues
-{
-    public EventReference EventRef;
-    public float ShotAccuracy;
-    public int KillCount;
-    public int KillHeadshotCount;
-
-    public PlayingSkillValues(EventReference eventRef, float shotAccuracy, int killCount, int killHeadshotCount)
-    {
-        EventRef = eventRef;
-        ShotAccuracy = shotAccuracy;
-        KillCount = killCount;
-        KillHeadshotCount = killHeadshotCount;
-    }
-}
-
 public class RadioTalking : MonoBehaviour
 {
     [Header("FMOD Events")]
@@ -40,6 +24,9 @@ public class RadioTalking : MonoBehaviour
     public EventReference Time2;
     public EventReference Time3;
 
+    [Header("Frequency")]
+    [SerializeField] int _minFrequencyBetweenMessagesSeconds;
+
     [Header("Rating")]
     [SerializeField] int _ratePlayingElapsedSeconds;
     [SerializeField] int _ratePlayingMaxCount;
@@ -47,6 +34,22 @@ public class RadioTalking : MonoBehaviour
 
     [Header("Use Medkit")]
     [SerializeField] int _minTimeBetweenMessageSeconds;
+
+    private struct PlayingSkillValues
+    {
+        public EventReference EventRef;
+        public float ShotAccuracy;
+        public int KillCount;
+        public int KillHeadshotCount;
+
+        public PlayingSkillValues(EventReference eventRef, float shotAccuracy, int killCount, int killHeadshotCount)
+        {
+            EventRef = eventRef;
+            ShotAccuracy = shotAccuracy;
+            KillCount = killCount;
+            KillHeadshotCount = killHeadshotCount;
+        }
+    }
 
     List<PlayingSkillValues> SkillMessages;
 
@@ -70,8 +73,8 @@ public class RadioTalking : MonoBehaviour
 
         SkillMessages = new List<PlayingSkillValues>()
         {
-            { new PlayingSkillValues(Instance.PlayVGood, 60, 10, 5) },
-            { new PlayingSkillValues(Instance.PlayGood, 40, 5, 1) },
+            { new PlayingSkillValues(Instance.PlayVGood, 60, 10, 3) },
+            { new PlayingSkillValues(Instance.PlayGood, 40, 5, 0) },
             { new PlayingSkillValues(Instance.PlayBad, 0, 0, 0) },
         };
 
@@ -182,22 +185,34 @@ public class RadioTalking : MonoBehaviour
 
     EventInstance _currentMessage;
 
-    public void PlayMessage(EventReference eventRef)
+    public void PlayMissionMessage(EventReference eventReference)
     {
-        float elapsed = Time.time - _lastMessageTimeSeconds;
+        PlayMessage(eventReference, maxPriority: true);
+    }
 
-        if (_lastMessageTimeSeconds > 0 && elapsed < 22)
+    public void PlayMessage(EventReference eventRef, bool maxPriority = false)
+    {
+        if (maxPriority)
         {
-            Debug.LogWarning($"RadioTalking] Sorry, another message played soon: {elapsed} seconds");
-            return;
+            AudioController.Instance.StopEventIfPlaying(_currentMessage);
         }
-
-        if (_isPlayingMessage)
+        else
         {
-            Debug.LogWarning($"RadioTalking] Already playing, missed message: {eventRef}");
-            return;
-        }
+            float elapsed = Time.time - _lastMessageTimeSeconds;
 
+            if (_lastMessageTimeSeconds > 0 && elapsed < _minFrequencyBetweenMessagesSeconds)
+            {
+                Debug.LogWarning($"RadioTalking] Sorry, another message played soon: {elapsed} seconds. Max: {_minFrequencyBetweenMessagesSeconds}");
+                return;
+            }
+
+            if (_isPlayingMessage)
+            {
+                Debug.LogWarning($"RadioTalking] Already playing, missed message: {eventRef}");
+                return;
+            }
+        }
+        
         _isPlayingMessage = true;
 
         AudioController.Instance.PlayInstanceOrCreate(_currentMessage, eventRef, out _currentMessage, true);

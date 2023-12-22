@@ -322,6 +322,8 @@ public class Weapon : MonoBehaviour
 
         bool hitEnemy = false;
 
+        bool hitBoombox = false;
+
         // Did I Hit ?
         if (hitSomething)
         {
@@ -331,7 +333,7 @@ public class Weapon : MonoBehaviour
 
             if (!hitEnemy)
             {
-                bool hitBoombox = ProcessHitBoomBox(hit);
+                hitBoombox = ProcessHitBoomBox(hit);
 
                 if (!hitBoombox) 
                 {
@@ -344,7 +346,7 @@ public class Weapon : MonoBehaviour
         }
 
         // Notify Player
-        _player.OnBulletShot(_ammoType, _ammoPerShot, hitEnemy);
+        _player.OnBulletShot(_ammoType, _ammoPerShot, hitEnemy, hitBoombox);
 
         // cool down if still active
         if (gameObject.activeInHierarchy) 

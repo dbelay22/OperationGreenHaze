@@ -147,13 +147,13 @@ public class Player : MonoBehaviour
 
     #region Shooting
 
-    public void OnBulletShot(AmmoType ammoType, int amount, bool hitEnemy)
+    public void OnBulletShot(AmmoType ammoType, int amount, bool hitEnemy, bool hitBoombox)
     {
         WeaponShakeData.ShakeProperties shakeProperties = _weaponSwitcher.GetCurrentShakeProperties();
         _cameraShake.Shake(shakeProperties);
 
         // Notify Ammo-slots manager
-        _ammo.OnBulletShot(ammoType, amount, hitEnemy);
+        _ammo.OnBulletShot(ammoType, amount, hitEnemy, hitBoombox);
 
         // Maybe evaluate playing
         RadioTalking.Instance.ProcessRatePlaying();
