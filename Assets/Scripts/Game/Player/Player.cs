@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
 
     PlayerHealth _playerHealth;
     
-    int _flashlightAsWeaponMessageCount = 0;
+    int _helpRadioMessageCount = 0;
 
     Animator _animator;    
 
@@ -46,7 +46,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        _flashlightAsWeaponMessageCount = 0;
+        _helpRadioMessageCount = 0;
 
         _animator = GetComponentInChildren<Animator>();
         _animator.enabled = false;
@@ -402,26 +402,36 @@ public class Player : MonoBehaviour
     {
         _playerHealth.Damage(amount);
 
-        ProcessUseFlashlightAsWeapon();
+        ProcessHelpRadioMessage();
     }
 
-    private void ProcessUseFlashlightAsWeapon()
+    private void ProcessHelpRadioMessage()
     {
-        if (_flashlightAsWeaponMessageCount >= 3)
+        if (_helpRadioMessageCount > 4)
         {
             return;
         }
 
-        bool canUseFlashlightToDefend = _flashlight.IsPickedUp && _flashlight.IsOnAndCanBlind() == false;
+        bool noAmmoLeft = _ammo.GetAllAmmoLeftCount() < 1;
 
-        if (canUseFlashlightToDefend && _ammo.GetAllAmmoLeftCount() < 1)
+        if (noAmmoLeft)
         {
-            bool messageShown = GameUI.Instance.ShowInGameMessage("ig_use_the_flashlight", 3);
+            bool canUseFlashlightToDefend = _flashlight.IsPickedUp && _flashlight.IsOnAndCanBlind() == false;
 
-            if (messageShown)
+            if (canUseFlashlightToDefend &&  UnityEngine.Random.value <= 0.6f)
             {
-                _flashlightAsWeaponMessageCount++;
+                // USE FLASHLIGHT
+                RadioTalking.Instance.PlayMessage(RadioTalking.Instance.UseFlashlight);
+
+                GameUI.Instance.ShowInGameMessage("ig_use_the_flashlight", 3);
             }
+            else
+            {
+                // FIND AMMO!
+                RadioTalking.Instance.PlayMessage(RadioTalking.Instance.OutOfAmmo);
+            }
+
+            _helpRadioMessageCount++;
         }
     }
 }
