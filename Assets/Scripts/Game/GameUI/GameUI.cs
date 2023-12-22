@@ -228,6 +228,9 @@ public class GameUI : MonoBehaviour
         // hide in-game messages
         HideMessagesNow();
 
+        // stop radio messages
+        RadioTalking.Instance.StopAllMessagesNow();
+
         // show game over
         _gameOverCanvas.SetActive(true);
 
@@ -241,6 +244,9 @@ public class GameUI : MonoBehaviour
 
         // hide in-game messages
         HideMessagesNow();
+
+        // stop radio messages
+        RadioTalking.Instance.StopAllMessagesNow();
 
         // show win
         _winCanvas.SetActive(true);
