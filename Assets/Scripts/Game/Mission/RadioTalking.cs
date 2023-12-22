@@ -82,7 +82,7 @@ public class RadioTalking : MonoBehaviour
         _isPlayingMessage = false;
     }
 
-    float _lastMessageTimeSeconds = 0f;
+    float _lastMessageTimeSeconds = -1f;
 
     void Update()
     {
@@ -186,7 +186,7 @@ public class RadioTalking : MonoBehaviour
     {
         float elapsed = Time.time - _lastMessageTimeSeconds;
 
-        if (elapsed < 22)
+        if (_lastMessageTimeSeconds > 0 && elapsed < 22)
         {
             Debug.LogWarning($"RadioTalking] Sorry, another message played soon: {elapsed} seconds");
             return;
