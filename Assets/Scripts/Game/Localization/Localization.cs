@@ -14,7 +14,7 @@ public class Localization : MonoBehaviour
     }
 
     [Header("Game Texts by Language")]
-    [SerializeField] List<GameTextsByLanguage> _gameTextsByLanguage;    
+    [SerializeField] List<GameTextsByLanguage> _gameTextsByLanguage;
 
     [Header("Force Language")]
     [SerializeField] bool _shouldForceGameTexts;
@@ -23,6 +23,8 @@ public class Localization : MonoBehaviour
     readonly SystemLanguage _defaultLanguage = SystemLanguage.English;
 
     SystemLanguage _currentSysLang;
+
+    public SystemLanguage CurrentLanguage { get { return _currentSysLang; } }
 
     GameTextsData _currentGameTexts;
 

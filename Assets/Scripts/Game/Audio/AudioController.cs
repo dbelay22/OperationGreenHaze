@@ -263,7 +263,7 @@ public class AudioController : MonoBehaviour
         }
     }
 
-    string GetEventInstancePath(EventInstance instance)
+    public string GetEventInstancePath(EventInstance instance)
     {
         instance.getDescription(out EventDescription description);
 

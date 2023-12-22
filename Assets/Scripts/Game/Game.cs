@@ -141,8 +141,6 @@ public class Game : MonoBehaviour
     {
         if (PlayerNeedsToClearExitNow())
         {
-            GameUI.Instance.ShowInGameMessage("ig_exit_danger", GameUI.LIFETIME_INFINITE, true);
-
             RadioTalking.Instance.PlayMessage(RadioTalking.Instance.TooClose, maxPriority: true);
         }
     }

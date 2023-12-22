@@ -595,8 +595,6 @@ public class NpcAI : MonoBehaviour
         {
             _deadByHeadshot = isHeadshot;
 
-            Debug.Log("DEAD BY HEADSHOT");
-
             ChangeStateToDead();
         }
     }

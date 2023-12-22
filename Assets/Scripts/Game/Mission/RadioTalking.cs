@@ -1,7 +1,6 @@
 using FMOD.Studio;
 using FMODUnity;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -28,7 +27,7 @@ public class RadioTalking : MonoBehaviour
     [SerializeField] int _minFrequencyBetweenMessagesSeconds;
 
     [Header("Rating")]
-    [SerializeField] int _ratePlayingElapsedSeconds;
+    [SerializeField] int _startRatePlayingElapsedSeconds;
     [SerializeField] int _ratePlayingMaxCount;
     [SerializeField] int _ratePlayingFrequencySeconds;
 
@@ -51,13 +50,37 @@ public class RadioTalking : MonoBehaviour
         }
     }
 
+    private struct IngameMessageDuration
+    {
+        public string MessageKey;
+        public float Duration;
+
+        public IngameMessageDuration(string key, float duration)
+        {
+            MessageKey = key;
+            Duration = duration;
+        }
+    }
+
     List<PlayingSkillValues> SkillMessages;
+
+    Dictionary<EventReference, IngameMessageDuration> AudioTextMessage;
+
+    EventInstance _currentMessage;
 
     int _ratePlayingCount = 0;
     
     float _lastRatedTimeSeconds = 0f;
 
     bool _isPlayingMessage = false;
+
+    float _lastMessageTimeSeconds = -1f;
+
+    bool _alreadyRateVGood = false;
+
+    float _lastUseMedkitTime = 0f;
+
+    bool _needToShowIGMessages = false;
 
     #region Instance
 
@@ -78,6 +101,15 @@ public class RadioTalking : MonoBehaviour
             { new PlayingSkillValues(Instance.PlayBad, 0f, 0, 0) },
         };
 
+        AudioTextMessage = new Dictionary<EventReference, IngameMessageDuration>()
+        {
+            { Instance.Start, new IngameMessageDuration("ig_radio_start", 5f) },
+            { Instance.PlayVGood, new IngameMessageDuration("ig_radio_playvgood", 5f) },
+            { Instance.PlayGood, new IngameMessageDuration("ig_radio_playgood", 5f) },
+            { Instance.PlayBad, new IngameMessageDuration("ig_radio_playbad", 5f) },
+            { Instance.TooClose, new IngameMessageDuration("ig_radio_tooclose", GameUI.LIFETIME_INFINITE) }
+        };
+
         _ratePlayingCount = 0;
         
         _lastRatedTimeSeconds = 0f;
@@ -85,37 +117,40 @@ public class RadioTalking : MonoBehaviour
         _isPlayingMessage = false;
 
         _alreadyRateVGood = false;
-    }
 
-    float _lastMessageTimeSeconds = -1f;
+        _lastMessageTimeSeconds = -1f;
+
+        _lastUseMedkitTime = 0f;
+
+        _needToShowIGMessages = Localization.Instance.CurrentLanguage.Equals(SystemLanguage.English);
+    }
 
     void Update()
     {
-        if (_isPlayingMessage)
+        CurrentMessagePlayingUpdate();
+    }
+
+    void CurrentMessagePlayingUpdate()
+    {
+        if (_isPlayingMessage && _currentMessage.isValid())
         {
-            if (_currentMessage.isValid())
+            _isPlayingMessage = AudioController.Instance.IsEventPlaying(_currentMessage);
+
+            if (!_isPlayingMessage)
             {
-                _isPlayingMessage = AudioController.Instance.IsEventPlaying(_currentMessage);
-
-                bool justStopped = !_isPlayingMessage;
-
-                if (justStopped)
-                {
-                    _currentMessage = new EventInstance();
-                }
+                // just stopped
+                _currentMessage = new EventInstance();
             }
         }
     }
 
-    bool _alreadyRateVGood = false;
-
+    
     public void ProcessRatePlaying()
     {
-        Debug.Log($"ProcessRatePlaying) _ratePlayingCount:{_ratePlayingCount}");
-
         if (_ratePlayingCount > _ratePlayingMaxCount)
         {
             // max count reached
+            Debug.Log($"RadioTalkin] ProcessRatePlaying) Max rate playing count reached:{_ratePlayingMaxCount}");
             return;
         }
 
@@ -123,7 +158,7 @@ public class RadioTalking : MonoBehaviour
 
         //Debug.Log($"ProcessRatePlaying) elapsed:{elapsed}, _ratePlayingElapsedSeconds:{_ratePlayingElapsedSeconds}");
 
-        if (elapsed < _ratePlayingElapsedSeconds)
+        if (elapsed < _startRatePlayingElapsedSeconds)
         {
             // not yet
             return;
@@ -137,7 +172,7 @@ public class RadioTalking : MonoBehaviour
             return;
         }
 
-        Debug.Log($"ProcessRatePlaying) Auditing now...");
+        Debug.Log($"RadioTalkin] ProcessRatePlaying) _ratePlayingCount:{_ratePlayingCount} auditing now...");
 
         foreach (PlayingSkillValues skillValues in SkillMessages)
         {
@@ -175,10 +210,7 @@ public class RadioTalking : MonoBehaviour
                 break;
             }
         }
-    }
-
-
-    float _lastUseMedkitTime = 0f;
+    } 
 
     public void PlayUseMedkit()
     {
@@ -204,12 +236,13 @@ public class RadioTalking : MonoBehaviour
         }
     }
 
-    EventInstance _currentMessage;
+    
 
     public void PlayMissionMessage(EventReference eventReference)
     {
         PlayMessage(eventReference, maxPriority: true);
     }
+
 
     public void PlayMessage(EventReference eventRef, bool maxPriority = false)
     {
@@ -234,11 +267,35 @@ public class RadioTalking : MonoBehaviour
             }
         }
         
-        _isPlayingMessage = true;
+        _isPlayingMessage = true;        
 
         AudioController.Instance.PlayInstanceOrCreate(_currentMessage, eventRef, out _currentMessage, true);
 
+        Debug.LogWarning($"RadioTalking] PlayMessage) _currentMessage: {AudioController.Instance.GetEventInstancePath(_currentMessage)}");
+
         _lastMessageTimeSeconds = Time.time;
+
+        if (_needToShowIGMessages)
+        {
+            ShowInGameText(eventRef, maxPriority);
+        }        
+    }
+
+    void ShowInGameText(EventReference eventRef, bool maxPriority = false)
+    {
+        Debug.Log($"RadioTalking] ShowInGameText) eventRef:{eventRef.Path}");
+
+        AudioTextMessage.TryGetValue(eventRef, out IngameMessageDuration igMessage);
+
+        Debug.Log($"RadioTalking] ShowInGameText) igMessage key is null: {igMessage.MessageKey == null}");
+
+        if (igMessage.MessageKey == null || igMessage.MessageKey.Length < 1)
+        {
+            Debug.LogError($"There's no in-game-message text key for event path: {eventRef.Path}");
+            return;
+        }
+
+        GameUI.Instance.ShowInGameMessage(igMessage.MessageKey, igMessage.Duration, maxPriority);
     }
 
 }

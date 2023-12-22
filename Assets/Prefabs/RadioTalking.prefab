@@ -57,7 +57,7 @@ MonoBehaviour:
       Data2: 1301088212
       Data3: 627924355
       Data4: -646625796
-    Path: event:/Dx/Dx_Dx_PlayVGood
+    Path: event:/Dx/Dx_PlayVGood
   PlayGood:
     Guid:
       Data1: -1946711664
@@ -150,7 +150,7 @@ MonoBehaviour:
       Data4: 270919588
     Path: event:/Dx/Dx_Time3
   _minFrequencyBetweenMessagesSeconds: 15
-  _ratePlayingElapsedSeconds: 60
+  _startRatePlayingElapsedSeconds: 20
   _ratePlayingMaxCount: 4
   _ratePlayingFrequencySeconds: 60
   _minTimeBetweenMessageSeconds: 20

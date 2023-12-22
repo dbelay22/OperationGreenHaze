@@ -123,9 +123,24 @@ MonoBehaviour:
     _value: Press 'F' to toggle Flashlight
   - _key: ig_find_exit
     _value: Find the exit now, do you hear the helicopter ?
-  - _key: ig_exit_danger
+  - _key: ig_radio_tooclose
     _value: 'You''re too close to the barrels
 
 '
   - _key: ig_kills_completed
     _value: Beautiful morning right ?
+  - _key: ig_radio_playvgood
+    _value: 'It seems like you have a natural talent for this
+
+      Impressive!'
+  - _key: ig_radio_playgood
+    _value: You're doing well R, keep it up
+  - _key: ig_radio_playbad
+    _value: "Are you okay agent? \nSave ammo and improve your accuracy"
+  - _key: ig_radio_start
+    _value: 'Good morning agent
+
+      I''m Sergeant F and I''m going to be here
+      to help you
+
+      Good luck'
