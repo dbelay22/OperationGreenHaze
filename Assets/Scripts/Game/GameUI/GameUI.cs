@@ -325,6 +325,8 @@ public class GameUI : MonoBehaviour
         if (!_playerDamage.IsActive())
         {
             _playerDamage.Show(_damageShowTime);
+            
+            _bloodyScarVFX.SetActive(true);
         }
     }
 
@@ -361,6 +363,7 @@ public class GameUI : MonoBehaviour
         _totalKills = total;
 
         _killsPanel.SetActive(true);
+
         _killsLabel.text = GetLabelKillsOverTotal(_currentKills, _totalKills);
     }
 

@@ -2,7 +2,6 @@ using FMOD.Studio;
 using System.Collections.Generic;
 using UnityEngine;
 using FMODUnity;
-using System.Collections;
 
 public class AudioController : MonoBehaviour
 {
@@ -81,7 +80,7 @@ public class AudioController : MonoBehaviour
             _maxInstancesCount = _eventInstances.Count;
         }
 
-        string path = GetEventInstancePath(eventInstance);
+        //string path = GetEventInstancePath(eventInstance);
 
         //Debug.Log($"AudioController] CreateInstance) NEW instance of path: {path}, list count so far: [{_eventInstances.Count}]");
 
@@ -124,11 +123,13 @@ public class AudioController : MonoBehaviour
 
             description.getID(out FMOD.GUID instanceGuid);
 
+            Debug.Log($"AudioController] getInstanceFromList) instanceGuid: {instanceGuid}");
+
             if (instanceGuid.Equals(eventReference.Guid))
             {
                 description.getPath(out string path);
 
-                //Debug.Log($"AudioController] getInstanceFromList) found instance in list path: {path}, using it.");                
+                Debug.Log($"AudioController] getInstanceFromList) found instance in list path: {path}, using it.");
 
                 return eventInstance;
             }
@@ -137,7 +138,7 @@ public class AudioController : MonoBehaviour
         return new EventInstance();
     }
 
-    public void PlayInstanceOrCreate(EventInstance instance, EventReference reference, out EventInstance outInstance, bool forcePlay = false)
+    public void PlayInstanceOrCreate(EventInstance instance, FMODUnity.EventReference reference, out EventInstance outInstance, bool forcePlay = false)
     {
         if (instance.isValid())
 {
@@ -271,6 +272,16 @@ public class AudioController : MonoBehaviour
 
         return path;
     }
+
+    public FMOD.GUID GetEventInstanceGUID(EventInstance instance)
+    {
+        instance.getDescription(out EventDescription description);
+
+        description.getID(out FMOD.GUID instanceGuid);
+
+        return instanceGuid;
+    }
+
 
     PLAYBACK_STATE GetPlaybackState(EventInstance instance)
     {

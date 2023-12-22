@@ -603,8 +603,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee7ab24179c705540a5c781e0288b0fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _toxicZoneDamage: 7
-  _fireZoneDamage: 10
+  _toxicZoneDamage: 10
+  _fireZoneDamage: 15
   _currentHealth: 0
 --- !u!114 &1313374671374682099
 MonoBehaviour:

@@ -113,7 +113,7 @@ public class RadioTalking : MonoBehaviour
             { Instance.MissionObj1, new IngameMessageDuration("ig_radio_missionobj1", 5f) },
             { Instance.MissionObj2, new IngameMessageDuration("ig_radio_missionobj2", 5f) },
             { Instance.KillComplete, new IngameMessageDuration("ig_radio_killcomplete", 5f) },
-            { Instance.FindExit, new IngameMessageDuration("ig_radio_findexit", 5f) },
+            { Instance.FindExit, new IngameMessageDuration("ig_radio_findexit", 10f) },
             { Instance.TooClose, new IngameMessageDuration("ig_radio_tooclose", GameUI.LIFETIME_INFINITE) },
             { Instance.Time1, new IngameMessageDuration("ig_radio_time1", 5f) },
             { Instance.Time2, new IngameMessageDuration("ig_radio_time2", 5f) },
@@ -227,7 +227,7 @@ public class RadioTalking : MonoBehaviour
 
     public void PlayUseMedkit(bool maxPriority = false)
     {
-        bool shouldPlayMessage = false;
+        bool shouldPlayMessage;
 
         if (maxPriority)
         {
@@ -265,6 +265,17 @@ public class RadioTalking : MonoBehaviour
 
     public void PlayMessage(EventReference eventRef, bool maxPriority = false)
     {
+        FMOD.GUID instanceGUID = AudioController.Instance.GetEventInstanceGUID(_currentMessage);
+
+        bool alreadyPlayingSameMessage = instanceGUID.Equals(eventRef.Guid);
+
+        Debug.Log($"RadioTalking] PlayMessage) alreadyPlayingSameMessage: {alreadyPlayingSameMessage}, instanceGUID:{instanceGUID}, eventRef.Guid:{eventRef.Guid}");
+
+        if (alreadyPlayingSameMessage)
+        {
+            return;
+        }
+
         if (maxPriority)
         {
             StopAllMessagesNow();
@@ -275,7 +286,7 @@ public class RadioTalking : MonoBehaviour
 
             if (_lastMessageTimeSeconds > 0 && elapsed < _minFrequencyBetweenMessagesSeconds)
             {
-                Debug.LogWarning($"RadioTalking] Sorry, another message played soon: {elapsed} seconds. Min frequency is: {_minFrequencyBetweenMessagesSeconds}");
+                Debug.LogWarning($"RadioTalking] PlayMessage) Sorry, another message played soon: {elapsed} seconds. Min frequency is: {_minFrequencyBetweenMessagesSeconds}");
                 return;
             }
 
@@ -302,7 +313,9 @@ public class RadioTalking : MonoBehaviour
 
     void ShowInGameText(EventReference eventRef, bool maxPriority = false)
     {
+#if UNITY_EDITOR
         Debug.Log($"RadioTalking] ShowInGameText) eventRef:{eventRef.Path}");
+#endif
 
         AudioTextMessage.TryGetValue(eventRef, out IngameMessageDuration igMessage);
 
@@ -310,7 +323,9 @@ public class RadioTalking : MonoBehaviour
 
         if (igMessage.MessageKey == null || igMessage.MessageKey.Length < 1)
         {
+#if UNITY_EDITOR
             Debug.LogError($"RadioTalking] ShowInGameText) There's no in-game-message text key for event path: {eventRef.Path}");
+#endif
             return;
         }
 

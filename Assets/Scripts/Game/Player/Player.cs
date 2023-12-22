@@ -407,8 +407,11 @@ public class Player : MonoBehaviour
 
     private void ProcessHelpRadioMessage()
     {
-        if (_helpRadioMessageCount > 4)
+        Debug.Log($"Player] ProcessHelpRadioMessage()... _helpRadioMessageCount: {_helpRadioMessageCount}");
+
+        if (_helpRadioMessageCount > 7)
         {
+            Debug.Log($"Player] ProcessHelpRadioMessage() MAX reached");
             return;
         }
 
@@ -418,7 +421,7 @@ public class Player : MonoBehaviour
         {
             bool canUseFlashlightToDefend = _flashlight.IsPickedUp && _flashlight.IsOnAndCanBlind() == false;
 
-            if (canUseFlashlightToDefend && UnityEngine.Random.value <= 0.8f)
+            if (canUseFlashlightToDefend && UnityEngine.Random.value <= 0.6f)
             {
                 // USE FLASHLIGHT
                 RadioTalking.Instance.PlayMessage(RadioTalking.Instance.UseFlashlight);
