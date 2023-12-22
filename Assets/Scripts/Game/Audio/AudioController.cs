@@ -129,7 +129,7 @@ public class AudioController : MonoBehaviour
             {
                 description.getPath(out string path);
 
-                Debug.Log($"AudioController] getInstanceFromList) found instance in list path: {path}, using it.");
+                //Debug.Log($"AudioController] getInstanceFromList) found instance in list path: {path}, using it.");
 
                 return eventInstance;
             }

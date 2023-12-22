@@ -159,7 +159,7 @@ public class RadioTalking : MonoBehaviour
         if (_ratePlayingCount > _ratePlayingMaxCount)
         {
             // max count reached
-            Debug.Log($"RadioTalking] ProcessRatePlaying) Max rate playing count reached:{_ratePlayingMaxCount}");
+            Debug.LogWarning($"RadioTalking] ProcessRatePlaying) Max rate playing count reached:{_ratePlayingMaxCount}");
             return;
         }
 
@@ -181,11 +181,12 @@ public class RadioTalking : MonoBehaviour
             return;
         }
 
-        Debug.Log($"RadioTalking] ProcessRatePlaying) _ratePlayingCount:{_ratePlayingCount} auditing now...");
-        
+        /*
+        Debug.Log($"RadioTalking] ProcessRatePlaying) _ratePlayingCount:{_ratePlayingCount} auditing now...");        
         Debug.LogWarning($"RadioTalking] ProcessRatePlaying) accuracy:{Director.Instance._shotAccuracy}");
         Debug.LogWarning($"RadioTalking] ProcessRatePlaying) _enemyKillCount:{Director.Instance._enemyKillCount}");
         Debug.LogWarning($"RadioTalking] ProcessRatePlaying) _enemyKillByHeadshotCount:{Director.Instance._enemyKillByHeadshotCount}");
+        */
 
         foreach (PlayingSkillValues skillValues in SkillMessages)
         {
@@ -193,7 +194,7 @@ public class RadioTalking : MonoBehaviour
                 Director.Instance._enemyKillCount >= skillValues.KillCount && 
                 Director.Instance._enemyKillByHeadshotCount >= skillValues.KillHeadshotCount;
 
-            Debug.Log($"RadioTalking] Evaluating skill: {skillValues.EventRef}, gotSKill: {gotSKill}");
+            //Debug.Log($"RadioTalking] Evaluating skill: {skillValues.EventRef}, gotSKill: {gotSKill}");
 
             if (gotSKill)
             {
@@ -238,11 +239,13 @@ public class RadioTalking : MonoBehaviour
         bool needAnotherWarning = maxPriority || (noMedkitPickedUP && !firstBadlyHurt);
 
         bool shouldPlayMessage = firstBadlyHurt || (needAnotherWarning && isTimeOfAnotherWarning);
-
+        
+        /*
         Debug.Log($"RadioTalking] PlayUseMedkit)----------------------------------------------------------------------------------------------------------------");
         Debug.Log($"RadioTalking] PlayUseMedkit) firstBadlyHurt: {firstBadlyHurt}, noMedkitPickedUP:{noMedkitPickedUP}, isTimeOfAnotherWarning:{isTimeOfAnotherWarning}, elapsedSecondsFromLast:{elapsedSecondsFromLast}, needAnotherWarning: {needAnotherWarning}");
         Debug.Log($"RadioTalking] PlayUseMedkit) isTimeOfAnotherWarning:{isTimeOfAnotherWarning}, elapsedSecondsFromLast:{elapsedSecondsFromLast}");
         Debug.Log($"RadioTalking] PlayUseMedkit) needAnotherWarning: {needAnotherWarning}, shouldPlayMessage:{shouldPlayMessage}, maxPriority:{maxPriority}");
+        */
 
         if (shouldPlayMessage)
         {
@@ -284,7 +287,7 @@ public class RadioTalking : MonoBehaviour
 
         AudioController.Instance.PlayInstanceOrCreate(_currentMessage, eventRef, out _currentMessage, true);
 
-        Debug.Log($"RadioTalking] PlayMessage) _currentMessage: {AudioController.Instance.GetEventInstancePath(_currentMessage)}");
+        //Debug.Log($"RadioTalking] PlayMessage) _currentMessage: {AudioController.Instance.GetEventInstancePath(_currentMessage)}");
 
         _lastMessageTimeSeconds = Time.time;
 
@@ -297,12 +300,12 @@ public class RadioTalking : MonoBehaviour
     void ShowInGameText(EventReference eventRef, bool maxPriority = false)
     {
 #if UNITY_EDITOR
-        Debug.Log($"RadioTalking] ShowInGameText) eventRef:{eventRef.Path}");
+        //Debug.Log($"RadioTalking] ShowInGameText) eventRef:{eventRef.Path}");
 #endif
 
         AudioTextMessage.TryGetValue(eventRef, out IngameMessageDuration igMessage);
 
-        Debug.Log($"RadioTalking] ShowInGameText) igMessage key is null: {igMessage.MessageKey == null}");
+        //Debug.Log($"RadioTalking] ShowInGameText) igMessage key is null: {igMessage.MessageKey == null}");
 
         if (igMessage.MessageKey == null || igMessage.MessageKey.Length < 1)
         {
@@ -317,14 +320,14 @@ public class RadioTalking : MonoBehaviour
 
     public void StopAllMessagesNow()
     {
-        Debug.Log($"RadioTalking] StopAllMessagesNow)...");
+        //Debug.Log($"RadioTalking] StopAllMessagesNow)...");
 
         AudioController.Instance.StopEvent(_currentMessage);
     }
 
     public void ShutDown()
     {
-        Debug.Log($"RadioTalking] Shutdown)...");
+        //Debug.Log($"RadioTalking] Shutdown)...");
 
         StopAllMessagesNow();
 

@@ -69,7 +69,7 @@ public class LevelLoader : MonoBehaviour
 
         int nextSceneIndex = GetNextLevelIndex();
 
-        Debug.Log($"LevelLoader] LoadNextLevelAsync) nextSceneIndex: {nextSceneIndex}");
+        //Debug.Log($"LevelLoader] LoadNextLevelAsync) nextSceneIndex: {nextSceneIndex}");
 
         _currentLoading = SceneManager.LoadSceneAsync(nextSceneIndex, LoadSceneMode.Single);
 
@@ -78,7 +78,7 @@ public class LevelLoader : MonoBehaviour
 
     public void LoadLevelAsync(string nextSceneName)
     {
-        Debug.Log($"LevelLoader] LoadLevelAsync)... nextSceneName:{nextSceneName}");
+        //Debug.Log($"LevelLoader] LoadLevelAsync)... nextSceneName:{nextSceneName}");
 
         PreloadLevelAsync();
 
@@ -89,7 +89,7 @@ public class LevelLoader : MonoBehaviour
 
     public void ReadyToStartNextLevel()
     {
-        Debug.Log("LevelLoader] ReadyToLoadNextLevel)...");
+        //Debug.Log("LevelLoader] ReadyToLoadNextLevel)...");
         
         _canStartNextLevel = true;
     }
@@ -102,7 +102,7 @@ public class LevelLoader : MonoBehaviour
 
             if (_nextLevelReady)
             {
-                Debug.Log("LevelLoader] Level is ready...");
+                //Debug.Log("LevelLoader] Level is ready...");
 
                 _loadingAsync = false;
 

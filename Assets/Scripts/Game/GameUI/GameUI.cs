@@ -153,17 +153,14 @@ public class GameUI : MonoBehaviour
         }
         else if (intTimeLeftSeconds == 5 * 60)
         {
-            Debug.Log($"5 minutoooos");
             RadioTalking.Instance.PlayMessage(RadioTalking.Instance.Time1);
         }
         else if (intTimeLeftSeconds == 3 * 60)
         {
-            Debug.Log($"3 minutoooos");
             RadioTalking.Instance.PlayMessage(RadioTalking.Instance.Time2);
         }
         else if (intTimeLeftSeconds == 1 * 60)
         {
-            Debug.Log($"1 minutoooos");
             RadioTalking.Instance.PlayMessage(RadioTalking.Instance.Time3);
         }
         else if (timerMinutes != _lastMinuteUpdate && timerMinutes < _minutesOfGameplay - 1)
@@ -204,7 +201,7 @@ public class GameUI : MonoBehaviour
 
     public void ShowGameplay()
     {
-        Debug.Log("[GameUI] ShowGameplay)...");
+        //Debug.Log("[GameUI] ShowGameplay)...");
 
         // hide states
         _gameOverCanvas.SetActive(false);
@@ -280,7 +277,7 @@ public class GameUI : MonoBehaviour
 
     public void ShowPause()
     {
-        Debug.Log("[GameUI] ShowPause)...");
+        //Debug.Log("[GameUI] ShowPause)...");
 
         // hide in-game canvases
         ShowHUD(false);
@@ -386,7 +383,7 @@ public class GameUI : MonoBehaviour
 
     public bool ShowInGameMessage(string textKey, float lifetime, bool maxPriority = false)
     {
-        Debug.Log($"ShowInGameMessage) key:{textKey}, lifetime: {lifetime}");
+        //Debug.Log($"ShowInGameMessage) key:{textKey}, lifetime: {lifetime}");
 
         if (_inGameMessagesCanvas.activeInHierarchy == true)
         {
@@ -418,7 +415,7 @@ public class GameUI : MonoBehaviour
 
         _inGameMessagesCanvas.SetActive(true);
 
-        Debug.Log($"ShowInGameMessage) showing text: {_textInGameMessage.text}");
+        //Debug.Log($"ShowInGameMessage) showing text: {_textInGameMessage.text}");
 
         // negative / zero lifetime = permanent message (will be hidden later)
         // positive lifetime = temporal message
@@ -441,7 +438,7 @@ public class GameUI : MonoBehaviour
 
     public void HideMessagesNow()
     {
-        Debug.Log($"[GameUI] (HideMessagesNow)...");
+        //Debug.Log($"[GameUI] (HideMessagesNow)...");
 
         if (_hideMessagesCoroutine != null)
         {

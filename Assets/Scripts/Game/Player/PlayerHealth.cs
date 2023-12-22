@@ -284,7 +284,7 @@ public class PlayerHealth : MonoBehaviour
         // clamp
         int clampedHealth = GetCurrentHealthClamped();
         
-        Debug.Log($"[PlayerHealth] _currentHealth:{_currentHealth} -> clamped: {clampedHealth}");
+        //Debug.Log($"[PlayerHealth] _currentHealth:{_currentHealth} -> clamped: {clampedHealth}");
 
         _currentHealth = clampedHealth;
 
@@ -292,7 +292,7 @@ public class PlayerHealth : MonoBehaviour
         GameUI.Instance.UpdateHealthAmmount(clampedHealth);
 
         // update SFX
-        Debug.Log($"PlayerHealth] HealthUpdate) Sent health param value: {_currentHealth}");
+        //Debug.Log($"PlayerHealth] HealthUpdate) Sent health param value: {_currentHealth}");
         _healthSFX.setParameterByName(FMODEvents.Instance.HealthParamName, _currentHealth);
 
         if (_currentHealth <= 0)
@@ -322,7 +322,7 @@ public class PlayerHealth : MonoBehaviour
 
     public bool IsVeryBadlyHurt()
     {
-        return CurrentHealthPercentage <= 0.25;
+        return CurrentHealthPercentage <= 0.35;
     }
 
     public void HitByExplosion()
@@ -337,14 +337,14 @@ public class PlayerHealth : MonoBehaviour
 
     void OnGameplayOver()
     {
-        Debug.Log("PlayerHealth] OnGameplayOver)...");
+        //Debug.Log("PlayerHealth] OnGameplayOver)...");
 
         StopAllHealthSFX();
     }
 
     void OnPlayerDeath()
     {
-        Debug.Log("PlayerHealth] OnPlayerDeath)...");
+        //Debug.Log("PlayerHealth] OnPlayerDeath)...");
 
         StopAllHealthSFX();
 
@@ -353,7 +353,7 @@ public class PlayerHealth : MonoBehaviour
 
     void StopAllHealthSFX()
     {
-        Debug.Log("PlayerHealth] StopAllHealthSFX)...");
+        //Debug.Log("PlayerHealth] StopAllHealthSFX)...");
 
         AudioController.Instance.StopEvent(_healthSFX);
 

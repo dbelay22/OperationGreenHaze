@@ -56,7 +56,7 @@ public class TelegramMessageCanvas : MonoBehaviour
 
     protected IEnumerator OnAnyKeyPressed()
     {
-        Debug.Log("OnAnyKeyPressed");
+        //Debug.Log("OnAnyKeyPressed");
 
         _keyWasPressed = true;
 
@@ -89,7 +89,7 @@ public class TelegramMessageCanvas : MonoBehaviour
 
     protected virtual void OnFadeOutComplete() 
     {
-        Debug.Log($"TMC] OnFadeOutComplete) Ready to start next level / stopping music");        
+        //Debug.Log($"TMC] OnFadeOutComplete) Ready to start next level / stopping music");        
 
         LevelLoader.Instance.ReadyToStartNextLevel();
 
