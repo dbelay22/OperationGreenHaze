@@ -82,7 +82,7 @@
 			<value>volume</value>
 		</property>
 		<property name="value">
-			<value>-8.5</value>
+			<value>-6</value>
 		</property>
 		<relationship name="automatableObject">
 			<destination>{6643806f-53fe-4a4b-ad4b-a1fb4da89251}</destination>
@@ -104,7 +104,7 @@
 			<value>volume</value>
 		</property>
 		<property name="value">
-			<value>-6</value>
+			<value>-3</value>
 		</property>
 		<relationship name="automatableObject">
 			<destination>{ad759fe8-6647-46ef-a132-42eee5b487aa}</destination>
@@ -152,6 +152,9 @@
 		</property>
 		<property name="sustainValue">
 			<value>100</value>
+		</property>
+		<property name="releaseTime">
+			<value>880</value>
 		</property>
 	</object>
 </objects>
