@@ -460,7 +460,7 @@ MonoBehaviour:
   SpeedChangeRate: 10
   JumpHeight: 1
   Gravity: -15
-  JumpTimeout: 0.1
+  JumpTimeout: 0.5
   FallTimeout: 0.15
   Grounded: 1
   GroundedOffset: -0.14
