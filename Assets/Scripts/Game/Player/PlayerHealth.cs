@@ -343,6 +343,8 @@ public class PlayerHealth : MonoBehaviour
     void EnableHurtNoiseProfile(bool veryBadly = false)
     {
         NoiseSettings hurtProfile = veryBadly ? _veryBadlyHurtNoiseProfile : _badlyHurtNoiseProfile;
+        
+        float noiseAmplitude = veryBadly ? 1.5f : 2.5f;
 
         if (GetCurrentNoiseProfile().Equals(hurtProfile))
         {
@@ -354,7 +356,7 @@ public class PlayerHealth : MonoBehaviour
         
         SetNoiseProfile(hurtProfile);
 
-
+        SetNoiseAmplitudeGain(noiseAmplitude);
     }
 
     void DisableHurtNoiseProfile()
@@ -368,6 +370,13 @@ public class PlayerHealth : MonoBehaviour
         Debug.Log("DisableHurtNoiseProfile) setting healthy profile");
 
         SetNoiseProfile(_healthyNoiseProfile);
+
+        SetNoiseAmplitudeGain(1f);
+    }
+
+    void SetNoiseAmplitudeGain(float value)
+    {
+        _virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = value;
     }
 
     void SetNoiseProfile(NoiseSettings settings)
