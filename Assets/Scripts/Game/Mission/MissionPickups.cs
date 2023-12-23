@@ -44,7 +44,7 @@ public class MissionPickups : MonoBehaviour
     
     public void OnMissionItemPickup(GameObject pickup)
     {
-        //Debug.Log($"[MissionPickups] (OnMissionItemPickup) pickup: {pickup.name}");
+        Debug.Log($"[MissionPickups] (OnMissionItemPickup) pickup: {pickup.name}");
 
         bool pickupFound = _objectivesCompleted.TryGetValue(pickup.name, out bool completedStatus);
 

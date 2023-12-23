@@ -142,7 +142,7 @@ public class AudioController : MonoBehaviour
     {
         if (instance.isValid())
 {
-            //Debug.Log($"AudioController] PlayInstanceOrCreate) instance is valid, playing it.");
+            Debug.Log($"AudioController] PlayInstanceOrCreate) instance is valid, playing it.");
 
             PlayEvent(instance, forcePlay);
             
@@ -152,7 +152,7 @@ public class AudioController : MonoBehaviour
         {
             outInstance = PlayFromListOrCreate(reference, forcePlay);
 
-            //Debug.Log($"AudioController] PlayInstanceOrCreate) instance created/found in list, playing...");
+            Debug.Log($"AudioController] PlayInstanceOrCreate) instance created/found in list, playing...");
         }
     }
 

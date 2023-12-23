@@ -285,9 +285,11 @@ public class RadioTalking : MonoBehaviour
             }
         }
         
-        _isPlayingMessage = true;        
+        _isPlayingMessage = true;
 
-        AudioController.Instance.PlayInstanceOrCreate(_currentMessage, eventRef, out _currentMessage, true);
+        _currentMessage = AudioController.Instance.CreateInstance(eventRef);
+        
+        AudioController.Instance.PlayEvent(_currentMessage);
 
         Debug.Log($"RadioTalking] PlayMessage) _currentMessage: {AudioController.Instance.GetEventInstancePath(_currentMessage)}");
 

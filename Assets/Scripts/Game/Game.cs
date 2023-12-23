@@ -168,14 +168,7 @@ public class Game : MonoBehaviour
 
         ObjectivesPanel.Instance.SetPickupDataComplete();
 
-        ShowObjectiveCompletedMessage();
-
         CheckGameWin();
-    }
-
-    void ShowObjectiveCompletedMessage()
-    {
-        RadioTalking.Instance.PlayMessage(RadioTalking.Instance.MissionObj2, maxPriority: true);
     }
 
     public void ReportAllEnemiesKilled()
@@ -219,8 +212,14 @@ public class Game : MonoBehaviour
 
     bool CheckGameWin()
     {
-        if (PlayerNeedsToClearExitNow())
+        bool needsToClearExit = PlayerNeedsToClearExitNow();
+
+        Debug.Log($"Game] CheckGameWin)... needsToClearExit:{needsToClearExit}");
+
+        if (needsToClearExit)
         {
+            Debug.Log("Game] CheckGameWin)...");
+
             if (_exitClear)
             {
                 ChangeStateToWin();
