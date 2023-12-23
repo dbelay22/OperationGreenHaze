@@ -407,11 +407,11 @@ public class Player : MonoBehaviour
 
     private void ProcessHelpRadioMessage()
     {
-        Debug.Log($"Player] ProcessHelpRadioMessage()... _helpRadioMessageCount: {_helpRadioMessageCount}");
+        //Debug.Log($"Player] ProcessHelpRadioMessage()... _helpRadioMessageCount: {_helpRadioMessageCount}");
 
         if (_helpRadioMessageCount > 7)
         {
-            Debug.Log($"Player] ProcessHelpRadioMessage() MAX reached");
+            //Debug.Log($"Player] ProcessHelpRadioMessage() MAX reached");
             return;
         }
 

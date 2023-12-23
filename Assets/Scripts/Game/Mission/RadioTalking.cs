@@ -81,10 +81,12 @@ public class RadioTalking : MonoBehaviour
     float _lastUseMedkitTime = 0f;
 
     bool _needToShowIGMessages = false;
+    
+    bool _isRadioDisabled = false;
 
     #region Instance
 
-    private static RadioTalking _instance;
+    private static RadioTalking _instance;    
 
     public static RadioTalking Instance { get { return _instance; } }
 
@@ -133,6 +135,8 @@ public class RadioTalking : MonoBehaviour
         _lastUseMedkitTime = 0f;
 
         _needToShowIGMessages = Localization.Instance.CurrentLanguage.Equals(SystemLanguage.English);
+
+        _isRadioDisabled = false;
     }
 
     void Update()
@@ -156,6 +160,11 @@ public class RadioTalking : MonoBehaviour
     
     public void ProcessRatePlaying()
     {
+        if (_isRadioDisabled)
+        {
+            return;
+        }
+
         if (_ratePlayingCount > _ratePlayingMaxCount)
         {
             // max count reached
@@ -228,6 +237,11 @@ public class RadioTalking : MonoBehaviour
 
     public void PlayUseMedkit(bool maxPriority = false)
     {
+        if (_isRadioDisabled)
+        {
+            return;
+        }
+
         bool firstBadlyHurt = _lastUseMedkitTime < 1f;
 
         bool noMedkitPickedUP = Director.Instance._playerPickupMedkitCount < 1;
@@ -262,27 +276,31 @@ public class RadioTalking : MonoBehaviour
 
     public void PlayMessage(EventReference eventRef, bool maxPriority = false)
     {
+        if (_isRadioDisabled)
+        {
+            return;
+        }
+
         if (maxPriority)
         {
-            Debug.Log($"RadioTalking] PlayMessage) maxPriority!");
+            //Debug.Log($"RadioTalking] PlayMessage) maxPriority!");
 
             StopAllMessagesNow();
         }
         else
         {
+            if (_isPlayingMessage)
+            {
+                //Debug.LogWarning($"RadioTalking] Already playing, missed message: {eventRef}");
+                return;
+            }
             float elapsed = Time.time - _lastMessageTimeSeconds;
 
             if (_lastMessageTimeSeconds > 0 && elapsed < _minFrequencyBetweenMessagesSeconds)
             {
-                Debug.LogWarning($"RadioTalking] PlayMessage) Sorry, another message played soon: {elapsed} seconds. Min frequency is: {_minFrequencyBetweenMessagesSeconds}");
+                //Debug.LogWarning($"RadioTalking] PlayMessage) Sorry, another message played soon: {elapsed} seconds. Min frequency is: {_minFrequencyBetweenMessagesSeconds}");
                 return;
-            }
-
-            if (_isPlayingMessage)
-            {
-                Debug.LogWarning($"RadioTalking] Already playing, missed message: {eventRef}");
-                return;
-            }
+            }       
         }
         
         _isPlayingMessage = true;
@@ -303,6 +321,11 @@ public class RadioTalking : MonoBehaviour
 
     void ShowInGameText(EventReference eventRef, bool maxPriority = false)
     {
+        if (_isRadioDisabled)
+        {
+            return;
+        }
+
 #if UNITY_EDITOR
         //Debug.Log($"RadioTalking] ShowInGameText) eventRef:{eventRef.Path}");
 #endif
@@ -335,8 +358,7 @@ public class RadioTalking : MonoBehaviour
 
         StopAllMessagesNow();
 
-        // deactivate
-        gameObject.SetActive(false);
+        _isRadioDisabled = true;
     }
 
 

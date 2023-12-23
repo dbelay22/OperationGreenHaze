@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ChildCounter : MonoBehaviour
 {
-    [SerializeField] string _counterName = "noname";
+    //[SerializeField] string _counterName = "noname";
 
     int _childCount;
 
