@@ -574,11 +574,19 @@ public class NpcAI : MonoBehaviour
 
     void PlayHitByBulletVFX(RaycastHit hit, bool isHeadshot = false)
     {
-        GameObject prefabVfx = isHeadshot ? _headshotVFX : _hitBulletVFX;
+        if (isHeadshot)
+        {
+            GameObject vfx = Instantiate(_hitBulletVFX, hit.point, Quaternion.LookRotation(Vector3.zero, Vector3.up));
+            Destroy(vfx, 0.4f);
 
-        GameObject vfx = Instantiate(prefabVfx, hit.point, Quaternion.LookRotation(hit.normal));
-                
-        Destroy(vfx, 0.7f);
+            GameObject vfx2 = Instantiate(_headshotVFX, hit.point, Quaternion.LookRotation(hit.normal));
+            Destroy(vfx2, 0.3f);
+        }
+        else
+        {
+            GameObject vfx = Instantiate(_hitBulletVFX, hit.point, Quaternion.LookRotation(hit.normal));
+            Destroy(vfx, 0.7f);
+        }
     }
 
     void TakeDamage(float damage, bool isHeadshot = false)
@@ -624,8 +632,7 @@ public class NpcAI : MonoBehaviour
 
         if (_deadByHeadshot)
         {
-            GameObject head = _bodyParts[0];            
-            head.SetActive(false);
+            Invoke(nameof(HideHead), 0.15f);
         }
 
         string rndDeadTrigger = Random.value < 0.5f ? "Dead Trigger" : "Dead Fwd Trigger";
@@ -642,6 +649,13 @@ public class NpcAI : MonoBehaviour
         Director.Instance.OnEvent(DirectorEvents.Enemy_Killed);
 
         StartCoroutine(HideNPC());
+    }
+
+    void HideHead()
+    {
+        GameObject head = _bodyParts[0];
+
+        head.SetActive(false);
     }
 
     IEnumerator HideNPC()
