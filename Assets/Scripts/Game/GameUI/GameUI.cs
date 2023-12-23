@@ -319,38 +319,55 @@ public class GameUI : MonoBehaviour
 
     public void ShowPlayerDamageVFX()
     {
-        if (!_playerDamage.IsActive())
+        Debug.Log("ShowPlayerDamageVFX)...");
+
+        if (!_playerDamage.isActiveAndEnabled)
         {
             _playerDamage.Show(_damageShowTime);
-            
-            _bloodyScarVFX.SetActive(true);
         }
+        else
+        {
+            if (!_bloodyScarVFX.activeSelf)
+            {
+                // hide bloody scar after hit damage
+                Invoke(nameof(HidePlayerVeryBadlyHurt), _damageShowTime);
+            }           
+        }
+
+        _bloodyScarVFX.SetActive(true);
     }
 
     public void ShowPlayerBadlyHurt()
     {
-        if (!_playerDamage.IsActive())
-        {
-            HidePlayerVeryBadlyHurt();
-            
-            _playerDamage.Show();
-        }
+        Debug.Log("ShowPlayerBadlyHurt)...");
+
+        _playerDamage.Show();
+
+        HidePlayerVeryBadlyHurt();
     }
 
     public void ShowPlayerVeryBadlyHurt()
     {
-        ShowPlayerBadlyHurt();
+        Debug.Log("ShowPlayerVeryBadlyHurt)...");
+
+        _playerDamage.Show();
 
         _bloodyScarVFX.SetActive(true);
     }
 
     public void HidePlayerBadlyHurt()
     {
+        Debug.Log("HidePlayerBadlyHurt)...");
+
+        HidePlayerVeryBadlyHurt();
+
         _playerDamage.Hide();
     }
 
     public void HidePlayerVeryBadlyHurt()
     {
+        Debug.Log("HidePlayerVeryBadlyHurt)...");
+
         _bloodyScarVFX.SetActive(false);
     }
 

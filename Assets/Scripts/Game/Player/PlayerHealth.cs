@@ -1,3 +1,4 @@
+using Cinemachine;
 using FMOD.Studio;
 using System;
 using System.Collections;
@@ -13,6 +14,11 @@ public class PlayerHealth : MonoBehaviour
     const string FIRE_ZONE_TRIGGER = "FireZone";
     
     const float DAMAGE_ZONE_INTERVAL = 3f;
+    
+    [Header("Hurt movement noise")]
+    [SerializeField] CinemachineVirtualCamera _virtualCamera;
+    [SerializeField] NoiseSettings _badlyHurtNoiseProfile;    
+    [SerializeField] NoiseSettings _veryBadlyHurtNoiseProfile;    
 
     [Header("Health")]
     [SerializeField] int _toxicZoneDamage = 15;
@@ -29,9 +35,13 @@ public class PlayerHealth : MonoBehaviour
 
     float _timeSinceLastDamage = 0f;
 
+    NoiseSettings _healthyNoiseProfile;
+
     void Start()
     {
         _currentHealth = START_HEALTH;
+
+        _healthyNoiseProfile = GetCurrentNoiseProfile();
 
         _damageByZombieSFX = AudioController.Instance.Create3DInstance(FMODEvents.Instance.PlayerDamageByZombie, transform.position);
 
@@ -114,7 +124,7 @@ public class PlayerHealth : MonoBehaviour
         }
 
         // take damage
-        HealthUpdate(0 - _toxicZoneDamage);
+        //HealthUpdate(0 - _toxicZoneDamage);
 
         _timeSinceLastDamage = 0f;
 
@@ -178,7 +188,7 @@ public class PlayerHealth : MonoBehaviour
         }
 
         // take damage
-        HealthUpdate(0 - _fireZoneDamage);        
+        //HealthUpdate(0 - _fireZoneDamage);        
 
         _timeSinceLastDamage = 0f;
 
@@ -303,16 +313,68 @@ public class PlayerHealth : MonoBehaviour
         }
         else if (IsVeryBadlyHurt())
         {
+            EnableHurtNoiseProfile(veryBadly: true);
+
             GameUI.Instance.ShowPlayerVeryBadlyHurt();
 
             RadioTalking.Instance.PlayUseMedkit(maxPriority: true);
         }
         else if (IsBadlyHurt())
         {
+            EnableHurtNoiseProfile(veryBadly: false);
+
             GameUI.Instance.ShowPlayerBadlyHurt();
 
             RadioTalking.Instance.PlayUseMedkit();
         }
+        else
+        {
+            Debug.Log("Healthy player now ?");
+            
+            DisableHurtNoiseProfile();
+        }
+    }
+    
+    NoiseSettings GetCurrentNoiseProfile()
+    {
+        return _virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_NoiseProfile;
+    }
+
+    void EnableHurtNoiseProfile(bool veryBadly = false)
+    {
+        NoiseSettings hurtProfile = veryBadly ? _veryBadlyHurtNoiseProfile : _badlyHurtNoiseProfile;
+
+        if (GetCurrentNoiseProfile().Equals(hurtProfile))
+        {
+            Debug.Log("EnableHurtNoiseProfile) dont need to...");
+            return;
+        };
+
+        Debug.Log("EnableHurtNoiseProfile) setting hurt profile");
+        
+        SetNoiseProfile(hurtProfile);
+
+
+    }
+
+    void DisableHurtNoiseProfile()
+    {
+        if (GetCurrentNoiseProfile().Equals(_healthyNoiseProfile))
+        {
+            Debug.Log("DisableHurtNoiseProfile) dont need to...");
+            return;
+        }
+
+        Debug.Log("DisableHurtNoiseProfile) setting healthy profile");
+
+        SetNoiseProfile(_healthyNoiseProfile);
+    }
+
+    void SetNoiseProfile(NoiseSettings settings)
+    {
+        Debug.Log($"SetNoiseProfile) Setting noise profile to: {settings}");
+
+        _virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_NoiseProfile = settings;
     }
 
     public bool IsBadlyHurt()
@@ -322,7 +384,7 @@ public class PlayerHealth : MonoBehaviour
 
     public bool IsVeryBadlyHurt()
     {
-        return CurrentHealthPercentage <= 0.35;
+        return CurrentHealthPercentage <= 0.30;
     }
 
     public void HitByExplosion()
