@@ -580,7 +580,7 @@ public class NpcAI : MonoBehaviour
             Destroy(vfx, 0.4f);
 
             GameObject vfx2 = Instantiate(_headshotVFX, hit.point, Quaternion.LookRotation(hit.normal));
-            Destroy(vfx2, 0.3f);
+            Destroy(vfx2, 0.4f);
         }
         else
         {
@@ -632,7 +632,7 @@ public class NpcAI : MonoBehaviour
 
         if (_deadByHeadshot)
         {
-            Invoke(nameof(HideHead), 0.15f);
+            Invoke(nameof(HideHead), 0.3f);
         }
 
         string rndDeadTrigger = Random.value < 0.5f ? "Dead Trigger" : "Dead Fwd Trigger";
