@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 850d0d26f2d7bd145bfeafadcc0d5ea6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shakeData: {fileID: 11400000, guid: bb54a1fccb9e5e140a357483a575aabc, type: 2}
+  _shakeData: {fileID: 11400000, guid: 00853c9d183ea9444bfa1a97219a1717, type: 2}
 --- !u!1 &1923908913751068619
 GameObject:
   m_ObjectHideFlags: 0
