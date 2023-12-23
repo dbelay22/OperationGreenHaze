@@ -73,7 +73,7 @@ public class Game : MonoBehaviour
 
         AudioController.Instance.PlayInstanceOrCreate(_helicopterGoneSFX, FMODEvents.Instance.Helicopter_Gone, out _helicopterGoneSFX, true);
 
-        Invoke(nameof(PlayRadioWelcome), 1.5f);
+        Invoke(nameof(PlayRadioWelcome), 10f);
     }
 
     void PlayRadioWelcome()
