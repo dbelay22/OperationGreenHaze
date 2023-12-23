@@ -4651,14 +4651,15 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "A Game by\nDiego Belay\n\n3D Art:\n- 'Autumn Mountain' by GameWarming\r\n-
-    'Energy Cells' by AntiDed GameDev\r\n- 'Fighter Interceptor' by Dmitry Ikonnikov\r\n-
-    'Flashlight' by RRFreelance\n- 'Industrial Set v3.0' by Dmitrii Kutsenko\r\n-
-    'MP7' by Delthor Games\r\n- 'Old Building' by Rusik3Dmodels\r\n- 'Pillars Pack'
-    by WhiteXopc\r\n- 'PT-9M Pistol' by NZ Bullet Studio\r\n- 'Quick Outline' by
-    Chris Nolet\r\n- 'Survival Game Tools' by cookiepopworks.com\r\n- 'The Wasteland
-    LITE' by Aquarius Max\r\n- 'Too Many Crosshairs' by Clean Shirt Labs\r\n- 'Transformer
-    box' by Dorlak_1989\r\n- 'Zombie' by Pxltiger\r"
+  m_text: "A Game by\nDiego Belay\n\nMusic and Sound Effects by\nAlejandro Mendez
+    Sierra\n\nRecorded in Eolika Studio\nwww.estudioeolika.ar\n\n\n\n3D Art:\n- 'Autumn
+    Mountain' by GameWarming\r\n- 'Energy Cells' by AntiDed GameDev\r\n- 'Fighter
+    Interceptor' by Dmitry Ikonnikov\r\n- 'Flashlight' by RRFreelance\n- 'Industrial
+    Set v3.0' by Dmitrii Kutsenko\r\n- 'MP7' by Delthor Games\r\n- 'Old Building'
+    by Rusik3Dmodels\r\n- 'Pillars Pack' by WhiteXopc\r\n- 'PT-9M Pistol' by NZ Bullet
+    Studio\r\n- 'Quick Outline' by Chris Nolet\r\n- 'Survival Game Tools' by cookiepopworks.com\r\n-
+    'The Wasteland LITE' by Aquarius Max\r\n- 'Too Many Crosshairs' by Clean Shirt
+    Labs\r\n- 'Transformer box' by Dorlak_1989\r\n- 'Zombie' by Pxltiger\r"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d2aef554373963e44ba1571db9053eda, type: 2}
   m_sharedMaterial: {fileID: -7579048477728149101, guid: d2aef554373963e44ba1571db9053eda,
@@ -4686,7 +4687,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 62.5
+  m_fontSize: 43.8
   m_fontSizeBase: 66
   m_fontWeight: 400
   m_enableAutoSizing: 1
