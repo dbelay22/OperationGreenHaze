@@ -256,7 +256,7 @@ public class GameUI : MonoBehaviour
     {
         LevelLoader.Instance.LoadWinSceneAsync();
 
-        yield return new WaitForSeconds(2.2f);
+        yield return new WaitForSeconds(5f);
 
         Game.Instance.ShutDown();
 
@@ -267,7 +267,7 @@ public class GameUI : MonoBehaviour
     {
         LevelLoader.Instance.LoadLoseSceneAsync();
         
-        yield return new WaitForSeconds(2.2f);
+        yield return new WaitForSeconds(5f);
 
         Game.Instance.ShutDown();
 
