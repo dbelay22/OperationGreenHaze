@@ -214,11 +214,10 @@ public class Game : MonoBehaviour
     {
         bool needsToClearExit = PlayerNeedsToClearExitNow();
 
-        Debug.Log($"Game] CheckGameWin)... needsToClearExit:{needsToClearExit}");
+        //Debug.Log($"Game] CheckGameWin)... needsToClearExit:{needsToClearExit}");
 
         if (needsToClearExit)
         {
-            Debug.Log("Game] CheckGameWin)...");
 
             if (_exitClear)
             {
@@ -241,7 +240,7 @@ public class Game : MonoBehaviour
 
     void GameplayIsOver()
     {
-        Debug.Log("Game] GameplayIsOver)...");
+        //Debug.Log("Game] GameplayIsOver)...");
 
         GameUI.Instance.HideMessagesNow();
 

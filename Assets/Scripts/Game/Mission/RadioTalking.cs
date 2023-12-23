@@ -309,7 +309,7 @@ public class RadioTalking : MonoBehaviour
         
         AudioController.Instance.PlayEvent(_currentMessage);
 
-        Debug.Log($"RadioTalking] PlayMessage) _currentMessage: {AudioController.Instance.GetEventInstancePath(_currentMessage)}");
+        //Debug.Log($"RadioTalking] PlayMessage) _currentMessage: {AudioController.Instance.GetEventInstancePath(_currentMessage)}");
 
         _lastMessageTimeSeconds = Time.time;
 
