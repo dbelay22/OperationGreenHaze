@@ -357,6 +357,11 @@ public class PlayerHealth : MonoBehaviour
         SetNoiseProfile(hurtProfile);
 
         SetNoiseAmplitudeGain(noiseAmplitude);
+
+        if (veryBadly)
+        {
+            SetNoiseFreqGain(1.5f);
+        }
     }
 
     void DisableHurtNoiseProfile()
@@ -372,6 +377,13 @@ public class PlayerHealth : MonoBehaviour
         SetNoiseProfile(_healthyNoiseProfile);
 
         SetNoiseAmplitudeGain(1f);
+
+        SetNoiseFreqGain(1f);
+    }
+
+    void SetNoiseFreqGain(float value)
+    {
+        _virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain = value;
     }
 
     void SetNoiseAmplitudeGain(float value)

@@ -267,7 +267,7 @@ public class GameUI : MonoBehaviour
     {
         LevelLoader.Instance.LoadLoseSceneAsync();
         
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(3f);
 
         Game.Instance.ShutDown();
 
@@ -331,7 +331,7 @@ public class GameUI : MonoBehaviour
             {
                 // hide bloody scar after hit damage
                 Invoke(nameof(HidePlayerVeryBadlyHurt), _damageShowTime);
-            }           
+            }       
         }
 
         _bloodyScarVFX.SetActive(true);
@@ -353,6 +353,8 @@ public class GameUI : MonoBehaviour
         _playerDamage.Show();
 
         _bloodyScarVFX.SetActive(true);
+
+        CancelInvoke(nameof(HidePlayerVeryBadlyHurt));
     }
 
     public void HidePlayerBadlyHurt()
