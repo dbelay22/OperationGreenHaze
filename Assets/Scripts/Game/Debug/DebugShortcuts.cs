@@ -3,7 +3,14 @@ using Yxp.Helpers;
 
 public class DebugShortcuts : DebugComponentBase
 {
+    /*
     internal override void DebugUpdate()
+    {
+        ProcessDebugShortcuts();
+    }
+    */
+
+    void Update()
     {
         ProcessDebugShortcuts();
     }
