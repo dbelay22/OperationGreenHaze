@@ -11,11 +11,8 @@ public class PlayerSettings : MonoBehaviour
     const float DEFAULT_MUSIC_VOLUME = 0.5f;
     const float DEFAULT_SFX_VOLUME = 0.5f;
 
-    const string PERSISTANCE_MUSIC_KEY = "music-volume";
-    const string PERSISTANCE_SFX_KEY = "sfx-volume";
-
-    Bus _musicBus;
-    Bus _sfxBus;
+    const string PERSISTANCE_MUSIC_KEY = "music-volume-v3";
+    const string PERSISTANCE_SFX_KEY = "sfx-volume-v3";
 
     #region Instance
 
@@ -39,7 +36,7 @@ public class PlayerSettings : MonoBehaviour
 
     public void ApplyPlayerSettingsAudio()
     {
-        Debug.Log("PlayerSettings] ApplyPlayerSettingsAudio)...");
+        //Debug.Log("PlayerSettings] ApplyPlayerSettingsAudio)...");
 
         AudioController.Instance.SetMusicBusVolume(LoadMusicSetting());
         
