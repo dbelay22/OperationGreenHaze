@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerDamage : MonoBehaviour
@@ -12,11 +11,15 @@ public class PlayerDamage : MonoBehaviour
         gameObject.SetActive(true);
 
         // should hide after some time ?
-        if (duration > 0)
+        if (duration > 0f)
         {
             _durationSeconds = duration;
 
             StartCoroutine(EndVFX());
+        }
+        else
+        {
+            StopAllCoroutines();
         }
     }
 
@@ -36,6 +39,6 @@ public class PlayerDamage : MonoBehaviour
 
     public bool IsActive()
     {
-        return gameObject.activeInHierarchy;
+        return gameObject.activeSelf;
     }
 }

@@ -49,13 +49,37 @@ MonoBehaviour:
   - _key: menu_back
     _value: BACK
   - _key: mission_briefing
-    _value: "September 2019 - Neuqu\xE9n, Argentina\n\nAgent R, urgent mission:\n\nOur
-      contact confirms caos in secret biological experiments facility.\nThe enemies
-      have started an airstrike and ground support is on the way, time is running
-      out.\n\n\nMission objectives:\n\n1. Eliminate all abominations, none can survive.\n2.
-      Pickup critical project capsules (purple icons on the map).\n3. Locate and
-      clear the exit.\n\n\nTime limit: 10 minutes.\n\nHelicopter waits at the exit,
-      good luck."
+    _value: 'Agent R, urgent mission:
+
+
+      Our contact confirms caos in secret
+      biological experiments facility.
+
+      The enemies have started an airstrike
+      and ground support is on the way, time is running out.
+
+
+
+      Mission objectives:
+
+
+      1.
+      Eliminate all abominations, none can survive.
+
+      2. Pickup critical project
+      capsules (purple icons on the map).
+
+      3. Locate and clear the exit.
+
+
+
+      Time
+      limit: 10 minutes.
+
+
+      Helicopter waits at the exit, good luck.'
+  - _key: after_briefing
+    _value: "September 2019 - Neuqu\xE9n, Argentina"
   - _key: press_any_key
     _value: PRESS ANY KEY TO CONTINUE
   - _key: lose_message
@@ -82,26 +106,60 @@ MonoBehaviour:
   - _key: ig_objective_a
     _value: Kill all abominations
   - _key: ig_objective_b
-    _value: Pickup project items
+    _value: Pickup project devices
   - _key: ig_objective_c
     _value: Locate and clear exit.
-  - _key: ig_objective_completed
-    _value: Objective Completed
-  - _key: ig_objective_partial
-    _value: 'Good job
-
-      One more to go'
-  - _key: ig_use_the_flashlight
-    _value: 'Use your flashlight to blind enemies!
-
-      Press ''F'' key'
   - _key: ig_flashlight_pickup
     _value: Press 'F' to toggle Flashlight
-  - _key: ig_find_exit
-    _value: Find the exit now
-  - _key: ig_exit_danger
-    _value: 'You''re too close to the barrels
+  - _key: ig_radio_start
+    _value: 'Good morning agent
 
-'
-  - _key: ig_kills_completed
-    _value: Beautiful morning right ?
+      I''m Sergeant F and I''m going to be here
+      to help you
+
+      Good luck'
+  - _key: ig_radio_playvgood
+    _value: 'It seems like you have a natural talent for this
+
+      Impressive!'
+  - _key: ig_radio_playgood
+    _value: You're doing well R, keep it up
+  - _key: ig_radio_playbad
+    _value: "Are you okay agent? \nSave ammo and improve your accuracy"
+  - _key: ig_radio_medkit
+    _value: "Now! \nLook for a medkit nearby to heal yourself"
+  - _key: ig_radio_flashlight
+    _value: 'Use the flashlight to blind them
+
+      Press ''F'' key'
+  - _key: ig_radio_outofammo
+    _value: 'Out of bullets!
+
+      Look for ammunition in the surroundings'
+  - _key: ig_radio_missionobj1
+    _value: "Good job! \nNow look for the other device"
+  - _key: ig_radio_missionobj2
+    _value: 'Well done agent!
+
+      The project is safe now'
+  - _key: ig_radio_killcomplete
+    _value: Excellent, no abominations left!
+  - _key: ig_radio_findexit
+    _value: 'Now look for the exit!
+
+      The helicopter is waiting for you
+
+      Do
+      you hear it?'
+  - _key: ig_radio_tooclose
+    _value: You're too close to the barrels
+  - _key: ig_radio_time1
+    _value: Agent, you have 5 minutes left
+  - _key: ig_radio_time2
+    _value: 'Hurry R!
+
+      Time is running out'
+  - _key: ig_radio_time3
+    _value: 'Quick Agent!
+
+      The enemy is approaching!'

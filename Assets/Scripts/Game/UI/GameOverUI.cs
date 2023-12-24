@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class GameOverUI : TelegramMessageCanvas
 {
-    public override void OnFadeOutComplete()
+    protected override void Start()
     {
-        LevelLoader.Instance.LoadMainMenu();
+        base.Start();
+
+        LevelLoader.Instance.LoadMainMenuAsync(false);
     }
+
 }

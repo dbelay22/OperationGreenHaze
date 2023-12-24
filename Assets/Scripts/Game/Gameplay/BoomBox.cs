@@ -1,8 +1,7 @@
+using FMOD.Studio;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(AudioSource))]
 public class BoomBox: MonoBehaviour
 {
     [Header("Target object")]
@@ -11,17 +10,25 @@ public class BoomBox: MonoBehaviour
 
     [Header("Explosion")]
     [SerializeField] GameObject _explosionVFX;
-    [SerializeField] AudioClip _explosionSFX;
+
     [SerializeField] float _damageRadius = 1f;
 
     [Header("After Explosion")]
     [SerializeField] GameObject _fireAndSmokeVFX;
     [SerializeField] float _lifeTime = 5f;
 
-    AudioSource _audioSource;
-    
     GameObject _fireZoneTrigger;
-    
+
+    GameObject _explosionInstance;
+    GameObject _fireAndSmokeInstance;
+
+    EventInstance _explosionSFX;
+
+    void Awake()
+    {
+        _explosionSFX = AudioController.Instance.Create3DInstance(FMODEvents.Instance.BarrelExplosion, transform.position);
+    }
+
     void Start()
     {
         if (_target == null)
@@ -29,8 +36,6 @@ public class BoomBox: MonoBehaviour
             Debug.LogError("[BoomBox] (Start) target is not set");
             return;
         }
-
-        _audioSource = GetComponent<AudioSource>();
 
         FireZoneStart();
     }
@@ -71,15 +76,17 @@ public class BoomBox: MonoBehaviour
         ProcessExplosionDamage(transform.position, _damageRadius);
 
         // play sound
-        _audioSource.PlayOneShot(_explosionSFX);
+        AudioController.Instance.Play3DEvent(_explosionSFX, transform.position, true);
 
+        // VFX
         Vector3 fxPos = new Vector3(transform.position.x, 0, transform.position.z);
 
         // spawn explosion
-        Instantiate(_explosionVFX, fxPos, Quaternion.identity);
+        _explosionInstance = Instantiate(_explosionVFX, fxPos, Quaternion.identity);
 
         // spawn fire and smoke
-        Instantiate(_fireAndSmokeVFX, fxPos, Quaternion.identity);
+        _fireAndSmokeInstance = Instantiate(_fireAndSmokeVFX, fxPos, Quaternion.identity);
+        
         _fireZoneTrigger.SetActive(true);
 
         StartCoroutine(HideTargetDelayed(_timeToDissapear));
@@ -174,11 +181,28 @@ public class BoomBox: MonoBehaviour
     {
         yield return new WaitForSeconds(_lifeTime);
 
-        StopAllCoroutines();
+        //--------------------------------------------
+        // FIRE ZONE
+        //Debug.Log("[BoomBox] AutoDestroy) about to move fire zone trigger away");
+
+        // workaround fire trigger exit
+        _fireZoneTrigger.transform.position = new Vector3(0, -1000, 0);
+
+        // wait until the exit is processed
+        yield return new WaitForFixedUpdate();
+
+        //Debug.Log("[BoomBox] AutoDestroy) about to disable fire zone trigger");
 
         _fireZoneTrigger.SetActive(false);
+        //--------------------------------------------
+
+        AudioController.Instance.ReleaseEvent(_explosionSFX);
 
         Destroy(_target);
+
+        Destroy(_explosionInstance);
+
+        Destroy(_fireAndSmokeInstance);
 
         Destroy(gameObject);
     }

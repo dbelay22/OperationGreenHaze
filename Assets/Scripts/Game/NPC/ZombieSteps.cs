@@ -2,64 +2,81 @@ using System.Collections;
 using System.Collections.Generic;
 using StarterAssets;
 using UnityEngine;
+using FMOD.Studio;
 
-[RequireComponent(typeof(AudioSource))]
 public class ZombieSteps : MonoBehaviour
 {
-    [Header("Maximum two (2) audio clips")]
-    [SerializeField] AudioClip[] _walkSounds;
-
-    AudioSource _audioSource;
-
     bool _isWalking = false;
 
-    int _lastWalkStepIndex;
-    
-    void Start()
+    bool _stepLeft = true;
+
+    EventInstance _footstepEventInstance;
+
+
+    void Update()
     {
-        _lastWalkStepIndex = -1;
-        
-        _audioSource = GetComponent<AudioSource>();
+        if (!Game.Instance.IsGameplayOn())
+        {
+            AudioController.Instance.StopEventIfPlaying(_footstepEventInstance);
+        }
     }
 
     public void PlayStepSFX()
     {
         if (_isWalking == false)
         {
+            // must be dead
             return;
         }
 
-        int index = _lastWalkStepIndex == 0 ? 1 : 0;
-
-        if (PlayAudioClip(_walkSounds[index]))
+        if (!_footstepEventInstance.isValid())
         {
-            _lastWalkStepIndex = index;
+            return;
         }
+
+        //////////////////////////////
+        // Parameters
+
+        // position
+        _footstepEventInstance.setParameterByName(FMODEvents.Instance.LeftRightParameter, _stepLeft ? 0 : 1);
+        //////////////////////////////
+
+        AudioController.Instance.Play3DEvent(_footstepEventInstance, transform.position);
+
+        _stepLeft = !_stepLeft;
+    }
+
+    public void StopStepSFX()
+    {
+        AudioController.Instance.StopEvent(_footstepEventInstance);
     }
 
     public void OnNPCStartWalking()
     {
+        //Debug.Log($"ZombieSteps] NPC Started Walking...");
+
         _isWalking = true;
+
+        if (!_footstepEventInstance.isValid())
+        {
+            //Debug.Log("[ZombieSteps] OnNPCStartWalking) footstep instance not valid, must be first time");
+
+            _footstepEventInstance = AudioController.Instance.Create3DInstance(FMODEvents.Instance.ZombieFootsteps, transform.position);
+        }
     }
 
     public void OnNPCStoppedWalking()
     {
+        //Debug.Log($"ZombieSteps] NPC Stopped Walking...");
+
         _isWalking = false;
-        
-        _audioSource.Stop();
-        
-        _lastWalkStepIndex = -1;
+
+        AudioController.Instance.StopEventIfPlaying(_footstepEventInstance);
     }
 
-    bool PlayAudioClip(AudioClip clip)
+    void OnDestroy()
     {
-        if (_audioSource.isPlaying || Game.Instance.IsGamePlayOver())
-        {
-            return false;
-        }
-
-        _audioSource.PlayOneShot(clip);
-
-        return true;
+        //Debug.Log($"[ZombieSteps] OnDestroy) Destroying audio instance: footstep");
+        AudioController.Instance.DestroyEvent(_footstepEventInstance);    
     }
 }

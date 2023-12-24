@@ -79,8 +79,6 @@ namespace StarterAssets
 		public void SprintInput(bool newSprintState)
 		{
 			sprint = newSprintState;
-
-			//Debug.Log($"[SA-Inputs] (SprintInput) newSprintState:{newSprintState}");
 		}
 
 		public void ShootInput(bool newShootState)

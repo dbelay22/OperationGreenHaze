@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{258955b5-30bb-4ce5-bc58-28a18459ba78}">
+		<property name="name">
+			<value>Near_Zombies_music</value>
+		</property>
+		<relationship name="folder">
+			<destination>{6426fc4c-fb73-412b-8126-24c5a3a4a6ec}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{b2cf2ecb-febe-4f57-abe5-943959a63a8a}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{b2cf2ecb-febe-4f57-abe5-943959a63a8a}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+		<property name="seekSpeed">
+			<value>0.62999999523162842</value>
+		</property>
+	</object>
+</objects>

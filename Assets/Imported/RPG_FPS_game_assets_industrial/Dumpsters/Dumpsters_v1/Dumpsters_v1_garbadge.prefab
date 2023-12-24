@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 65000011506030884}
   m_Layer: 0
   m_Name: Dumpsters_v1_garbadge
-  m_TagString: Untagged
+  m_TagString: MaterialSteel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

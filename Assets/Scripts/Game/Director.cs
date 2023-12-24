@@ -13,40 +13,35 @@ public enum DirectorEvents
     Player_Pickup_Ammo,
     Player_Pickup_Flashlight,
     Shot_Accuracy_Update,
-    Player_Pickup_Mission,
+    Player_Pickup_Mission
 }
 
 public class Director : MonoBehaviour
-{
-    // stress
-    float _playerStress = 0;
-    float _maxStress = 0;
-
+{    
     // zombie attack
-    int _meleeAttackCount = 0;
-    int _playerEscapeCount = 0;
-    int _playerDamageCount = 0;
+    public int _meleeAttackCount = 0;
+    public int _playerEscapeCount = 0;
+    public int _playerDamageCount = 0;
 
     // pickups
-    int _playerPickupMedkitCount = 0;
-    int _playerPickupAmmoCount = 0;
-    int _playerPickupFlashlightCount = 0;
+    public int _playerPickupMedkitCount = 0;
+    public int _playerPickupAmmoCount = 0;
+    public int _playerPickupFlashlightCount = 0;
 
     // kills
-    int _enemyKillCount = 0;
-    int _enemyKillByHeadshotCount = 0;
+    public int _enemyKillCount = 0;
+    public int _enemyKillByHeadshotCount = 0;
 
     // shot accuracy
-    float _shotAccuracy = 0f;
+    public float _shotAccuracy = 0f;
 
     bool _statsOnScreen = false;
 
     #region Instance
 
-    private static Director _instance;
-    
+    private static Director _instance;    
 
-    public static Director Instance { get { return _instance; } }    
+    public static Director Instance { get { return _instance; } }
 
     void Awake()
     {
@@ -58,14 +53,10 @@ public class Director : MonoBehaviour
     void Start()
     {
         _statsOnScreen = false;
-        
-        StressStart();
     }
 
     void Update()
     {
-        StressLevelUpdate();
-
         // [T] Show Director Stats
         if (DevDebug.Instance.IsDebugBuild && Input.GetKeyDown(KeyCode.T))
         {
@@ -75,9 +66,6 @@ public class Director : MonoBehaviour
 
     void OnGUI()
     {
-        // Make a background box
-        //GUI.Box(new Rect(10, 300, 300, 550), "Director Stats");
-
         if (_statsOnScreen == false)
         {
             return;
@@ -100,9 +88,6 @@ public class Director : MonoBehaviour
             $"[Director] Enemy Kill HEADSHOT Count: {_enemyKillByHeadshotCount}\n" +
             
             $"[Director] ..........................\n" +
-            $"[Director] Stress Level: {_playerStress}\n" +
-            
-            $"[Director] ..........................\n" +
             $"[Director] Melee Attack Count: {_meleeAttackCount}\n" +
             $"[Director] Player Escape Count: {_playerEscapeCount}\n" +
             $"[Director] Player Damage Count: {_playerDamageCount}\n" +
@@ -116,33 +101,9 @@ public class Director : MonoBehaviour
             $"[Director] Player Health: {Player.Instance.GetCurrentHealth()}\n" +
             $"[Director] END OF DUMP...............";
 
-        Debug.Log(stats);
+        //Debug.Log(stats);
 
         return stats;
-    }
-
-    void StressStart()
-    {
-        _playerStress = 0f;
-        _maxStress = 0f;
-    }
-
-    float StressLevelUpdate()
-    {
-        _playerStress = Mathf.Round(
-            _meleeAttackCount + _playerDamageCount
-            - (_playerEscapeCount * 0.2f) - (_enemyKillByHeadshotCount * 0.1f) - (_playerPickupAmmoCount * 0.2f) - (_playerPickupFlashlightCount * 0.2f)
-         );
-
-        //Debug.Log($"[DirectorAI] (OnEvent) Stress Level Update - Stress Brute: {_playerStress} - _lastReportedStressLevel: {_lastReportedStressLevel}");
-
-        _playerStress = Mathf.Clamp(_playerStress, 0, 100);
-
-        _maxStress = Mathf.Max(_playerStress, _maxStress);
-
-        //Debug.Log($"[DirectorAI] (OnEvent) Stress Level Update - Stress Clamp: {_playerStress} - _lastReportedStressLevel: {_lastReportedStressLevel}");
-
-        return _playerStress;
     }
 
     public void OnEvent(DirectorEvents directorEvent, object eventValue = null)
@@ -186,7 +147,7 @@ public class Director : MonoBehaviour
             case DirectorEvents.Shot_Accuracy_Update:
                 _shotAccuracy = (float) eventValue;
                 break;
-        }
+        }        
     }
 
 }

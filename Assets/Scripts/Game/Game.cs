@@ -1,9 +1,8 @@
-﻿using System;
+﻿using FMOD.Studio;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
-using UnityEngine.SceneManagement;
 using Yxp.Helpers;
 using Yxp.StateMachine;
 
@@ -12,11 +11,12 @@ public class Game : MonoBehaviour
 {
     GameStateMachine _stateMachine = null;
 
-    [SerializeField] AudioSource _helicopterExitSound;
+    [SerializeField] GameObject _helicopterExitSound;
 
     [Header("DontDestroyOnLoadInstances")]
     [SerializeField] GameObject _playerSettingsPrefab;
     [SerializeField] GameObject _localizationPrefab;
+    [SerializeField] GameObject _audioControllerPrefab;
 
     [Header("Player")]
     [SerializeField] Player _player;
@@ -38,19 +38,26 @@ public class Game : MonoBehaviour
     bool _allMissionPickupsCompleted = false;
     bool _exitClear = false;
 
+    EventInstance _helicopterGoneSFX;
+
     #region Instance
 
     private static Game _instance;
 
     public static Game Instance { get { return _instance; } }
 
+    #endregion
+
     void Awake()
     {
         _instance = this;
+
+        CheckAudioControllerInstance();
+
+        CheckPlayerSettingsInstance();
+
+        CheckLocalizationInstance();
     }
-
-    #endregion
-
 
     void Start()
     {
@@ -59,14 +66,30 @@ public class Game : MonoBehaviour
 
         _allEnemiesKilled = false;
         _allMissionPickupsCompleted = false;
-        _exitClear = false;
-
-        CheckPlayerSettingsInstance();
-
-        CheckLocalizationInstance();        
+        _exitClear = false;       
 
         _stateMachine = new GameStateMachine();
         _stateMachine.TransitionToState(new PlayState());
+
+        AudioController.Instance.PlayInstanceOrCreate(_helicopterGoneSFX, FMODEvents.Instance.Helicopter_Gone, out _helicopterGoneSFX, true);
+
+        Invoke(nameof(PlayRadioWelcome), 10f);
+    }
+
+    void PlayRadioWelcome()
+    {
+        RadioTalking.Instance.PlayMessage(RadioTalking.Instance.Start);
+    }
+
+    void CheckAudioControllerInstance()
+    {
+#if UNITY_EDITOR
+        if (AudioController.Instance == null)
+        {
+            Debug.LogWarning("[Game] Start) No AudioController instance found, creating one.");
+            Instantiate(_audioControllerPrefab);
+        }
+#endif    
     }
 
     void CheckPlayerSettingsInstance()
@@ -74,7 +97,7 @@ public class Game : MonoBehaviour
 #if UNITY_EDITOR
         if (PlayerSettings.Instance == null)
         {
-            Debug.LogWarning("[Game] Start) No player settings instance, creating one.");
+            Debug.LogWarning("[Game] Start) No player settings instance found, creating one.");
             Instantiate(_playerSettingsPrefab);
         }
 #endif
@@ -85,7 +108,7 @@ public class Game : MonoBehaviour
 #if UNITY_EDITOR
         if (Localization.Instance == null)
         {
-            Debug.LogWarning("[Game] Start) No localization instance, creating one.");
+            Debug.LogWarning("[Game] Start) No localization instance found, creating one.");
             Instantiate(_localizationPrefab);
         }
 #endif
@@ -95,9 +118,6 @@ public class Game : MonoBehaviour
     {
         _stateMachine.Update();
     }
-
-    //=======================================================    
-    // TODO Refactor, move
 
     //========
     // Cheats/Debug Shortcuts Helpers
@@ -113,34 +133,27 @@ public class Game : MonoBehaviour
     public void SetCameraFov(float value)
     {
         Camera.main.fieldOfView = value;
-    }
+    }   
 
-    public void ChangeStateToGameOver()
-    {
-        _stateMachine.TransitionToState(new GameOverState());
-    }
-
-#region Mission
+    #region Mission
 
     public void ReportExitDangerZoneEnter()
     {
         if (PlayerNeedsToClearExitNow())
         {
-            GameUI.Instance.ShowInGameMessage("ig_exit_danger", GameUI.LIFETIME_INFINITE, true);
+            RadioTalking.Instance.PlayMessage(RadioTalking.Instance.TooClose, maxPriority: true);
         }
     }
 
     public void ReportExitDangerZoneExit()
     {
-        Debug.Log("Game] ReportExitDangerZoneExit)");
-
         if (PlayerNeedsToClearExitNow())
         {
             GameUI.Instance.HideMessagesNow();
         }
     }
 
-    bool PlayerNeedsToClearExitNow()
+    public bool PlayerNeedsToClearExitNow()
     {
         return _allEnemiesKilled && _allMissionPickupsCompleted;
     }
@@ -155,14 +168,9 @@ public class Game : MonoBehaviour
 
         ObjectivesPanel.Instance.SetPickupDataComplete();
 
-        ShowObjectiveCompletedMessage();
+        RadioTalking.Instance.PlayMissionMessage(RadioTalking.Instance.MissionObj2);
 
         CheckGameWin();
-    }
-
-    void ShowObjectiveCompletedMessage()
-    {
-        GameUI.Instance.ShowInGameMessage("ig_objective_completed", 3f);
     }
 
     public void ReportAllEnemiesKilled()
@@ -175,14 +183,9 @@ public class Game : MonoBehaviour
 
         ObjectivesPanel.Instance.SetKillemAllComplete();
 
-        ShowKillsCompletedMessage();
+        RadioTalking.Instance.PlayMessage(RadioTalking.Instance.KillComplete, maxPriority: true);
 
         CheckGameWin();
-    }
-
-    void ShowKillsCompletedMessage()
-    {
-        GameUI.Instance.ShowInGameMessage("ig_kills_completed", 3f);
     }
 
     public void ReportExitClear()
@@ -202,10 +205,17 @@ public class Game : MonoBehaviour
         ObjectivesPanel.Instance.SetFindExitComplete();
     }
 
+    #endregion Mission
+
     bool CheckGameWin()
     {
-        if (_allEnemiesKilled && _allMissionPickupsCompleted)
+        bool needsToClearExit = PlayerNeedsToClearExitNow();
+
+        //Debug.Log($"Game] CheckGameWin)... needsToClearExit:{needsToClearExit}");
+
+        if (needsToClearExit)
         {
+
             if (_exitClear)
             {
                 ChangeStateToWin();
@@ -213,26 +223,54 @@ public class Game : MonoBehaviour
             }
             else
             {
-                _helicopterExitSound.enabled = true;
-                
-                _helicopterExitSound.Play();
+                //Debug.Log($"Game] CheckGameWin)... playing helicopter sound");
 
-                GameUI.Instance.ShowInGameMessage("ig_find_exit", 4f);
-                
+                _helicopterExitSound.SetActive(true);                
+
+                AudioController.Instance.GameplayFindExit();
+
+                Invoke(nameof(PlayFindExitMessage), 6f);
+
                 return false;
             }
         }
         return false;
     }
 
-    void ChangeStateToWin()
+    void PlayFindExitMessage()
     {
-        _stateMachine.TransitionToState(new WinState());
+        RadioTalking.Instance.PlayMessage(RadioTalking.Instance.FindExit, maxPriority: true);
+    }
+
+    void GameplayIsOver()
+    {
+        //Debug.Log("Game] GameplayIsOver)...");
+
+        GameUI.Instance.HideMessagesNow();
+
+        RadioTalking.Instance.ShutDown();
+
+        if (_helicopterExitSound.activeInHierarchy)
+        {
+            _helicopterExitSound.SetActive(false);
+        }
 
         _player.GameplayIsOver();
     }
 
-#endregion Mission
+    void ChangeStateToWin()
+    {
+        _stateMachine.TransitionToState(new WinState());
+        
+        GameplayIsOver();
+    }
+
+    public void ChangeStateToGameOver()
+    {
+        _stateMachine.TransitionToState(new GameOverState());
+
+        GameplayIsOver();
+    }
 
     public void ChangeStateToPaused()
     {
@@ -264,13 +302,6 @@ public class Game : MonoBehaviour
     {
         bool isGameOver = GetCurrentState() is GameOverState;
         return isGameOver;
-    }
-
-    public bool IsGamePlayOver()
-    {
-        bool isGameOver = GetCurrentState() is GameOverState;
-        bool isWin = GetCurrentState() is WinState;
-        return isGameOver || isWin;
     }
 
     public bool IsGamePaused()
@@ -320,8 +351,13 @@ public class Game : MonoBehaviour
     {
         _stateMachine.Shutdown();
 
-        LevelLoader.Instance.LoadMainMenu();
-    }    
+        LevelLoader.Instance.LoadMainMenuAsync(true);
+    }
+
+    public void ShutDown()
+    {
+        _stateMachine.Shutdown();
+    }
 
     //=======================================================
 }

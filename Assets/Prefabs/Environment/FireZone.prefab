@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3630126718407798497}
   - component: {fileID: 3630126718407798510}
+  - component: {fileID: 4110444803692407365}
   m_Layer: 2
   m_Name: FireZone
   m_TagString: FireZone
@@ -45,3 +46,34 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0.8, z: 0}
+--- !u!114 &4110444803692407365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3630126718407798496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: Player
+  EventReference:
+    Guid:
+      Data1: 1703581088
+      Data2: 1090236228
+      Data3: -1437933396
+      Data4: -275131209
+    Path: event:/Fire_soundscapes
+  Event: 
+  PlayEvent: 11
+  StopEvent: 12
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 1
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 1
+  OverrideMinDistance: 4
+  OverrideMaxDistance: 7

@@ -1,0 +1,120 @@
+using UnityEngine;
+using FMODUnity;
+
+public class FMODEvents : MonoBehaviour
+{
+    [Header("Gameplay Music")]
+    public EventReference GameplayMusicEvent;
+    public string TerrorMusicParam;
+    public string MusicPartsParam;
+    public string NearZombiesParam;
+
+    [Header("Other music")]
+    public EventReference MenuMusic;
+    public EventReference BriefingMusic;
+    public EventReference WinMusic;
+    public EventReference LoseMusic;
+
+    [Header("Helicopter")]
+    public EventReference Helicopter_Briefing;
+    public EventReference Helicopter_Gone;
+
+    [Header("Ambience")]
+    public EventReference AmbienceSoundscape;
+
+    [Header("Player")]
+    public EventReference PlayerDamageByZombie;
+    public EventReference PlayerDamageByFire;
+    public EventReference PlayerDamageByGas;
+    public EventReference PlayerDeath;
+    public EventReference PlayerZoomInBreath;
+    public EventReference PlayerJump;
+    public EventReference PlayerLand;
+    public string LandMovementParam;
+
+    [Header("PlayerHealth")]
+    public EventReference PlayerHealth;
+    public string HealthParamName = "Health_Medium-Low";
+
+    [Header("Player Steps")]
+    public EventReference PlayerFootsteps;
+
+    public string WalkRunParameter;
+    
+    public string FloorMaterialParameter;
+    public int DefaultFloorMaterialValue = 0;
+
+    public string LeftRightParameter;
+
+    [Header("Pickups")]
+    public EventReference PickupAmmo;
+    public EventReference PickupMedkit;
+    public EventReference PickupMission1;
+    public EventReference PickupMission2;
+    public EventReference PickupCantUse;
+
+    [Header("Weapons")]
+    public EventReference ChangeWeaponSMG;
+    public EventReference ChangeWeaponPistol;
+    public EventReference WeaponZoomIn;
+    public EventReference WeaponZoomOut;
+
+    [Header("Flashlight")]
+    public EventReference FlashlighToggle;
+    public string FlashlightOnOffParam;
+
+    [Header("Bullet")]
+    public EventReference BulletImpact;
+    public string ImpactMaterialParameter;
+
+    [Header("Zombie")]
+    public EventReference ZombieAppear;
+
+    [Header("Zombie steps")]
+    public EventReference ZombieFootsteps;
+    public string ZombieLeftRightParam;
+
+    [Header("Zombie Attack")]
+    public EventReference ZombieAttack;
+
+    [Header("Zombie Damaged")]
+    public EventReference ZombieFall;
+    public EventReference ZombieDie;
+    public EventReference ZombieDamage;
+    public EventReference ZombieBlinded;
+    public EventReference ZombieHeadshot;
+    public EventReference ZombieBlindedLoop;
+
+    [Header("Jet waves")]
+    public EventReference Jet;
+    public EventReference RaidSiren;
+    public EventReference JetBombExplosions;
+
+    [Header("Timer")]
+    public EventReference TimerBeepShort;
+    public EventReference TimerBeepLong;
+
+    [Header("Explosions")]
+    public EventReference BarrelExplosion;
+
+    [Header("UI")]
+    public EventReference MenuHover;
+    public EventReference MenuSelect;
+    public EventReference Typewriter;
+
+
+    #region Instance
+
+    private static FMODEvents _instance;
+
+    public static FMODEvents Instance { get { return _instance; } }
+
+    void Awake()
+    {
+        _instance = this;
+    }
+
+    #endregion
+
+
+}

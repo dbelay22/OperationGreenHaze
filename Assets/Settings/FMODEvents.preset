@@ -1,0 +1,936 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!181963792 &2655988077585873504
+Preset:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: FMODEvents
+  m_TargetType:
+    m_NativeTypeID: 114
+    m_ManagedTypePPtr: {fileID: 11500000, guid: acbe80b3f110a7f4191a15476774bfde,
+      type: 3}
+    m_ManagedTypeFallback: 
+  m_Properties:
+  - target: {fileID: 0}
+    propertyPath: m_Enabled
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_EditorHideFlags
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_EditorClassIdentifier
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: GameplayMusicEvent.Guid.Data1
+    value: 1449276186
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: GameplayMusicEvent.Guid.Data2
+    value: 1170092471
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: GameplayMusicEvent.Guid.Data3
+    value: -64256892
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: GameplayMusicEvent.Guid.Data4
+    value: 213966462
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: GameplayMusicEvent.Path
+    value: event:/Music/Music
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: TerrorMusicParam
+    value: Terror Music
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: MusicPartsParam
+    value: Music parts
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: NearZombiesParam
+    value: Near_Zombies_music
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: MenuMusic.Guid.Data1
+    value: -270983773
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: MenuMusic.Guid.Data2
+    value: 1107252570
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: MenuMusic.Guid.Data3
+    value: 1459056029
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: MenuMusic.Guid.Data4
+    value: 550585291
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: MenuMusic.Path
+    value: event:/Music/Music_menu
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: BriefingMusic.Guid.Data1
+    value: -2119929625
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: BriefingMusic.Guid.Data2
+    value: 1299647486
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: BriefingMusic.Guid.Data3
+    value: 592688787
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: BriefingMusic.Guid.Data4
+    value: -629468003
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: BriefingMusic.Path
+    value: event:/Music/Music_Carta
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: WinMusic.Guid.Data1
+    value: -705023796
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: WinMusic.Guid.Data2
+    value: 1260509541
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: WinMusic.Guid.Data3
+    value: -1356111965
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: WinMusic.Guid.Data4
+    value: 348496687
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: WinMusic.Path
+    value: event:/Music/Music_Win
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: LoseMusic.Guid.Data1
+    value: -1880182828
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: LoseMusic.Guid.Data2
+    value: 1136492969
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: LoseMusic.Guid.Data3
+    value: 1335201666
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: LoseMusic.Guid.Data4
+    value: 1878953327
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: LoseMusic.Path
+    value: event:/Music/Music_Game-over
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: AmbienceSoundscape.Guid.Data1
+    value: -158169680
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: AmbienceSoundscape.Guid.Data2
+    value: 1158894446
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: AmbienceSoundscape.Guid.Data3
+    value: 1187794604
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: AmbienceSoundscape.Guid.Data4
+    value: -1189200037
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: AmbienceSoundscape.Path
+    value: event:/Soundscape
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerDamageByZombie.Guid.Data1
+    value: -253622757
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerDamageByZombie.Guid.Data2
+    value: 1284738171
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerDamageByZombie.Guid.Data3
+    value: 2123582649
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerDamageByZombie.Guid.Data4
+    value: 469911827
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerDamageByZombie.Path
+    value: event:/Zombies_Hits
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerDamageByFire.Guid.Data1
+    value: 568746577
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerDamageByFire.Guid.Data2
+    value: 1239619578
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerDamageByFire.Guid.Data3
+    value: -117140845
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerDamageByFire.Guid.Data4
+    value: 854506788
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerDamageByFire.Path
+    value: event:/Fire_Damage
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerDamageByGas.Guid.Data1
+    value: 1037584596
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerDamageByGas.Guid.Data2
+    value: 1180169947
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerDamageByGas.Guid.Data3
+    value: 373660047
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerDamageByGas.Guid.Data4
+    value: -1862689208
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerDamageByGas.Path
+    value: event:/Gas_Damage
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerDeath.Guid.Data1
+    value: 229547357
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerDeath.Guid.Data2
+    value: 1229079523
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerDeath.Guid.Data3
+    value: 381256613
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerDeath.Guid.Data4
+    value: -1264587235
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerDeath.Path
+    value: event:/Dead_falldown
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerZoomInBreath.Guid.Data1
+    value: 1435301174
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerZoomInBreath.Guid.Data2
+    value: 1275167389
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerZoomInBreath.Guid.Data3
+    value: 762669745
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerZoomInBreath.Guid.Data4
+    value: 1902912595
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerZoomInBreath.Path
+    value: event:/Zoomin_Breath
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerJump.Guid.Data1
+    value: 1433912525
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerJump.Guid.Data2
+    value: 1271086685
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerJump.Guid.Data3
+    value: -2063305848
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerJump.Guid.Data4
+    value: -628108433
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerJump.Path
+    value: event:/Jump
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerLand.Guid.Data1
+    value: -203514912
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerLand.Guid.Data2
+    value: 1091224900
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerLand.Guid.Data3
+    value: -2053790286
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerLand.Guid.Data4
+    value: 1437163456
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerLand.Path
+    value: event:/Land
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: LandMovementParam
+    value: Staying_moving
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerHealth.Guid.Data1
+    value: -1536465125
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerHealth.Guid.Data2
+    value: 1221181170
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerHealth.Guid.Data3
+    value: 2137454005
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerHealth.Guid.Data4
+    value: 1764210994
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerHealth.Path
+    value: event:/Healt
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: HealthParamName
+    value: Health_Medium-Low
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerFootsteps.Guid.Data1
+    value: 1639583792
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerFootsteps.Guid.Data2
+    value: 1328016165
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerFootsteps.Guid.Data3
+    value: -1285398338
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerFootsteps.Guid.Data4
+    value: 438845755
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PlayerFootsteps.Path
+    value: event:/New Footsteps
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: WalkRunParameter
+    value: Walk_Run
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: FloorMaterialParameter
+    value: Floor_Material
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: DefaultFloorMaterialValue
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: LeftRightParameter
+    value: Left_Right
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PickupAmmo.Guid.Data1
+    value: 81272768
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PickupAmmo.Guid.Data2
+    value: 1321413262
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PickupAmmo.Guid.Data3
+    value: 1546683027
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PickupAmmo.Guid.Data4
+    value: -1243132344
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PickupAmmo.Path
+    value: event:/Objets/pickup_Bullets
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PickupMedkit.Guid.Data1
+    value: 1878632116
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PickupMedkit.Guid.Data2
+    value: 1262378671
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PickupMedkit.Guid.Data3
+    value: -2028867437
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PickupMedkit.Guid.Data4
+    value: 1447384714
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PickupMedkit.Path
+    value: event:/Objets/Medikit
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PickupMission1.Guid.Data1
+    value: -1137537537
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PickupMission1.Guid.Data2
+    value: 1258898274
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PickupMission1.Guid.Data3
+    value: 1726586252
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PickupMission1.Guid.Data4
+    value: 1781253124
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PickupMission1.Path
+    value: event:/Objets/objetivo01
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PickupMission2.Guid.Data1
+    value: -1104125060
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PickupMission2.Guid.Data2
+    value: 1279690304
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PickupMission2.Guid.Data3
+    value: 1280672165
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PickupMission2.Guid.Data4
+    value: -1066516734
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PickupMission2.Path
+    value: event:/Objets/objetivo02
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PickupCantUse.Guid.Data1
+    value: -1964567147
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PickupCantUse.Guid.Data2
+    value: 1186735308
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PickupCantUse.Guid.Data3
+    value: -600850813
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PickupCantUse.Guid.Data4
+    value: 987116383
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PickupCantUse.Path
+    value: event:/Objets/pickup_cant_use
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ChangeWeaponSMG.Guid.Data1
+    value: 1504485632
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ChangeWeaponSMG.Guid.Data2
+    value: 1138823928
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ChangeWeaponSMG.Guid.Data3
+    value: 1279604657
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ChangeWeaponSMG.Guid.Data4
+    value: 1674534730
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ChangeWeaponSMG.Path
+    value: event:/Objets/change_weapon_machinegun
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ChangeWeaponPistol.Guid.Data1
+    value: 1308162059
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ChangeWeaponPistol.Guid.Data2
+    value: 1280467700
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ChangeWeaponPistol.Guid.Data3
+    value: -2099175552
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ChangeWeaponPistol.Guid.Data4
+    value: 1498402189
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ChangeWeaponPistol.Path
+    value: event:/Objets/change_weapon_pistol
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: WeaponZoomIn.Guid.Data1
+    value: 1216285877
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: WeaponZoomIn.Guid.Data2
+    value: 1149776161
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: WeaponZoomIn.Guid.Data3
+    value: 376832442
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: WeaponZoomIn.Guid.Data4
+    value: 2021872554
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: WeaponZoomIn.Path
+    value: event:/Machinegun_zoomin
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: WeaponZoomOut.Guid.Data1
+    value: -1134775525
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: WeaponZoomOut.Guid.Data2
+    value: 1183935262
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: WeaponZoomOut.Guid.Data3
+    value: 2037518502
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: WeaponZoomOut.Guid.Data4
+    value: -1240728848
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: WeaponZoomOut.Path
+    value: event:/Machinegun_zoomout
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: FlashlighToggle.Guid.Data1
+    value: -1768503694
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: FlashlighToggle.Guid.Data2
+    value: 1270644152
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: FlashlighToggle.Guid.Data3
+    value: -136977474
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: FlashlighToggle.Guid.Data4
+    value: 1934775809
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: FlashlighToggle.Path
+    value: event:/Objets/Flashlight
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: FlashlightOnOffParam
+    value: Flashligth_on-off
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: BulletImpact.Guid.Data1
+    value: 1204366286
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: BulletImpact.Guid.Data2
+    value: 1246369401
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: BulletImpact.Guid.Data3
+    value: 1171469488
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: BulletImpact.Guid.Data4
+    value: 2063359394
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: BulletImpact.Path
+    value: event:/Bullet_impact
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ImpactMaterialParameter
+    value: Bullet_impact
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieAppear.Guid.Data1
+    value: 415911926
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieAppear.Guid.Data2
+    value: 1233892316
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieAppear.Guid.Data3
+    value: -845921623
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieAppear.Guid.Data4
+    value: -2144276206
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieAppear.Path
+    value: event:/Zombies_Voices/Zombie_Appear
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieFootsteps.Guid.Data1
+    value: 324470742
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieFootsteps.Guid.Data2
+    value: 1109170326
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieFootsteps.Guid.Data3
+    value: 1619720337
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieFootsteps.Guid.Data4
+    value: 1961590381
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieFootsteps.Path
+    value: event:/Zombies_footsteps
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieLeftRightParam
+    value: Zombie_left&Right
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieAttack.Guid.Data1
+    value: -470396771
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieAttack.Guid.Data2
+    value: 1104397258
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieAttack.Guid.Data3
+    value: -693101427
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieAttack.Guid.Data4
+    value: -2014876688
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieAttack.Path
+    value: event:/Zombies_Voices/Zombie_Attack
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieFall.Guid.Data1
+    value: 1437984575
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieFall.Guid.Data2
+    value: 1099295654
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieFall.Guid.Data3
+    value: 888095379
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieFall.Guid.Data4
+    value: -545282597
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieFall.Path
+    value: event:/Zombies_Falldown
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieDie.Guid.Data1
+    value: -1151168083
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieDie.Guid.Data2
+    value: 1075351922
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieDie.Guid.Data3
+    value: 1421056640
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieDie.Guid.Data4
+    value: 262638840
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieDie.Path
+    value: event:/Zombies_Voices/Zombie_Die
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieDamage.Guid.Data1
+    value: 537333366
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieDamage.Guid.Data2
+    value: 1297304908
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieDamage.Guid.Data3
+    value: -1434493807
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieDamage.Guid.Data4
+    value: -1207516450
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieDamage.Path
+    value: event:/Zombies_Voices/Zombie_get_damage
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieBlinded.Guid.Data1
+    value: 872705278
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieBlinded.Guid.Data2
+    value: 1233030825
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieBlinded.Guid.Data3
+    value: -1801062503
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieBlinded.Guid.Data4
+    value: -1045600856
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieBlinded.Path
+    value: event:/Zombies_Voices/Zombie_Blinded
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieHeadshot.Guid.Data1
+    value: 70932204
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieHeadshot.Guid.Data2
+    value: 1304061760
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieHeadshot.Guid.Data3
+    value: 1123581323
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieHeadshot.Guid.Data4
+    value: -786582419
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ZombieHeadshot.Path
+    value: event:/Zombies_Headshots
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Jet.Guid.Data1
+    value: -120129483
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Jet.Guid.Data2
+    value: 1298300066
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Jet.Guid.Data3
+    value: -1232931198
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Jet.Guid.Data4
+    value: -955159415
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Jet.Path
+    value: event:/Jet
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: RaidSiren.Guid.Data1
+    value: -1019487629
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: RaidSiren.Guid.Data2
+    value: 1088700174
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: RaidSiren.Guid.Data3
+    value: -750216306
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: RaidSiren.Guid.Data4
+    value: -518428216
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: RaidSiren.Path
+    value: event:/Jet_Waves/Air_Raid_Siren
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: JetBombExplosions.Guid.Data1
+    value: -161740661
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: JetBombExplosions.Guid.Data2
+    value: 1078334068
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: JetBombExplosions.Guid.Data3
+    value: -1182494018
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: JetBombExplosions.Guid.Data4
+    value: 1906145351
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: JetBombExplosions.Path
+    value: event:/Jet_Waves/Jet_Bombo_Explosions
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: TimerBeepShort.Guid.Data1
+    value: 379770103
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: TimerBeepShort.Guid.Data2
+    value: 1313466579
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: TimerBeepShort.Guid.Data3
+    value: 343361176
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: TimerBeepShort.Guid.Data4
+    value: -1591205161
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: TimerBeepShort.Path
+    value: event:/Gameplay_UI/Timer_beep_short
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: TimerBeepLong.Guid.Data1
+    value: -1428172525
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: TimerBeepLong.Guid.Data2
+    value: 1252441038
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: TimerBeepLong.Guid.Data3
+    value: -104768845
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: TimerBeepLong.Guid.Data4
+    value: -685796162
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: TimerBeepLong.Path
+    value: event:/Gameplay_UI/Timer_beep_long
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: BarrelExplosion.Guid.Data1
+    value: -501221051
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: BarrelExplosion.Guid.Data2
+    value: 1161767055
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: BarrelExplosion.Guid.Data3
+    value: -1653069180
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: BarrelExplosion.Guid.Data4
+    value: 15275707
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: BarrelExplosion.Path
+    value: event:/Objets/Barrel_explosion
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: MenuHover.Guid.Data1
+    value: 905543055
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: MenuHover.Guid.Data2
+    value: 1203368654
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: MenuHover.Guid.Data3
+    value: 47085195
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: MenuHover.Guid.Data4
+    value: 1795583951
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: MenuHover.Path
+    value: event:/UI/Menu_Hover
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: MenuSelect.Guid.Data1
+    value: 353172414
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: MenuSelect.Guid.Data2
+    value: 1100476234
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: MenuSelect.Guid.Data3
+    value: -1521314683
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: MenuSelect.Guid.Data4
+    value: 983527115
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: MenuSelect.Path
+    value: event:/UI/Menu_Select
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Typewriter.Guid.Data1
+    value: -1799715008
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Typewriter.Guid.Data2
+    value: 1190396532
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Typewriter.Guid.Data3
+    value: 385800075
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Typewriter.Guid.Data4
+    value: 814717346
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Typewriter.Path
+    value: event:/UI/Typewriter
+    objectReference: {fileID: 0}
+  m_ExcludedProperties: []

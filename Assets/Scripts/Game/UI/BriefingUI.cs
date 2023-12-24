@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using FMOD.Studio;
 
 public class BriefingUI : TelegramMessageCanvas
 {
-    public override void OnFadeOutComplete()
+    protected override void Start()
     {
-        LevelLoader.Instance.LoadNextLevel();
+        base.Start();
+
+        LevelLoader.Instance.LoadNextLevelAsync();
     }
 
 }

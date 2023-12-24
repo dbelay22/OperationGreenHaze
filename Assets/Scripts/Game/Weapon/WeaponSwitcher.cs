@@ -1,14 +1,13 @@
+using FMOD.Studio;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(AudioSource))]
 public class WeaponSwitcher : MonoBehaviour
 {
-    [Header("SFX")]
-    [SerializeField] AudioClip _switchSFX;
+    readonly float[] SWITCH_WEAPON_TIMES = { 1.3f, 0.8f };
 
     [Header("Weapon Shake DB")]
     [SerializeField] WeaponShakeData _shakeData;
@@ -17,13 +16,14 @@ public class WeaponSwitcher : MonoBehaviour
 
     List<Weapon> _weapons;
 
-    AudioSource _audioSource;
-
     bool _canScrollToNextWeapon = true;
     
     Weapon _activeWeapon;
 
     int _currentWeaponIdx = 0;
+
+    EventInstance _switchSMGSFX;
+    EventInstance _switchPistolSFX;
 
     void Start()
     {
@@ -31,9 +31,15 @@ public class WeaponSwitcher : MonoBehaviour
 
         InitializeWeapons();
 
-        _audioSource = GetComponent<AudioSource>();
+        InitializeAudioInstances();
 
-        StartCoroutine(SetCurrentWeaponActiveDelayed(0.5f));
+        StartCoroutine(SetCurrentWeaponActiveDelayed());
+    }
+
+    void InitializeAudioInstances()
+    {
+        _switchSMGSFX = AudioController.Instance.CreateInstance(FMODEvents.Instance.ChangeWeaponSMG);
+        _switchPistolSFX = AudioController.Instance.CreateInstance(FMODEvents.Instance.ChangeWeaponPistol);
     }
 
     void InitializeWeapons()
@@ -49,11 +55,51 @@ public class WeaponSwitcher : MonoBehaviour
         }
     }
 
-    IEnumerator SetCurrentWeaponActiveDelayed(float time)
+    IEnumerator SetCurrentWeaponActiveDelayed()
     {
+        if (_activeWeapon != null)
+        {
+            _activeWeapon.WillBeDisabled();
+            _activeWeapon.gameObject.SetActive(false);
+        }
+
+        transform.localScale = new Vector3(0,0,0);
+
+        AudioController.Instance.PlayEvent(_currentWeaponIdx == 0 ? _switchSMGSFX : _switchPistolSFX);
+
+        float time = SWITCH_WEAPON_TIMES[_currentWeaponIdx];
+
+        //Debug.Log($"WeaponSwitcher] SetCurrentWeaponActiveDelayed) time: {time}, _currentWeaponIdx:{_currentWeaponIdx}");
+
         yield return new WaitForSeconds(time);
 
         SetCurrentWeaponActive();
+
+        transform.localScale = new Vector3(1, 1, 1);
+    }
+
+    void SetCurrentWeaponActive()
+    {
+        int weaponIndex = 0;
+
+        foreach (Transform child in transform)
+        {
+            //Debug.Log($"WeaponSwitcher] SetCurrentWeaponActive) child: {child.name}");
+
+            Weapon weapon = child.gameObject.GetComponent<Weapon>();
+
+            bool foundWeapon = weaponIndex == _currentWeaponIdx;
+
+            if (foundWeapon)
+            {
+                _activeWeapon = weapon;
+                UpdateCurrentShakeProperties(weapon);
+            }
+
+            weapon.gameObject.SetActive(foundWeapon);
+
+            weaponIndex++;
+        }
     }
 
     void Update()
@@ -93,35 +139,8 @@ public class WeaponSwitcher : MonoBehaviour
         }
 
         _currentWeaponIdx = index;
-        
-        SetCurrentWeaponActive();
-    }
 
-    void SetCurrentWeaponActive()
-    {
-        if (_switchSFX != null)
-        {
-            _audioSource.PlayOneShot(_switchSFX);
-        }
-
-        int weaponIndex = 0;
-
-        foreach (Transform child in transform)
-        {
-            Weapon weapon = child.gameObject.GetComponent<Weapon>();
-            
-            bool foundWeapon = weaponIndex == _currentWeaponIdx;
-            
-            if (foundWeapon)
-            {
-                _activeWeapon = weapon;
-                UpdateCurrentShakeProperties(weapon);
-            }            
-
-            weapon.gameObject.SetActive(foundWeapon);
-            
-            weaponIndex++;            
-        }
+        StartCoroutine(SetCurrentWeaponActiveDelayed());
     }
 
     void UpdateCurrentShakeProperties(Weapon weapon)
@@ -148,16 +167,16 @@ public class WeaponSwitcher : MonoBehaviour
         else
         {
             _currentWeaponIdx = 0;
-        }        
-        
-        SetCurrentWeaponActive();
+        }
+
+        StartCoroutine(SetCurrentWeaponActiveDelayed());
 
         StartCoroutine(CoolDownScroll());
     }
 
     IEnumerator CoolDownScroll()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.25f);
         
         _canScrollToNextWeapon = true;
     }

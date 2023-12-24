@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{440fa1e3-a4e9-4d13-8364-cf258b67f8b6}">
+		<property name="assetPath">
+			<value>Zombies_Voices/Zvoice_Hit_04.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>1.1462083333333333</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{34fd9964-678f-4e09-a1e0-faa596b6228f}</destination>
+		</relationship>
+	</object>
+</objects>

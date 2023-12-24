@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 441372601557891447}
   - component: {fileID: 8974531209230176576}
+  - component: {fileID: 6286549390428734130}
   m_Layer: 0
   m_Name: AudioController
-  m_TagString: Untagged
+  m_TagString: AudioController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,7 +29,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 6859985746467828259}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -44,6 +46,396 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e83570fb507b804c85f9d6cbc67c669, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ingameMusicSource: {fileID: 0}
-  _gameOverMusic: {fileID: 8300000, guid: 0dbccddfd6174494380e8dd0ed64e0f1, type: 3}
-  _winMusic: {fileID: 0}
+  _musicBusPath: bus:/Music_Menu_group
+  _sfxBusPath: bus:/SFX_Menu_group
+--- !u!114 &6286549390428734130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2160691158358304244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7eb92136cf5c084e8c2a330485f46cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _instanceTAG: AudioController
+--- !u!1 &6495501288945196645
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6859985746467828259}
+  - component: {fileID: 6325376018058637131}
+  m_Layer: 0
+  m_Name: FMODEvents
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6859985746467828259
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6495501288945196645}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 441372601557891447}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6325376018058637131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6495501288945196645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acbe80b3f110a7f4191a15476774bfde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameplayMusicEvent:
+    Guid:
+      Data1: 1449276186
+      Data2: 1170092471
+      Data3: -64256892
+      Data4: 213966462
+    Path: event:/Music/Music
+  TerrorMusicParam: Terror Music
+  MusicPartsParam: Music parts
+  NearZombiesParam: Near_Zombies_music
+  MenuMusic:
+    Guid:
+      Data1: -270983773
+      Data2: 1107252570
+      Data3: 1459056029
+      Data4: 550585291
+    Path: event:/Music/Music_menu
+  BriefingMusic:
+    Guid:
+      Data1: -2119929625
+      Data2: 1299647486
+      Data3: 592688787
+      Data4: -629468003
+    Path: event:/Music/Music_Carta
+  WinMusic:
+    Guid:
+      Data1: -705023796
+      Data2: 1260509541
+      Data3: -1356111965
+      Data4: 348496687
+    Path: event:/Music/Music_Win
+  LoseMusic:
+    Guid:
+      Data1: -1880182828
+      Data2: 1136492969
+      Data3: 1335201666
+      Data4: 1878953327
+    Path: event:/Music/Music_Game-over
+  Helicopter_Briefing:
+    Guid:
+      Data1: -102195960
+      Data2: 1148908492
+      Data3: 608358847
+      Data4: 1790094156
+    Path: event:/Helicopter/Helicopter_Briefing
+  Helicopter_Gone:
+    Guid:
+      Data1: -1436865879
+      Data2: 1111934431
+      Data3: -1488154240
+      Data4: -103824364
+    Path: event:/Helicopter/Helicopter_Gone
+  AmbienceSoundscape:
+    Guid:
+      Data1: -158169680
+      Data2: 1158894446
+      Data3: 1187794604
+      Data4: -1189200037
+    Path: event:/Soundscape
+  PlayerDamageByZombie:
+    Guid:
+      Data1: -253622757
+      Data2: 1284738171
+      Data3: 2123582649
+      Data4: 469911827
+    Path: event:/Zombies_Hits
+  PlayerDamageByFire:
+    Guid:
+      Data1: 568746577
+      Data2: 1239619578
+      Data3: -117140845
+      Data4: 854506788
+    Path: event:/Fire_Damage
+  PlayerDamageByGas:
+    Guid:
+      Data1: 1037584596
+      Data2: 1180169947
+      Data3: 373660047
+      Data4: -1862689208
+    Path: event:/Gas_Damage
+  PlayerDeath:
+    Guid:
+      Data1: 229547357
+      Data2: 1229079523
+      Data3: 381256613
+      Data4: -1264587235
+    Path: event:/Dead_falldown
+  PlayerZoomInBreath:
+    Guid:
+      Data1: 1435301174
+      Data2: 1275167389
+      Data3: 762669745
+      Data4: 1902912595
+    Path: event:/Zoomin_Breath
+  PlayerJump:
+    Guid:
+      Data1: 1433912525
+      Data2: 1271086685
+      Data3: -2063305848
+      Data4: -628108433
+    Path: event:/Jump
+  PlayerLand:
+    Guid:
+      Data1: -203514912
+      Data2: 1091224900
+      Data3: -2053790286
+      Data4: 1437163456
+    Path: event:/Land
+  LandMovementParam: Staying_moving
+  PlayerHealth:
+    Guid:
+      Data1: -1536465125
+      Data2: 1221181170
+      Data3: 2137454005
+      Data4: 1764210994
+    Path: event:/Healt
+  HealthParamName: Health_Medium-Low
+  PlayerFootsteps:
+    Guid:
+      Data1: 1639583792
+      Data2: 1328016165
+      Data3: -1285398338
+      Data4: 438845755
+    Path: event:/New Footsteps
+  WalkRunParameter: Walk_Run
+  FloorMaterialParameter: Floor_Material
+  DefaultFloorMaterialValue: 0
+  LeftRightParameter: Left_Right
+  PickupAmmo:
+    Guid:
+      Data1: 81272768
+      Data2: 1321413262
+      Data3: 1546683027
+      Data4: -1243132344
+    Path: event:/Objets/pickup_Bullets
+  PickupMedkit:
+    Guid:
+      Data1: 1878632116
+      Data2: 1262378671
+      Data3: -2028867437
+      Data4: 1447384714
+    Path: event:/Objets/Medikit
+  PickupMission1:
+    Guid:
+      Data1: -1137537537
+      Data2: 1258898274
+      Data3: 1726586252
+      Data4: 1781253124
+    Path: event:/Objets/objetivo01
+  PickupMission2:
+    Guid:
+      Data1: -1104125060
+      Data2: 1279690304
+      Data3: 1280672165
+      Data4: -1066516734
+    Path: event:/Objets/objetivo02
+  PickupCantUse:
+    Guid:
+      Data1: -1964567147
+      Data2: 1186735308
+      Data3: -600850813
+      Data4: 987116383
+    Path: event:/Objets/pickup_cant_use
+  ChangeWeaponSMG:
+    Guid:
+      Data1: 1504485632
+      Data2: 1138823928
+      Data3: 1279604657
+      Data4: 1674534730
+    Path: event:/Objets/change_weapon_machinegun
+  ChangeWeaponPistol:
+    Guid:
+      Data1: 1308162059
+      Data2: 1280467700
+      Data3: -2099175552
+      Data4: 1498402189
+    Path: event:/Objets/change_weapon_pistol
+  WeaponZoomIn:
+    Guid:
+      Data1: 1216285877
+      Data2: 1149776161
+      Data3: 376832442
+      Data4: 2021872554
+    Path: event:/Machinegun_zoomin
+  WeaponZoomOut:
+    Guid:
+      Data1: -1134775525
+      Data2: 1183935262
+      Data3: 2037518502
+      Data4: -1240728848
+    Path: event:/Machinegun_zoomout
+  FlashlighToggle:
+    Guid:
+      Data1: -1768503694
+      Data2: 1270644152
+      Data3: -136977474
+      Data4: 1934775809
+    Path: event:/Objets/Flashlight
+  FlashlightOnOffParam: Flashligth_on-off
+  BulletImpact:
+    Guid:
+      Data1: 1204366286
+      Data2: 1246369401
+      Data3: 1171469488
+      Data4: 2063359394
+    Path: event:/Bullet_impact
+  ImpactMaterialParameter: Bullet_impact
+  ZombieAppear:
+    Guid:
+      Data1: 415911926
+      Data2: 1233892316
+      Data3: -845921623
+      Data4: -2144276206
+    Path: event:/Zombies_Voices/Zombie_Appear
+  ZombieFootsteps:
+    Guid:
+      Data1: 324470742
+      Data2: 1109170326
+      Data3: 1619720337
+      Data4: 1961590381
+    Path: event:/Zombies_footsteps
+  ZombieLeftRightParam: Zombie_left&Right
+  ZombieAttack:
+    Guid:
+      Data1: -470396771
+      Data2: 1104397258
+      Data3: -693101427
+      Data4: -2014876688
+    Path: event:/Zombies_Voices/Zombie_Attack
+  ZombieFall:
+    Guid:
+      Data1: 1437984575
+      Data2: 1099295654
+      Data3: 888095379
+      Data4: -545282597
+    Path: event:/Zombies_Falldown
+  ZombieDie:
+    Guid:
+      Data1: -1151168083
+      Data2: 1075351922
+      Data3: 1421056640
+      Data4: 262638840
+    Path: event:/Zombies_Voices/Zombie_Die
+  ZombieDamage:
+    Guid:
+      Data1: 537333366
+      Data2: 1297304908
+      Data3: -1434493807
+      Data4: -1207516450
+    Path: event:/Zombies_Voices/Zombie_get_damage
+  ZombieBlinded:
+    Guid:
+      Data1: 872705278
+      Data2: 1233030825
+      Data3: -1801062503
+      Data4: -1045600856
+    Path: event:/Zombies_Voices/Zombie_Blinded
+  ZombieHeadshot:
+    Guid:
+      Data1: 70932204
+      Data2: 1304061760
+      Data3: 1123581323
+      Data4: -786582419
+    Path: event:/Zombies_Headshots
+  ZombieBlindedLoop:
+    Guid:
+      Data1: -1431955290
+      Data2: 1319297354
+      Data3: 1073463988
+      Data4: 836726666
+    Path: event:/Zombies_Voices/Zombie_flashlight
+  Jet:
+    Guid:
+      Data1: -120129483
+      Data2: 1298300066
+      Data3: -1232931198
+      Data4: -955159415
+    Path: event:/Jet
+  RaidSiren:
+    Guid:
+      Data1: -1019487629
+      Data2: 1088700174
+      Data3: -750216306
+      Data4: -518428216
+    Path: event:/Jet_Waves/Air_Raid_Siren
+  JetBombExplosions:
+    Guid:
+      Data1: -161740661
+      Data2: 1078334068
+      Data3: -1182494018
+      Data4: 1906145351
+    Path: event:/Jet_Waves/Jet_Bombo_Explosions
+  TimerBeepShort:
+    Guid:
+      Data1: 379770103
+      Data2: 1313466579
+      Data3: 343361176
+      Data4: -1591205161
+    Path: event:/Gameplay_UI/Timer_beep_short
+  TimerBeepLong:
+    Guid:
+      Data1: -1428172525
+      Data2: 1252441038
+      Data3: -104768845
+      Data4: -685796162
+    Path: event:/Gameplay_UI/Timer_beep_long
+  BarrelExplosion:
+    Guid:
+      Data1: -501221051
+      Data2: 1161767055
+      Data3: -1653069180
+      Data4: 15275707
+    Path: event:/Objets/Barrel_explosion
+  MenuHover:
+    Guid:
+      Data1: 905543055
+      Data2: 1203368654
+      Data3: 47085195
+      Data4: 1795583951
+    Path: event:/UI/Menu_Hover
+  MenuSelect:
+    Guid:
+      Data1: 353172414
+      Data2: 1100476234
+      Data3: -1521314683
+      Data4: 983527115
+    Path: event:/UI/Menu_Select
+  Typewriter:
+    Guid:
+      Data1: -1799715008
+      Data2: 1190396532
+      Data3: 385800075
+      Data4: 814717346
+    Path: event:/UI/Typewriter

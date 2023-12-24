@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3411245415719733281}
   m_Layer: 0
   m_Name: Box001
-  m_TagString: Untagged
+  m_TagString: MaterialConcrete
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -166,7 +166,7 @@ GameObject:
   - component: {fileID: 2359092}
   m_Layer: 0
   m_Name: Object075
-  m_TagString: Untagged
+  m_TagString: MaterialConcrete
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647

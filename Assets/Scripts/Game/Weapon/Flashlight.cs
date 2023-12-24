@@ -1,10 +1,10 @@
+using FMOD.Studio;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Light))]
-[RequireComponent(typeof(AudioSource))]
 public class Flashlight : MonoBehaviour
 {
     [System.Serializable]
@@ -35,12 +35,13 @@ public class Flashlight : MonoBehaviour
 
     public bool IsPickedUp { get { return _isPickedUp; } }
 
-    AudioSource _audioSource;
+    EventInstance _flashlightSFX;
 
     void Start()
     {
         _light = GetComponent<Light>();
-        _audioSource = GetComponent<AudioSource>();
+
+        _flashlightSFX = AudioController.Instance.Create3DInstance(FMODEvents.Instance.FlashlighToggle, transform.position);
 
         _isPickedUp = false;
         
@@ -69,13 +70,15 @@ public class Flashlight : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F))
         {
             ToggleOnOff();
-            PlaySFX();
+            
+            PlaySFX(_isOn);
         }
     }
 
-    void PlaySFX()
+    void PlaySFX(bool isOn)
     {
-        _audioSource.Play();
+        _flashlightSFX.setParameterByName(FMODEvents.Instance.FlashlightOnOffParam, isOn ? 0 : 1);
+        AudioController.Instance.Play3DEvent(_flashlightSFX, transform.position, true);
     }
 
     void ToggleOnOff()
@@ -146,4 +149,5 @@ public class Flashlight : MonoBehaviour
 
         _isOn = true;
     }
+
 }
