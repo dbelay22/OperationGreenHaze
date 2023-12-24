@@ -10,23 +10,17 @@ public class DebugShortcuts : DebugComponentBase
 
     void ProcessDebugShortcuts()
     {
-        /*
         // + Volume
         if (Input.GetKeyDown(KeyCode.KeypadPlus))
         {
-            AudioListener.volume += 0.1f;
-            
-            Debug.Log($"[DebugShortcuts] AudioListerner volume now: {AudioListener.volume}");
+            AudioController.Instance.SetMusicBusVolume(0.5f);            
         }
 
         // - Volume
         if (Input.GetKeyDown(KeyCode.KeypadMinus))
         {
-            AudioListener.volume -= 0.1f;
-
-            Debug.Log($"[DebugShortcuts] AudioListerner volume now: {AudioListener.volume}");
+            AudioController.Instance.SetMusicBusVolume(0f);
         }
-        */
 
         // [G] GOD Mode
         if (Input.GetKeyDown(KeyCode.G))
@@ -38,12 +32,6 @@ public class DebugShortcuts : DebugComponentBase
         if (Input.GetKeyDown(KeyCode.K))
         {
             Game.Instance.ReportAllEnemiesKilled();
-        }
-
-        // [O] Force Game Over
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            Game.Instance.ChangeStateToGameOver();
         }
 
         // [P]ickup mission items collected

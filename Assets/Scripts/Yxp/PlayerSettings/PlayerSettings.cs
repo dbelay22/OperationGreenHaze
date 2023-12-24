@@ -1,21 +1,21 @@
+using FMOD.Studio;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.Rendering;
 
 
 public class PlayerSettings : MonoBehaviour
 {
-    [SerializeField] AudioMixer _audioMixer;
-
-    const float DEFAULT_MUSIC_VOLUME = -10f;
-    const float DEFAULT_SFX_VOLUME = -10f;
-
-    public const float MIN_VOLUME_DB = -80f;
-    public const float MAX_VOLUME_DB = 0f;
+    const float DEFAULT_MUSIC_VOLUME = 0.5f;
+    const float DEFAULT_SFX_VOLUME = 0.5f;
 
     const string PERSISTANCE_MUSIC_KEY = "music-volume";
     const string PERSISTANCE_SFX_KEY = "sfx-volume";
+
+    Bus _musicBus;
+    Bus _sfxBus;
 
     #region Instance
 
@@ -25,6 +25,8 @@ public class PlayerSettings : MonoBehaviour
 
     void Awake()
     {
+        Debug.Log("PlayerSettings] Awake)...");
+
         _instance = this;
     }
 
@@ -37,31 +39,11 @@ public class PlayerSettings : MonoBehaviour
 
     public void ApplyPlayerSettingsAudio()
     {
-        SetAudioMixerMusicVolume(LoadMusicSetting());
-        SetAudioMixerSFXVolume(LoadSFXSetting());
-    }
+        Debug.Log("PlayerSettings] ApplyPlayerSettingsAudio)...");
 
-    #region Audio
-
-    public void SetAudioMixerMusicVolume(float volume)
-    {
-        // Music on Audio Mixer
-        _audioMixer.SetFloat("MusicVolume", volume);
-    }
-
-    public bool SetAudioMixerSFXVolume(float volume)
-    {
-        _audioMixer.GetFloat("SFXVolume", out float currentVolume);
-
-        if (currentVolume == volume)
-        {
-            return false;
-        }
-
-        // SFX on Audio Mixer
-        _audioMixer.SetFloat("SFXVolume", volume);
-
-        return true;
+        AudioController.Instance.SetMusicBusVolume(LoadMusicSetting());
+        
+        AudioController.Instance.SetSFXBusVolume(LoadSFXSetting());
     }
 
     #region Persistance
@@ -101,8 +83,6 @@ public class PlayerSettings : MonoBehaviour
 
         return PlayerPrefs.GetFloat(PERSISTANCE_SFX_KEY);
     }
-
-    #endregion
 
     #endregion
 }

@@ -1,11 +1,21 @@
 using Cinemachine;
+using FMODUnity;
 using StarterAssets;
 using System;
 using System.Collections;
 using UnityEngine;
+using FMOD.Studio;
+using System.Collections.Generic;
 
 public class Weapon : MonoBehaviour
 {
+    private enum BullletImpactTarget
+    {       
+        Concrete = 0,
+        Steel = 1,
+        Zombie = 2
+    }
+
     [SerializeField] GameObject _playerGO;
 
     [Header("Shooting")]
@@ -27,16 +37,22 @@ public class Weapon : MonoBehaviour
     [SerializeField] float _fovZoom = 20;
 
     [Header("SFX")]
-    [SerializeField] AudioClip _shootSFX;
-    [SerializeField] AudioClip _outOfAmmoSFX;
-    [SerializeField] AudioClip _reloadSFX;
+    [SerializeField] EventReference _shootEventRef;
+    [SerializeField] EventReference _outOfAmmoEventRef;
+
+    // pool of shoots
+    readonly int ShootPoolCount = 15;
+    List<EventInstance> _shootSFXList;
+
+    EventInstance _bulletImpactSFX;
+    EventInstance _outOfAmmoSFX;
+    EventInstance _zoomInSFX;
+    EventInstance _zoomOutSFX;
 
     [Space(10)]
     [SerializeField] FirstPersonController _fpController;
 
     StarterAssetsInputs _input;
-
-    AudioSource _audioSource;
 
     bool _canShoot = true;
     
@@ -47,13 +63,35 @@ public class Weapon : MonoBehaviour
 
     Player _player;
 
+    GameObject _model3D;
+
+    void Awake()
+    {
+        _shootSFXList = new List<EventInstance>();
+
+        for (int i = 0; i < ShootPoolCount; i++)
+        {
+            EventInstance shootInstance = AudioController.Instance.CreateInstance(_shootEventRef);
+            
+            _shootSFXList.Add(shootInstance);
+        }    
+
+        _outOfAmmoSFX = AudioController.Instance.CreateInstance(_outOfAmmoEventRef);
+                
+        _bulletImpactSFX = AudioController.Instance.Create3DInstance(FMODEvents.Instance.BulletImpact, transform.position);
+
+        _zoomInSFX = AudioController.Instance.CreateInstance(FMODEvents.Instance.WeaponZoomIn);
+        
+        _zoomOutSFX = AudioController.Instance.CreateInstance(FMODEvents.Instance.WeaponZoomOut);
+
+        _model3D = transform.Find("Model").gameObject;
+    }
+
     void Start()
     {
         _player = _playerGO.GetComponent<Player>();
         _input = _playerGO.GetComponent<StarterAssetsInputs>();
         _ammo = _playerGO.GetComponent<Ammo>();
-        
-        _audioSource = GetComponent<AudioSource>();
         
         _canShoot = true;
 
@@ -64,14 +102,19 @@ public class Weapon : MonoBehaviour
     {
         _canShoot = true;
 
-        ZoomOut();
+        ShowWeapon();
 
         GameUI.Instance.UpdateAmmoAmount(GetAmmoLeft());
     }
 
-    void OnDisable()
+    public void WillBeDisabled()
     {
-        StopAllCoroutines();
+        //Debug.Log("Weapon] WillBeDisabled)...");
+
+        if (_sniperZoomActive)
+        {
+            ZoomOut(0f);
+        }
     }
 
     void Update()
@@ -107,7 +150,6 @@ public class Weapon : MonoBehaviour
         {
             SniperZoomToggle();
         }
-        
     }
 
     void SniperZoomToggle()
@@ -121,24 +163,51 @@ public class Weapon : MonoBehaviour
         }
         else
         {
-            _player.OnWeaponZoomIn();
-
             // Go FOV zoom
             ZoomIn();
         }
     }
 
-    void ZoomOut()
+    void ZoomOut(float time = 0.4f)
     {
-        StartCoroutine(ChangeFOV(_virtualCamera, _fovDefault, .4f));
+        //Debug.Log($"Weapon] ZoomOut) time: {time}");
+
+        _player.OnWeaponZoomOut();
+
+        AudioController.Instance.PlayEvent(_zoomOutSFX);
+
+        if (time <= 0f)
+        {
+            ZoomOutImmediate();
+        }
+        else
+        {
+            StartCoroutine(ChangeFOV(_virtualCamera, _fovDefault, time));
+        }
+
         _sniperZoomActive = false;
+    }
+
+    void ZoomOutImmediate()
+    {
+        //Debug.Log($"Weapon] ZoomOutImmediate)...");
+        _virtualCamera.m_Lens.FieldOfView = _fovDefault;
+
+        AfterFOVChange(_fovDefault);
     }
 
     void ZoomIn()
     {
+        _player.OnWeaponZoomIn();
+
+        _model3D.SetActive(false);
+
+        AudioController.Instance.PlayEvent(_zoomInSFX);
+
         StartCoroutine(ChangeFOV(_virtualCamera, _fovZoom, .5f));
+
         _sniperZoomActive = true;
-    }
+    }    
 
     IEnumerator ChangeFOV(CinemachineVirtualCamera cam, float endFOV, float duration)
     {
@@ -155,7 +224,28 @@ public class Weapon : MonoBehaviour
         }
         _zooming = false;
 
-        ChangeMouseSensitivity(endFOV == _fovZoom);
+        AfterFOVChange(endFOV);
+    }
+
+    void AfterFOVChange(float endFOV)
+    {
+        bool zoomedIn = endFOV == _fovZoom;
+
+        ChangeMouseSensitivity(zoomedIn);
+
+        if (!zoomedIn)
+        {
+            ShowWeapon();
+        }        
+    }
+
+    void ShowWeapon()
+    {
+        if (!Game.Instance.IsGameplayOn()) {
+            return;
+        }
+
+        _model3D.SetActive(true);
     }
 
     void ChangeMouseSensitivity(bool zoomed)
@@ -172,12 +262,40 @@ public class Weapon : MonoBehaviour
 
     void PlayShootSFX()
     {
-        _audioSource.PlayOneShot(_shootSFX);
+        //Debug.Log("Weapon] PlayShootSFX)...");
+
+        int playingShoots = 0;
+
+        foreach (EventInstance shootInstance in _shootSFXList)
+        {
+            if (AudioController.Instance.IsEventPlaying(shootInstance))            
+            {
+                playingShoots++;
+                continue;
+            }
+            else
+            {
+                //Debug.Log($"Weapon] PlayShootSFX) Found available instance, playing NOW.");
+
+                AudioController.Instance.PlayEvent(shootInstance, true);
+
+                playingShoots++;
+                
+                break;
+            }
+        }
+        
+        //Debug.Log($"Weapon] PlayShootSFX) There are {playingShoots} playing shoots right now.");
+
+        if (playingShoots >= ShootPoolCount)
+        {
+            Debug.LogWarning($"Weapon] PlayShootSFX) Increase the ShootPoolCount!");
+        }
     }
 
     void PlayOutOfAmmoSFX()
     {
-        _audioSource.PlayOneShot(_outOfAmmoSFX);
+        AudioController.Instance.PlayEvent(_outOfAmmoSFX);
     }
 
     void PlayMuzzleFlashVFX()
@@ -204,6 +322,8 @@ public class Weapon : MonoBehaviour
 
         bool hitEnemy = false;
 
+        bool hitBoombox = false;
+
         // Did I Hit ?
         if (hitSomething)
         {
@@ -211,22 +331,28 @@ public class Weapon : MonoBehaviour
 
             hitEnemy = ProcessHitEnemy(hit);
 
-            bool hitBoomBox = ProcessHitBoomBox(hit);
-
-            if (!hitEnemy && !hitBoomBox)
+            if (!hitEnemy)
             {
-                PlayHitImpactVFX(hit);
-            }                        
+                hitBoombox = ProcessHitBoomBox(hit);
+
+                if (!hitBoombox) 
+                {
+                    if (!ProcessHitSteel(hit))
+                    {
+                        ProcessHitConcrete(hit);
+                    }
+                }
+            }
         }
 
         // Notify Player
-        _player.OnBulletShot(_ammoType, _ammoPerShot, hitEnemy);
+        _player.OnBulletShot(_ammoType, _ammoPerShot, hitEnemy, hitBoombox);
 
         // cool down if still active
         if (gameObject.activeInHierarchy) 
         {
             StartCoroutine(CoolDown());
-        }        
+        }
     }
 
     bool ProcessHitBoomBox(RaycastHit hit)
@@ -238,9 +364,39 @@ public class Weapon : MonoBehaviour
             BoomBox bbox = hit.transform.GetComponent<BoomBox>();
             
             bbox.BoomNow();
+
+            PlayHitImpactSFX(hit, BullletImpactTarget.Steel);
         }
 
         return hitBoomBox;
+    }
+
+    bool ProcessHitConcrete(RaycastHit hit)
+    {
+        bool hitConcrete = hit.transform.CompareTag(Tags.MATERIAL_CONCRETE);
+
+        if (hitConcrete)
+        {
+            PlayHitImpactVFX(hit);
+
+            PlayHitImpactSFX(hit, BullletImpactTarget.Concrete);
+        }
+
+        return hitConcrete;
+    }
+
+    bool ProcessHitSteel(RaycastHit hit)
+    {
+        bool hitSteel = hit.transform.CompareTag(Tags.MATERIAL_STEEL);
+
+        if (hitSteel)
+        {
+            PlayHitImpactVFX(hit);
+
+            PlayHitImpactSFX(hit, BullletImpactTarget.Steel);
+        }
+
+        return hitSteel;
     }
 
     bool ProcessHitEnemy(RaycastHit hit)
@@ -262,6 +418,8 @@ public class Weapon : MonoBehaviour
             {
                 Director.Instance.OnEvent(DirectorEvents.Enemy_Killed_Headshot);
             }
+
+            PlayHitImpactSFX(hit, BullletImpactTarget.Zombie);
         }        
 
         return hitEnemy;
@@ -286,6 +444,15 @@ public class Weapon : MonoBehaviour
         Destroy(hitImpact, 1.5f);
     }
 
+    void PlayHitImpactSFX(RaycastHit hit, BullletImpactTarget impactTarget)
+    {
+        //Debug.Log($"[Weapon] PlayHitImpactSFX) impact target: {impactTarget}");
+
+        _bulletImpactSFX.setParameterByName(FMODEvents.Instance.ImpactMaterialParameter, (int) impactTarget);
+
+        AudioController.Instance.Play3DEvent(_bulletImpactSFX, hit.point, true);
+    }
+
     public AmmoType GetAmmoType()
     {
         return _ammoType;
@@ -299,11 +466,6 @@ public class Weapon : MonoBehaviour
         }
 
         return _ammo.GetAmmoLeft(_ammoType);
-    }
-
-    public void PlayPickupAmmoSFX()
-    {
-        _audioSource.PlayOneShot(_reloadSFX);
     }
 
 }

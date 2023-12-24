@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(AudioSource))]
 public class Ammo : MonoBehaviour
 {
     [SerializeField] AmmoSlot[] _ammoSlots;
@@ -13,22 +12,18 @@ public class Ammo : MonoBehaviour
     {
         public AmmoType _ammoType;
         public int ammoAmount;
-        public AudioClip pickupSFX;
     }
-
-    AudioSource _audioSource;
 
     // Accuracy
     float _ammoShooted;
     float _ammoHitEnemy;
+    float _ammoHitBoombox;
     float _accuracy;
 
     public float Accuracy { get { return _accuracy; } }
 
     private void Start()
     {
-        _audioSource = GetComponent<AudioSource>();
-
         InitAccuracy();
     }
 
@@ -36,10 +31,11 @@ public class Ammo : MonoBehaviour
     {
         _ammoShooted = 0;
         _ammoHitEnemy = 0;
+        _ammoHitBoombox = 0;
         _accuracy = 0;
     }
 
-    void UpdateAccuracy(bool hitEnemy)
+    void UpdateAccuracy(bool hitEnemy, bool hitBoombox)
     {
         _ammoShooted++;
         
@@ -48,11 +44,16 @@ public class Ammo : MonoBehaviour
             _ammoHitEnemy++;
         }
 
-        _accuracy = _ammoHitEnemy / _ammoShooted * 100;
+        if (hitBoombox)
+        {
+            _ammoHitBoombox++;
+        }
+
+        _accuracy = (_ammoHitEnemy + _ammoHitBoombox) / _ammoShooted;
 
         Director.Instance.OnEvent(DirectorEvents.Shot_Accuracy_Update, _accuracy);
 
-        //Debug.Log($"[Ammo] Accuracy is now {_accuracy} %");
+        //Debug.Log($"[Ammo] Accuracy is now {_accuracy * 100f} % - _ammoShooted:{_ammoShooted}, _ammoHitEnemy:{_ammoHitEnemy}, _ammoHitBoombox:{_ammoHitBoombox} -> BOTH: {_ammoHitBoombox+_ammoHitEnemy}");
     }
 
     AmmoSlot GetAmmoSlotOfType(AmmoType ammoType)
@@ -68,10 +69,10 @@ public class Ammo : MonoBehaviour
         return null;
     }
 
-    public void OnBulletShot(AmmoType ammoType, int amount, bool hitEnemy)
+    public void OnBulletShot(AmmoType ammoType, int amount, bool hitEnemy, bool hitBoombox)
     {
         // track accuracy
-        UpdateAccuracy(hitEnemy);
+        UpdateAccuracy(hitEnemy, hitBoombox);
 
         // get slot
         AmmoSlot slot = GetAmmoSlotOfType(ammoType);
@@ -98,8 +99,6 @@ public class Ammo : MonoBehaviour
         AmmoSlot slot = GetAmmoSlotOfType(ammoType);
 
         slot.ammoAmount += increase;
-
-        _audioSource.PlayOneShot(slot.pickupSFX);
     }
 
     public int GetAmmoLeft(AmmoType ammoType)

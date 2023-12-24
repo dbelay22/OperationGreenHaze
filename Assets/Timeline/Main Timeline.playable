@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
   m_Name: Signal Emitter
   m_EditorClassIdentifier: 
-  m_Time: 31.533333333333335
+  m_Time: 30.8
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: 3a7415dd4fc0404418d481a60c8e32e3, type: 2}
@@ -28,7 +28,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
   m_Name: Signal Emitter
   m_EditorClassIdentifier: 
-  m_Time: 36.333333333333336
+  m_Time: 39.85
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: 3a7415dd4fc0404418d481a60c8e32e3, type: 2}
@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
   m_Name: Play Siren Signal Emitter
   m_EditorClassIdentifier: 
-  m_Time: 95.95
+  m_Time: 97.43333333333334
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: 58bd8aff011fb8b4e8c1fe6b833fca4e, type: 2}
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
   m_Name: Signal Emitter
   m_EditorClassIdentifier: 
-  m_Time: 107.98333333333333
+  m_Time: 110.08333333333333
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: 3a7415dd4fc0404418d481a60c8e32e3, type: 2}
@@ -115,7 +115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
   m_Name: Play Siren Signal Emitter
   m_EditorClassIdentifier: 
-  m_Time: 166
+  m_Time: 156.1
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: 58bd8aff011fb8b4e8c1fe6b833fca4e, type: 2}
@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
   m_Name: Signal Emitter
   m_EditorClassIdentifier: 
-  m_Time: 34.78333333333333
+  m_Time: 35.28333333333333
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: 3a7415dd4fc0404418d481a60c8e32e3, type: 2}
@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
   m_Name: Signal Emitter
   m_EditorClassIdentifier: 
-  m_Time: 106.31666666666666
+  m_Time: 105.08333333333333
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: 3a7415dd4fc0404418d481a60c8e32e3, type: 2}
@@ -218,7 +218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
   m_Name: Signal Emitter
   m_EditorClassIdentifier: 
-  m_Time: 362.05
+  m_Time: 362.48333333333335
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: 3a7415dd4fc0404418d481a60c8e32e3, type: 2}
@@ -687,7 +687,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
   m_Name: Play Siren Signal Emitter
   m_EditorClassIdentifier: 
-  m_Time: 359.1166666666667
+  m_Time: 359.9166666666667
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: 58bd8aff011fb8b4e8c1fe6b833fca4e, type: 2}
@@ -703,7 +703,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
   m_Name: Signal Emitter
   m_EditorClassIdentifier: 
-  m_Time: 148.96666666666664
+  m_Time: 148.23333333333332
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: 3a7415dd4fc0404418d481a60c8e32e3, type: 2}
@@ -742,7 +742,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
   m_Name: Signal Emitter
   m_EditorClassIdentifier: 
-  m_Time: 367.9166666666667
+  m_Time: 371.31666666666666
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: 3a7415dd4fc0404418d481a60c8e32e3, type: 2}
@@ -790,22 +790,6 @@ MonoBehaviour:
     m_ScenePreview: 1
   m_DurationMode: 0
   m_MarkerTrack: {fileID: 3914963689377181249}
---- !u!114 &453797545949849266
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
-  m_Name: Play Siren Signal Emitter
-  m_EditorClassIdentifier: 
-  m_Time: 55.016666666666666
-  m_Retroactive: 0
-  m_EmitOnce: 0
-  m_Asset: {fileID: 11400000, guid: 58bd8aff011fb8b4e8c1fe6b833fca4e, type: 2}
 --- !u!114 &828109563314247372
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -818,26 +802,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
   m_Name: Signal Emitter
   m_EditorClassIdentifier: 
-  m_Time: 103.9
+  m_Time: 99.98333333333333
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: 3a7415dd4fc0404418d481a60c8e32e3, type: 2}
---- !u!114 &940788036664408071
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
-  m_Name: Play Siren Signal Emitter
-  m_EditorClassIdentifier: 
-  m_Time: 0
-  m_Retroactive: 0
-  m_EmitOnce: 1
-  m_Asset: {fileID: 11400000, guid: 58bd8aff011fb8b4e8c1fe6b833fca4e, type: 2}
 --- !u!114 &1416582783443577840
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -889,7 +857,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
   m_Name: Signal Emitter
   m_EditorClassIdentifier: 
-  m_Time: 364.76666666666665
+  m_Time: 365.7
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: 3a7415dd4fc0404418d481a60c8e32e3, type: 2}
@@ -977,7 +945,6 @@ MonoBehaviour:
     - {fileID: 828109563314247372}
     - {fileID: -4338315113402500549}
     - {fileID: -8575261973916692720}
-    - {fileID: 940788036664408071}
     - {fileID: -4317015123165006030}
     - {fileID: -5506075875107785615}
     - {fileID: 2517822195562219581}
@@ -996,8 +963,6 @@ MonoBehaviour:
     - {fileID: -1158376341108800354}
     - {fileID: -4115763151159723463}
     - {fileID: -5381688364817649755}
-    - {fileID: 453797545949849266}
-    - {fileID: 5208088741649682990}
     - {fileID: -3828754902970674544}
     - {fileID: 5340160417969825012}
 --- !u!114 &4008007551132394202
@@ -1012,26 +977,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
   m_Name: Signal Emitter
   m_EditorClassIdentifier: 
-  m_Time: 271.25000000000006
+  m_Time: 268.46666666666664
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: 3a7415dd4fc0404418d481a60c8e32e3, type: 2}
---- !u!114 &5208088741649682990
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
-  m_Name: Play Siren Signal Emitter
-  m_EditorClassIdentifier: 
-  m_Time: 289.8833333333333
-  m_Retroactive: 0
-  m_EmitOnce: 0
-  m_Asset: {fileID: 11400000, guid: 58bd8aff011fb8b4e8c1fe6b833fca4e, type: 2}
 --- !u!114 &5340160417969825012
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1060,7 +1009,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
   m_Name: Signal Emitter
   m_EditorClassIdentifier: 
-  m_Time: 151.38333333333333
+  m_Time: 150.81666666666666
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: 3a7415dd4fc0404418d481a60c8e32e3, type: 2}
@@ -1076,7 +1025,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
   m_Name: Signal Emitter
   m_EditorClassIdentifier: 
-  m_Time: 272.9166666666667
+  m_Time: 274.9
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: 3a7415dd4fc0404418d481a60c8e32e3, type: 2}
@@ -1124,7 +1073,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
   m_Name: Signal Emitter
   m_EditorClassIdentifier: 
-  m_Time: 268.83333333333337
+  m_Time: 266.05
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: 3a7415dd4fc0404418d481a60c8e32e3, type: 2}

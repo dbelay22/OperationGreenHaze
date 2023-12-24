@@ -44,7 +44,7 @@ public class MissionPickups : MonoBehaviour
     
     public void OnMissionItemPickup(GameObject pickup)
     {
-        //Debug.Log($"[MissionPickups] (OnMissionItemPickup) pickup: {pickup.name}");
+        Debug.Log($"[MissionPickups] (OnMissionItemPickup) pickup: {pickup.name}");
 
         bool pickupFound = _objectivesCompleted.TryGetValue(pickup.name, out bool completedStatus);
 
@@ -68,10 +68,12 @@ public class MissionPickups : MonoBehaviour
                 if (IsMissionDone())
                 {
                     Game.Instance.ReportAllMissionPickupsCollected();
+
+                    RadioTalking.Instance.PlayMissionMessage(RadioTalking.Instance.MissionObj2);
                 }
                 else
                 {
-                    GameUI.Instance.ShowInGameMessage("ig_objective_partial", 4f);                    
+                    RadioTalking.Instance.PlayMissionMessage(RadioTalking.Instance.MissionObj1);                    
                 }
             }
         }

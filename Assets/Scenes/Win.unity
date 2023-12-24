@@ -248,7 +248,7 @@ PrefabInstance:
     - target: {fileID: 4268806862878180134, guid: ef8945843775fcd41aea9e95e6ebc283,
         type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
-      value: 1
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 4268806864084192356, guid: ef8945843775fcd41aea9e95e6ebc283,
         type: 3}
@@ -282,10 +282,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98bf244a7e0046e458ecedda1167d44c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fadeInOutDuration: 2.2
+  _fadeInOutDuration: 1.5
   _telegramText: {fileID: 51472111}
   _pressKeyText: {fileID: 51472110}
-  _bgMusic: {fileID: 8300000, guid: 54e9314942090da4ab1c0a455fad8b0e, type: 3}
+  _bgMusicRef:
+    Guid:
+      Data1: -705023796
+      Data2: 1260509541
+      Data3: -1356111965
+      Data4: 348496687
+    Path: event:/Music/Music_Win
 --- !u!114 &51472110 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4268806864832699247, guid: ef8945843775fcd41aea9e95e6ebc283,
@@ -310,6 +316,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &51472112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 51472108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 0}
 --- !u!1 &656796693
 GameObject:
   m_ObjectHideFlags: 0
@@ -429,7 +448,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -5194339020240608141, guid: 13d1b11299e98ea41970b6a4efd17cfb,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 88cc77d6761be924da2ba5c551a54a29, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.33
   m_Pitch: 1
   Loop: 1

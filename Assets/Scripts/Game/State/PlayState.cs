@@ -10,30 +10,19 @@ public class PlayState : GameState
 
     public override void EnterState()
     {
-        Time.timeScale = 1;
-        
-        LockCursor();
+        Debug.Log("[PlayState] (EnterState)...");
 
-        GameUI.Instance.ShowGameplay();
+        UICore.LockCursor();
+
+        Time.timeScale = 1;
 
         AudioController.Instance.GameplayStart();
+
+        GameUI.Instance.ShowGameplay();        
     }
 
-    void LockCursor()
+    public override void ExitState(bool isShuttingDown)
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-    }
-
-    void UnlockCursor()
-    {
-        Cursor.lockState = CursorLockMode.Confined;
-        Cursor.visible = true;
-    }
-
-    public override void ExitState()
-    {
-        UnlockCursor();        
     }
 
     public override void Update()

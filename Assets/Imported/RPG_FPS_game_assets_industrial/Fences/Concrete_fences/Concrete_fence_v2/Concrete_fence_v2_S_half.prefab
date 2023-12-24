@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 65000010288613760}
   m_Layer: 0
   m_Name: Concrete_fence_v2_S_half
-  m_TagString: Untagged
+  m_TagString: MaterialConcrete
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 65000011252498410}
   m_Layer: 0
   m_Name: Concrete_fence_v2_lattice_S_half
-  m_TagString: Untagged
+  m_TagString: MaterialSteel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295

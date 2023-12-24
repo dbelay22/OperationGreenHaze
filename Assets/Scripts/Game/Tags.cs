@@ -14,4 +14,7 @@ public static class Tags
 
     public const string EXIT_BLOCKER = "ExitBlocker";
     public const string EXIT_DANGER = "ExitDanger";
+
+    public const string MATERIAL_CONCRETE = "MaterialConcrete";
+    public const string MATERIAL_STEEL = "MaterialSteel";
 }

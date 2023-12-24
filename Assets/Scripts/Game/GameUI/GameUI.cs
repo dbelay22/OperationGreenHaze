@@ -1,3 +1,4 @@
+using FMOD.Studio;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -29,12 +30,10 @@ public class GameUI : MonoBehaviour
 
     [Header("In-game/HUD/Timer")]
     [SerializeField] TMP_Text _timerLabel;
-    [SerializeField] AudioSource _timerAudioSource;
-    [SerializeField] AudioClip _timerBeepShort;
-    [SerializeField] AudioClip _timerBeepLong;
 
     [Header("In-game/VFX")]
     [SerializeField] PlayerDamage _playerDamage;
+    [SerializeField] GameObject _bloodyScarVFX;
     [SerializeField] float _damageShowTime = 2f;
 
     [Header("In-game/Interactive")]
@@ -73,6 +72,10 @@ public class GameUI : MonoBehaviour
 
     bool _timeIsUp = false;
 
+    EventInstance _timerBeepShort;
+    EventInstance _timerBeepLong;
+
+
     #region Instance
 
     private static GameUI _instance;    
@@ -92,7 +95,10 @@ public class GameUI : MonoBehaviour
 
         _hideMessagesCoroutine = null;
 
-        _queuedMessages = new Queue<InGameMessage>();        
+        _queuedMessages = new Queue<InGameMessage>();
+
+        _timerBeepShort = AudioController.Instance.CreateInstance(FMODEvents.Instance.TimerBeepShort);
+        _timerBeepLong = AudioController.Instance.CreateInstance(FMODEvents.Instance.TimerBeepLong);
     }
 
     void Update()
@@ -119,6 +125,8 @@ public class GameUI : MonoBehaviour
         _elapsedSeconds += Time.deltaTime;
 
         float timeLeftSeconds = (_minutesOfGameplay * 60) - _elapsedSeconds;
+
+        int intTimeLeftSeconds = (int)Math.Floor(timeLeftSeconds);
         
         int timerMinutes = Mathf.FloorToInt(timeLeftSeconds / 60);
         
@@ -128,29 +136,37 @@ public class GameUI : MonoBehaviour
         {
             // no need to update until next second
             return;
-        }       
+        }
+
+        //Debug.Log($"intTimeLeftSeconds: {intTimeLeftSeconds}");
 
         // SFX
-        if (timeLeftSeconds <= 10 && _timerAudioSource.isPlaying == false)
+        if (timeLeftSeconds <= 10)
         {
-            if (_timerAudioSource.isPlaying == false)
-            {
-                // last 10 seconds
-                _timerAudioSource.PlayOneShot(_timerBeepLong);
-            }
-        } 
+            // last 10 seconds
+            AudioController.Instance.PlayEvent(_timerBeepLong, true);
+        }
         else if (timeLeftSeconds <= 30)
         {
-            if (_timerAudioSource.isPlaying == false) 
-            {
-                // last minute
-                _timerAudioSource.PlayOneShot(_timerBeepShort);
-            }
-        } 
-        else if (timerMinutes != _lastMinuteUpdate && timerMinutes < _minutesOfGameplay-1)
+            // last minute
+            AudioController.Instance.PlayEvent(_timerBeepShort, true);
+        }
+        else if (intTimeLeftSeconds == 5 * 60)
+        {
+            RadioTalking.Instance.PlayMessage(RadioTalking.Instance.Time1);
+        }
+        else if (intTimeLeftSeconds == 3 * 60)
+        {
+            RadioTalking.Instance.PlayMessage(RadioTalking.Instance.Time2);
+        }
+        else if (intTimeLeftSeconds == 1 * 60)
+        {
+            RadioTalking.Instance.PlayMessage(RadioTalking.Instance.Time3, maxPriority: true);
+        }
+        else if (timerMinutes != _lastMinuteUpdate && timerMinutes < _minutesOfGameplay - 1)
         {
             // every past minute
-            _timerAudioSource.PlayOneShot(_timerBeepLong);
+            AudioController.Instance.PlayEvent(_timerBeepLong, true);
         }
 
         // Check timeout
@@ -175,13 +191,18 @@ public class GameUI : MonoBehaviour
     {
         _timeIsUp = true;
 
-        yield return new WaitForSeconds(1f);
+        // Change music
+        AudioController.Instance.GameplayDead();
+
+        yield return new WaitForSeconds(2.2f);
 
         Game.Instance.ChangeStateToGameOver();
     }
 
     public void ShowGameplay()
     {
+        //Debug.Log("[GameUI] ShowGameplay)...");
+
         // hide states
         _gameOverCanvas.SetActive(false);
         _winCanvas.SetActive(false);
@@ -195,8 +216,6 @@ public class GameUI : MonoBehaviour
         _gunReticleCanvas.SetActive(active);
         _hudCanvas.SetActive(active);        
         _minimapCanvas.SetActive(active);
-
-        _playerDamage.Hide();
     }
 
     public void ShowGameOver()
@@ -206,6 +225,9 @@ public class GameUI : MonoBehaviour
 
         // hide in-game messages
         HideMessagesNow();
+
+        // stop radio messages
+        RadioTalking.Instance.ShutDown();
 
         // show game over
         _gameOverCanvas.SetActive(true);
@@ -221,6 +243,9 @@ public class GameUI : MonoBehaviour
         // hide in-game messages
         HideMessagesNow();
 
+        // stop radio messages
+        RadioTalking.Instance.ShutDown();
+
         // show win
         _winCanvas.SetActive(true);
 
@@ -229,26 +254,39 @@ public class GameUI : MonoBehaviour
 
     IEnumerator LoadWinSceneDelayed()
     {
-        yield return new WaitForSeconds(2f);
+        LevelLoader.Instance.LoadWinSceneAsync();
 
-        LevelLoader.Instance.LoadWinScene();
+        yield return new WaitForSeconds(5f);
+
+        Game.Instance.ShutDown();
+
+        StartCoroutine(LevelLoader.Instance.StartCrossfade());
     }
 
     IEnumerator LoadLoseSceneDelayed()
     {
-        yield return new WaitForSeconds(1f);
+        LevelLoader.Instance.LoadLoseSceneAsync();
+        
+        yield return new WaitForSeconds(3f);
 
-        LevelLoader.Instance.LoadLoseScene();
+        Game.Instance.ShutDown();
+
+        StartCoroutine(LevelLoader.Instance.StartCrossfade());
     }
 
 
     public void ShowPause()
     {
+        //Debug.Log("[GameUI] ShowPause)...");
+
         // hide in-game canvases
         ShowHUD(false);
 
+        // hide in game messages
+        HideMessagesNow();
+
         // show pause
-        _pauseScreen.SetActive(true);       
+        _pauseScreen.SetActive(true);
     }
 
     public void UpdateAmmoAmount(int amount)
@@ -281,20 +319,58 @@ public class GameUI : MonoBehaviour
 
     public void ShowPlayerDamageVFX()
     {
-        if (!_playerDamage.IsActive())
+        Debug.Log("ShowPlayerDamageVFX)...");
+
+        if (!_playerDamage.isActiveAndEnabled)
         {
             _playerDamage.Show(_damageShowTime);
         }
+        else
+        {
+            if (!_bloodyScarVFX.activeSelf)
+            {
+                // hide bloody scar after hit damage
+                Invoke(nameof(HidePlayerVeryBadlyHurt), _damageShowTime);
+            }       
+        }
+
+        _bloodyScarVFX.SetActive(true);
     }
 
     public void ShowPlayerBadlyHurt()
     {
+        Debug.Log("ShowPlayerBadlyHurt)...");
+
         _playerDamage.Show();
+
+        HidePlayerVeryBadlyHurt();
+    }
+
+    public void ShowPlayerVeryBadlyHurt()
+    {
+        Debug.Log("ShowPlayerVeryBadlyHurt)...");
+
+        _playerDamage.Show();
+
+        _bloodyScarVFX.SetActive(true);
+
+        CancelInvoke(nameof(HidePlayerVeryBadlyHurt));
     }
 
     public void HidePlayerBadlyHurt()
     {
+        Debug.Log("HidePlayerBadlyHurt)...");
+
+        HidePlayerVeryBadlyHurt();
+
         _playerDamage.Hide();
+    }
+
+    public void HidePlayerVeryBadlyHurt()
+    {
+        Debug.Log("HidePlayerVeryBadlyHurt)...");
+
+        _bloodyScarVFX.SetActive(false);
     }
 
     public void InitKills(int total)
@@ -303,6 +379,7 @@ public class GameUI : MonoBehaviour
         _totalKills = total;
 
         _killsPanel.SetActive(true);
+
         _killsLabel.text = GetLabelKillsOverTotal(_currentKills, _totalKills);
     }
 
@@ -325,7 +402,7 @@ public class GameUI : MonoBehaviour
 
     public bool ShowInGameMessage(string textKey, float lifetime, bool maxPriority = false)
     {
-        Debug.Log($"ShowInGameMessage) key:{textKey}, lifetime: {lifetime}");
+        //Debug.Log($"ShowInGameMessage) key:{textKey}, lifetime: {lifetime}");
 
         if (_inGameMessagesCanvas.activeInHierarchy == true)
         {
@@ -357,7 +434,7 @@ public class GameUI : MonoBehaviour
 
         _inGameMessagesCanvas.SetActive(true);
 
-        Debug.Log($"ShowInGameMessage) showing text: {_textInGameMessage.text}");
+        //Debug.Log($"ShowInGameMessage) showing text: {_textInGameMessage.text}");
 
         // negative / zero lifetime = permanent message (will be hidden later)
         // positive lifetime = temporal message
@@ -380,7 +457,7 @@ public class GameUI : MonoBehaviour
 
     public void HideMessagesNow()
     {
-        Debug.Log($"[GameUI] (HideMessagesNow)...");
+        //Debug.Log($"[GameUI] (HideMessagesNow)...");
 
         if (_hideMessagesCoroutine != null)
         {

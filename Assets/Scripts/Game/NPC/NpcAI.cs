@@ -1,7 +1,5 @@
+using FMOD.Studio;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -22,6 +20,9 @@ public class NpcAI : MonoBehaviour
     const float MIN_SPEED = 0.5f;
     const float MAX_SPEED = 1.1f;
 
+    const float AUDIO_STEP_MIN_DISTANCE = 12f;
+    const float AUDIO_STEP_STOP_DISTANCE = 2f;
+
     readonly float[] DEFAULT_SIZE_SCALE_RANGE = { 1f, 1f };
     readonly float[] BIG_SIZE_SCALE_RANGE = { 1.2f, 1.35f };
 
@@ -40,10 +41,6 @@ public class NpcAI : MonoBehaviour
     [Header("Attack")]
     [SerializeField] int EatBrainDamage = 10;
 
-    [Header("Speed")]
-    [SerializeField] [Range(0f, 5f)] float _minSpeed = 0f;
-    [SerializeField] [Range(0f, 5f)] float _maxSpeed = 5f;
-
     [Header("Target")]
     [SerializeField] Transform _targetPlayer;
     [SerializeField] float _chaseRange = 17;
@@ -57,15 +54,6 @@ public class NpcAI : MonoBehaviour
     [SerializeField] GameObject _hitBulletVFX;
     [SerializeField] GameObject _headshotVFX;
     [SerializeField] GameObject _deadVFX;
-
-    [Header("SFX")]
-    [SerializeField] AudioClip _growlSFX;
-    [SerializeField] AudioClip _punchSFX;
-    [SerializeField] AudioClip _synthSFX;
-    [SerializeField] AudioClip _bulletHitSFX;
-    [SerializeField] AudioClip _death01SFX;
-    [SerializeField] AudioClip _death02SFX;
-    [SerializeField] AudioClip _blindedSFX;
 
     [Header("Minimap")]
     [SerializeField] GameObject _minimapIcon;
@@ -81,8 +69,6 @@ public class NpcAI : MonoBehaviour
 
     Player _player;
 
-    AudioSource _audioSource;
-
     BoxCollider _bodyCollider;
     CapsuleCollider _headCollider;
 
@@ -93,36 +79,52 @@ public class NpcAI : MonoBehaviour
 
     float _currentHealth;
 
-    void Awake()
+    EventInstance _zombieAppearSFX;
+    EventInstance _zombieAttackSFX;
+    EventInstance _zombieBlindedSFX;
+    EventInstance _zombieBlindedLoopSFX;
+    EventInstance _zombieDamageSFX;
+    EventInstance _zombieDieSFX;
+    EventInstance _zombieFallSFX;
+    EventInstance _zombieHeadshotSFX;
+
+    bool _deadByHeadshot = false;
+
+    GameObject _model3D;
+
+    void Awake()    
     {
+        _deadByHeadshot = false;
+        
+        _reportedAttack = false;
+        
+        _reportedPlayerEscape = false;
+
         _headCollider = GetComponent<CapsuleCollider>();
         
         _bodyCollider = GetComponent<BoxCollider>();
 
-        RandomizeMaterial();
-
-        RandomizeSizeScale();
-        
-        RandomizeMissingBodyParts();        
-    }
-
-    void Start()
-    {
         _navMeshAgent = GetComponent<NavMeshAgent>();
 
         _animator = GetComponent<Animator>();
 
         _player = _targetPlayer.GetComponent<Player>();
 
-        _audioSource = GetComponent<AudioSource>();
-
         _previousState = NpcState.Idle;
         _currentState = NpcState.Idle;
 
-        _reportedAttack = false;
-        _reportedPlayerEscape = false;
+        RandomizeMaterial();
 
-        _minimapIcon.SetActive(true);
+        RandomizeSizeScale();
+        
+        RandomizeMissingBodyParts();
+
+        _model3D = transform.Find("Model").gameObject;
+    }
+
+    void Start()
+    {
+        _minimapIcon.SetActive(true);        
     }
 
     void SetCurrentStateTo(NpcState state)
@@ -130,7 +132,7 @@ public class NpcAI : MonoBehaviour
         if (_currentState.Equals(NpcState.Dead))
         {
             return;
-        }       
+        }
 
         _previousState = _currentState;
 
@@ -226,8 +228,27 @@ public class NpcAI : MonoBehaviour
 
         if (_distanceToTarget < _chaseRange)
         {
-            SetCurrentStateTo(NpcState.Provoked);
+            ChangeStateFromIdleToProvoked();
         }
+    }
+
+    void ChangeStateFromIdleToProvoked()
+    {
+        InitializeAudioInstances();
+
+        SetCurrentStateTo(NpcState.Provoked);
+    }
+
+    void InitializeAudioInstances()
+    {   
+        _zombieAppearSFX = AudioController.Instance.Create3DInstance(FMODEvents.Instance.ZombieAppear, transform.position);
+        _zombieAttackSFX = AudioController.Instance.Create3DInstance(FMODEvents.Instance.ZombieAttack, transform.position);
+        _zombieBlindedSFX = AudioController.Instance.Create3DInstance(FMODEvents.Instance.ZombieBlinded, transform.position);
+        _zombieBlindedLoopSFX = AudioController.Instance.Create3DInstance(FMODEvents.Instance.ZombieBlindedLoop, transform.position);
+        _zombieDamageSFX = AudioController.Instance.Create3DInstance(FMODEvents.Instance.ZombieDamage, transform.position);
+        _zombieDieSFX = AudioController.Instance.Create3DInstance(FMODEvents.Instance.ZombieDie, transform.position);
+        _zombieFallSFX = AudioController.Instance.Create3DInstance(FMODEvents.Instance.ZombieFall, transform.position);
+        _zombieHeadshotSFX = AudioController.Instance.Create3DInstance(FMODEvents.Instance.ZombieHeadshot, transform.position);
     }
 
     void ProvokedUpdate()
@@ -250,7 +271,7 @@ public class NpcAI : MonoBehaviour
         StopMoving();
 
         // play sfx
-        PlayAudioClip(_blindedSFX);
+        AudioController.Instance.Play3DEvent(_zombieBlindedSFX, transform.position, true);
 
         // set anim trigger
         _animator.SetTrigger("Blinded Trigger");
@@ -264,6 +285,8 @@ public class NpcAI : MonoBehaviour
     IEnumerator WakeUpFromBlinded()
     {
         yield return new WaitForSeconds(_blindedTimeout);
+
+        AudioController.Instance.StopEventIfPlaying(_zombieBlindedLoopSFX);
 
         SetCurrentStateTo(NpcState.Provoked);
 
@@ -342,10 +365,15 @@ public class NpcAI : MonoBehaviour
 
     float _lastTimeChaseSFX = 0;
     
-    const float CHASE_SFX_INTERVAL = 7f;
+    const float CHASE_SFX_INTERVAL = 5f;
 
     void PlayChaseSFX()
     {
+        if (isHeadless())
+        {
+            // no head, no screaming
+            return;
+        }
 
         if (Time.time < _lastTimeChaseSFX + CHASE_SFX_INTERVAL)
         {
@@ -353,11 +381,9 @@ public class NpcAI : MonoBehaviour
             return;
         }
 
-        if (Random.value > 0.5)
+        if (_distanceToTarget <= AUDIO_STEP_MIN_DISTANCE && Random.value > 0.5)
         {
-            float rndSound = Random.value;
-
-            PlayAudioClip(rndSound > 0.7 ? _synthSFX : _growlSFX);
+            AudioController.Instance.Play3DEvent(_zombieAppearSFX, transform.position);
             
             _lastTimeChaseSFX = Time.time;
         }
@@ -407,7 +433,41 @@ public class NpcAI : MonoBehaviour
 
     public void OnZombieStepAnimEvent()
     {
-        _zombieSteps.PlayStepSFX();
+        if (_distanceToTarget <= AUDIO_STEP_MIN_DISTANCE && _distanceToTarget > AUDIO_STEP_STOP_DISTANCE)
+        {
+            _zombieSteps.PlayStepSFX();
+        }
+        else 
+        {
+            //Debug.Log($"[NpcAI] WONT PLAY STEP audio because distance ({_distanceToTarget}) is not between {AUDIO_STEP_STOP_DISTANCE} and ({AUDIO_STEP_MIN_DISTANCE})");
+            _zombieSteps.StopStepSFX();
+        }
+    }
+
+    public void OnZombieFallAnimEvent()
+    {
+        if (_distanceToTarget < AUDIO_STEP_MIN_DISTANCE)
+        {
+            AudioController.Instance.Play3DEvent(_zombieFallSFX, transform.position, true);
+
+            if (_currentState.Equals(NpcState.Blinded))
+            {
+                AudioController.Instance.Play3DEvent(_zombieBlindedLoopSFX, transform.position, true);
+            }
+        }
+    }
+
+    public void OnAttackStartAnimEvent()
+    {
+        if (!Game.Instance.IsGameplayOn())
+        {
+            return;
+        }
+
+        if (!isHeadless())
+        {
+            AudioController.Instance.Play3DEvent(_zombieAttackSFX, transform.position, true);
+        }        
     }
 
     public void OnAttackHitAnimEvent()
@@ -418,20 +478,6 @@ public class NpcAI : MonoBehaviour
         }
 
         _player.Damage(EatBrainDamage);
-
-        float rndHit = Random.value;
-        if (rndHit < 0.3f)
-        {
-            PlayAudioClip(_punchSFX);
-        }
-        else if (rndHit < 0.6f)
-        {
-            PlayAudioClip(_synthSFX);
-        } 
-        else if (rndHit < 0.9f)
-        {
-            PlayAudioClip(_growlSFX);
-        }
     }
 
     public void HitByExplosion(Transform explosionTransform)
@@ -445,7 +491,7 @@ public class NpcAI : MonoBehaviour
 
         Vector3 forceVector = forceDirection * EXPLOSION_FORCE;
 
-        Rigidbody rb = Get3DModel().GetComponent<Rigidbody>();
+        Rigidbody rb = _model3D.GetComponent<Rigidbody>();
 
         // vuela, vuela
         rb.AddForceAtPosition(forceVector, transform.position, ForceMode.Impulse);
@@ -458,7 +504,7 @@ public class NpcAI : MonoBehaviour
     {
         if (_currentState == NpcState.Idle)
         {
-            SetCurrentStateTo(NpcState.Provoked);
+            ChangeStateFromIdleToProvoked();
         }
         else if (_currentState == NpcState.Dead) 
         {
@@ -482,7 +528,7 @@ public class NpcAI : MonoBehaviour
 
         SetCurrentStateTo(NpcState.HitHyBullet);
 
-        TakeDamage(damage);
+        TakeDamage(damage, isHeadshot);
 
         StartCoroutine(ChangeStateDelayed(0.5f, NpcState.Provoked));
     }
@@ -505,7 +551,7 @@ public class NpcAI : MonoBehaviour
 
     void PlayHitByBulletFX(RaycastHit hit, bool isHeadshot = false)
     {
-        PlayHitByBulletSFX();
+        PlayHitByBulletSFX(isHeadshot);
 
         PlayHitByBulletVFX(hit, isHeadshot);
     }
@@ -515,21 +561,35 @@ public class NpcAI : MonoBehaviour
         _animator.SetTrigger("BulletHit Trigger");
     }
 
-    void PlayHitByBulletSFX()
+    void PlayHitByBulletSFX(bool isHeadshot)
     {
-        PlayAudioClip(_bulletHitSFX);
+        if (isHeadless() || isHeadshot)
+        {
+            // no head, no screaming
+            return;
+        }
+
+        AudioController.Instance.Play3DEvent(_zombieDamageSFX, transform.position);
     }
 
     void PlayHitByBulletVFX(RaycastHit hit, bool isHeadshot = false)
     {
-        GameObject prefabVfx = isHeadshot ? _headshotVFX : _hitBulletVFX;
+        if (isHeadshot)
+        {
+            GameObject vfx = Instantiate(_hitBulletVFX, hit.point, Quaternion.LookRotation(Vector3.zero, Vector3.up));
+            Destroy(vfx, 0.4f);
 
-        GameObject vfx = Instantiate(prefabVfx, hit.point, Quaternion.LookRotation(hit.normal));
-                
-        Destroy(vfx, 0.7f);
+            GameObject vfx2 = Instantiate(_headshotVFX, hit.point, Quaternion.LookRotation(hit.normal));
+            Destroy(vfx2, 0.4f);
+        }
+        else
+        {
+            GameObject vfx = Instantiate(_hitBulletVFX, hit.point, Quaternion.LookRotation(hit.normal));
+            Destroy(vfx, 0.7f);
+        }
     }
 
-    void TakeDamage(float damage)
+    void TakeDamage(float damage, bool isHeadshot = false)
     {
         if (_currentHealth <= 0)
         {
@@ -541,6 +601,8 @@ public class NpcAI : MonoBehaviour
 
         if (_currentHealth <= 0f)
         {
+            _deadByHeadshot = isHeadshot;
+
             ChangeStateToDead();
         }
     }
@@ -554,6 +616,11 @@ public class NpcAI : MonoBehaviour
         _bodyCollider.enabled = active;
     }
 
+    bool isHeadless()
+    {
+        return _headCollider == null;
+    }
+
     void ChangeStateToDead()
     {
         // change state
@@ -562,6 +629,11 @@ public class NpcAI : MonoBehaviour
         StopMoving();
 
         _minimapIcon.SetActive(false);
+
+        if (_deadByHeadshot)
+        {
+            Invoke(nameof(HideHead), 0.3f);
+        }
 
         string rndDeadTrigger = Random.value < 0.5f ? "Dead Trigger" : "Dead Fwd Trigger";
         _animator.SetTrigger(rndDeadTrigger);
@@ -579,6 +651,13 @@ public class NpcAI : MonoBehaviour
         StartCoroutine(HideNPC());
     }
 
+    void HideHead()
+    {
+        GameObject head = _bodyParts[0];
+
+        head.SetActive(false);
+    }
+
     IEnumerator HideNPC()
     {
         yield return new WaitForSeconds(0.7f);
@@ -587,39 +666,39 @@ public class NpcAI : MonoBehaviour
 
         yield return new WaitForSeconds(22f);
 
-        Get3DModel().SetActive(false);
+        _model3D.SetActive(false);
 
         Destroy(gameObject, 3f);
     }
 
-    GameObject Get3DModel() 
-    {
-        return transform.Find("Model").gameObject;
-    }
-
     void PlayDeathSFX()
     {
-        if (Random.value > 0.3)
+        if (_deadByHeadshot)
         {
-            PlayAudioClip(Random.value > 0.5 ? _death01SFX : _death02SFX);
+            // headshot
+            AudioController.Instance.Play3DEvent(_zombieHeadshotSFX, transform.position, true);
         }
+        else if (!isHeadless())
+        {
+            // a regular zombie with a head
+            AudioController.Instance.Play3DEvent(_zombieDieSFX, transform.position, true);
+        }        
     }
 
-    bool PlayAudioClip(AudioClip clip)
-    {
-        if (_audioSource.isPlaying)
-        {
-            return false;
-        }
-
-        _audioSource.PlayOneShot(clip);
-
-        return true;
-    }
-    
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, _chaseRange);
+    }
+
+    void OnDestroy()
+    {
+        AudioController.Instance.DestroyEvent(_zombieAppearSFX);
+        AudioController.Instance.DestroyEvent(_zombieAttackSFX);
+        AudioController.Instance.DestroyEvent(_zombieBlindedSFX);
+        AudioController.Instance.DestroyEvent(_zombieDamageSFX);
+        AudioController.Instance.DestroyEvent(_zombieDieSFX);
+        AudioController.Instance.DestroyEvent(_zombieFallSFX);
+        AudioController.Instance.DestroyEvent(_zombieHeadshotSFX);
     }
 }

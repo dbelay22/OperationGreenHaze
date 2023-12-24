@@ -19,7 +19,7 @@ public class GameStateMachine : IGameStateMachine
             return false;
         }
 
-        ExitCurrentState();
+        ExitCurrentState(false);
 
         Debug.Log($"*** GSM Entering state {state.GetType()} ***");
 
@@ -48,14 +48,14 @@ public class GameStateMachine : IGameStateMachine
 
     public void Shutdown()
     {
-        ExitCurrentState();
+        ExitCurrentState(true);
     }
 
-    bool ExitCurrentState()
+    bool ExitCurrentState(bool isShuttingDown = false)
     {
         if (_currentState != null)
         {
-            _currentState.ExitState();
+            _currentState.ExitState(isShuttingDown);
             return true;
         }
 

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{3c3ed6e8-adbb-4a4a-a351-92b41aed430e}">
+		<property name="name">
+			<value>Left_Right</value>
+		</property>
+		<relationship name="folder">
+			<destination>{6426fc4c-fb73-412b-8126-24c5a3a4a6ec}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{9d6b67c4-dbfc-4866-9fed-f71831d8e064}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{9d6b67c4-dbfc-4866-9fed-f71831d8e064}">
+		<property name="parameterType">
+			<value>1</value>
+		</property>
+		<property name="maximum">
+			<value>2</value>
+		</property>
+		<property name="isHeld">
+			<value>true</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

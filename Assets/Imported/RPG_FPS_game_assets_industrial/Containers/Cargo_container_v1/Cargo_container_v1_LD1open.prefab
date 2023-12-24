@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 65000012304053698}
   m_Layer: 0
   m_Name: Cargo_container_v1_LD1doorR
-  m_TagString: Untagged
+  m_TagString: MaterialSteel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 64000010233529098}
   m_Layer: 0
   m_Name: Cargo_container_v1_LD1open
-  m_TagString: Untagged
+  m_TagString: MaterialSteel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -206,7 +206,7 @@ GameObject:
   - component: {fileID: 4000013554313012}
   m_Layer: 0
   m_Name: Cargo_container_v1_LD1open
-  m_TagString: Untagged
+  m_TagString: MaterialSteel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -243,7 +243,7 @@ GameObject:
   - component: {fileID: 65000013418923078}
   m_Layer: 0
   m_Name: Cargo_container_v1_LD1doorL
-  m_TagString: Untagged
+  m_TagString: MaterialSteel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

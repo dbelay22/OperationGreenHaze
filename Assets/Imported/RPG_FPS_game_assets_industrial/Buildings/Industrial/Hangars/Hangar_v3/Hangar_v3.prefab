@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 64000011000010816}
   m_Layer: 0
   m_Name: Object089
-  m_TagString: Untagged
+  m_TagString: MaterialSteel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112,7 +112,7 @@ GameObject:
   - component: {fileID: 64000014232975922}
   m_Layer: 0
   m_Name: Object086
-  m_TagString: Untagged
+  m_TagString: MaterialSteel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -210,7 +210,7 @@ GameObject:
   - component: {fileID: 64000012037115136}
   m_Layer: 0
   m_Name: Object1040
-  m_TagString: Untagged
+  m_TagString: MaterialSteel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 64000010886131344}
   m_Layer: 0
   m_Name: Pipes_set_v1_U_set_v2
-  m_TagString: Untagged
+  m_TagString: MaterialSteel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

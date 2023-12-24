@@ -48,9 +48,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98890a9d65a9c1143bfd403b7f4bb7a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _helicopterExitSound: {fileID: 0}
   _playerSettingsPrefab: {fileID: 2824252697815358925, guid: 03f55d419b18a8444a23b5f3267eb01f,
     type: 3}
   _localizationPrefab: {fileID: 8994485027068230935, guid: 423b02f0bea411d41a4e80763115f1df,
+    type: 3}
+  _audioControllerPrefab: {fileID: 2160691158358304244, guid: c6dc9c7b5a8020b41a4533f6b2fedab6,
     type: 3}
   _player: {fileID: 0}
   _minutesOfGameplay: 10

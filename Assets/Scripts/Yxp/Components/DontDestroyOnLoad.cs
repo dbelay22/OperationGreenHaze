@@ -12,7 +12,8 @@ public class DontDestroyOnLoad : MonoBehaviour
 
         if (currentInstances != null && currentInstances.Length > 1)
         {
-            Destroy(currentInstances[1]);
+            Debug.LogWarning($"DontDestroyOnLoad] Awake) found ({currentInstances.Length}) instances of {_instanceTAG}, destroying one.");
+            Destroy(currentInstances[0]);
         }        
 
         DontDestroyOnLoad(gameObject);

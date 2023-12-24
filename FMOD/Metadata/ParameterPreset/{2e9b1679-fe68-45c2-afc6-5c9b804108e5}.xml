@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{2e9b1679-fe68-45c2-afc6-5c9b804108e5}">
+		<property name="name">
+			<value>Flashligth_on-off</value>
+		</property>
+		<relationship name="folder">
+			<destination>{6426fc4c-fb73-412b-8126-24c5a3a4a6ec}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{542cfe58-f304-4834-bee9-f8343ccc317d}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{542cfe58-f304-4834-bee9-f8343ccc317d}">
+		<property name="parameterType">
+			<value>1</value>
+		</property>
+		<property name="maximum">
+			<value>2</value>
+		</property>
+		<property name="isHeld">
+			<value>true</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>
