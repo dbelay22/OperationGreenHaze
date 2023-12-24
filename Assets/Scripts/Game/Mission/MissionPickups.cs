@@ -67,9 +67,7 @@ public class MissionPickups : MonoBehaviour
 
                 if (IsMissionDone())
                 {
-                    Game.Instance.ReportAllMissionPickupsCollected();
-
-                    RadioTalking.Instance.PlayMissionMessage(RadioTalking.Instance.MissionObj2);
+                    Game.Instance.ReportAllMissionPickupsCollected();                    
                 }
                 else
                 {

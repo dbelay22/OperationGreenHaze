@@ -112,9 +112,9 @@ public class RadioTalking : MonoBehaviour
             { Instance.UseMedkit, new IngameMessageDuration("ig_radio_medkit", 4f) },
             { Instance.UseFlashlight, new IngameMessageDuration("ig_radio_flashlight", 4f) },
             { Instance.OutOfAmmo, new IngameMessageDuration("ig_radio_outofammo", 4f) },
-            { Instance.MissionObj1, new IngameMessageDuration("ig_radio_missionobj1", 5f) },
-            { Instance.MissionObj2, new IngameMessageDuration("ig_radio_missionobj2", 5f) },
-            { Instance.KillComplete, new IngameMessageDuration("ig_radio_killcomplete", 5f) },
+            { Instance.MissionObj1, new IngameMessageDuration("ig_radio_missionobj1", 4f) },
+            { Instance.MissionObj2, new IngameMessageDuration("ig_radio_missionobj2", 4f) },
+            { Instance.KillComplete, new IngameMessageDuration("ig_radio_killcomplete", 4f) },
             { Instance.FindExit, new IngameMessageDuration("ig_radio_findexit", 10f) },
             { Instance.TooClose, new IngameMessageDuration("ig_radio_tooclose", GameUI.LIFETIME_INFINITE) },
             { Instance.Time1, new IngameMessageDuration("ig_radio_time1", 5f) },
@@ -276,8 +276,11 @@ public class RadioTalking : MonoBehaviour
 
     public void PlayMessage(EventReference eventRef, bool maxPriority = false)
     {
+        //Debug.Log($"RadioTalking] PlayMessage) eventRef:{eventRef}");
+
         if (_isRadioDisabled)
         {
+            //Debug.Log($"RadioTalking] PlayMessage) Radio disabled...returning");
             return;
         }
 
@@ -291,14 +294,14 @@ public class RadioTalking : MonoBehaviour
         {
             if (_isPlayingMessage)
             {
-                //Debug.LogWarning($"RadioTalking] Already playing, missed message: {eventRef}");
+                Debug.LogWarning($"RadioTalking] Already playing, missed message: {eventRef}");
                 return;
             }
             float elapsed = Time.time - _lastMessageTimeSeconds;
 
             if (_lastMessageTimeSeconds > 0 && elapsed < _minFrequencyBetweenMessagesSeconds)
             {
-                //Debug.LogWarning($"RadioTalking] PlayMessage) Sorry, another message played soon: {elapsed} seconds. Min frequency is: {_minFrequencyBetweenMessagesSeconds}");
+                Debug.LogWarning($"RadioTalking] PlayMessage) Sorry, another message played soon: {elapsed} seconds. Min frequency is: {_minFrequencyBetweenMessagesSeconds}");
                 return;
             }       
         }
@@ -327,7 +330,7 @@ public class RadioTalking : MonoBehaviour
         }
 
 #if UNITY_EDITOR
-        //Debug.Log($"RadioTalking] ShowInGameText) eventRef:{eventRef.Path}");
+        Debug.Log($"RadioTalking] ShowInGameText) eventRef:{eventRef.Path}");
 #endif
 
         AudioTextMessage.TryGetValue(eventRef, out IngameMessageDuration igMessage);

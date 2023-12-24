@@ -168,6 +168,8 @@ public class Game : MonoBehaviour
 
         ObjectivesPanel.Instance.SetPickupDataComplete();
 
+        RadioTalking.Instance.PlayMissionMessage(RadioTalking.Instance.MissionObj2);
+
         CheckGameWin();
     }
 
@@ -181,14 +183,9 @@ public class Game : MonoBehaviour
 
         ObjectivesPanel.Instance.SetKillemAllComplete();
 
-        ShowKillsCompletedMessage();
+        RadioTalking.Instance.PlayMessage(RadioTalking.Instance.KillComplete, maxPriority: true);
 
         CheckGameWin();
-    }
-
-    void ShowKillsCompletedMessage()
-    {
-        RadioTalking.Instance.PlayMessage(RadioTalking.Instance.KillComplete, maxPriority: true);
     }
 
     public void ReportExitClear()
@@ -226,16 +223,23 @@ public class Game : MonoBehaviour
             }
             else
             {
-                _helicopterExitSound.SetActive(true);
+                //Debug.Log($"Game] CheckGameWin)... playing helicopter sound");
 
-                RadioTalking.Instance.PlayMessage(RadioTalking.Instance.FindExit, maxPriority: true);
+                _helicopterExitSound.SetActive(true);                
 
                 AudioController.Instance.GameplayFindExit();
+
+                Invoke(nameof(PlayFindExitMessage), 6f);
 
                 return false;
             }
         }
         return false;
+    }
+
+    void PlayFindExitMessage()
+    {
+        RadioTalking.Instance.PlayMessage(RadioTalking.Instance.FindExit, maxPriority: true);
     }
 
     void GameplayIsOver()
